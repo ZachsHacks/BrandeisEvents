@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+By Zach Weiss, Aaron Gold, Ari Carr, and Hunter Stusnick
