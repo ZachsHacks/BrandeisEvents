@@ -122,6 +122,15 @@ Navigation Style
   padding: 30px 15px;
 }
 
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
 
     /* ==========================================================================
 Media Queries Style
@@ -181,6 +190,7 @@ Media Queries Style
   .navbar-default .collapse.in {
     display: block !important;
   }
+
 
   
 }
