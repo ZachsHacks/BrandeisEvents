@@ -140,6 +140,7 @@ Media Queries Style
   /*-- Navigation --*/
   .navbar-default {
     background: #24242a;
+
   }
   .navbar-default .navbar-header {
     width: 100%;
@@ -187,6 +188,7 @@ Media Queries Style
   }
   .navbar-default .navbar-nav > li {
     float: none;
+    padding-top: 20px;
   }
   .navbar-default .collapse.in {
     display: block !important;
@@ -220,7 +222,8 @@ carousel
 .carousel-control.right {
 
     background: none !important;
-    filter: progid:none !important
+    
+    filter:none !important;
 }
 .search {
     margin-top: -25%;
