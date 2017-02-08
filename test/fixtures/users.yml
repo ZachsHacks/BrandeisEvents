@@ -12,6 +12,6 @@ two:
   first_name: MyString
   last_name: MyString
   password_hash: MyString
-  email: MyString
+  email: MyDifferentString
   bio: MyText
   is_host: false
