@@ -4,248 +4,250 @@
 <head>
 
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>CampusNow</title>
+	<title>CampusNow</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
 
-    <!-- Bootstrap Css -->
+	<!-- Bootstrap Css -->
 
 
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-      <%= stylesheet_link_tag "app/assets/stylesheets/main.css" %>
+	<%= stylesheet_link_tag "app/assets/stylesheets/main.css" %>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <!-- Header
+	<!-- Header
 	============================================= -->
-  <section class="main-header text-center">
-    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+	<section class="main-header text-center">
+		<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
 
-    </div>
-    <!-- Collection of nav links and other content for toggling -->
+				</div>
+				<!-- Collection of nav links and other content for toggling -->
 
-    <div id="navbarCollapse" class="collapse navbar-collapse">
-      <a class="navbar-brand" style="margin-top:20px; font-size:30px" href="#">CampusNow</a>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Add Event</a></li>
-            <li><a href="#">Login</a></li>
-        </ul>
-    </div>
-  </div>
-</nav>
+				<div id="navbarCollapse" class="collapse navbar-collapse">
+					<a class="navbar-brand" style="margin-top:20px; font-size:30px" href="#">CampusNow</a>
+					<ul class="nav navbar-nav navbar-right">
+						<li> <%= link_to "Events", events_path %> </li>
+						<li> <%= link_to "Add Event", events_new_path %> </li>
+						<!-- <li><a href="#">Events</a></li>
+						<li><a href="#">Add Event</a></li>----->
+						<li><a href="#">Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-  </section>
+	</section>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
-            </div>
-            <div class="item">
-              <img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
-            </div>
-            <div class="item">
-              <img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
-            </div>
-          </div>
-          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-          <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        </div>
-        <div class="search">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                  <div class="form-section">
-                    <div class="row">
-                        <form role="form">
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label class="sr-only" for="location">Search Events or Catagorieson</label>
-                              <input type="email" class="form-control" id="location" placeholder="Search Events or Catagories">
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label class="sr-only" for="location">Location</label>
-                              <input type="email" class="form-control" id="location" placeholder="Location">
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="form-group">
-                              <label class="sr-only" for="checkin">Date</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="checkin" placeholder="Date">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                              </div>
-                            </div>
-                          </div>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
+			</div>
+			<div class="item">
+				<img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
+			</div>
+			<div class="item">
+				<img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
+			</div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	<div class="search">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="form-section">
+						<div class="row">
+							<form role="form">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="sr-only" for="location">Search Events or Catagorieson</label>
+										<input type="email" class="form-control" id="location" placeholder="Search Events or Catagories">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="sr-only" for="location">Location</label>
+										<input type="email" class="form-control" id="location" placeholder="Location">
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<label class="sr-only" for="checkin">Date</label>
+										<div class="input-group">
+											<input type="text" class="form-control" id="checkin" placeholder="Date">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+										</div>
+									</div>
+								</div>
 
-                          <div class="col-md-2 form-group">
-                            <button type="submit" class="btn btn-default btn-primary">Search</button>
-                          </div>
-                        </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-<section class="events_section">
-    <div class="container events_section" id="" style="padding-top: 100px">
+								<div class="col-md-2 form-group">
+									<button type="submit" class="btn btn-default btn-primary">Search</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-        <!-- Projects Row -->
-        <h3 class="text-center">Events for you</h3>
-        <hr>
-        <div class="row">
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h4>
-                    <a href="#">Project Name</a>
-                </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <div class="row">
-                               <div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
-                               <div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
-                </div>
-            </div>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h4>
-                    <a href="#">Project Name</a>
-                </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <div class="row">
-                               <div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
-                               <div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
-                </div>
-            </div>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h4>
-                    <a href="#">Project Name</a>
-                </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <div class="row">
-                               <div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
-                               <div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
-                </div>
-            </div>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h4>
-                    <a href="#">Project Name</a>
-                </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <div class="row">
-                               <div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
-                               <div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-
-        <div class="row">
-          <h3 class="text-center">Top Event</h3>
-          <hr>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row">
-          <h3 class="text-center">Other Events</h3>
-          <hr>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        </section
-        <!-- /.row -->
-</body>
+	<section class="events_section">
+		<div class="container events_section" id="" style="padding-top: 100px">
 
 
-</html>
+			<!-- Projects Row -->
+			<h3 class="text-center">Events for you</h3>
+			<hr>
+			<div class="row">
+				<div class="col-md-3 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h4>
+						<a href="#">Project Name</a>
+					</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+					<div class="row">
+						<div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
+						<div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
+					</div>
+				</div>
+				<div class="col-md-3 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h4>
+						<a href="#">Project Name</a>
+					</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+					<div class="row">
+						<div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
+						<div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
+					</div>
+				</div>
+				<div class="col-md-3 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h4>
+						<a href="#">Project Name</a>
+					</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+					<div class="row">
+						<div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
+						<div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
+					</div>
+				</div>
+				<div class="col-md-3 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h4>
+						<a href="#">Project Name</a>
+					</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+					<div class="row">
+						<div class="col-xs-6"><div><span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div></div>
+						<div class="col-xs-6"><div class="text-right"><span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div></div>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+
+			<!-- Projects Row -->
+
+			<div class="row">
+				<h3 class="text-center">Top Event</h3>
+				<hr>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+			</div>
+
+			<!-- Projects Row -->
+			<div class="row">
+				<h3 class="text-center">Other Events</h3>
+				<hr>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+				<div class="col-md-4 portfolio-item">
+					<a href="#">
+						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+					</a>
+					<h3>
+						<a href="#">Project Name</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+				</div>
+			</div>
+			</section
+			<!-- /.row -->
+		</body>
+
+
+		</html>
