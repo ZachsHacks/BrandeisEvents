@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+		# @tags = EventTag.new(event_id = @event.event_id)
   end
 
   # GET /events/1/edit
