@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	has_many :events
+	has_many :interests
 	# validates :name, presence: true ### presence true for important fields
 
 	before_save { self.email = email.downcase }
