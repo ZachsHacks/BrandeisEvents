@@ -1,39 +1,299 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Events</h1>
+    <head>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Price</th>
-      <th>Host</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.location %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
-        <td><%= event.price %></td>
-        <td><%= event.host_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <title>CampusNow</title>
 
-<br>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
 
-<%= link_to 'New Event', new_event_path %>
+        <!-- Bootstrap Css -->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <%= stylesheet_link_tag "app/assets/stylesheets/main.css" %>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <!-- Header
+	============================================= -->
+        <section class="main-header text-center">
+            <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+
+                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                        <a class="navbar-brand" style="margin-top:20px; font-size:30px" href="#">CampusNow</a>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <%= link_to "Events", events_path %>
+                            </li>
+                            <li>
+                                <%= link_to "Add Event", events_new_path %>
+                            </li>
+                            <!-- <li><a href="#">Events</a></li>
+						<li><a href="#">Add Event</a></li>----->
+                            <li>
+                                <a href="#">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </section>
+
+        <div class="container top_page_photo">
+            <%= image_tag "All-Event-copy_02.png" %>
+        </div>
+        <section class="events_all_section">
+            <div class="container">
+
+                <!-- Projects Ro>
+      w -->
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="search_bar_events">
+                            <input type="text" class="form-control" placeholder="Search for...">
+
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+
+                <div class="row events_list">
+                    <div class="col-md-3 left-side-column">
+                        <h4>Catagories</h4>
+                        <div id="column_results">
+                            <% @events.each do |genres| %>
+                            <p><%= genres.name %></p>
+                            <!-- <p><%= genres.description %></p>
+    <p><%= genres.location %></p>
+    <p><%= genres.start %></p>
+<p><%= genres.end %></p>
+    <p><%= genres.price %></p>
+    <p><%= genres.host_id %></p> -->
+                            <% end %>
+                        </div>
+
+                        <h4>Locations</h4>
+                        <div id="column_results">
+                            <% @events.each do |locations| %>
+                            <p><%= locations.location %></p>
+                            <% end %>
+                        </div>
+
+                        <h4>Dates</h4>
+                        <div id="column_results">
+                            <p>
+                                Today <br/>
+                                Tomorrow <br/>
+                                This week <br/>
+                                Next Week <br/>
+                                This Month <br/>
+                                In the future
+                            </p>
+                        </div>
+
+                        <!-- <form class="form-horizontal form-pricing" role="form">
+          <div class="price-slider">
+
+              <div class="col-sm-12">
+                  <div id="slider"></div>
+              </div>
+          </div>
+      </form> -->
+
+
+                    </div>
+                    <div class="col-md-3 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h4>
+                            <a href="#">Project Name</a>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div>
+                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text-right">
+                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h4>
+                            <a href="#">Project Name</a>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div>
+                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text-right">
+                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h4>
+                            <a href="#">Project Name</a>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div>
+                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text-right">
+                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Projects Row -->
+
+                <div class="row">
+                    <h3 class="text-center">Top Event</h3>
+                    <hr>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+
+                <!-- Projects Row -->
+                <div class="row">
+                    <h3 class="text-center">Other Events</h3>
+                    <hr>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                    <div class="col-md-4 portfolio-item">
+                        <a href="#">
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="#">Project Name</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
+                </div>
+            </section <!-- /.row --> <p id="notice"><%= notice %></p>
+
+        <h1>Events</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Price</th>
+                    <th>Host</th>
+                    <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @events.each do |event| %>
+                <tr>
+                    <td><%= event.name %></td>
+                    <td><%= event.description %></td>
+                    <td><%= event.location %></td>
+                    <td><%= event.start %></td>
+                    <td><%= event.end %></td>
+                    <td><%= event.price %></td>
+                    <td><%= event.host_id %></td>
+                    <td><%= link_to 'Show', event %></td>
+                    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+        <br>
+
+        <%= link_to 'New Event', new_event_path %>
+
+    </body>
+
+</html>
