@@ -54,4 +54,26 @@ def location(event)
           eos
 end
 
+# def top_title_image
+#   <div class="container top_page_photo">
+#       <%= image_tag "All-Event-copy_02.png" %>
+#   </div>
+# end
+
+def search_bar
+ search_bar_string = <<-eos
+ <div class="row">
+     <div class="col-lg-8 col-lg-offset-2">
+         <div class="search_bar_events">
+             <input type="text" class="form-control" placeholder="Search for...">
+
+         </div>
+         <!-- /input-group -->
+     </div>
+     <!-- /.col-lg-6 -->
+ </div>
+ eos
+ search_bar_string.html_safe
+end
+
 end
