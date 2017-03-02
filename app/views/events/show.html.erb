@@ -4,10 +4,7 @@
         <img class="img-responsive event_img" src="http://placehold.it/1170X175" alt="" width="100%" >
     </div>
     <div class="row">
-        <div class="col-md-10">
-            <h3>Title</h3>
-            <p id="host">by Relay For Life of Brandeis University</p>
-        </div>
+        <%= content %>
         <div class="col-md-2 pull-right">
             <div class="btn-group pull-right" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Going</button>
@@ -17,19 +14,8 @@
       </div>
         <div class="row main_body">
           <div class="col-md-2">
-            <h4>Date</h4>
-            <div id="column_results">
-            <p>Monday Febuary, 26, 2016. <br/>
-5:00 PM - 7:00 PM</p>
-            </div>
-            <h4>Locations</h4>
-            <div id="column_results">
-            <p>Brandeis University - Gosman Athletic Center</p>
-            </div>
-            <h4>Price</h4>
-            <div id="column_results">
-            <p>$15-20</p>
-            </div>
+
+            <%= sidebar_individual_event %>
             <h4>tags</h4>
             <div id="column_results">
             <p>Tag 1 <br/>
@@ -39,24 +25,7 @@ Tag 4<br/>
 Tag 5 </p>
             </div>
           </div>
-          <div class="col-md-10">
-            <p>UNLESS SOMEONE LIKE YOU CARES A WHOLE AWFUL LOT, NOTHING IS GOING TO GET BETTER. IT'S NOT." - Dr. Seuss (The Lorax) <br/><br/>
-
-Relay For Life is the signature fundraiser for the American Cancer Society. It's a fun-filled, overnight event designed to celebrate survivorship and raise money for research and programs.
-
-<br/><br/>
-During the event, teams of people gather around the Gosman track, taking turns walking or running laps. Each team tries to keep at least one team member on the track at all times to represent the fact that cancer never sleeps and for one night, neither will we! There will be food, a bouncy castle, music, performances, games, and more!
-
-We will update this event as we get closer with more specifics! <br/><br/>
-
-Register to join us for a night of HOPE! Registration is currently $15. It will be $20 at the door so get in early!
-www.RelayForLife.org/BrandeisUniversityMA<br/><br/>
-
-LIKE US ON FACEBOOK: https://www.facebook.com/BrandeisRelay/?fref=ts<br/>
-
-If you haven't guessed by now, this year's theme is... DR. SEUSS!</p>
-          </div>
-
+          <%= description %>
         </div>
         <div class="row">
           <div class="col-md-12">
@@ -83,44 +52,3 @@ handler.buildMap({
   function(){ }
 );
 </script>
-
-    <p id="notice"><%= notice %></p>
-
-    <p>
-        <strong>Name:</strong>
-        <%= @event.name %>
-    </p>
-
-    <p>
-        <strong>Description:</strong>
-        <%= @event.description %>
-    </p>
-
-    <p>
-        <strong>Location:</strong>
-        <%= @event.location %>
-    </p>
-
-    <p>
-        <strong>Start:</strong>
-        <%= @event.start %>
-    </p>
-
-    <p>
-        <strong>End:</strong>
-        <%= @event.end %>
-    </p>
-
-    <p>
-        <strong>Price:</strong>
-        <%= @event.price %>
-    </p>
-
-    <p>
-        <strong>Host:</strong>
-        <%= @event.host_id %>
-    </p>
-
-    <%= link_to 'Edit', edit_event_path(@event) %>
-    |
-    <%= link_to 'Back', events_path %>
