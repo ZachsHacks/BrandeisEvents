@@ -40,7 +40,7 @@ def start_time(event)
    <div class="row">
   <div class="col-xs-6">
                 <div>
-                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start}</div>
+                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start.strftime("%m/%d %I:%M%p") }</div>
             </div>
   eos
 end
@@ -52,6 +52,44 @@ def location(event)
               </div>
           </div>
           eos
+end
+
+def sidebar
+  return_string = "<h4>Locations</h4>"
+  @events.each do |event|
+  return_string= return_string +  sidebar_locations(event)
+
+  end
+  return_string.html_safe
+end
+
+
+def sidebar_locations(event)
+  <<-eos
+    <div id="column_results">
+    <p>#{event.location}</p>
+    </div>
+  eos
+
+
+
+end
+
+def sidebar_date
+  return_string =   <<-eos
+   <h4>Dates</h4>
+  <div id="column_results">
+      <p>
+          Today <br/>
+          Tomorrow <br/>
+          This week <br/>
+          Next Week <br/>
+          This Month <br/>
+          In the future
+      </p>
+  </div>
+  eos
+  return_string.html_safe
 end
 
 # def top_title_image
