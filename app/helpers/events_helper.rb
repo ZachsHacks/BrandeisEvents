@@ -15,7 +15,7 @@ def event_width
 end
 def event_image(event)
 <<-eos
-  <a href="#">
+  <a href="#{event_path(event.id)}">
       <img class="img-responsive" src="http://placehold.it/700x400" alt="">
   </a>
 eos
@@ -24,7 +24,7 @@ end
 def event_name(event)
     <<-eos
   <h4>
-      <a href="#">#{event.name}</a>
+    <a href="#{event_path(event.id)}">
   </h4>
   eos
 end
