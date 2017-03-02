@@ -1,4 +1,3 @@
-require 'byebug'
 module EventsHelper
 def list_events
   count = 0
