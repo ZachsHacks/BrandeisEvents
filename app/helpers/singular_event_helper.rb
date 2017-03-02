@@ -1,5 +1,6 @@
 module SingularEventHelper
-  @event = Event.find(1)
+  @event = Event.find_by_id(1)
+
 def content
   content_string = title
   content_string.html_safe
