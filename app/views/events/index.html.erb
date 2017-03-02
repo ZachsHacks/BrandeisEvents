@@ -1,178 +1,68 @@
 <%= render "layouts/header" %>
 
+<section class="events_all_section">
+    <div class="container">
+
+        <!-- Projects Ro>
+      w -->
+
         <div class="container top_page_photo">
             <%= image_tag "All-Event-copy_02.png" %>
         </div>
-        <section class="events_all_section">
-            <div class="container">
+        <%= search_bar %>
 
-                <!-- Projects Ro>
-      w -->
-
-
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="search_bar_events">
-                            <input type="text" class="form-control" placeholder="Search for...">
-
-                        </div>
-                        <!-- /input-group -->
-                    </div>
-                    <!-- /.col-lg-6 -->
-                </div>
-
-                <div class=" events_list">
-                    <div class="col-md-2 left-side-column">
-                        <h4>Catagories</h4>
-                        <div id="column_results">
-                            <% @events.each do |genres| %>
-                            <p><%= genres.name %></p>
-                            <!-- <p><%= genres.description %></p>
-    <p><%= genres.location %></p>
-    <p><%= genres.start %></p>
-<p><%= genres.end %></p>
-    <p><%= genres.price %></p>
-    <p><%= genres.host_id %></p> -->
-                            <% end %>
-                        </div>
-
-                        <h4>Locations</h4>
-                        <div id="column_results">
-                            <% @events.each do |locations| %>
-                            <p><%= locations.location %></p>
-                            <% end %>
-                        </div>
-
-                        <h4>Dates</h4>
-                        <div id="column_results">
-                            <p>
-                                Today <br/>
-                                Tomorrow <br/>
-                                This week <br/>
-                                Next Week <br/>
-                                This Month <br/>
-                                In the future
-                            </p>
-                        </div>
-
-                        <!-- <form class="form-horizontal form-pricing" role="form">
-          <div class="price-slider">
-
-              <div class="col-sm-12">
-                  <div id="slider"></div>
-              </div>
+        <div class="row">
+        <div class=" events_list">
+            <div class="col-md-2 left-side-column">
+                <%= sidebar %>
+                <%= sidebar_date %></div>
+            </div>
+          <div class="col-md-10">
+            <div class="row">
+                <%= list_events %>
+            </div>
           </div>
-      </form> -->
 
+        </section <!-- /.row --> <p id="notice"><%= notice %></p>
 
-                    </div>
-                  <div class="col-md-10 portfolio-item">
-                    <div class="row">
-                    <div class="col-md-4 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                        </a>
-                        <h4>
-                            <a href="#">Project Name</a>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div>
-                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-right">
-                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                        </a>
-                        <h4>
-                            <a href="#">Project Name</a>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div>
-                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-right">
-                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                        </a>
-                        <h4>
-                            <a href="#">Project Name</a>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div>
-                                    <span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>Feb. 9. 5:00PM</div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-right">
-                                    <span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>SCC</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+    <h1>Events</h1>
 
-                <!-- Projects Row -->
-</div>
-</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Price</th>
+                <th>Host</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
 
+        <tbody>
+            <% @events.each do |event| %>
+            <tr>
+                <td><%= event.name %></td>
+                <td><%= event.description %></td>
+                <td><%= event.location %></td>
+                <td><%= event.start %></td>
+                <td><%= event.end %></td>
+                <td><%= event.price %></td>
+                <td><%= event.host_id %></td>
+                <td><%= link_to 'Show', event %></td>
+                <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 
-            </section <!-- /.row --> <p id="notice"><%= notice %></p>
+    <br>
 
-        <h1>Events</h1>
+    <%= link_to 'New Event', new_event_path %>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Price</th>
-                    <th>Host</th>
-                    <th colspan="3"></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <% @events.each do |event| %>
-                <tr>
-                    <td><%= event.name %></td>
-                    <td><%= event.description %></td>
-                    <td><%= event.location %></td>
-                    <td><%= event.start %></td>
-                    <td><%= event.end %></td>
-                    <td><%= event.price %></td>
-                    <td><%= event.host_id %></td>
-                    <td><%= link_to 'Show', event %></td>
-                    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-                    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-
-        <br>
-
-        <%= link_to 'New Event', new_event_path %>
-
-    </body>
+</body>
 
 </html>
