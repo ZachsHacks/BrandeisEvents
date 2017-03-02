@@ -1,8 +1,6 @@
 <%= render "layouts/header" %>
 
-        <div class="container top_page_photo">
-            <%= image_tag "All-Event-copy_02.png" %>
-        </div>
+        
         <section class="events_all_section">
             <div class="container">
 
@@ -27,12 +25,6 @@
                         <div id="column_results">
                             <% @events.each do |genres| %>
                             <p><%= genres.name %></p>
-                            <!-- <p><%= genres.description %></p>
-    <p><%= genres.location %></p>
-    <p><%= genres.start %></p>
-<p><%= genres.end %></p>
-    <p><%= genres.price %></p>
-    <p><%= genres.host_id %></p> -->
                             <% end %>
                         </div>
 
