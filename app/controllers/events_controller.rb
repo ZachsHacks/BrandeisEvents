@@ -1,3 +1,5 @@
+require 'byebug'
+
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -10,12 +12,13 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+		@tags = EventTag.where(event_id: @event.id)
+		
   end
 
   # GET /events/new
   def new
     @event = Event.new
-		# @tags = EventTag.new(event_id = @event.event_id)
   end
 
   # GET /events/1/edit
@@ -25,7 +28,16 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+
+
+
     @event = Event.new(event_params)
+
+		tags = [:religious, :clubs, :food, :sports, :academic]
+
+		tags.each do |tag|
+			EventTag.create(name: tag.to_s, event_id: @event.id) if params[tag]
+		end
 
     respond_to do |format|
       if @event.save
@@ -41,6 +53,13 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+
+		tags = [:religious, :clubs, :food, :sports, :academic]
+
+		tags.each do |tag|
+			EventTag.update(name: tag.to_s, event_id: @event.id) if params[tag]
+		end
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
