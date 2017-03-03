@@ -1,38 +1,42 @@
-module EventsHelper
-	def list_events
-		count = 0
-		string_return = ""
-		@events.each do |event|
-			string_return = string_return + event_width + event_image(event) + event_name(event) + event_description(event) + start_time(event) + location(event) + "</div>"
-		end
-		string_return = string_return + "</div>"
-		string_return.html_safe
-	end
-	def event_width
-		<<-eos
-		<div class="col-md-4 portfolio-item">
-		eos
-	end
-	def event_image(event)
-		<<-eos
-		<a href="#">
-		<img class="img-responsive" src="http://placehold.it/700x400" alt="">
-		</a>
-		eos
-	end
+require './singular_event_helper'
 
-	def event_name(event)
-		<<-eos
-		<h4>
-		<a href="#">#{event.name}</a>
-		</h4>
-		eos
-	end
-	def event_description(event)
-		<<-eos
-		<p>#{event.description}</p>
-		eos
-	end
+module EventsHelper
+
+def list_events
+  count = 0
+  string_return = ""
+  @events.each do |event|
+    string_return = string_return + event_width + event_image(event) + event_name(event) + event_description(event) + start_time(event) + location(event) + "</div>"
+  end
+    string_return = string_return + "</div>"
+    string_return.html_safe
+end
+def event_width
+  <<-eos
+  <div class="col-md-4 portfolio-item">
+  eos
+end
+def event_image(event)
+<<-eos
+  <a href="#{event_path(event.id)}">
+      <img class="img-responsive" src="http://placehold.it/295x169" alt="">
+  </a>
+eos
+end
+
+def event_name(event)
+    <<-eos
+  <h4>
+    <a href="#{event_path(event.id)}"> #{(event.name)}
+  </h4>
+  eos
+end
+
+def event_description(event)
+    <<-eos
+  <p>#{event.description}</p>
+    eos
+end
 
 	def start_time(event)
 		<<-eos

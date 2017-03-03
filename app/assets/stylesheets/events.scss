@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.main_body{
+  //content un
+  padding-top: 20px;
+}
+.event_img{
+  padding-bottom: 20px;
+  height:175px !important;
+}
+.main_body p{
+  line-height:20px;
+}
+#host{
+  padding-left: 10px;
+}
+
 .left-side-column{
   border-right: 1px solid #000000;
 }
