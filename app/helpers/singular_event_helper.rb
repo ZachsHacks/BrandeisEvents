@@ -1,5 +1,5 @@
+
 module SingularEventHelper
-  @event = Event.find_by_id(1)
 
 def content
   content_string = title
@@ -10,10 +10,13 @@ def title
    <<-eos
    <div class="col-md-10">
        <h3>#{@event.name}</h3>
-       <p id="host">by Relay For Life of Brandeis University</p>
+       <p id="host">Hosted by #{@event.host_id}</p>
    </div>
    eos
 
+end
+def host
+  return
 end
 def description
   return_string = <<-eos
