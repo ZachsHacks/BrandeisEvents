@@ -1,17 +1,32 @@
+
 module SingularEventHelper
 
-	def content
-		content_string = title
-		content_string.html_safe
-	end
+def content
+  content_string = title
+  content_string.html_safe
+end
 
-	def title
-		<<-eos
-		<div class="col-md-10">
-		<h3>#{@event.name}</h3>
-		<p id="host">by Relay For Life of Brandeis University</p>
-		</div>
-		eos
+def title
+   <<-eos
+   <div class="col-md-10">
+       <h3>#{@event.name}</h3>
+       <p id="host">Hosted by #{@event.host_id}</p>
+   </div>
+   eos
+
+end
+def host
+  return
+end
+def description
+  return_string = <<-eos
+  <div class="col-md-10">
+  <p>#{@event.description}</p>
+  </div>
+  eos
+  return_string.html_safe
+end
+>>>>>>> 9ea7350435338425fa4bca60db7c382eb1567c81
 
 	end
 	def description
