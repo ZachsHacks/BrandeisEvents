@@ -48,7 +48,9 @@
                     <!-- Collection of nav links and other content for toggling -->
 
                     <div id="navbarCollapse" class="collapse navbar-collapse">
-                        <a class="navbar-brand" style="margin-top:20px; font-size:30px" href="Home">CampusNow</a>
+
+                      <%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
+
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <%= link_to "Events", events_path %>
