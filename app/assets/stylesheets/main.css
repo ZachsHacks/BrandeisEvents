@@ -71,6 +71,11 @@ Navigation Style
   background: rgba(13, 13, 13, 0.6);
   margin-bottom: 0;
   border: none;
+
+}
+#logo_text{
+  margin-top:20px;
+  font-size:30px
 }
 .navbar-default .navbar-header {
   width: 28%;
