@@ -1,4 +1,4 @@
-require './singular_event_helper'
+
 
 module EventsHelper
 
@@ -115,6 +115,12 @@ end
 		</div>
 		eos
 		search_bar_string.html_safe
+
+
 	end
 
+	def create_tags
+		
+
+	end
 end

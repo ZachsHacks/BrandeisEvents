@@ -19,17 +19,17 @@ class EventsController < ApplicationController
 	# GET /events/new
 	def new
 		@event = Event.new
+		@tags = ["religious", "clubs", "food", "academic", "sports"]
 	end
 
 	# GET /events/1/edit
 	def edit
+		
 	end
 
 	# POST /events
 	# POST /events.json
 	def create
-
-
 
 		@event = Event.new(event_params)
 
@@ -93,7 +93,7 @@ class EventsController < ApplicationController
 	end
 
 	def update_tags(event, params)
-		
+
 		tags = [:religious, :clubs, :food, :sports, :academic]
 
 		tags.each do |tag|
