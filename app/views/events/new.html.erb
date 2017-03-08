@@ -2,13 +2,13 @@
     <!-- Projects Ro>
   w -->
 
-    <div class="container top_page_photo">
-        <%= image_tag "All-Event-copy_02.png" %>
-    </div>
-  
-  </div>
 <h1>New Event</h1>
 
 <%= render 'form', event: @event %>
 
+<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car" checked> I have a car<br>
+
 <%= link_to 'Back', events_path %>
+
+<%= debug(params) if Rails.env.development? %>
