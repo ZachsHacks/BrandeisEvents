@@ -1,4 +1,5 @@
 require 'byebug'
+require './presenters/event_presenter'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -13,7 +14,8 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-
+		# @presenter = EventPresenter.new(@event)
+		# @presenter.get_tags_for_event
 	end
 
 	# GET /events/new
@@ -24,7 +26,7 @@ class EventsController < ApplicationController
 
 	# GET /events/1/edit
 	def edit
-		
+
 	end
 
 	# POST /events
@@ -87,7 +89,7 @@ class EventsController < ApplicationController
 		tags = [:religious, :clubs, :food, :sports, :academic]
 
 		tags.each do |tag|
-			EventTag.create(name: tag.to_s, event_id: @event.id) if params[tag]
+			EventTag.create(tag_id: params[tag], event_id: @event.id) if params[tag]
 		end
 
 	end
