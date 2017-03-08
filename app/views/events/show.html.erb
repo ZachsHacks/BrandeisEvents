@@ -1,86 +1,41 @@
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Start:</strong>
-  <%= @event.start %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @event.end %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @event.price %>
-</p>
-
-<p>
-  <strong>Host:</strong>
-  <%= @event.host_id %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <% @tags.each do |tag| %>
-		<li> <%= tag.name %> </li>
-	<%end%>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
-
 <%= render "layouts/header" %>
 <div class="container">
-    <div class="row">
-        <img class="img-responsive event_img" src="http://placehold.it/1170X175" alt="" width="100%" >
-    </div>
-    <div class="row">
-        <%= content %>
-        <div class="col-md-2 pull-right">
-            <div class="btn-group pull-right" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">Going</button>
-                <button type="button" class="btn btn-default">Interested</button>
-            </div>
-        </div>
-      </div>
-        <div class="row main_body">
-          <div class="col-md-2">
+	<div class="row">
+		<img class="img-responsive event_img" src="http://placehold.it/1170X175" alt="" width="100%" >
+	</div>
+	<div class="row">
+		<%= content %>
+		<div class="col-md-2 pull-right">
+			<div class="btn-group pull-right" role="group" aria-label="...">
+				<button type="button" class="btn btn-default">Going</button>
+				<button type="button" class="btn btn-default">Interested</button>
+			</div>
+		</div>
+	</div>
+	<div class="row main_body">
+		<div class="col-md-2">
 
-            <%= sidebar_individual_event %>
-            <h4>tags</h4>
-            <div id="column_results">
-            <p>Tag 1 <br/>
-Tag 2<br/>
-Tag 3<br/>
-Tag 4<br/>
-Tag 5 </p>
-            </div>
-          </div>
-          <%= description %>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-        <div id="custom_style" style='width: 100%; height: 250px;'></div>
-      </div>
-        </div>
-    </div>
+			<%= sidebar_individual_event %>
+			<h4>tags</h4>
+			<div id="column_results">
+				<% @tags.each do |tag| %>
+				<li> <%= tag.name %> </li>
+				<%end%>
+			</div>
+		</div>
+		<%= description %>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="custom_style" style='width: 100%; height: 250px;'></div>
+		</div>
+	</div>
+
+	<%= link_to 'Edit', edit_event_path(@event) %> |
+	<%= link_to 'Back', events_path %>
+
+</div>
 
 
 
@@ -91,14 +46,14 @@ var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":
 
 var handler = Gmaps.build('Google');
 handler.buildMap({
-    internal: {id: 'custom_style'},
-    provider: {
-      zoom:      15,
-      center:    new google.maps.LatLng(42.366252,-71.258527),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      styles:    mapStyle
-    }
-  },
-  function(){ }
+	internal: {id: 'custom_style'},
+	provider: {
+		zoom:      15,
+		center:    new google.maps.LatLng(42.366252,-71.258527),
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		styles:    mapStyle
+	}
+},
+function(){ }
 );
 </script>

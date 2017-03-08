@@ -2,13 +2,10 @@
     <!-- Projects Ro>
   w -->
 
-    <div class="container top_page_photo">
-        <%= image_tag "All-Event-copy_02.png" %>
-    </div>
-  
-  </div>
 <h1>New Event</h1>
 
 <%= render 'form', event: @event %>
 
 <%= link_to 'Back', events_path %>
+
+<%= debug(params) if Rails.env.development? %>
