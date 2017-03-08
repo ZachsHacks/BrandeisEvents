@@ -27,6 +27,19 @@
   </div>
 
   <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password_digest %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_digest %>
+  </div>
+
+
+
+
+  <div class="field">
     <%= f.label :bio %>
     <%= f.text_area :bio %>
   </div>

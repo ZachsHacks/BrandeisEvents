@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	has_many :events
 	has_many :interests
 	# validates :name, presence: true ### presence true for important fields
+	
 
 	before_save { self.email = email.downcase }
 	validates :first_name, presence: true, length: { maximum: 50 }
@@ -12,4 +13,5 @@ class User < ApplicationRecord
 	uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }
+	validates_confirmation_of :password
 end
