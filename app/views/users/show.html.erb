@@ -1,6 +1,7 @@
+<%= render "layouts/header" %>
 <p id="notice"><%= notice %></p>
 
-
+<div class ="container">
 
 <% provide(:title, @user.first_name) %>
 <div class="row">
@@ -41,3 +42,5 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+</div>
