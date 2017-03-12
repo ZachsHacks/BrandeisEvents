@@ -4,6 +4,10 @@ require './presenters/event_presenter'
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+	def search
+		 @events = Event.search(params[:search])
+	end
+
 	# GET /events
 	# GET /events.json
 	def index
@@ -14,8 +18,7 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-		# @presenter = EventPresenter.new(@event)
-		# @presenter.get_tags_for_event
+
 	end
 
 	# GET /events/new
@@ -34,11 +37,11 @@ class EventsController < ApplicationController
 	def create
 
 		@event = Event.new(event_params)
-
+		@presenter = EventPresenter.new(@event)
 
 		respond_to do |format|
 			if @event.save
-				create_tags(@event, params)
+				@presenter.create_tags(params)
 				format.html { redirect_to @event, notice: 'Event was successfully created.' }
 				format.json { render :show, status: :created, location: @event }
 			else
@@ -54,7 +57,7 @@ class EventsController < ApplicationController
 
 		respond_to do |format|
 			if @event.update(event_params)
-				update_tags(@event, params)
+				@presenter.update_tags(params)
 				format.html { redirect_to @event, notice: 'Event was successfully updated.' }
 				format.json { render :show, status: :ok, location: @event }
 			else
@@ -78,6 +81,7 @@ class EventsController < ApplicationController
 	# Use callbacks to share common setup or constraints between actions.
 	def set_event
 		@event = Event.find(params[:id])
+		@presenter = EventPresenter.new(@event)
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.
@@ -85,21 +89,4 @@ class EventsController < ApplicationController
 		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id)
 	end
 
-	def create_tags(event, params)
-		tags = [:religious, :clubs, :food, :sports, :academic]
-
-		tags.each do |tag|
-			EventTag.create(tag_id: params[tag], event_id: @event.id) if params[tag]
-		end
-
-	end
-
-	def update_tags(event, params)
-
-		tags = [:religious, :clubs, :food, :sports, :academic]
-
-		tags.each do |tag|
-			EventTag.update(name: tag.to_s, event_id: @event.id) if params[tag]
-		end
-	end
 end

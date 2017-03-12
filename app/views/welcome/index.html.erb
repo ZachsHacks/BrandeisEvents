@@ -20,11 +20,11 @@
 				<div class="col-md-10 col-md-offset-1">
 					<div class="form-section">
 						<div class="row">
-							<form role="form">
+							<form role="form" action=<%=search_path%> method="get" >
 								<div class="col-md-4">
 									<div class="form-group">
-										<label class="sr-only" for="location">Search Events or Catagorieson</label>
-										<input type="email" class="form-control" id="location" placeholder="Search Events or Catagories">
+										<label class="sr-only" for="location">Search Events or Catagories</label>
+										<input type="email" class="form-control" id="location" placeholder="Search Events or Catagories" name= "search">
 									</div>
 								</div>
 								<div class="col-md-4">
