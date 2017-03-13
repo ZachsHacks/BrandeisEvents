@@ -6,7 +6,6 @@ class Event < ApplicationRecord
 
 	def self.search(search)
 		if search
-			byebug
 			self.where(['name LIKE ?', "%#{search}%"]).take(50)
 		else
 			self.all.take(50)
