@@ -17,7 +17,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   # test "should create user" do
-	# 	byebug
   #   assert_difference('User.count') do
   #     post users_url, params: { user: { bio: @user.bio, email: @user.email + "Unique@abc.com", first_name: @user.first_name, is_host: @user.is_host, last_name: @user.last_name } }
   #   end

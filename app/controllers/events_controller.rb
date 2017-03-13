@@ -1,4 +1,4 @@
-require 'byebug'
+
 require './presenters/event_presenter'
 
 class EventsController < ApplicationController
