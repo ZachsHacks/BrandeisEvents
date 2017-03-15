@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
-	
+
 	def setup
 		@event = Event.new(name: "My Event", description: "This event is awesome")
 	end

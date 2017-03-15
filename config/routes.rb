@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index'
     get '/events/new', to: 'event#new'
     #get '/signup', to: 'users#new'
-    get '/login', to: 'sessions#new'
+    get '/login', to: 'sessions#create'
     get '/auth/:provider/callback', to: 'sessions#create'
     #post   '/login',   to: 'sessions#create'
     get '/logout',  to: 'sessions#destroy'

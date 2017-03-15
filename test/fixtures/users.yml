@@ -2,16 +2,16 @@
 
 one:
   provider: MyString
-  uid: MyString
-  name: MyString
-  location: MyString
-  image_url: MyString
-  url: MyString
+  uid: MyString1
+  name: MyString2
+  location: MyString3
+  image_url: MyString4
+  url: MyString5
 
 two:
-  provider: MyString
-  uid: MyString
-  name: MyString
-  location: MyString
-  image_url: MyString
-  url: MyString
+  provider: MyString6
+  uid: MyString7
+  name: MyString8
+  location: MyString9
+  image_url: MyString10
+  url: MyString11
