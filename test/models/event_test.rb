@@ -3,10 +3,8 @@ require 'test_helper'
 class EventTest < ActiveSupport::TestCase
 
 	def setup
-		@host = User.create(first_name: "Example", last_name: "User", email: "user@example.com",
-		password: "foobar", password_confirmation: "foobar", is_host: true)
-		@guest = User.create(first_name: "Example1", last_name: "User1", email: "user1@example.com",
-		password: "foobar", password_confirmation: "foobar", is_host: false)
+		@host = User.create(uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", is_host: true, provider: "google")
+		@guest = User.create(uid: "acarr", first_name: "Example1", last_name: "User1", email: "user1@example.com", is_host: false, provider: "google")
 		@event = Event.new(user_id: @host.id, name: "My Event", description: "This event is awesome")
 	end
 

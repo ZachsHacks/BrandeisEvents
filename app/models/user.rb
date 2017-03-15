@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+		has_many :events
 
     class << self
       def from_omniauth(auth_hash)
