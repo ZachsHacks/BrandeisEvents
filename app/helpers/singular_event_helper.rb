@@ -1,5 +1,5 @@
 module SingularEventHelper
-	
+
 def content
   content_string = title
   content_string.html_safe
