@@ -6,8 +6,11 @@ class UserTest < ActiveSupport::TestCase
 	# end
 	def setup
 		@user = User.new(first_name: "Example", last_name: "User", email: "user@example.com",
-		password: "foobar", password_confirmation: "foobar")
+		password: "foobar", password_confirmation: "foobar", is_host: false)
+		@user_is_host = User.new(first_name: "Example2", last_name: "User2", email: "user1@example.com",
+		password: "foobar", password_confirmation: "foobar", is_host: true)
 	end
+
 
 	test "should be valid" do
 		assert @user.valid?
@@ -66,6 +69,13 @@ class UserTest < ActiveSupport::TestCase
 		@user.password = @user.password_confirmation = "a" * 5
 		assert_not @user.valid?
 	end
+
+	test "user is associated with events" do
+		@user.save!
+		event = @user.events.create(name: "Blah", description: "This is the description.")
+		assert_equal 1, @user.events.count
+	end
+
 
 
 end
