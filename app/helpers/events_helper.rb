@@ -35,7 +35,6 @@ module EventsHelper
 
 	def event_description(event)
 		<<-eos
-		>>>>>>> 372026f1edd49fb8c39f57e634a2f58bb5003861
 		<p>#{event.description}</p>
 		eos
 	end
@@ -115,7 +114,7 @@ module EventsHelper
 		eos
 		search_bar_string.html_safe
 
-		
+
 	end
 
 	def sidebar_locations(event)
