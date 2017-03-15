@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
         user.first_name = auth_hash['info']['first_name']
         user.last_name = auth_hash['info']['last_name']
-        user.name = user.first_name + ' ' + user.last_name
         user.email = auth_hash['extra']['raw_info']['email']
         user.location = auth_hash['info']['location']
         user.image_url = auth_hash['info']['image']
@@ -16,6 +15,10 @@ class User < ApplicationRecord
         user.save!
         user
       end
+    end
+
+    def name
+        first_name + " " + last_name
     end
 
 end
