@@ -10,9 +10,9 @@ one:
   host_id: 1
 
 two:
-  name: MyString
-  description: MyText
-  location: MyString
+  name: MyString1
+  description: MyText1
+  location: MyString1
   start: 2017-02-07 20:59:06
   end: 2017-02-07 20:59:06
   price: 1

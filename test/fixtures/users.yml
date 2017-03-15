@@ -1,5 +1,15 @@
-example:
-  first_name: Pito
-  last_name: Salas
-  email: pitosalas@pitosalas.com
-  password_digest: <%= User.digest('password') %>
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider: MyString
+  uid: MyString1
+  location: MyString3
+  image_url: MyString4
+  url: MyString5
+
+two:
+  provider: MyString6
+  uid: MyString7
+  location: MyString9
+  image_url: MyString10
+  url: MyString11
