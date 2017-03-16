@@ -8,8 +8,8 @@
 		<%= content %>
 		<div class="col-md-2 pull-right">
 			<div class="btn-group pull-right" role="group" aria-label="...">
-				<button type="button" class="btn btn-default">Going</button>
-				<button type="button" class="btn btn-default">Interested</button>
+				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default"  %>
+				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default"  %>
 			</div>
 		</div>
 	</div>
