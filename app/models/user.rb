@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 		has_many :events
+		has_many :rsvps
 
     class << self
       def from_omniauth(auth_hash)

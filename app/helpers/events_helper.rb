@@ -73,7 +73,6 @@ module EventsHelper
 		<p>#{event.location}</p>
 		</div>
 		eos
-
 	end
 
 	def sidebar_date

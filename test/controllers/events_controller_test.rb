@@ -16,14 +16,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     get new_event_url
     assert_response :success
   end
-	#
-  # test "should create event" do
-  #   assert_difference('Event.count') do
-  #     post events_url, params: { event: { description: @event.description, end: @event.end, host_id: @event.host_id, location: @event.location, name: @event.name, price: @event.price, start: @event.start } }
-  #   end
-	#
-  #   assert_redirected_to event_url(Event.last)
-  # end
 
   test "should show event" do
     get event_url(@event)
@@ -36,7 +28,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event" do
-    patch event_url(@event), params: { event: { description: @event.description, end: @event.end, host_id: @event.host_id, location: @event.location, name: @event.name, price: @event.price, start: @event.start } }
+    patch event_url(@event), params: { event: { user_id: 980190962, description: @event.description, host_id: @event.host_id, location: @event.location, name: @event.name, price: @event.price, start: @event.start, end: @event.end} }
     assert_redirected_to event_url(@event)
   end
 
