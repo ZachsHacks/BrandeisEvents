@@ -1,39 +1,59 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+<%= render "layouts/header" %>
+<div class="container">
+	<div class="row">
+		<img class="img-responsive event_img" src="http://placehold.it/1170X175" alt="" width="100%" >
+	</div>
+	<div class="row">
+		<%= content %>
+		<div class="col-md-2 pull-right">
+			<div class="btn-group pull-right" role="group" aria-label="...">
+				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default"  %>
+				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default"  %>
+			</div>
+		</div>
+	</div>
+	<div class="row main_body">
+		<div class="col-md-2">
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+			<%= sidebar_individual_event %>
+			<h4>tags</h4>
+			<div id="column_results">
+				<% @tags.each do |tag| %>
+				<li> <%= tag.name %> </li>
+				<%end%>
+			</div>
+		</div>
+		<%= description %>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="custom_style" style='width: 100%; height: 250px;'></div>
+		</div>
+	</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+	<%= link_to 'Edit', edit_event_path(@event) %> |
+	<%= link_to 'Back', events_path %>
 
-<p>
-  <strong>Start:</strong>
-  <%= @event.start %>
-</p>
+</div>
 
-<p>
-  <strong>End:</strong>
-  <%= @event.end %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @event.price %>
-</p>
 
-<p>
-  <strong>Host:</strong>
-  <%= @event.host_id %>
-</p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+
+<script type="text/javascript">
+var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
+
+var handler = Gmaps.build('Google');
+handler.buildMap({
+	internal: {id: 'custom_style'},
+	provider: {
+		zoom:      15,
+		center:    new google.maps.LatLng(42.366252,-71.258527),
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		styles:    mapStyle
+	}
+},
+function(){ }
+);
+</script>
