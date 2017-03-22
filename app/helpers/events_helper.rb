@@ -39,20 +39,22 @@ module EventsHelper
 		eos
     end
 
-    def sidebar
+    def sidebar(locations)
         return_string = '<h4>Locations</h4>'
-        @events.each do |event|
-            return_string += sidebar_locations(event)
-        end
+        sidebar_locations(locations)
         return_string.html_safe
     end
 
-    def sidebar_locations(event)
-        <<-eos
-		<div id="column_results">
-		<p>#{event.location}</p>
-		</div>
-		eos
+    def sidebar_locations(locations)
+        string = ""
+		string << "<div id='column_results'>"
+
+		locations.each do |l|
+			string << "<p>" + "#{l}" + "</p>" if l != nil
+		end
+
+		string << "</div>"
+
     end
 
     def sidebar_date

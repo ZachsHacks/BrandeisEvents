@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
+		@locations = Event.all_current_locations
 	end
 
 	# GET /events/1
