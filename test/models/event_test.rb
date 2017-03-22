@@ -4,7 +4,7 @@ class EventTest < ActiveSupport::TestCase
 
 	def setup
 		@host = User.create(uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", provider: "google", can_host: true)
-		@guest = User.create(uid: "acarr", first_name: "Example1", last_name: "User1", email: "user1@example.com", provider: "google", can_host: true)
+		@guest = User.create(uid: "acarr", first_name: "Example1", last_name: "User1", email: "user1@example.com", provider: "google", can_host: false)
 		@event = Event.new(user_id: @host.id, name: "My Event", description: "This event is awesome. This event is awesome. This event is awesome. This event is awesome.")
 	end
 
