@@ -60,7 +60,7 @@
                             <!-- <li><a href="#">Events</a></li>
             <li><a href="#">Add Event</a></li>----->
                             <% if logged_in? %>
-                                <li> <%= link_to "Welcome, #{current_user.name}!", root_path %> </li>
+                                <li> <%= link_to "Welcome, #{current_user.name}!", current_user%> </li>
                                 <li> <%= link_to "Sign out", logout_path %> </li>
                             <% else %>
                                 <li> <%= link_to "Login", '/auth/google' %> </li>
