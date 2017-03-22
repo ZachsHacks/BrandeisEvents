@@ -54,9 +54,12 @@
                             <li>
                                 <%= link_to "Events", events_path %>
                             </li>
-                            <li>
+                            <% if can_host? %>
+                              <li>
                                 <%= link_to "Add Event", events_new_path %>
-                            </li>
+                              </li>
+                            <% else %>
+                            <% end %>
                             <!-- <li><a href="#">Events</a></li>
             <li><a href="#">Add Event</a></li>----->
                             <% if logged_in? %>

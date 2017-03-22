@@ -70,7 +70,7 @@ class UserTest < ActiveSupport::TestCase
 
 	test "user is associated with events" do
 		@user.save!
-		event = @user.events.create(name: "Blah", description: "This is the description.")
+		event = @user.events.create(name: "Blah", description: "This event is awesome. This event is awesome. This event is awesome. This event is awesome.")
 		assert_equal 1, @user.events.count
 	end
 
