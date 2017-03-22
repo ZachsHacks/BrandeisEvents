@@ -11,14 +11,13 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.all
+		@events = Event.paginate(page: params[:page], per_page: 15)
 	end
 
 	# GET /events/1
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-
 	end
 
 	# GET /events/new

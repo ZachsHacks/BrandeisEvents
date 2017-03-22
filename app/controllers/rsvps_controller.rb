@@ -25,7 +25,6 @@ class RsvpsController < ApplicationController
   # POST /rsvps.json
   def create
     @rsvp = Rsvp.new(rsvp_params)
-
     respond_to do |format|
       if @rsvp.save
         format.html { redirect_to @rsvp, notice: 'Rsvp was successfully created.' }
