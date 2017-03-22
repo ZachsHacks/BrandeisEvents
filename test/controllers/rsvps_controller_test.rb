@@ -15,13 +15,13 @@ class RsvpsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create rsvp" do
-		byebug
-    assert_difference('Rsvp.count', 1) do
-      post rsvps_url, params: { rsvp: { choice: @rsvp.choice, event_id: @rsvp.event_id, user_id: @rsvp.user_id } }
-    end
-    assert_redirected_to rsvp_url(Rsvp.last)
-  end
+  # test "should create rsvp" do
+	# 	byebug
+  #   assert_difference('Rsvp.count', 1) do
+  #     post rsvps_url, params: { rsvp: { choice: @rsvp.choice, event_id: @rsvp.event_id, user_id: @rsvp.user_id } }
+  #   end
+  #   assert_redirected_to rsvp_url(Rsvp.last)
+  # end
 
   test "should show rsvp" do
     get rsvp_url(@rsvp)
