@@ -4,7 +4,7 @@ module EventsHelper
         string = ''
             string << "<div class='col-md-4 portfolio-item'>"
             string << event_image(event)
-            string << "<h4> <a href=''#{event_path(event.id)}''> #{event.name}</a></h4>"
+            string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
             string << "<p>#{truncate event.description, :length => 100}</p>"
             string << start_time(event) + location(event)
             string << '</div>'
@@ -22,15 +22,15 @@ module EventsHelper
     def start_time(event)
         <<-eos
 		<div class="row">
-		<div class="col-xs-6">
-		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start.strftime('%m/%d %I:%M%p')}
+		<div class="col-xs-5">
+		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start.strftime('%m/%d')}
 		</div>
 		eos
     end
 
     def location(event)
         <<-eos
-		<div class="col-xs-6">
+		<div class="col-xs-7">
 		<div class="text-right">
 		<span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>#{event.location}
 		</div>
