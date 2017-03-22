@@ -5,8 +5,8 @@ class UserTest < ActiveSupport::TestCase
 	#   assert true
 	# end
 	def setup
-		@user = User.new(provider: "google", uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com")
-		@user_is_host = User.new(provider: "google", uid: "acarr", first_name: "Example2", last_name: "User2", email: "user1@example.com")
+		@user = User.new(provider: "google", uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", can_host: false)
+		@user_is_host = User.new(provider: "google", uid: "acarr", first_name: "Example2", last_name: "User2", email: "user1@example.com", can_host: true)
 	end
 
 
