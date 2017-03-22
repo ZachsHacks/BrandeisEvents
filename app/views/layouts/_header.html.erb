@@ -59,6 +59,12 @@
                                 <%= link_to "Add Event", events_new_path %>
                               </li>
                             <% end %>
+                            <% if is_admin? %>
+                              <li>
+                                <%= link_to "Users", users_path %>
+                              </li>
+                            <% else %>
+                            <% end %>
                             <!-- <li><a href="#">Events</a></li>
             <li><a href="#">Add Event</a></li>----->
                             <% if logged_in? %>
