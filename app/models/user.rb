@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
     class << self
       def from_omniauth(auth_hash)
+				u = find_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
         user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
 
         user.first_name = auth_hash['info']['first_name']
@@ -15,8 +16,10 @@ class User < ApplicationRecord
         user.location = auth_hash['info']['location']
         user.image_url = auth_hash['info']['image']
         user.bio = 'No bio yet...'
-				user.can_host = false
-				user.is_admin = false
+				unless u
+				  user.can_host = false
+				  user.is_admin = false
+				end
         user.save!
         user
       end
@@ -26,6 +29,6 @@ class User < ApplicationRecord
         first_name + " " + last_name
     end
 
-		
+
 
 end
