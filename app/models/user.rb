@@ -15,7 +15,6 @@ class User < ApplicationRecord
         user.location = auth_hash['info']['location']
         user.image_url = auth_hash['info']['image']
         user.bio = 'No bio yet...'
-        user.is_host = false
         user.save!
         user
       end
