@@ -1,8 +1,7 @@
 module EventsHelper
-    def list_event(event)
-
+    def list_event(event, col_length)
         string = ''
-            string << "<div class='col-md-4 portfolio-item'>"
+            string << "<div class='#{col_length} portfolio-item'>"
             string << event_image(event)
             string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
             string << "<p>#{truncate event.description, :length => 100}</p>"

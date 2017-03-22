@@ -1,0 +1,107 @@
+<%= render "layouts/header" %>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
+			</div>
+			<div class="item">
+				<img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
+			</div>
+			<div class="item">
+				<img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
+			</div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+	<div class="search">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="form-section">
+						<div class="row">
+							<form role="form" action=<%=search_path%> method="get" >
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="sr-only" for="location">Search Events or Catagories</label>
+										<input type="email" class="form-control" id="location" placeholder="Search Events or Catagories" name= "search">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="sr-only" for="location">Location</label>
+										<input type="email" class="form-control" id="location" placeholder="Location">
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<label class="sr-only" for="checkin">Date</label>
+										<div class="input-group">
+											<input type="text" class="form-control" id="checkin" placeholder="Date">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2 form-group">
+									<button type="submit" class="btn btn-default btn-primary">Search</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<section class="events_section">
+		<div class="container events_section" id="" style="padding-top: 100px">
+
+
+			<!-- Projects Row -->
+			<h3 class="text-center">Events for you</h3>
+			<hr>
+				<div class="col-md-12">
+					<div class="row event_row">
+						<% @top_events.each do |event| %>
+							<%= list_event(event, "col-md-3") %>
+							<% end %>
+				</div>
+			</div>
+			<!-- /.row -->
+
+			<!-- Projects Row -->
+
+
+				<h3 class="text-center">Top Event</h3>
+				<hr>
+				<div class="col-md-12">
+					<div class="row event_row">
+						<% @top_events.each do |event| %>
+							<%= list_event(event, "col-md-3") %>
+							<% end %>
+				</div>
+			</div>
+
+			<!-- Projects Row -->
+
+
+				<h3 class="text-center">Top Event</h3>
+				<hr>
+				<div class="col-md-12">
+					<div class="row event_row">
+						<% @top_events.each do |event| %>
+							<%= list_event(event, "col-md-3") %>
+							<% end %>
+				</div>
+			</div>
+
+
+
+			</section
+			<!-- /.row -->
+		</body>
+
+
+		</html>
