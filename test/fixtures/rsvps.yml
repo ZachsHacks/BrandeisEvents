@@ -3,7 +3,7 @@
 one:
   user_id:  <%=User.ids.sample%>
   event_id:  <%=Event.ids.sample%>
-  choice: 1
+  choice: 2
 
 two:
   user_id:  <%=User.ids.sample%>
