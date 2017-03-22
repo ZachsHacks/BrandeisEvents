@@ -38,14 +38,18 @@
   <strong>Is host:</strong>
   <%= @user.is_host %>
 </p>
+<div class="col-md-12">
+  <div class="row">
 <p>RSVP'D Events </p>
-<% @user.rsvps.where("choice = 1").each do |r| %>
-<%= r.event.name %>
+<% @going_rsvps.each do |r| %>
+<%= list_event(r.event)%>
 <% end %>
+</div>
+</div>
 
 <p>Interested Events </p>
-<% @user.rsvps.where("choice = 2").each do |r| %>
-<%= r.event.name %>
+<% @interested_rsvps.each do |r| %>
+<%= list_event(r.event)%>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

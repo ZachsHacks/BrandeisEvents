@@ -2,10 +2,6 @@
 
 <section class="events_all_section">
     <div class="container">
-
-        <!-- Projects Ro>
-      w -->
-
         <div class="container top_page_photo">
             <%= image_tag "All-Event-copy_02.png" %>
         </div>
@@ -19,9 +15,13 @@
             </div>
           <div class="col-md-10">
             <div class="row">
-                <%= list_events %>
+              <% @events.each do |event| %>
+                <%= list_event(event) %>
+                <% end %>
             </div>
           </div>
+
+					<div class="text-center"> <%= will_paginate %> </div>
 
         </section <!-- /.row --> <p id="notice"><%= notice %></p>
 
