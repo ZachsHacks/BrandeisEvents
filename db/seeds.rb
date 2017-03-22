@@ -5,7 +5,7 @@ require 'faker'
 def create_events(x)
 	x.times do |event|
 		name = Faker::Name.unique.name
-		description = Faker::Lorem.paragraph(rand(3))
+		description = Faker::Lorem.paragraph(5)
 		start_time = Faker::Time.between(DateTime.now - 1, DateTime.now)
 		end_time  = Faker::Time.between(DateTime.now - 1, DateTime.now)
 		price = rand(50)
