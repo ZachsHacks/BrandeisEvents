@@ -8,7 +8,7 @@ class RsvpTest < ActiveSupport::TestCase
 
 	test "users are associated with rsvps" do
 		assert_difference('Rsvp.count', 1) do
-			@user.rsvps.create(event_id: 2, choice: 1)
+			@user.rsvps.create(event_id: Event.ids.sample, choice: 1)
 		end
 	end
 
