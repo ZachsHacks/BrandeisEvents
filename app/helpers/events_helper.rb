@@ -21,7 +21,7 @@ module EventsHelper
     def start_time(event)
         <<-eos
 		<div class="row">
-		<div class="col-xs-5">
+		<div class="col-xs-4">
 		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start.strftime('%m/%d')}
 		</div>
 		eos
@@ -29,7 +29,7 @@ module EventsHelper
 
     def location(event)
         <<-eos
-		<div class="col-xs-7">
+		<div class="col-xs-8">
 		<div class="text-right">
 		<span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>#{event.location}
 		</div>
