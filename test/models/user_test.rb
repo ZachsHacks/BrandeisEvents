@@ -5,8 +5,8 @@ class UserTest < ActiveSupport::TestCase
 	#   assert true
 	# end
 	def setup
-		@user = User.new(provider: "google", uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", can_host: false)
-		@user_is_host = User.new(provider: "google", uid: "acarr", first_name: "Example2", last_name: "User2", email: "user1@example.com", can_host: true)
+		@user = users(:two)#User.new(provider: "google", uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", can_host: false)
+		@user_is_host = users(:host)#User.new(provider: "google", uid: "acarr", first_name: "Example2", last_name: "User2", email: "user1@example.com", can_host: true)
 	end
 
 
@@ -69,9 +69,7 @@ class UserTest < ActiveSupport::TestCase
 	# end
 
 	test "user is associated with events" do
-		@user.save!
-		event = @user.events.create(name: "Blah", description: "This event is awesome. This event is awesome. This event is awesome. This event is awesome.")
-		assert_equal 1, @user.events.count
+		assert_instance_of Event::ActiveRecord_Associations_CollectionProxy, @user.events
 	end
 
 

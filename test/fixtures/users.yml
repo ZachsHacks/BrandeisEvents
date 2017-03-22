@@ -7,6 +7,7 @@ host:
   uid: zweiss
   email: user@example.com
   can_host: true
+  is_admin: false
 
 two:
   provider: google1
@@ -15,3 +16,4 @@ two:
   uid: zweiss1
   email: user1@example.com
   can_host: false
+  is_admin: false
