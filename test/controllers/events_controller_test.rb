@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-		@host = User.create(uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", is_host: true, provider: "google")
+		@host = User.create(uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", provider: "google")
 		@event = Event.new(user_id: @host.id, name: "My Event", description: "This event is awesome", start: Time.now, end: Time.now)
 		@event.save
 	end
