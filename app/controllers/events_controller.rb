@@ -18,7 +18,6 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-
 	end
 
 	# GET /events/new
