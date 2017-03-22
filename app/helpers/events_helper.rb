@@ -13,7 +13,7 @@ module EventsHelper
     def event_image(event)
         <<-eos
 		<a href="#{event_path(event.id)}">
-		<img class="img-responsive" src="http://placehold.it/295x169" alt="">
+		<img class="img-responsive" src="#{event.image_id}" alt="">
 		</a>
 		eos
     end
