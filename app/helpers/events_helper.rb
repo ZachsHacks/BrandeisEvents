@@ -41,7 +41,7 @@ module EventsHelper
 
     def sidebar(locations)
         return_string = '<h4>Locations</h4>'
-        sidebar_locations(locations)
+        return_string << sidebar_locations(locations)
         return_string.html_safe
     end
 
