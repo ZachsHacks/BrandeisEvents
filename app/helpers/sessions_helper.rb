@@ -11,4 +11,8 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
+  def can_host?
+    current_user && current_user.can_host
+  end
 end
