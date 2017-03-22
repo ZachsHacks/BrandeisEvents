@@ -12,15 +12,19 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
-
 		if Rails.env.development?
 			@locations = Event.all_current_locations
 			@locations = @locations[0,@locations.size/4]
 		else
 			@locations = Event.all_current_locations
 		end
+
 	end
 
+def home
+	@top_events =  Event.all
+	@top_events = @top_events[0,4]
+end
 	# GET /events/1
 	# GET /events/1.json
 	def show
