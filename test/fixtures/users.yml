@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  provider: MyString
-  uid: MyString1
-  location: MyString3
-  image_url: MyString4
-  url: MyString5
+host:
+  provider: google
+  first_name: Example
+  last_name: User
+  uid: zweiss
+  email: user@example.com
+  can_host: true
 
 two:
-  provider: MyString6
-  uid: MyString7
-  location: MyString9
-  image_url: MyString10
-  url: MyString11
+  provider: google1
+  first_name: Example1
+  last_name: User1
+  uid: zweiss1
+  email: user1@example.com
+  can_host: false

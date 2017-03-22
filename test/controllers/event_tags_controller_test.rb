@@ -3,6 +3,8 @@ require 'test_helper'
 class EventTagsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @event_tag = event_tags(:one)
+		@event_tag.event_id = events(:one).id
+		@event_tag.tag_id = tags(:one).id 
   end
 
   test "should get index" do
@@ -16,7 +18,7 @@ class EventTagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create event_tag" do
-    assert_difference('EventTag.count') do
+    assert_difference('EventTag.count', 1) do
       post event_tags_url, params: { event_tag: { event_id: @event_tag.event_id, tag_id: @event_tag.tag_id } }
     end
 

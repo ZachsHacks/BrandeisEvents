@@ -3,6 +3,8 @@ require 'test_helper'
 class InterestsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @interest = interests(:one)
+		@interest.user_id = users(:host).id
+		@interest.tag_id = tags(:one).id
   end
 
   test "should get index" do
@@ -16,7 +18,7 @@ class InterestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create interest" do
-    assert_difference('Interest.count') do
+    assert_difference('Interest.count', 1) do
       post interests_url, params: { interest: { rank: @interest.rank, tag_id: @interest.tag_id, user_id: @interest.user_id } }
     end
 
