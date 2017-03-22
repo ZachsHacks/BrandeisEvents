@@ -18,4 +18,8 @@ class Event < ApplicationRecord
 		end
 	end
 
+	def self.all_current_locations
+		all.pluck(:location)
+	end
+
 end

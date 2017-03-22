@@ -5,13 +5,20 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def search
-		 @events = Event.search(params[:search])
+		@events = Event.search(params[:search])
 	end
 
 	# GET /events
 	# GET /events.json
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
+
+		if Rails.env.development?
+			@locations = Event.all_current_locations
+			@locations = @locations[0,@locations.size/4]
+		else
+			@locations = Event.all_current_locations
+		end
 	end
 
 	# GET /events/1
