@@ -9,8 +9,8 @@ Rails.application.initialize!
 #   storage: :s3,
 #   s3_credentials: {
 #     bucket: ENV.fetch('campusnow-images'),
-#     access_key_id: ENV.fetch('AKIAJEFOHRCDEEF3ZQPA'),
-#     secret_access_key: ENV.fetch('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'),
+#     access_key_id: ENV.fetch(''),
+#     secret_access_key: ENV.fetch(''),
 #     s3_region: ENV.fetch('us-east-1'),
 #   }
 # }
