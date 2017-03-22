@@ -1,10 +1,11 @@
 module EventsHelper
     def list_event(event)
+
         string = ''
             string << "<div class='col-md-4 portfolio-item'>"
             string << event_image(event)
             string << "<h4> <a href=''#{event_path(event.id)}''> #{event.name}</a></h4>"
-            string << "<p>#{event.description}</p>"
+            string << "<p>#{truncate event.description, :length => 100}</p>"
             string << start_time(event) + location(event)
             string << '</div>'
         string.html_safe
