@@ -22,7 +22,8 @@ def create_events
 		description_html = line["content"]
 		date_time = Time.parse(line["published"].to_s)
 		relavent_link = line["gc:weblink"]
-		Event.create(name: title, description: description_html, start: date_time, host_id: User.first.id)
+		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
+		Event.create(name: title, description: description_html, start: date_time, host_id: User.first.id, image_id: image_id)
 	end
 
 end

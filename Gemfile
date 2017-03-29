@@ -12,7 +12,9 @@ gem 'rails', '~> 5.0.2'
 
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
-
+gem 'crack'
+gem 'typhoeus'
+gem 'nokogiri'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -38,9 +40,13 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
 
-gem 'crack'
-gem 'typhoeus'
-gem 'nokogiri'
+gem 'figaro'
+
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
+
+# gem 'paperclip'
+# gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
