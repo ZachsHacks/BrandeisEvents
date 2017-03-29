@@ -36,6 +36,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
 
+gem 'figaro'
+
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
+
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production

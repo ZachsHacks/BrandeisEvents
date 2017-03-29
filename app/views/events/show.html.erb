@@ -2,7 +2,8 @@
 <%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
-		<img class="img-responsive event_img" src="http://placehold.it/1170X175" alt="" width="100%" >
+	<%= image_tag @event.event_image(:large)%>
+
 	</div>
 	<div class="row">
 		<%= content %>
