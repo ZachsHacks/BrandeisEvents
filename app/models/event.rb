@@ -26,7 +26,10 @@ class Event < ApplicationRecord
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>',
-		large: '1170x175#'
+		large: '1170x175#',
+		:default_style => :large,
+		:default_url => "/images/missing_:style.png"
+
   }
 
   # Validate the attached image is image/jpg, image/png, etc
