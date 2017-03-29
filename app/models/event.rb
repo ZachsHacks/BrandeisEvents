@@ -22,4 +22,13 @@ class Event < ApplicationRecord
 		all.pluck(:location)
 	end
 
+	def description_text
+		d = Nokogiri::HTML(self.description)
+		byebug
+	end
+
+	def count_words(string, substring)
+			string.scan(/(?=#{substring})/).count
+	end
+
 end

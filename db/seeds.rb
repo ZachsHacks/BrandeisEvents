@@ -22,7 +22,6 @@ def create_events
 		description_html = line["content"]
 		date_time = Time.parse(line["published"].to_s)
 		relavent_link = line["gc:weblink"]
-
 		Event.create(name: title, description: description_html, start: date_time, host_id: User.first.id)
 	end
 
