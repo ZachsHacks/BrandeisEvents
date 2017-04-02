@@ -14,8 +14,8 @@
 		<%= content %>
 		<div class="col-md-2 pull-right">
 			<div class="btn-group pull-right" role="group" aria-label="...">
-				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default"  %>
-				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default"  %>
+				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left"  %>
+				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-left"  %>
 			</div>
 		</div>
 	</div>
