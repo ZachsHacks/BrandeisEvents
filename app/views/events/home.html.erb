@@ -152,6 +152,13 @@
 			source: availableTags
 		});
 	});
+
+	$( function() {
+		var availableTags = <%=raw @locations%>;
+		$("#location").autocomplete({
+			source: availableTags
+		});
+	});
 	</script>
 
 	</html>
