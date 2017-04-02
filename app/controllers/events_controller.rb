@@ -23,11 +23,9 @@ class EventsController < ApplicationController
 
 def home
 	@top_events =  Event.joins(:rsvps).order('choice desc')
-	if 	@top_events.count < 5
+	if 	@top_events.count < 4
 		@top_events = Event.all
 	end
-
-	debugger
 	@top_events = @top_events[0,4]
 end
 	# GET /events/1
