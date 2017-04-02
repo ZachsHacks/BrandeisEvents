@@ -6,23 +6,14 @@ class EventsController < ApplicationController
 
 	def search
 		@events = Event.search(params[:search]).paginate(page: params[:page], per_page: 9)
-		if Rails.env.development?
-			@locations = ["SCC", "Sherman", "Usdan", "Pito's Office"]
-		else
-			@locations = Event.all_current_locations
-		end
+		grab_locations
 	end
 
 	# GET /events
 	# GET /events.json
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
-		if Rails.env.development?
-			@locations = ["SCC, Sherman, Usdan, Pito's Bedroom"]
-		else
-			@locations = Event.all_current_locations
-		end
-
+		grab_locations
 	end
 
 def home
@@ -104,6 +95,14 @@ end
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
 		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image)
+	end
+
+	def grab_locations
+		if Rails.env.development?
+			@locations = ["SCC", "Sherman", "Usdan", "Pito's Office"]
+		else
+			@locations = Event.all_current_locations
+		end
 	end
 
 end
