@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
-  event_id: 1
-  choice: 1
+  user_id:  <%=User.ids.sample%>
+  event_id:  <%=Event.ids.sample%>
+  choice: 2
 
 two:
-  user_id: 1
-  event_id: 1
+  user_id:  <%=User.ids.sample%>
+  event_id:  <%=Event.ids.sample%>
   choice: 1

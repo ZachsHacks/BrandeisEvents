@@ -8,7 +8,6 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
         <%= @user.first_name %>
       </h1>
     </section>
@@ -37,8 +36,21 @@
 
 <p>
   <strong>Is host:</strong>
-  <%= @user.is_host %>
+
 </p>
+<div class="col-md-12">
+  <div class="row">
+<p>RSVP'D Events </p>
+<% @going_rsvps.each do |r| %>
+<%= list_event(r.event)%>
+<% end %>
+</div>
+</div>
+
+<p>Interested Events </p>
+<% @interested_rsvps.each do |r| %>
+<%= list_event(r.event)%>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

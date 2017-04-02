@@ -1,19 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
+  user_id: 980190962
+  name: "My Event"
+  description: "Thisjxdjddfsioasdjfioajdsiofadsjfioasdjfiodsjfiosd evensdajiofdajidfsjoaidjaiosdjsdiofjst is awesome"
   location: MyString
   start: 2017-02-07 20:59:06
-  end: 2017-02-07 20:59:06
-  price: 1
-  host_id: 1
+  end: 2017-02-08 20:59:06
+  price: 20
 
-two:
-  name: MyString
-  description: MyText
-  location: MyString
-  start: 2017-02-07 20:59:06
-  end: 2017-02-07 20:59:06
-  price: 1
-  host_id: 1
+#
+# two:
+#   name: MyString1
+#   description: MyText1
+#   location: MyString1
+#   start: 2017-02-07 20:59:06
+#   end: 2017-02-07 20:59:06
+#   price: 1
+#   host_id: 1

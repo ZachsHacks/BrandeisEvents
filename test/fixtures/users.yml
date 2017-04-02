@@ -1,5 +1,19 @@
-example:
-  first_name: Pito
-  last_name: Salas
-  email: pitosalas@pitosalas.com
-  password_digest: <%= User.digest('password') %>
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+host:
+  provider: google
+  first_name: Example
+  last_name: User
+  uid: zweiss
+  email: user@example.com
+  can_host: true
+  is_admin: false
+
+two:
+  provider: google1
+  first_name: Example1
+  last_name: User1
+  uid: zweiss1
+  email: user1@example.com
+  can_host: false
+  is_admin: false

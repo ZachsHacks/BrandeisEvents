@@ -26,12 +26,8 @@
   margin-top: 10px;
 }
 
-.events_list{
-  margin-top: 20px;
-}
-
-#column_results{
-  margin-left: 20px;
+.event_row{
+  margin-top: 10px;
 }
 
 
@@ -156,4 +152,16 @@ h4.great {
     position: absolute;
     top: 100%;
     z-index: 99;
+}
+
+//Invidual Event
+.portfolio-item{
+  margin-bottom: 20px;
+  height: 300px;
+}
+
+
+.five-px-padding{
+   padding: 5px !important;
+   margin: 0 !important;
 }

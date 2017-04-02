@@ -1,24 +1,37 @@
-require 'byebug'
+
 require './presenters/event_presenter'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def search
-		 @events = Event.search(params[:search])
+		@events = Event.search(params[:search])
 	end
 
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.all
+		@events = Event.paginate(page: params[:page], per_page: 9)
+		if Rails.env.development?
+			@locations = Event.all_current_locations
+			@locations = @locations[0,@locations.size/4]
+		else
+			@locations = Event.all_current_locations
+		end
+
 	end
 
+def home
+	@top_events =  Event.joins(:rsvps).order('choice desc')
+	if 	@top_events.count < 4
+		@top_events = Event.all
+	end
+	@top_events = @top_events[0,4]
+end
 	# GET /events/1
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-
 	end
 
 	# GET /events/new
@@ -86,7 +99,7 @@ class EventsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
-		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id)
+		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image)
 	end
 
 end

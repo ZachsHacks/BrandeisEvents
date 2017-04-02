@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Password hash</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Bio</th>
       <th>Is host</th>
@@ -18,14 +16,14 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.bio %></td>
-        <td><%= user.is_host %></td>
+        <td><%= user.can_host %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>

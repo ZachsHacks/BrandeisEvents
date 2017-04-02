@@ -11,4 +11,12 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
+  def can_host?
+    current_user && current_user.can_host
+  end
+
+  def is_admin?
+    current_user && current_user.is_admin
+  end
 end

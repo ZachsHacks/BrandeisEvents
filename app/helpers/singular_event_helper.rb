@@ -1,5 +1,5 @@
 module SingularEventHelper
-	
+
 def content
   content_string = title
   content_string.html_safe
@@ -32,7 +32,7 @@ def sidebar_individual_event
 end
 
 
-def sidebar_individual_date (event)
+def sidebar_individual_date(event)
      <<-eos
    <h4>Dates</h4>
   <div id="column_results">
