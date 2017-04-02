@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def search
-		@events = Event.search(params[:search]).paginate(page: params[:page], per_page: 9)
+		@events = Event.search(params).paginate(page: params[:page], per_page: 9)
 		grab_locations
 	end
 
