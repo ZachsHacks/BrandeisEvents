@@ -5,7 +5,12 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def search
-		@events = Event.search(params[:search])
+		@events = Event.search(params[:search]).paginate(page: params[:page], per_page: 9)
+		if Rails.env.development?
+			@locations = ["SCC", "Sherman", "Usdan", "Pito's Office"]
+		else
+			@locations = Event.all_current_locations
+		end
 	end
 
 	# GET /events
@@ -13,8 +18,7 @@ class EventsController < ApplicationController
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
 		if Rails.env.development?
-			@locations = Event.all_current_locations
-			@locations = @locations[0,@locations.size/4]
+			@locations = ["SCC, Sherman, Usdan, Pito's Bedroom"]
 		else
 			@locations = Event.all_current_locations
 		end

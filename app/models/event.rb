@@ -12,7 +12,6 @@ class Event < ApplicationRecord
 
 	def self.search(search)
 		if search
-			byebug
 			self.where(['lower(name) LIKE ?', "%#{search.downcase}%"]).order('id DESC')
 		else
 			order('id DESC')
