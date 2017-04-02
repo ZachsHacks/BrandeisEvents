@@ -7,13 +7,10 @@ class Event < ApplicationRecord
 	def self.search(search)
 		if search
 			byebug
-			self.where(['name LIKE ?', "%#{search}%"]).take(50)
+			self.where(['lower(name) LIKE ?', "%#{search.downcase}%"]).order('id DESC')
 		else
-			self.all.take(50)
+			order('id DESC')
 		end
 	end
-
-
-
 
 end
