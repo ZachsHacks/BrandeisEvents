@@ -5,24 +5,21 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def search
-		@events = Event.search(params[:search])
+		@events = Event.search(params).paginate(page: params[:page], per_page: 9)
+		grab_locations
 	end
 
 	# GET /events
 	# GET /events.json
 	def index
 		@events = Event.paginate(page: params[:page], per_page: 9)
-		if Rails.env.development?
-			@locations = Event.all_current_locations
-			@locations = @locations[0,@locations.size/4]
-		else
-			@locations = Event.all_current_locations
-		end
-
+		grab_locations
 	end
 
 def home
+	@items = Event.all.pluck(:name)
 	@top_events =  Event.joins(:rsvps).order('choice desc')
+	grab_locations
 	if 	@top_events.count < 4
 		@top_events = Event.all
 	end
@@ -100,6 +97,14 @@ end
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
 		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image)
+	end
+
+	def grab_locations
+		if Rails.env.development?
+			@locations = ["SCC", "Sherman", "Usdan", "Pito's Office"]
+		else
+			@locations = Event.all_current_locations
+		end
 	end
 
 end
