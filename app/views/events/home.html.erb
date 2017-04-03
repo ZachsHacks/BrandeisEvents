@@ -189,72 +189,54 @@
 			</section
 			<!-- /.row -->
 		</body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+				<div class="col-md-4 five-px-padding">
+					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
+				</div>
+			</div>
+		</div>
+		</section
+		<!-- /.row -->
+	</body>
+
+	<script type="text/javascript">
+
+	var j = jQuery.noConflict();
+
+	j(document).ready(function(){
+
+		j('#datetimepicker1').datetimepicker();
+
+	})
 
 
-		</html>
+	</script>
 
-<style>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-#gallery {
-  height: 100%;
-}
-
-#gallery img{
-	height:130px;
-}
-
-figure {
-
-    width: 200px;
-    display: block;
-    overflow: hidden;
-    z-index: 100;
-}
-
-figcaption {
-    height: 50%;
-    width: 97%;
-    background: url(http://gridelicious.net/themes/treble/demo/assets/images/css/thumb_over.png) no-repeat center 150px black;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: -500px;
-    opacity: 0;
-    padding: 5px;
-		margin-left:5px;
-		margin-right: 5px;
-		overflow: hidden;
-}
-
-a {
-    color: #fff;
-}
-
-a:hover figcaption {
-    opacity: 0.8;
-    left: 0;
-    color: #fff;
-    transition: all 0.7s;
-}
-.nopadding {
-   padding: 0px !important;
-   margin: 0 !important;
-}
-
-</style>
-<script>
-$(document).ready(function() {
-
-			$('ul a').click(function() {
-			var $anchor = $(this);
-
-			$('html, body').animate({
-			scrollTop: $($anchor.attr('href')).offset().top
-			}, 2000);
-			return false;
-			helpers : {
-			}
-			});
-			});
-			</script>
+	<script>
+	$( function() {
+		var availableTags = <%=raw @items%>;
+		$("#search").autocomplete({
+			source: availableTags
+		});
+	});
