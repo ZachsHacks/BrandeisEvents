@@ -1,242 +1,249 @@
 <%= render "layouts/header" %>
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner">
-			<div class="item active">
-				<img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
-			</div>
-			<div class="item">
-				<img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
-			</div>
-			<div class="item">
-				<img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
-			</div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
-	<div class="search">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="form-section">
-						<div class="row">
-							<form role="form" action=<%=search_path%> method="get" >
-								<div class="col-md-4">
-									<div class="form-group">
-										<label class="sr-only" for="location">Search Events or Catagories</label>
-										<input type="email" class="form-control" id="location" placeholder="Search Events or Catagories" name= "search">
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label class="sr-only" for="location">Location</label>
-										<input type="email" class="form-control" id="location" placeholder="Location">
-									</div>
-								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label class="sr-only" for="checkin">Date</label>
-										<div class="input-group">
-											<input type="text" class="form-control" id="checkin" placeholder="Date">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-										</div>
-									</div>
-								</div>
 
-								<div class="col-md-2 form-group">
-									<button type="submit" class="btn btn-default btn-primary">Search</button>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
+		</div>
+		<div class="item">
+			<img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
+		</div>
+		<div class="item">
+			<img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
+		</div>
+	</div>
+	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+<div class="search">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="form-section">
+					<div class="row">
+						<form role="form" action=<%=search_path%> method="get">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label class="sr-only" for="location">Search Events or Catagories</label>
+									<input type="text" class="form-control" id="search" placeholder="Search Events or Catagories" name="event">
 								</div>
-							</form>
-						</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label class="sr-only" for="location">Location</label>
+									<input type="text" class="form-control" id="location" placeholder="Location" name="location">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label class="sr-only" for="checkin">Date</label>
+									<div class="input-group">
+										<input id='datetimepicker1' type="text" class="form-control" placeholder="Date" name=date>
+										<span class="input-group-addon">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-2 form-group">
+								<button type="submit" class="btn btn-default btn-primary">Search</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
+<section class="events_section">
+	<div class="container events_section" id="" style="padding-top: 100px">
 
-	<section class="events_section">
-		<div class="container events_section" id="" style="padding-top: 100px">
-
-
-			<!-- Projects Row -->
-			<h3 class="text-center">Events for you</h3>
-			<hr>
-				<div class="col-md-12">
-					<div class="row event_row">
-						<% @top_events.each do |event| %>
-							<%= list_event(event, "col-md-3") %>
-							<% end %>
-				</div>
+		<!-- Projects Row -->
+		<h3 class="text-center">Events for you</h3>
+		<hr>
+		<div class="col-md-12">
+			<div class="row event_row">
+				<% @top_events.each do |event| %>
+				<%= list_event(event, "col-md-3") %>
+				<% end %>
 			</div>
-			<!-- /.row -->
+		</div>
+		<!-- /.row -->
 
-			<!-- Projects Row -->
+		<!-- Projects Row -->
 
-
-				<h3 class="text-center">Top Event</h3>
-				<hr>
-				<div class="col-md-12">
-					<div class="row event_row">
-						<% @top_events.each do |event| %>
-							<%= list_event(event, "col-md-3") %>
-							<% end %>
-				</div>
+		<h3 class="text-center">Top Event</h3>
+		<hr>
+		<div class="col-md-12">
+			<div class="row event_row">
+				<% @top_events.each do |event| %>
+				<%= list_event(event, "col-md-3") %>
+				<% end %>
 			</div>
+		</div>
 
-			<!-- Projects Row -->
+		<!-- Projects Row -->
 
-
-				<h3 class="text-center">Top Event</h3>
-				<hr>
-				<div class="col-md-12">
-					<div class="row event_row">
-						<% @top_events.each do |event| %>
-							<%= list_event(event, "col-md-3") %>
-							<% end %>
-				</div>
+		<h3 class="text-center">Top Event</h3>
+		<hr>
+		<div class="col-md-12">
+			<div class="row event_row">
+				<% @top_events.each do |event| %>
+				<%= list_event(event, "col-md-3") %>
+				<% end %>
 			</div>
-
+		</div>
 
 
 
 		<div id="gallery">
-    <figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
-      <a href="#">
-      <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" />
-        <figcaption>
-            <h2><%= @top_tags[0].name%></h2>
+			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
+				<a href="#">
+					 <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" /><figcaption>
+						<h2><%= @top_tags[0].name%></h2>
 
-        </figcaption>
-        </a>
-    </figure><figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-      <a href="#">
-      <img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt="" />
-        <figcaption>
-            <h2><%= @top_tags[1].name%></h2>
+					</figcaption>
+				</a>
+			</figure>
+			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+				<a href="#">
+					<img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt=""/>
+					<figcaption>
+						<h2><%= @top_tags[1].name%></h2>
 
-        </figcaption>
-        </a>
-    </figure>
-  <figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-      <a href="#">
-      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
-        <figcaption>
+					</figcaption>
+				</a>
+			</figure>
+			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+				<a href="#">
+					<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
+					<figcaption>
 
-            <h2><%= @top_tags[2].name%></h2>
+						<h2><%= @top_tags[2].name%></h2>
 
-        </figcaption>
-        </a>
-    </figure>
-		<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-	      <a href="#">
-	      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
-	        <figcaption>
+					</figcaption>
+				</a>
+			</figure>
+			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+				<a href="#">
+					<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
+					<figcaption>
 
-	            <h2><%= @top_tags[2].name%></h2>
+						<h2><%= @top_tags[2].name%></h2>
 
-	        </figcaption>
-	        </a>
-	    </figure>
+					</figcaption>
+				</a>
+			</figure>
 
-</div>
-
-
-
-<div style="background-color:#d3d3d3;">
-		<div id="gallery" style="color:#d3d3d3;">
-    <figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
-      <a href="#">
-      <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" />
-        <figcaption>
-            <h2><%= @top_tags[0].name%></h2>
-
-        </figcaption>
-        </a>
-    </figure><figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-      <a href="#">
-      <img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt="" />
-        <figcaption>
-            <h2><%= @top_tags[1].name%></h2>
-
-        </figcaption>
-        </a>
-    </figure>
-  <figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-      <a href="#">
-      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
-        <figcaption>
-
-            <h2><%= @top_tags[2].name%></h2>
-
-        </figcaption>
-        </a>
-    </figure>
-		<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-	      <a href="#">
-	      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
-	        <figcaption>
-
-	            <h2><%= @top_tags[2].name%></h2>
-
-	        </figcaption>
-	        </a>
-	    </figure>
-
-</div>
-
-
-			</section
-			<!-- /.row -->
-		</body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-				<div class="col-md-4 five-px-padding">
-					<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-				</div>
-			</div>
 		</div>
-		</section
-		<!-- /.row -->
-	</body>
 
-	<script type="text/javascript">
+
+	</div>
+		</div>
+
+</section <!-- /.row --> </body>
+
+<script type="text/javascript">
 
 	var j = jQuery.noConflict();
 
-	j(document).ready(function(){
+	j(document).ready(function () {
 
 		j('#datetimepicker1').datetimepicker();
 
 	})
+</script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	</script>
-
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-	<script>
-	$( function() {
+<script>
+	$(function () {
 		var availableTags = <%=raw @items%>;
-		$("#search").autocomplete({
-			source: availableTags
-		});
+		$("#search").autocomplete({source: availableTags});
 	});
+
+	$(function () {
+		var availableTags = <%=raw @locations%>;
+		$("#location").autocomplete({source: availableTags});
+	});
+</script>
+
+<style>
+
+
+#gallery {
+  height: 100%;
+	margin-top: 100px !important;
+}
+
+#gallery img{
+	height:130px;
+}
+
+figure {
+
+    width: 200px;
+    display: block;
+    overflow: hidden;
+    z-index: 100;
+}
+
+figcaption {
+    height: 50%;
+    width: 97%;
+    background: url(http://gridelicious.net/themes/treble/demo/assets/images/css/thumb_over.png) no-repeat center 150px black;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: -500px;
+    opacity: 0;
+    padding: 5px;
+		margin-left:5px;
+		margin-right: 5px;
+		overflow: hidden;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover figcaption {
+    opacity: 0.8;
+    left: 0;
+    color: #fff;
+    transition: all 0.7s;
+}
+.nopadding {
+   padding: 0px !important;
+   margin: 0 !important;
+}
+
+</style>
+
+
+<script>
+$(document).ready(function() {
+
+			$('ul a').click(function() {
+			var $anchor = $(this);
+
+			$('html, body').animate({
+			scrollTop: $($anchor.attr('href')).offset().top
+			}, 2000);
+			return false;
+			helpers : {
+			}
+			});
+			});
+			</script>
+
+</html>

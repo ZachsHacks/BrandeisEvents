@@ -15,12 +15,10 @@ module EventsHelper
 s<<"<a href='#{event_path(event.id)}'>"
     if event.event_image_file_name.nil?
 
-      s<<"  <%= image_tag 'missing_thumbnail.png' %>"
+      s<< image_tag('missing_thumbnail.png').html_safe
   	 else
-  		s<<"<%= image_tag event.event_image(:thumbnail)%>"
+  		s<< image_tag(event.event_image(:thumbnail)).html_safe
   	end
-
-		s<<"<img class='img-responsive' src='#{event.image_id}'>"
 		s<<"</a>"
     end
 
