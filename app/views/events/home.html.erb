@@ -97,32 +97,164 @@
 				</div>
 			</div>
 
-			<div class="container-fluid">
-			  <div class="row">
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
 
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
-					<div class="col-md-4 five-px-padding">
-						<img src="http://placehold.it/200x200/c69/fff/?text=Work" width="100%" height="150px;" alt="">
-					</div>
-				</div>
-			</div>
+
+
+		<div id="gallery">
+    <figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
+      <a href="#">
+      <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" />
+        <figcaption>
+            <h2><%= @top_tags[0].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure><figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+      <a href="#">
+      <img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt="" />
+        <figcaption>
+            <h2><%= @top_tags[1].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure>
+  <figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+      <a href="#">
+      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
+        <figcaption>
+
+            <h2><%= @top_tags[2].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure>
+		<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+	      <a href="#">
+	      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
+	        <figcaption>
+
+	            <h2><%= @top_tags[2].name%></h2>
+
+	        </figcaption>
+	        </a>
+	    </figure>
+
+</div>
+
+
+
+<div style="background-color:#d3d3d3;">
+		<div id="gallery" style="color:#d3d3d3;">
+    <figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
+      <a href="#">
+      <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" />
+        <figcaption>
+            <h2><%= @top_tags[0].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure><figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+      <a href="#">
+      <img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt="" />
+        <figcaption>
+            <h2><%= @top_tags[1].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure>
+  <figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+      <a href="#">
+      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
+        <figcaption>
+
+            <h2><%= @top_tags[2].name%></h2>
+
+        </figcaption>
+        </a>
+    </figure>
+		<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+	      <a href="#">
+	      <img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt="" />
+	        <figcaption>
+
+	            <h2><%= @top_tags[2].name%></h2>
+
+	        </figcaption>
+	        </a>
+	    </figure>
+
+</div>
+
+
 			</section
 			<!-- /.row -->
 		</body>
 
 
 		</html>
+
+<style>
+
+
+#gallery {
+  height: 100%;
+}
+
+#gallery img{
+	height:130px;
+}
+
+figure {
+
+    width: 200px;
+    display: block;
+    overflow: hidden;
+    z-index: 100;
+}
+
+figcaption {
+    height: 50%;
+    width: 97%;
+    background: url(http://gridelicious.net/themes/treble/demo/assets/images/css/thumb_over.png) no-repeat center 150px black;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: -500px;
+    opacity: 0;
+    padding: 5px;
+		margin-left:5px;
+		margin-right: 5px;
+		overflow: hidden;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover figcaption {
+    opacity: 0.8;
+    left: 0;
+    color: #fff;
+    transition: all 0.7s;
+}
+.nopadding {
+   padding: 0px !important;
+   margin: 0 !important;
+}
+
+</style>
+<script>
+$(document).ready(function() {
+
+			$('ul a').click(function() {
+			var $anchor = $(this);
+
+			$('html, body').animate({
+			scrollTop: $($anchor.attr('href')).offset().top
+			}, 2000);
+			return false;
+			helpers : {
+			}
+			});
+			});
+			</script>

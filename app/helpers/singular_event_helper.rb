@@ -49,37 +49,22 @@ def sidebar_individual_locations(event)
   eos
 end
 def sidebar_individual_price(event)
-  <<-eos
-  <h4>Price</h4>
-  <div id="column_results">
-  <p>$#{event.price}</p>
-  </div>
-  eos
+s =""
+  s<<"<h4>Price</h4>"
+  s<<"<div id='column_results'>"
+s<<"<p>$#{event.price}</p>"
+s<<"  </div>"
+
+@event.tags.each do |a|
+s<<"   <h4>Tags</h4>"
+s<<"   <div id='column_results'>"
+s<<"   <p>#{a.tags}</p>"
+s<<"   </div>"
+end
+s.html_safe
 end
 
 
 
-#
-# # def top_title_image
-# #   <div class="container top_page_photo">
-# #       <%= image_tag "All-Event-copy_02.png" %>
-# #   </div>
-# # end
-#
-# def search_bar
-#  search_bar_string = <<-eos
-#  <div class="row">
-#      <div class="col-lg-8 col-lg-offset-2">
-#          <div class="search_bar_events">
-#              <input type="text" class="form-control" placeholder="Search for...">
-#
-#          </div>
-#          <!-- /input-group -->
-#      </div>
-#      <!-- /.col-lg-6 -->
-#  </div>
-#  eos
-#  search_bar_string.html_safe
-# end
 
 end

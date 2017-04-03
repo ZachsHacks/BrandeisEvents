@@ -27,6 +27,9 @@ def home
 		@top_events = Event.all
 	end
 	@top_events = @top_events[0,4]
+
+	# @top_tags = Tag.group(:name).order('name DESC').limit(5)
+ @top_tags = Tag.all.limit(4)
 end
 	# GET /events/1
 	# GET /events/1.json

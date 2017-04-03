@@ -11,11 +11,17 @@ module EventsHelper
     end
 
     def event_image(event)
-        <<-eos
-		<a href="#{event_path(event.id)}">
-		<img class="img-responsive" src="#{event.image_id}" alt="">
-		</a>
-		eos
+      s = ""
+s<<"<a href='#{event_path(event.id)}'>"
+    if event.event_image_file_name.nil?
+
+      s<<"  <%= image_tag 'missing_thumbnail.png' %>"
+  	 else
+  		s<<"<%= image_tag event.event_image(:thumbnail)%>"
+  	end
+
+		s<<"<img class='img-responsive' src='#{event.image_id}'>"
+		s<<"</a>"
     end
 
     def start_time(event)
