@@ -26,12 +26,9 @@
 
 			<%= sidebar_individual_event %>
 
-			<h4>tags</h4>
+
 			<div id="column_results">
-				<% @tags.each do |tag| %>
-				<li> <%= tag.name %> </li>
-				<%end%>
-			</div>
+			
 		</div>
 		<% if !@event.description_text.nil? %>
 		<%= @event.description_text.html_safe %>

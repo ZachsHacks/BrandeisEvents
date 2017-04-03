@@ -55,12 +55,14 @@ module SingularEventHelper
 		s<<"<p>$#{event.price}</p>"
 		s<<"  </div>"
 
+		s<<"   <h4>Tags</h4>"
+		s<<"   <div id='column_results'>"
 		@event.tags.each do |a|
-			s<<"   <h4>Tags</h4>"
-			s<<"   <div id='column_results'>"
+
 			s<<"   <p>#{a.name}</p>"
+			end
 			s<<"   </div>"
-		end
+		
 		s.html_safe
 	end
 
