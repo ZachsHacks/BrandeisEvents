@@ -17,6 +17,9 @@ class EventsController < ApplicationController
 	end
 
 def home
+	if current_user
+	  redirect_to current_user
+	end
 	@items = Event.all.pluck(:name)
 	@top_events =  Event.joins(:rsvps).order('choice desc')
 	grab_locations
