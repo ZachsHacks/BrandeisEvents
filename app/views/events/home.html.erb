@@ -63,7 +63,7 @@
 </div>
 
 <section class="events_section">
-	<div class="container events_section" id="" style="padding-top: 100px">
+	<div class="container events_section" style="padding-top: 100px">
 
 		<!-- Projects Row -->
 		<h3 class="text-center">Events for you</h3>
@@ -75,11 +75,14 @@
 				<% end %>
 			</div>
 		</div>
+
+	</div>
 		<!-- /.row -->
 
 		<!-- Projects Row -->
+<div class="container events_section" style="padding-bottom: 50px">
 
-		<h3 class="text-center">Top Event</h3>
+		<h3 class="text-center">Top Events</h3>
 		<hr>
 		<div class="col-md-12">
 			<div class="row event_row">
@@ -89,20 +92,12 @@
 			</div>
 		</div>
 
-		<!-- Projects Row -->
-
-		<h3 class="text-center">Top Event</h3>
-		<hr>
-		<div class="col-md-12">
-			<div class="row event_row">
-				<% @top_events.each do |event| %>
-				<%= list_event(event, "col-md-3") %>
-				<% end %>
-			</div>
-		</div>
+	</div>
 
 
 
+
+<!--
 		<div id="gallery">
 			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
 				<a href="#">
@@ -142,13 +137,8 @@
 				</a>
 			</figure>
 
-		</div>
+		</div> -->
 
-
-	</div>
-		</div>
-
-</section <!-- /.row --> </body>
 
 <script type="text/javascript">
 

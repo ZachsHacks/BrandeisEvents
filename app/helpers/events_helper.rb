@@ -12,17 +12,16 @@ module EventsHelper
 		string.html_safe
 	end
 
-    def event_image(event)
-      s = ""
-s<<"<a href='#{event_path(event.id)}'>"
-    if event.event_image_file_name.nil?
-
-      s<< image_tag('missing_thumbnail.png').html_safe
-  	 else
-  		s<< image_tag(event.event_image(:thumbnail)).html_safe
-  	end
+	def event_image(event)
+		s = ""
+		s<<"<a href='#{event_path(event.id)}'>"
+		if event.event_image_file_name.nil?			
+			s<< image_tag('missing_thumbnail.png').html_safe
+		else
+			s<< image_tag(event.event_image(:thumbnail)).html_safe
+		end
 		s<<"</a>"
-    end
+	end
 
 	def start_time(event)
 		<<-eos
