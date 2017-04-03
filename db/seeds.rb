@@ -32,6 +32,16 @@ end
 def create_host
 	User.create(uid: "calender", provider: "google", first_name: "BrandeisEvents",   email: "calender@brandeis.edu", can_host: true, is_admin: false)
 end
+def create_tags
+	tag = ["Sports", "Politics", "Music", "Cooking", "Medicine"]
+ tag.each do |t|
+		Tag.create(name: t)
+ end
+
+
+
+end
 
 create_host
+create_tags
 create_events
