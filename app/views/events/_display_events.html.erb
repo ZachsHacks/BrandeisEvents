@@ -1,29 +1,29 @@
 <%= render "layouts/header" %>
 
 <section class="events_all_section">
-    <div class="container">
-        <div class="container top_page_photo">
-            <%= image_tag "All-Event.png" %>
-        </div>
-        <%= search_bar %>
+	<div class="container">
+		<div class="container top_page_photo">
+			<%= image_tag "All-Event.png" %>
+		</div>
 
-        <div class="row">
-        <div class=" events_list">
-            <div class="col-md-2 left-side-column">
-                <%= sidebar(@locations) %>
-                <%= sidebar_date %></div>
-            </div>
-          <div class="col-md-10">
-            <div class="row event_row">
-              <% @events.each do |event| %>
-                <%= list_event(event, "col-md-4") %>
-                <% end %>
-            </div>
-          </div>
+		<div class="row">
+			<div class=" events_list">
+				<div class="col-md-2 left-side-column">
+					<%= sidebar_date %>
+					<%= sidebar(@locations) %>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="row event_row">
+					<% @events.sort_by {|e| e.start}.each do |event| %>
+					<%= list_event(event, "col-md-4") %>
+					<% end %>
+				</div>
+			</div>
 
-					<div class="text-center"> <%= will_paginate %> </div>
+			<div class="text-center"> <%= will_paginate %> </div>
 
-        </section <!-- /.row --> <p id="notice"><%= notice %></p>
-</body>
+		</section <!-- /.row --> <p id="notice"><%= notice %></p>
+	</body>
 
-</html>
+	</html>

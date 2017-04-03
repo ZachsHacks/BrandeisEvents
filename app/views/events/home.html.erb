@@ -21,49 +21,11 @@
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</a>
 </div>
-<div class="search">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="form-section">
-					<div class="row">
-						<form role="form" action=<%=search_path%> method="get">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label class="sr-only" for="location">Search Events or Catagories</label>
-									<input type="text" class="form-control" id="search" placeholder="Search Events or Categories" name="event">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label class="sr-only" for="location">Location</label>
-									<input type="text" class="form-control" id="location" placeholder="Location" name="location">
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<div id='datetimepicker1' class="input-group">
-										<input type="text" class="form-control" placeholder="Date" name=date>
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</span>
-									</div>
-								</div>
-							</div>
 
-							<div class="col-md-2 form-group">
-								<button type="submit" class="btn btn-default btn-primary">Search</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<%= render 'search' %> 
 
 <section class="events_section">
-	<div class="container events_section" id="" style="padding-top: 100px">
+	<div class="container events_section" style="padding-top: 100px">
 
 		<!-- Projects Row -->
 		<h3 class="text-center">Events for you</h3>
@@ -75,11 +37,14 @@
 				<% end %>
 			</div>
 		</div>
+
+	</div>
 		<!-- /.row -->
 
 		<!-- Projects Row -->
+<div class="container events_section" style="padding-bottom: 50px">
 
-		<h3 class="text-center">Top Event</h3>
+		<h3 class="text-center">Top Events</h3>
 		<hr>
 		<div class="col-md-12">
 			<div class="row event_row">
@@ -89,20 +54,12 @@
 			</div>
 		</div>
 
-		<!-- Projects Row -->
-
-		<h3 class="text-center">Top Event</h3>
-		<hr>
-		<div class="col-md-12">
-			<div class="row event_row">
-				<% @top_events.each do |event| %>
-				<%= list_event(event, "col-md-3") %>
-				<% end %>
-			</div>
-		</div>
+	</div>
 
 
 
+
+<!--
 		<div id="gallery">
 			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
 				<a href="#">
@@ -142,13 +99,8 @@
 				</a>
 			</figure>
 
-		</div>
+		</div> -->
 
-
-	</div>
-		</div>
-
-</section <!-- /.row --> </body>
 
 <script type="text/javascript">
 

@@ -1,5 +1,6 @@
 
 require './presenters/event_presenter'
+require 'active_support/core_ext'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -12,26 +13,32 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.paginate(page: params[:page], per_page: 9)
+		if params[:format]
+			@events = Event.where(location: params[:format]).paginate(page: params[:page], per_page: 9)
+		elsif params[:date]
+			@events = filter_dates(params[:date])
+		else
+			@events = Event.paginate(page: params[:page], per_page: 9)
+		end
 		grab_locations
 	end
 
-def home
-	if current_user
-	  redirect_to current_user
-	end
-	@items = Event.all.pluck(:name)
-	@top_events =  Event.joins(:rsvps).order('choice desc')
-	grab_locations
+	def home
+		if current_user
+			redirect_to current_user
+		end
+		@items = Event.all.pluck(:name)
+		@top_events =  Event.joins(:rsvps).order('choice desc')
+		grab_locations
 
-	if 	@top_events.count < 4
-		@top_events = Event.all
-	end
-	@top_events = @top_events[0,4]
+		if 	@top_events.count < 4
+			@top_events = Event.all
+		end
+		@top_events = @top_events[0,4]
 
-	# @top_tags = Tag.group(:name).order('name DESC').limit(5)
- @top_tags = Tag.all.limit(4)
-end
+		# @top_tags = Tag.group(:name).order('name DESC').limit(5)
+		@top_tags = Tag.all.limit(4)
+	end
 	# GET /events/1
 	# GET /events/1.json
 	def show
@@ -54,6 +61,7 @@ end
 	def create
 
 		@event = Event.new(event_params)
+		@event.host_id = current_user.id
 		@presenter = EventPresenter.new(@event)
 
 		respond_to do |format|
@@ -107,7 +115,27 @@ end
 	end
 
 	def grab_locations
-		@locations = Location.all.pluck(:name)
+		db_locations = Location.all.pluck(:name).uniq
+		active_locations = Event.all.pluck(:location).uniq
+		@locations = db_locations && active_locations
+	end
+
+	def filter_dates(filter)
+		if filter == "today"
+			return Event.all.select {|e| e.start.to_date == Date.today}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "tomorrow"
+			return Event.all.select {|e| e.start.to_date == Date.tomorrow}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "this week"
+			return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.next_day(7))}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "next week"
+			return Event.all.select {|e| e.start.to_date.between?(Date.today.next_day(7),Date.today.next_day(14))}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "this weekend"
+			return Event.all.select {|e| e.start.to_date.between?(Date.today, Date.today.next_day(7)) && e.start.to_date.on_weekend?}.paginate(page: params[:page], per_page: 9)
+		else
+			return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.end_of_month)}.paginate(page: params[:page], per_page: 9)
+		end
+
+		return Event.all
 	end
 
 end

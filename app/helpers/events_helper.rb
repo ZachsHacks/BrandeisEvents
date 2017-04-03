@@ -12,17 +12,16 @@ module EventsHelper
 		string.html_safe
 	end
 
-    def event_image(event)
-      s = ""
-s<<"<a href='#{event_path(event.id)}'>"
-    if event.event_image_file_name.nil?
-
-      s<< image_tag('missing_thumbnail.png').html_safe
-  	 else
-  		s<< image_tag(event.event_image(:thumbnail)).html_safe
-  	end
+	def event_image(event)
+		s = ""
+		s<<"<a href='#{event_path(event.id)}'>"
+		if event.event_image_file_name.nil?
+			s<< image_tag('missing_thumbnail.png').html_safe
+		else
+			s<< image_tag(event.event_image(:thumbnail)).html_safe
+		end
 		s<<"</a>"
-    end
+	end
 
 	def start_time(event)
 		<<-eos
@@ -53,9 +52,9 @@ s<<"<a href='#{event_path(event.id)}'>"
 	def sidebar_locations(locations)
 		string = ""
 		string << "<div id='column_results'>"
-
-		locations.each do |l|
-			string << "<p>" + "#{l}" + "</p>" if l != nil
+		string <<  "<p>" + link_to("All Locations", events_path) + "</p>"
+		locations.sort.each do |l|
+			string <<  "<p>" + link_to(l, events_path(l)) + "</p>"
 		end
 
 		string << "</div>"
@@ -63,20 +62,17 @@ s<<"<a href='#{event_path(event.id)}'>"
 	end
 
 	def sidebar_date
-		return_string = <<-eos
-		<h4>Dates</h4>
-		<div id="column_results">
-		<p>
-		Today <br/>
-		Tomorrow <br/>
-		This week <br/>
-		Next Week <br/>
-		This Month <br/>
-		In the future
-		</p>
-		</div>
-		eos
-		return_string.html_safe
+		string = ""
+		string << '<h4>Dates</h4>'
+		string << "<p>" + link_to("All Dates", events_path) + "</p>"
+		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
+		string << "<p>" + link_to("Tommorow", events_path(:date => "tomorrow")) + "</p>"
+		string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
+		string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
+		string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
+		string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
+		string << "<hr>"
+		string.html_safe
 	end
 
 	def search_bar
@@ -95,6 +91,8 @@ s<<"<a href='#{event_path(event.id)}'>"
 		search_bar_string.html_safe
 	end
 
-
+	def is_host
+		current_user && @event.host_id == current_user.id
+	end
 
 end

@@ -12,13 +12,14 @@
 	</div>
 	<div class="row">
 		<%= content %>
+		<% if logged_in? %>
 		<div class="col-md-5 pull-right">
 			<div class="btn-group pull-right" role="group" aria-label="...">
 				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
 				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
 			</div>
-
 		</div>
+		<%end%>
 	</div>
 	<div class="row main_body">
 		<div class="col-md-2">
@@ -32,10 +33,10 @@
 				<%end%>
 			</div>
 		</div>
-		<% if @event.description.nil? %>
+		<% if !@event.description_text.nil? %>
 		<%= @event.description_text.html_safe %>
 		<% else %>
-		<%= @event.description %>
+		<%= "This event has no description." %>
 		<% end %>
 	</div>
 	<div class="row">
@@ -44,7 +45,7 @@
 		</div>
 	</div>
 
-<% if @event.host_id == current_user.id %>
+<% if is_host %>
 	<%= link_to 'Edit', edit_event_path(@event) %> |
 	<%= link_to 'Back', events_path %>
 	<% end %>
