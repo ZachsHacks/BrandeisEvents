@@ -9,7 +9,7 @@ module SingularEventHelper
 		<<-eos
 		<div class="col-md-7">
 		<h3>#{@event.name}</h3>
-		<p id="host">#{by Relay For Life of Brandeis University}</p>
+		<p id="host">BrandeisEVENTS</p>
 		</div>
 		eos
 
