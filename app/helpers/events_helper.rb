@@ -1,14 +1,16 @@
+require 'nokogiri'
+
 module EventsHelper
-    def list_event(event, col_length)
-        string = ''
-            string << "<div class='#{col_length} portfolio-item'>"
-            string << event_image(event)
-            string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
-            string << "<p>#{truncate event.description, :length => 100}</p>"
-            string << start_time(event) + location(event)
-            string << '</div>'
-        string.html_safe
-    end
+	def list_event(event, col_length)
+		string = ''
+		string << "<div class='#{col_length} portfolio-item'>"
+		string <<  event_image(event)
+		string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
+		string << "<p>#{truncate event.description_text, :length => 100}</p>"
+		string << start_time(event) + location(event)
+		string << '</div>'
+		string.html_safe
+	end
 
     def event_image(event)
       s = ""
@@ -22,17 +24,17 @@ s<<"<a href='#{event_path(event.id)}'>"
 		s<<"</a>"
     end
 
-    def start_time(event)
-        <<-eos
+	def start_time(event)
+		<<-eos
 		<div class="row">
 		<div class="col-xs-4">
 		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-2"></span>#{event.start.strftime('%m/%d')}
 		</div>
 		eos
-    end
+	end
 
-    def location(event)
-        <<-eos
+	def location(event)
+		<<-eos
 		<div class="col-xs-8">
 		<div class="text-right">
 		<span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>#{event.location}
@@ -40,16 +42,16 @@ s<<"<a href='#{event_path(event.id)}'>"
 		</div>
 		</div> <!--closing of location time row-->
 		eos
-    end
+	end
 
-    def sidebar(locations)
-        return_string = '<h4>Locations</h4>'
-        return_string << sidebar_locations(locations)
-        return_string.html_safe
-    end
+	def sidebar(locations)
+		return_string = '<h4>Locations</h4>'
+		return_string << sidebar_locations(locations)
+		return_string.html_safe
+	end
 
-    def sidebar_locations(locations)
-        string = ""
+	def sidebar_locations(locations)
+		string = ""
 		string << "<div id='column_results'>"
 
 		locations.each do |l|
@@ -58,10 +60,10 @@ s<<"<a href='#{event_path(event.id)}'>"
 
 		string << "</div>"
 
-    end
+	end
 
-    def sidebar_date
-        return_string = <<-eos
+	def sidebar_date
+		return_string = <<-eos
 		<h4>Dates</h4>
 		<div id="column_results">
 		<p>
@@ -74,11 +76,11 @@ s<<"<a href='#{event_path(event.id)}'>"
 		</p>
 		</div>
 		eos
-        return_string.html_safe
-    end
+		return_string.html_safe
+	end
 
-    def search_bar
-        search_bar_string = <<-eos
+	def search_bar
+		search_bar_string = <<-eos
 		<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
 		<div class="search_bar_events">
@@ -90,9 +92,9 @@ s<<"<a href='#{event_path(event.id)}'>"
 		<!-- /.col-lg-6 -->
 		</div>
 		eos
-        search_bar_string.html_safe
-       end
+		search_bar_string.html_safe
+	end
 
 
 
-  end
+end

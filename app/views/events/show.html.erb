@@ -23,6 +23,7 @@
 		<div class="col-md-2">
 
 			<%= sidebar_individual_event %>
+
 			<h4>tags</h4>
 			<div id="column_results">
 				<% @tags.each do |tag| %>
@@ -30,7 +31,7 @@
 				<%end%>
 			</div>
 		</div>
-		<%= description %>
+		<%= @event.description_text.html_safe %>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

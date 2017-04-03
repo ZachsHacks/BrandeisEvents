@@ -15,6 +15,10 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
+gem 'crack'
+gem 'typhoeus'
+gem 'nokogiri'
+
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -27,6 +31,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+gem 'ferret', '~> 0.11.8.6'
 
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 # Use jquery as the JavaScript library

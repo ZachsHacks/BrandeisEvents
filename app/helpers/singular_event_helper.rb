@@ -1,35 +1,35 @@
 module SingularEventHelper
 
-def content
-  content_string = title
-  content_string.html_safe
-end
+	def content
+		content_string = title
+		content_string.html_safe
+	end
 
-def title
-   <<-eos
-   <div class="col-md-10">
-       <h3>#{@event.name}</h3>
-       <p id="host">by Relay For Life of Brandeis University</p>
-   </div>
-   eos
+	def title
+		<<-eos
+		<div class="col-md-10">
+		<h3>#{@event.name}</h3>
+		<p id="host">by Relay For Life of Brandeis University</p>
+		</div>
+		eos
 
-end
-def description
-  return_string = <<-eos
-  <div class="col-md-10">
-  <p>#{@event.description}</p>
-  </div>
-  eos
-  return_string.html_safe
-end
+	end
+	def description
+		return_string = <<-eos
+		<div class="col-md-10">
+		<p>#{@event.description}</p>
+		</div>
+		eos
+		return_string.html_safe
+	end
 
 
-def sidebar_individual_event
+	def sidebar_individual_event
 
-  return_string =
-   sidebar_individual_date(@event) +  sidebar_individual_locations(@event) + sidebar_individual_price(@event)
-  return_string.html_safe
-end
+		return_string =
+		sidebar_individual_date(@event) +  sidebar_individual_locations(@event) + sidebar_individual_price(@event)
+		return_string.html_safe
+	end
 
 
 def sidebar_individual_date(event)

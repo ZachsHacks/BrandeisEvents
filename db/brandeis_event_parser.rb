@@ -22,8 +22,5 @@ class BrandeisEventParser
 		end
 	end
 
-	def parse_description
-
-	end
 
 end
