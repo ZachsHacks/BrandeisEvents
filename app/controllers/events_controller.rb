@@ -61,7 +61,7 @@ class EventsController < ApplicationController
 	def create
 
 		@event = Event.new(event_params)
-		@event.host_id = current_user.id
+		@event.host = current_user
 		@presenter = EventPresenter.new(@event)
 
 		respond_to do |format|
