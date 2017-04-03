@@ -15,7 +15,7 @@ module EventsHelper
 	def event_image(event)
 		s = ""
 		s<<"<a href='#{event_path(event.id)}'>"
-		if event.event_image_file_name.nil?			
+		if event.event_image_file_name.nil?
 			s<< image_tag('missing_thumbnail.png').html_safe
 		else
 			s<< image_tag(event.event_image(:thumbnail)).html_safe
@@ -54,7 +54,10 @@ module EventsHelper
 		string << "<div id='column_results'>"
 
 		locations.each do |l|
-			string << "<p>" + "#{l}" + "</p>" if l != nil
+			string <<  "<p>"
+			string << link_to(l, events_path(l))
+			string << "</p>"
+			#string << "<div id=#{l}><p>" + "#{l}" + "</p></div>r" if l != nil
 		end
 
 		string << "</div>"
@@ -94,6 +97,8 @@ module EventsHelper
 		search_bar_string.html_safe
 	end
 
-
+	def is_host
+		current_user && @event.host_id == current_user.id
+	end
 
 end

@@ -12,26 +12,30 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.paginate(page: params[:page], per_page: 9)
+		if params[:format]
+			@events = Event.where(location: params[:format]).paginate(page: params[:page], per_page: 9)
+		else
+			@events = Event.paginate(page: params[:page], per_page: 9)
+		end
 		grab_locations
 	end
 
-def home
-	if current_user
-	  redirect_to current_user
-	end
-	@items = Event.all.pluck(:name)
-	@top_events =  Event.joins(:rsvps).order('choice desc')
-	grab_locations
+	def home
+		if current_user
+			redirect_to current_user
+		end
+		@items = Event.all.pluck(:name)
+		@top_events =  Event.joins(:rsvps).order('choice desc')
+		grab_locations
 
-	if 	@top_events.count < 4
-		@top_events = Event.all
-	end
-	@top_events = @top_events[0,4]
+		if 	@top_events.count < 4
+			@top_events = Event.all
+		end
+		@top_events = @top_events[0,4]
 
-	# @top_tags = Tag.group(:name).order('name DESC').limit(5)
- @top_tags = Tag.all.limit(4)
-end
+		# @top_tags = Tag.group(:name).order('name DESC').limit(5)
+		@top_tags = Tag.all.limit(4)
+	end
 	# GET /events/1
 	# GET /events/1.json
 	def show
@@ -107,7 +111,9 @@ end
 	end
 
 	def grab_locations
-		@locations = Location.all.pluck(:name)
+		db_locations = Location.all.pluck(:name).uniq
+		active_locations = Event.all.pluck(:location).uniq
+		@locations = db_locations && active_locations
 	end
 
 end
