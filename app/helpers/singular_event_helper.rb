@@ -36,7 +36,7 @@ def sidebar_individual_date(event)
      <<-eos
    <h4>Dates</h4>
   <div id="column_results">
-    <p>#{event.start.strftime("%a %B %d %I:%M ") } - #{event.end.strftime("%I:%M %p")} </p>
+    <p>#{event.start.strftime("%a %B %d %I:%M ") } </p>
   </div>
   eos
 end

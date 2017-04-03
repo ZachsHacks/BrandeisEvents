@@ -43,6 +43,7 @@ class Event < ApplicationRecord
 		d = Nokogiri::HTML(self.description)
 		description = ""
 		skip = 3
+
 		d.xpath("//p").children.each do |line|
 			description << line.text if skip <= 0 && !line.text.blank?
 			description << "\n" if line.name == "br"
