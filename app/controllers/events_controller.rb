@@ -104,11 +104,7 @@ end
 	end
 
 	def grab_locations
-		if Rails.env.development?
-			@locations = ["SCC", "Sherman", "Usdan", "Pito's Office"]
-		else
-			@locations = Event.all_current_locations
-		end
+		@locations = Location.all.pluck(:name)
 	end
 
 end
