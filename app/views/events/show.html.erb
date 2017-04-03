@@ -32,7 +32,11 @@
 				<%end%>
 			</div>
 		</div>
+		<% if @event.description.nil? %>
 		<%= @event.description_text.html_safe %>
+		<% else %>
+		<%= @event.description %>
+		<% end %>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -40,8 +44,10 @@
 		</div>
 	</div>
 
+<% if @event.host_id == current_user.id %>
 	<%= link_to 'Edit', edit_event_path(@event) %> |
 	<%= link_to 'Back', events_path %>
+	<% end %>
 
 </div>
 
