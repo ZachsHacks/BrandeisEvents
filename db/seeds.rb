@@ -27,10 +27,10 @@ def get_location_info(html)
 	data.each do |line|
 		words = line.text.downcase.gsub!(/[^A-Za-z]/, ' ') || line.text.downcase unless line.text.nil?
 		location = @locations.select { |l| l.downcase.include? words }
-		return location.last if location.size >= 1
+		return location.first if location.size >= 1
 		words.split(" ").each do |word|
 			location = @locations.select { |l| l.downcase.include? word }
-			return location.last if location.size >= 1
+			return location.first if location.size >= 1
 		end
 	end
 
