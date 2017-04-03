@@ -42,14 +42,14 @@
   <div class="row">
 <p>RSVP'D Events </p>
 <% @going_rsvps.each do |r| %>
-<%= list_event(r.event)%>
+<%= list_event(r.event, "col-md-4")%>
 <% end %>
 </div>
 </div>
 
 <p>Interested Events </p>
 <% @interested_rsvps.each do |r| %>
-<%= list_event(r.event)%>
+<%= list_event(r.event, "col-md-4")%>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

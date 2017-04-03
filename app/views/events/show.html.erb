@@ -12,11 +12,12 @@
 	</div>
 	<div class="row">
 		<%= content %>
-		<div class="col-md-2 pull-right">
+		<div class="col-md-5 pull-right">
 			<div class="btn-group pull-right" role="group" aria-label="...">
-				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left"  %>
-				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-left"  %>
+				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
+				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
 			</div>
+
 		</div>
 	</div>
 	<div class="row main_body">
@@ -64,3 +65,16 @@ handler.buildMap({
 function(){ }
 );
 </script>
+
+<style>
+.rsvp-button{
+	margin-right: 5px;
+}
+.btn-group{
+display: inline;
+margin-top: 20px;
+}
+form {
+display: inline
+}
+</style>

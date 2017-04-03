@@ -20,7 +20,7 @@ def home
 	@items = Event.all.pluck(:name)
 	@top_events =  Event.joins(:rsvps).order('choice desc')
 	grab_locations
-	debugger
+
 	if 	@top_events.count < 4
 		@top_events = Event.all
 	end

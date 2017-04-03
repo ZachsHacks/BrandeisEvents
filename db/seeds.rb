@@ -167,4 +167,5 @@ end
 
 create_host
 create_tags
+create_locations
 create_events

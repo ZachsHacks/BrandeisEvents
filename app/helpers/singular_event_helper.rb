@@ -7,7 +7,7 @@ module SingularEventHelper
 
 	def title
 		<<-eos
-		<div class="col-md-10">
+		<div class="col-md-7">
 		<h3>#{@event.name}</h3>
 		<p id="host">by Relay For Life of Brandeis University</p>
 		</div>
