@@ -6,9 +6,7 @@ module EventsHelper
 		string << "<div class='#{col_length} portfolio-item'>"
 		string <<  event_image(event)
 		string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
-		d = Nokogiri::HTML(event.description)
-		d = d.text.split(".").drop(5).flatten[0]
-		string << "<p>#{truncate d, :length => 100}</p>"
+		string << "<p>#{truncate event.description_text, :length => 100}</p>"
 		string << start_time(event) + location(event)
 		string << '</div>'
 		string.html_safe
