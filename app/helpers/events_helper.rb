@@ -53,7 +53,7 @@ module EventsHelper
 		string = ""
 		string << "<div id='column_results'>"
 
-		locations.each do |l|
+		locations.sort.each do |l|
 			string <<  "<p>"
 			string << link_to(l, events_path(l))
 			string << "</p>"
@@ -65,20 +65,14 @@ module EventsHelper
 	end
 
 	def sidebar_date
-		return_string = <<-eos
-		<h4>Dates</h4>
-		<div id="column_results">
-		<p>
-		Today <br/>
-		Tomorrow <br/>
-		This week <br/>
-		Next Week <br/>
-		This Month <br/>
-		In the future
-		</p>
-		</div>
-		eos
-		return_string.html_safe
+		string = "<hr>"
+		string << '<h4>Dates</h4>'
+		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
+		string << "<p>" + link_to("Tommorow", events_path(:date => "tomorrow")) + "</p>"
+		string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
+		string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
+		string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
+		string.html_safe
 	end
 
 	def search_bar

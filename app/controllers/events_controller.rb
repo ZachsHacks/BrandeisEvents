@@ -1,5 +1,6 @@
 
 require './presenters/event_presenter'
+require 'active_support/core_ext'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -14,6 +15,8 @@ class EventsController < ApplicationController
 	def index
 		if params[:format]
 			@events = Event.where(location: params[:format]).paginate(page: params[:page], per_page: 9)
+		elsif params[:date]
+			@events = filter_dates(params[:date])
 		else
 			@events = Event.paginate(page: params[:page], per_page: 9)
 		end
@@ -114,6 +117,20 @@ class EventsController < ApplicationController
 		db_locations = Location.all.pluck(:name).uniq
 		active_locations = Event.all.pluck(:location).uniq
 		@locations = db_locations && active_locations
+	end
+
+	def filter_dates(filter)
+		if filter == "today"
+			return Event.all.select {|e| e.start.to_date == Date::today}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "tomorrow"
+			return Event.all.select {|e| e.start.to_date == Date::tomorrow}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "this week"
+			return Event.all.select {|e| e.start.to_date.between?(Date::today,Date::today.next_day(7))}.paginate(page: params[:page], per_page: 9)
+		elsif filter == "next week"
+			return Event.all.select {|e| e.start.to_date.between?(Date::today.next_day(7),Date::today.next_day(14))}.paginate(page: params[:page], per_page: 9)
+		else
+			return Event.all.select {|e| e.start.to_date.between?(Date::today,Date::today.end_of_month)}.paginate(page: params[:page], per_page: 9)
+		end
 	end
 
 end
