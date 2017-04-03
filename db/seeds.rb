@@ -23,16 +23,18 @@ def get_location_info(html)
 	parsed_html = Nokogiri::HTML(html)
 
 	data = parsed_html.xpath("//a")
-
 	location = []
-
 	data.each do |line|
-			words = line.text.downcase.gsub!(/[^A-Za-z]/, ' ') || line.text.downcase unless line.text.nil?
-			location = @locations.select { |l| l.downcase.include? words }
-			return location.last if location.size == 1
+		words = line.text.downcase.gsub!(/[^A-Za-z]/, ' ') || line.text.downcase unless line.text.nil?
+		location = @locations.select { |l| l.downcase.include? words }
+		return location.last if location.size >= 1
+		words.split(" ").each do |word|
+			location = @locations.select { |l| l.downcase.include? word }
+			return location.last if location.size >= 1
+		end
 	end
 
-	return "Brandeis Campus"
+	return "Other"
 end
 
 def create_host
@@ -40,9 +42,9 @@ def create_host
 end
 def create_tags
 	tag = ["Sports", "Politics", "Music", "Cooking", "Medicine"]
- tag.each do |t|
+	tag.each do |t|
 		Tag.create(name: t)
- end
+	end
 
 
 
@@ -64,7 +66,9 @@ def create_locations
 end
 
 def debug_events
-	byebug
+	Event.where(location: "Other").each do |e|
+		get_location_info(e.description)
+	end
 end
 
 create_host
