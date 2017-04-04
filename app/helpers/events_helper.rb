@@ -33,14 +33,13 @@ module EventsHelper
 	end
 
 	def location(event)
-		<<-eos
-		<div class="col-xs-8">
-		<div class="text-right">
-		<span class="glyphicon glyphicon-map-marker" id="icon-location" class="text-right"></span>#{event.location}
-		</div>
-		</div>
-		</div> <!--closing of location time row-->
-		eos
+		string = "<div class='col-xs-8'>"
+		string << "<div class='text-right'>"
+		string << "<span class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
+		string << "#{event.location}"
+		string << "</div>"
+		string << "</div>"
+		string << "</div>"
 	end
 
 	def sidebar(locations)
