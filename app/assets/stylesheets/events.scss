@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+.top_page_photo{
+  padding-bottom: 20px !important;
+}
 .main_body{
   //content un
   padding-top: 20px;
@@ -156,7 +158,8 @@ h4.great {
 
 //Invidual Event
 .portfolio-item{
-  margin-bottom: 20px;
+  margin-top: 20px;
+
   height: 320px;
 }
 
