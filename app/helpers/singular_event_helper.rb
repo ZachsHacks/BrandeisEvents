@@ -62,7 +62,8 @@ module SingularEventHelper
 			s<<"   <p>#{a.name}</p>"
 			end
 			s<<"   </div>"
-		
+			
+
 		s.html_safe
 	end
 
