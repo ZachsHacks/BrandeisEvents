@@ -61,7 +61,7 @@ class EventsController < ApplicationController
 	def create
 
 		@event = Event.new(event_params)
-		@event.host_id = current_user.id
+		@event.host = current_user
 		@presenter = EventPresenter.new(@event)
 
 		respond_to do |format|
@@ -79,7 +79,6 @@ class EventsController < ApplicationController
 	# PATCH/PUT /events/1
 	# PATCH/PUT /events/1.json
 	def update
-
 		respond_to do |format|
 			if @event.update(event_params)
 				@presenter.update_tags(params)

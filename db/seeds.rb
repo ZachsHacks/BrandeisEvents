@@ -14,7 +14,7 @@ def create_events
 		date_time = Time.parse(line["published"].to_s)
 		relavent_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
-		Event.create(name: title, description: description_html, location: location, start: date_time, host_id: User.first.id, image_id: image_id)
+		Event.create(name: title, description: description_html, location: location, start: date_time, user: User.first, image_id: image_id)
 	end
 
 end
@@ -38,7 +38,7 @@ def get_location_info(html)
 end
 
 def create_host
-	User.create(uid: "calender", provider: "google", first_name: "BrandeisEvents",   email: "calender@brandeis.edu", can_host: true, is_admin: false)
+	User.create(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
 end
 def create_tags
 	tag = ["Sports", "Politics", "Music", "Cooking", "Medicine"]

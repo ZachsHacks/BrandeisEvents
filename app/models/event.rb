@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
-	belongs_to :user, optional: true
+	belongs_to :user
+	alias_attribute :host, :user
 	has_many :rsvps
 	has_many :users, through: :rsvps
 	has_many :event_tags
@@ -10,6 +11,9 @@ class Event < ApplicationRecord
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :description, presence: true, length: {minimum: 80}
 
+	def host
+	  user
+	end
 
 	has_attached_file :event_image, styles: {
 		thumb: '100x100>',

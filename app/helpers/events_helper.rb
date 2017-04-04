@@ -91,7 +91,7 @@ module EventsHelper
 	end
 
 	def is_host
-		current_user && @event.host_id == current_user.id
+		current_user && @event.host == current_user
 	end
 
 end
