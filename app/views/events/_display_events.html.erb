@@ -2,9 +2,16 @@
 
 <section class="events_all_section">
 	<div class="container">
-		<div class="container top_page_photo">
-			<%= image_tag "All-Event.png"  %>
-		</div>
+
+
+    <div class="top-thumbnail text-center">
+			<%= image_tag "All-Event.png", class:"img-responsive" %>
+        <div class="top-caption">
+            <h1>All Events</h1>
+        </div>
+    </div>
+
+
 
 		<div class="row">
 			<div class=" events_list">
@@ -30,5 +37,18 @@
 
 
 <style>
+.top-thumbnail {
+    position: relative;
+}
 
+.top-caption {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+}
+.top-caption h1{
+	color: #fff;
+	font-size: 55px;
+}
 </style>
