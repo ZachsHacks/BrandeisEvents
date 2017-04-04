@@ -4,10 +4,10 @@
 	<div class="row">
 		<% if @event.event_image_file_name.nil? %>
 
-<%= image_tag "missing_large.png" %>
-	<% else %>
+		<%= image_tag "missing_large.png" %>
+		<% else %>
 		<%= image_tag @event.event_image(:large)%>
-	<% end %>
+		<% end %>
 
 	</div>
 	<div class="row">
@@ -28,45 +28,45 @@
 
 
 			<div id="column_results">
-			
+
+			</div>
+			<% if !@event.description.nil? %>
+			<%= @event.description.html_safe %>
+			<% else %>
+			<%= "This event has no description." %>
+			<% end %>
 		</div>
-		<% if !@event.description_text.nil? %>
-		<%= @event.description_text.html_safe %>
-		<% else %>
-		<%= "This event has no description." %>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="custom_style" style='width: 100%; height: 250px;'></div>
+			</div>
+		</div>
+
+		<% if is_host %>
+		<%= link_to 'Edit', edit_event_path(@event) %> |
+		<%= link_to 'Back', events_path %>
 		<% end %>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div id="custom_style" style='width: 100%; height: 250px;'></div>
-		</div>
+
 	</div>
 
-<% if is_host %>
-	<%= link_to 'Edit', edit_event_path(@event) %> |
-	<%= link_to 'Back', events_path %>
-	<% end %>
-
-</div>
 
 
 
 
+	<script type="text/javascript">
+	var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
 
-<script type="text/javascript">
-var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
-
-var handler = Gmaps.build('Google');
-handler.buildMap({
-	internal: {id: 'custom_style'},
-	provider: {
-		zoom:      15,
-		center:    new google.maps.LatLng(42.366252,-71.258527),
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		styles:    mapStyle
-	}
-},
-function(){ }
+	var handler = Gmaps.build('Google');
+	handler.buildMap({
+		internal: {id: 'custom_style'},
+		provider: {
+			zoom:      15,
+			center:    new google.maps.LatLng(42.366252,-71.258527),
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			styles:    mapStyle
+		}
+	},
+	function(){ }
 );
 </script>
 
@@ -75,10 +75,10 @@ function(){ }
 	margin-right: 5px;
 }
 .btn-group{
-display: inline;
-margin-top: 20px;
+	display: inline;
+	margin-top: 20px;
 }
 form {
-display: inline
+	display: inline
 }
 </style>

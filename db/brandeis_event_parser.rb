@@ -13,14 +13,5 @@ class BrandeisEventParser
 		@data_array
 	end
 
-	def parse_data
-		@data_array.each do |line|
-			title = line["title"]
-			description_html = line["content"]
-			date_time = Time.parse(line["published"].to_s)
-			relavent_link = line["gc:weblink"]
-		end
-	end
-
 
 end

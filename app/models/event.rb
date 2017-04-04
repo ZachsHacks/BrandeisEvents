@@ -43,19 +43,6 @@ class Event < ApplicationRecord
 		all.pluck(:location)
 	end
 
-	def description_text
-		d = Nokogiri::HTML(self.description)
-		description = ""
-		skip = 3
-
-		d.xpath("//p").children.each do |line|
-			description << line.text if skip <= 0 && !line.text.blank?
-			description << "\n" if line.name == "br"
-			skip -= 1
-		end
-		description
-	end
-
 	def count_words(string, substring)
 			string.scan(/(?=#{substring})/).count
 	end

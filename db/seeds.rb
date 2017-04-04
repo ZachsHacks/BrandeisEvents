@@ -9,14 +9,27 @@ def create_events
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
 		title = line["title"]
-		description_html = line["content"]
-		location = get_location_info(description_html)
+		description = get_description(line["content"])
+		location = get_location_info(description)
 		date_time = Time.parse(line["published"].to_s)
 		relavent_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
-		Event.create(name: title, description: description_html, location: location, start: date_time, user: User.first, image_id: image_id)
+		Event.create(name: title, description: description, location: location, start: date_time, user: User.first, image_id: image_id)
 	end
 
+end
+
+def get_description(html)
+	d = Nokogiri::HTML(html)
+	description = ""
+	skip = 3
+
+	d.xpath("//p").children.each do |line|
+		description << line.text if skip <= 0 && !line.text.blank?
+		description << "\n" if line.name == "br"
+		skip -= 1
+	end
+	description
 end
 
 def get_location_info(html)
