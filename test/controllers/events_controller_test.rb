@@ -4,7 +4,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
 		@host = users(:host)#User.create(uid: "zweiss", first_name: "Example", last_name: "User", email: "user@example.com", provider: "google", can_host: true)
 		@event = events(:one)
-		@event.user_id = @host.id#Event.new(user_id: @host.id, name: "My Event", description: "This event is awesome. This event is awesome. This event is awesome. This event is awesome.", start: Time.now, end: Time.now)
+		@event.host = @host#Event.new(user_id: @host.id, name: "My Event", description: "This event is awesome. This event is awesome. This event is awesome. This event is awesome.", start: Time.now, end: Time.now)
 		#@event.save
 	end
 
@@ -30,7 +30,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event" do
-    patch event_url(@event), params: { event: { user_id: @event.user_id, description: @event.description, host_id: @event.host_id, location: @event.location, name: @event.name, price: @event.price, start: @event.start, end: @event.end} }
+    patch event_url(@event), params: { event: { user: @event.user, description: @event.description, location: @event.location, name: @event.name, price: @event.price, start: @event.start, end: @event.end} }
     assert_redirected_to event_url(@event)
   end
 
