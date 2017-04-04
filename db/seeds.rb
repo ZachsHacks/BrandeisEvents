@@ -10,7 +10,7 @@ def create_events
 	@data.each do |line|
 		title = line["title"]
 		description = get_description(line["content"])
-		location = get_location_info(description)
+		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
 		relavent_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
