@@ -18,6 +18,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'crack'
 gem 'typhoeus'
 gem 'nokogiri'
+gem 'geocoder'
 
 # Use postgres as the database for Active Record
 gem 'pg'

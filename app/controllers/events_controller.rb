@@ -43,6 +43,7 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
+		@location = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
 	end
 
 	# GET /events/new
