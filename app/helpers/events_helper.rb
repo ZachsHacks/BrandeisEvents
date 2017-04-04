@@ -65,7 +65,7 @@ module EventsHelper
 		string << '<h4>Dates</h4>'
 		string << "<p>" + link_to("All Dates", events_path) + "</p>"
 		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
-		string << "<p>" + link_to("Tommorow", events_path(:date => "tomorrow")) + "</p>"
+		string << "<p>" + link_to("Tomorrow", events_path(:date => "tomorrow")) + "</p>"
 		string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
 		string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
 		string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
