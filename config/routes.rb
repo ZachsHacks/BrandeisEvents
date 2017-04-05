@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     get '/logout',  to: 'sessions#destroy'
 		get '/search', to: 'events#search'
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    get '/recommendations', to: 'events#recommendations'
     root 'events#home'
 end
