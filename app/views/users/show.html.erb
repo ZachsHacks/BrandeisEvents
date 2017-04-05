@@ -16,17 +16,17 @@
     <hr>
         <% if @going_rsvps.length != 0%>
         <% @going_rsvps.each do |r| %>
-        <div style="margin-right:50px">
+
         <%= list_event(r.event, "col-md-3")%>
-      </div>
         <% end %>
         <% else %>
           <p>You don't have any events. Add some!</p>
         <% end %>
       </div>
+          <div class="col-md-12 RSVP_section">
       <h4 class="text-left">Events You are Interested In</h4>
       <hr>
-      <div class="col-md-12">
+
           <% if @interested_rsvps.length != 0%>
           <% @interested_rsvps.each do |r| %>
           <div style="padding-right: 10px;">
