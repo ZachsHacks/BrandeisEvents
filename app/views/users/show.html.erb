@@ -1,58 +1,41 @@
 <%= render "layouts/header" %>
 <p id="notice"><%= notice %></p>
 
-<div class ="container">
+<div class="container">
+    <% provide(:title, @user.first_name) %>
+    <div class="row">
+        <section class="user_info text-center">
+            <h1>
+                <%= @user.first_name %>'s events
+            </h1>
+        </section>
 
-<% provide(:title, @user.first_name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @user.first_name %>
-      </h1>
-    </section>
-  </aside>
-</div>
+    </div>
+    <div class="col-md-12 RSVP_section">
+    <h4 class="text-left">RSVP'D Events</h4>
+    <hr>
+        <% if @going_rsvps.length != 0%>
+        <% @going_rsvps.each do |r| %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+        <%= list_event(r.event, "col-md-3")%>
+        <% end %>
+        <% else %>
+          <p>You don't have any events. Add some!</p>
+        <% end %>
+      </div>
+          <div class="col-md-12 RSVP_section">
+      <h4 class="text-left">Events You are Interested In</h4>
+      <hr>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+          <% if @interested_rsvps.length != 0%>
+          <% @interested_rsvps.each do |r| %>
+          <div style="padding-right: 10px;">
+          <%= list_event(r.event, "col-md-3")%>
+        </div>
+          <% end %>
+          <% else %>
+            <p>You don't have any events. Add some!</p>
+          <% end %>
+        </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @user.bio %>
-</p>
-
-<p>
-  <strong>Is host:</strong>
-
-</p>
-<div class="col-md-12">
-  <div class="row">
-<p>RSVP'D Events </p>
-<% @going_rsvps.each do |r| %>
-<%= list_event(r.event, "col-md-4")%>
-<% end %>
-</div>
-</div>
-
-<p>Interested Events </p>
-<% @interested_rsvps.each do |r| %>
-<%= list_event(r.event, "col-md-4")%>
-<% end %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
-</div>
+        </div>
