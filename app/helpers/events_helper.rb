@@ -33,11 +33,9 @@ module EventsHelper
 	end
 
 	def location(event)
-		string = "<div class='col-xs-8'>"
-		string << "<div class='text-right'>"
+		string = "<div class='col-xs-8 text-right'>"
 		string << "<span class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
 		string << "#{event.location}"
-		string << "</div>"
 		string << "</div>"
 		string << "</div>"
 	end
