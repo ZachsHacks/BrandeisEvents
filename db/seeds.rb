@@ -23,7 +23,6 @@ def get_description(html)
 	d = Nokogiri::HTML(html)
 	description = ""
 	skip = 3
-	byebug
 	d.xpath("//p").children.each do |line|
 		description << line.text if skip <= 0 && !line.text.blank?
 		description << "\n" if line.name == "br"
