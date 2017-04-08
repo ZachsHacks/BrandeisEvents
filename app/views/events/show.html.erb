@@ -94,14 +94,14 @@
 	          "width":  32,
 	          "height": 32
 	        },
-	        "infowindow": "hello!"
+	        "infowindow": "<%= @address %>"
 	      }
 	    ]);
 			handler.bounds.extendWith(markers);
 
  handler.fitMapToBounds();
   handler.getMap().setZoom(18)
-
+infowindow.open(Gmaps.map.map, marker.serviceObject);
 
 	  }
 	);

@@ -2,30 +2,93 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<div class="carousel-inner">
-		<div class="item active">
-			<img src="http://www.iamsterdam.com/media/agenda/festivals/ade/loveland-deepdish-amsterdam-dance-event-coen-van-tartwijk.jpg" alt="First slide">
-		</div>
-		<div class="item">
-			<img src="http://www.brooklyn.cuny.edu/web/com_campus_exteriors/130515_CampusExterior_738x330_038.jpg" alt="Second slide">
-		</div>
-		<div class="item">
-			<img src="http://www.bensonhurstbean.com/wp-content/uploads/2013/01/Brooklyn-College.jpg" alt="Third slide">
-		</div>
-	</div>
-	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left"></span>
-	</a>
-	<a class="right carousel-control" href="#myCarousel" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right"></span>
-	</a>
+
+		<div class="section large transparent dark text-center slider">
+				<div class="container slider-text">
+					<h1>Discover Brandeis University</h1>
+					<p> Find great events to have fun, learn, eat, or shop. All from the Brandeis Community</p>
+
+						<%= render 'search' %>
+				</div> <!-- end .container -->
+		</div> <!-- end .section -->
+
+
+
 </div>
-
-<%= render 'search' %>
-
 <section class="events_section">
-	<div class="container events_section" style="padding-top: 100px">
+	<div class="container events_section">
+
+
+		<div class="section light" style="margin-top:-100px;">
+			<div class="inner">
+				<div class="container">
+					<h2 class="text-center">What are you interested in?</h2>
+					<h3 class="text-center"><small>Explore some of the best tips from around the city from our partners and friends.</small></h3>
+					<div class="row" style="padding-top:10px;">
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category01.jpg');">
+								<div class="inner">
+									<span class="number">8</span>
+									<span class="title">Cinema</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category02.jpg');">
+								<div class="inner">
+
+									<span class="number">36</span>
+									<span class="title">Food</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category03.jpg');">
+								<div class="inner">
+									<span class="number">26</span>
+									<span class="title">Drink</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category04.jpg');">
+								<div class="inner">
+									<span class="number">16</span>
+									<span class="title">Lodging</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+						<div class="col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category05.jpg');">
+								<div class="inner">
+									<span class="number">12</span>
+									<span class="title">Nightlife</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-sm-6 -->
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category06.jpg');">
+								<div class="inner">
+									<span class="number">4</span>
+									<span class="title">Visit</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+						<div class="col-md-3 col-sm-6">
+							<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category07.jpg');">
+								<div class="inner">
+										<span class="number">39</span>
+									<span class="title">Shop</span>
+								</div> <!-- end .inner -->
+							</a> <!-- end .category-box -->
+						</div> <!-- end .col-md-3 -->
+					</div> <!-- end .row -->
+					<div class="text-center">
+						<a href="" class="button">All Listings</a>
+					</div> <!-- end .text-center -->
+				</div> <!-- end .container -->
+			</div> <!-- end .inner -->
+		</div> <!-- end .section -->
 
 		<!-- Projects Row -->
 		<h3 class="text-center">Events for you</h3>
@@ -41,46 +104,6 @@
 	</div>
 		<!-- /.row -->
 
-				<div id="gallery">
-					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
-						<a href="#">
-							 <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" /><figcaption>
-								<h2><%= @top_tags[0].name%></h2>
-
-							</figcaption>
-						</a>
-					</figure>
-					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-						<a href="#">
-							<img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt=""/>
-							<figcaption>
-								<h2><%= @top_tags[1].name%></h2>
-
-							</figcaption>
-						</a>
-					</figure>
-					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-						<a href="#">
-							<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
-							<figcaption>
-
-								<h2><%= @top_tags[2].name%></h2>
-
-							</figcaption>
-						</a>
-					</figure>
-					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-						<a href="#">
-							<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
-							<figcaption>
-
-								<h2><%= @top_tags[2].name%></h2>
-
-							</figcaption>
-						</a>
-					</figure>
-
-				</div>
 		<!-- Projects Row -->
 <div class="container events_section" style="padding-bottom: 50px">
 
@@ -196,5 +219,18 @@ $(document).ready(function() {
 			});
 			});
 			</script>
+
+			<script>
+			window.onscroll = function() {
+    var nav = document.getElementById('nav');
+    if ( window.pageYOffset > 500 ) {
+			// nav.classList.add("navbar-transparent");
+			// nav.classList.add("navbar-default");
+    } else {
+          nav.classList.add("navbar-transparent");
+    }
+	}
+
+		</script>
 
 </html>
