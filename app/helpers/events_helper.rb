@@ -6,7 +6,11 @@ module EventsHelper
 		s=""
 		if params[:date]
 
-			s<< "#{params[:date]}'s Events'"
+			s<< "#{params[:date].titleize}'s Events"
+		elsif params[:format]
+			s<< "Events in #{params[:format].titleize}"
+		else
+			s<< "All Events"
 				end
 		s.html_safe
 	end
