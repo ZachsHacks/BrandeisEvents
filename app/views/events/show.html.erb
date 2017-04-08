@@ -2,24 +2,38 @@
 <%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
+		<div class="col-md-8">
 		<% if @event.event_image_file_name.nil? %>
 
-		<%= image_tag "missing_large.png" %>
+		<%= image_tag "missing_large.png", style: "width:100%;height: 240px;" %>
 		<% else %>
 		<%= image_tag @event.event_image(:large)%>
 		<% end %>
+</div>
+<div class="col-md-4">
+	<h3><%= @event.name%></h3>
+	<p id="host">by <%= @event.host.name%></p>
+<div class="travel_times">
+	<p><%= fa_icon "car" %> 55 Minutes </p>
+	<p><%= fa_icon "bicycle" %> 55 Minutes </p>
+	<p><%= fa_icon "car" %> 55 Minutes </p>
+</div>
+<% if logged_in? %>
 
+<div class="center-block">
+	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
+		<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
+		<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
+	</div>
+	</div>
+	<%end%>
+
+
+</div>
 	</div>
 	<div class="row">
 		<%= content %>
-		<% if logged_in? %>
-		<div class="col-md-5 pull-right">
-			<div class="btn-group pull-right" role="group" aria-label="...">
-				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
-				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
-			</div>
-		</div>
-		<%end%>
+
 	</div>
 	<div class="row main_body">
 		<div class="col-md-2">
@@ -38,7 +52,7 @@
 
 
 
-			<p>Drive Time:<%=drive_time_in_minutes = GoogleDirections.new("4 Casey Ct, Newtown PA 02453", "415 South St, Waltham MA 02453").drive_time_in_minutes %></p>
+			<p>Drive Time:<%#=drive_time_in_minutes = GoogleDirections.new("4 Casey Ct, Newtown PA 02453", "415 South St, Waltham MA 02453").drive_time_in_minutes %></p>
 		</div>
 		<div class="row">
 			<div class="col-md-12">

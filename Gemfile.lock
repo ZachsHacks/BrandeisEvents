@@ -81,6 +81,8 @@ GEM
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     geocoder (1.4.3)
     globalid (0.3.7)
@@ -265,6 +267,7 @@ DEPENDENCIES
   faker
   ferret (~> 0.11.8.6)
   figaro
+  font-awesome-rails
   geocoder
   gmaps4rails (~> 2.1, >= 2.1.2)
   google_directions (~> 0.1.6.2)

@@ -22,7 +22,7 @@
 	</a>
 </div>
 
-<%= render 'search' %> 
+<%= render 'search' %>
 
 <section class="events_section">
 	<div class="container events_section" style="padding-top: 100px">
@@ -41,6 +41,46 @@
 	</div>
 		<!-- /.row -->
 
+				<div id="gallery">
+					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
+						<a href="#">
+							 <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" /><figcaption>
+								<h2><%= @top_tags[0].name%></h2>
+
+							</figcaption>
+						</a>
+					</figure>
+					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+						<a href="#">
+							<img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt=""/>
+							<figcaption>
+								<h2><%= @top_tags[1].name%></h2>
+
+							</figcaption>
+						</a>
+					</figure>
+					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+						<a href="#">
+							<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
+							<figcaption>
+
+								<h2><%= @top_tags[2].name%></h2>
+
+							</figcaption>
+						</a>
+					</figure>
+					<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
+						<a href="#">
+							<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
+							<figcaption>
+
+								<h2><%= @top_tags[2].name%></h2>
+
+							</figcaption>
+						</a>
+					</figure>
+
+				</div>
 		<!-- Projects Row -->
 <div class="container events_section" style="padding-bottom: 50px">
 
@@ -59,47 +99,7 @@
 
 
 
-<!--
-		<div id="gallery">
-			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding ">
-				<a href="#">
-					 <img class="img" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAh2AAAAJGIzZWMzMjI0LTJjMjUtNDVjOS05MDQyLTY5YTcwOGZjMzM1YQ.png" width="100%" alt="" /><figcaption>
-						<h2><%= @top_tags[0].name%></h2>
 
-					</figcaption>
-				</a>
-			</figure>
-			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-				<a href="#">
-					<img class="img" src="http://www.kirbasinstitute.com/wp-content/uploads/2016/02/Politics-of-nature.jpg" width="100%" alt=""/>
-					<figcaption>
-						<h2><%= @top_tags[1].name%></h2>
-
-					</figcaption>
-				</a>
-			</figure>
-			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-				<a href="#">
-					<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
-					<figcaption>
-
-						<h2><%= @top_tags[2].name%></h2>
-
-					</figcaption>
-				</a>
-			</figure>
-			<figure class="col-md-3 col-sm-3 col-xs-12 nopadding">
-				<a href="#">
-					<img class="img" src="http://az616578.vo.msecnd.net/files/2017/03/05/636243282134517774-314545726_music9.jpg" width="100%" alt=""/>
-					<figcaption>
-
-						<h2><%= @top_tags[2].name%></h2>
-
-					</figcaption>
-				</a>
-			</figure>
-
-		</div> -->
 
 
 <script type="text/javascript">

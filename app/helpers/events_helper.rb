@@ -1,6 +1,15 @@
 require 'nokogiri'
 
 module EventsHelper
+
+	def top_image_text
+		s=""
+		if params[:date]
+
+			s<< "#{params[:date]}'s Events'"
+				end
+		s.html_safe
+	end
 	def list_event(event, col_length)
 		string = ''
 		string << "<div class='#{col_length} portfolio-item'>"
