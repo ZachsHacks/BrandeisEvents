@@ -1,0 +1,57 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top_page_photo{
+  padding-bottom: 20px !important;
+}
+.main_body{
+  //content un
+  padding-top: 20px;
+}
+.event_img{
+  padding-bottom: 20px;
+  height:175px !important;
+}
+.main_body p{
+  line-height:20px;
+}
+#host{
+  padding-left: 10px;
+}
+
+.left-side-column{
+  border-right: 1px solid #000000;
+}
+
+.search_bar_events{
+  margin-top: 10px;
+}
+
+.event_row{
+  margin-top: 10px;
+}
+
+
+
+//Invidual Event
+.portfolio-item{
+  margin-top: 20px;
+
+  height: 320px;
+}
+
+
+.five-px-padding{
+   padding: 5px !important;
+   margin: 0 !important;
+}
+
+
+#column_results{
+  margin-left: 10px;
+}
+.travel_times{
+  margin-top: 20px;
+  margin-bottom: -15px;
+}

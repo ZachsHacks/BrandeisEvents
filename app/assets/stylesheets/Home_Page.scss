@@ -1,0 +1,146 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* ==========================================================================
+   01. Home Page
+   ========================================================================== */
+.section {
+	position: relative;
+	padding: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.slider{
+  margin-top: -90px;
+  padding: 200px 0;
+	padding-top: 270px;
+  color: #fff;
+  background-image: url('https://s3.amazonaws.com/campusnow-images/images/home-background.png');
+
+
+}
+.slider h1{
+  font-size: 50px;
+
+}
+.slider p{
+  color: #fff !important;
+  font-size: 20px;
+}
+.navbar-transparent{
+background-color: none !important;
+}
+#nav{
+  margin-top: -10px;
+}
+
+// nav#nav.navbar.navbar-transparent.navbar-default.navbar-fixed-top{
+//   background-color: none !important;
+// }
+.btn-white{
+  background-color: #fff;
+  color: #000;
+  width: 100px;
+}
+
+.top_events_section{
+  margin-top: 30px;
+}
+
+
+
+
+
+/* ==========================================================================
+   01. Individual Event Page
+   ========================================================================== */
+
+
+
+
+
+//Invidual Event
+.portfolio-item{
+  margin-top: 20px;
+
+  height: 320px;
+}
+
+
+.five-px-padding{
+   padding: 5px !important;
+   margin: 0 !important;
+}
+
+
+#column_results{
+  margin-left: 10px;
+}
+.travel_times{
+  margin-top: 20px;
+  margin-bottom: -15px;
+}
+
+@gallery{
+  background-color: grey;
+}
+
+
+
+/* ==========================================================================
+   08. Categories
+   ========================================================================== */
+.category-box {
+	position: relative;
+	padding: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	font-family: 'Poiret One', cursive;
+	font-size: 36px;
+	line-height: 36px;
+	letter-spacing: 0;
+	display: block;
+	margin-bottom: 30px;
+	-webkit-transition: .5s;
+	-ms-transition: .5s;
+	-moz-transition: .5s;
+	-o-transition: .5s;
+	transition: .5s;
+}
+.category-box:hover {
+	opacity: 1;
+	box-shadow: 0 12px 22px rgba(0,0,0,.35);
+}
+.category-box>.inner {
+	height: 270px;
+	background: rgba(23,36,52,.8);
+	-webkit-transition: .5s;
+	-ms-transition: .5s;
+	-moz-transition: .5s;
+	-o-transition: .5s;
+	transition: .5s;
+}
+.category-box:hover>.inner {
+	background: none;
+}
+.category-box>.inner img {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.category-box>.inner .number {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: #00b0ff;
+}
+.category-box>.inner .title {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	color: #fff;
+}
