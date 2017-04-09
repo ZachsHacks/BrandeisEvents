@@ -23,6 +23,20 @@
           <p>You don't have any events. Add some!</p>
         <% end %>
       </div>
+      <div class="col-md-12 RSVP_section">
+  <h4 class="text-left">Recommended events for you!</h4>
+  <hr>
+
+      <% if recommendations.length != 0%>
+      <% recommendations.each do |event| %>
+      <div style="padding-right: 10px;">
+      <%= list_event(event, "col-md-3")%>
+    </div>
+      <% end %>
+      <% else %>
+        <p>You don't have any events. Add some!</p>
+      <% end %>
+    </div>
           <div class="col-md-12 RSVP_section">
       <h4 class="text-left">Events You are Interested In</h4>
       <hr>
