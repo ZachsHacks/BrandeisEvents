@@ -18,12 +18,13 @@
   padding: 200px 0;
 	padding-top: 270px;
   color: #fff;
-  background-image: url('https://s3.amazonaws.com/campusnow-images/images/home-background.png');
+  background-image: url('http://campusnow-images.s3.amazonaws.com/images/home-page-brandeis.png');
 
 
 }
 .slider h1{
-  font-size: 50px;
+  font-size: 60px;
+	// font-family: 'Raleway Dots', cursive;
 
 }
 .slider p{
@@ -48,44 +49,6 @@ background-color: none !important;
 
 .top_events_section{
   margin-top: 30px;
-}
-
-
-
-
-
-/* ==========================================================================
-   01. Individual Event Page
-   ========================================================================== */
-
-
-
-
-
-//Invidual Event
-.portfolio-item{
-  margin-top: 20px;
-
-  height: 320px;
-}
-
-
-.five-px-padding{
-   padding: 5px !important;
-   margin: 0 !important;
-}
-
-
-#column_results{
-  margin-left: 10px;
-}
-.travel_times{
-  margin-top: 20px;
-  margin-bottom: -15px;
-}
-
-@gallery{
-  background-color: grey;
 }
 
 
