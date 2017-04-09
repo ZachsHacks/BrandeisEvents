@@ -55,19 +55,25 @@ background-color: none !important;
 
 color: #fff !important;
 
-font-family: verdana, arial, helvetica, sans-serif;
-font-size: 20px;
+font-size: 14px;
+font-weight: 700;
+text-transform: uppercase !important;
 margin-top: 20px;
+}
 
-
+a#logo_text.navbar-brand{
+	font-size: 30px !important;
+	text-transform: none !important;
 }
 
 .navbar-transparent a:visited{
 
 color: #fff !important;
 
-font-family: verdana, arial, helvetica, sans-serif;
-font-size: 20px;
+font-size: 14px;
+color: #fff;
+font-weight: 700;
+text-transform: uppercase;
 
 
 }
@@ -77,16 +83,17 @@ font-size: 20px;
 
 color: #fff !important;
 
-font-family: verdana, arial, helvetica, sans-serif;
-font-size: 20px;
-background-color: none !important;
+font-size: 14px;
+color: #fff;
+font-weight: 700;
+text-transform: uppercase;background-color: none !important;
 
 
 }
 
 .navbar-transparent > li > a:hover{
 	background-color: none !important;
-	
+
 }
 .navbar-transparent {
     // background-color: #F8F8F8;
@@ -210,4 +217,28 @@ background-color: none !important;
 	bottom: 20px;
 	left: 20px;
 	color: #fff;
+}
+.ui-autocomplete-input{
+	background-color: #fff;
+		z-index: 999;
+}
+.form-control{
+	background-color: #fff;
+	z-index: 999;
+}
+
+
+.dark-section{
+	background-color: #f1f2f6;
+}
+
+.events_section{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+.your-events-section{
+	padding-top: 40px;
+	padding-bottom: 70px;
 }

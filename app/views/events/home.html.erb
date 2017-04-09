@@ -1,4 +1,6 @@
 <%= render "layouts/header" %>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway+Dots" rel="stylesheet">
 <div class="section large transparent dark text-center slider">
 	<div class="container slider-text">
@@ -12,10 +14,29 @@
 </div>
 <!-- end .section -->
 
-<section class="events_section">
+
+<!-- Projects Row -->
+<section class="your-events-section">
+<div class="container ">
+	<h3 class="text-center">Events for you</h3>
+	<hr>
+	<div class="col-md-12">
+		<div class="row event_row">
+			<% @top_events.each do |event| %>
+			<%= list_event(event, "col-md-3") %>
+			<% end %>
+		</div>
+	</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="events_section dark-section">
 	<div class="container events_section">
 
-		<div class="section light" style="margin-top:-100px;">
+		<div class="section light">
 
 			<h2 class="text-center">What are you interested in?</h2>
 			<h3 class="text-center">
@@ -106,7 +127,7 @@
 
 			<!-- end .row -->
 			<div class="text-center">
-				<a href="" class="button">All Listings</a>
+				 <button type="button" class="btn btn-default btn-transparent">All Listings</button></a>
 			</div>
 			<!-- end .text-center -->
 
@@ -117,19 +138,7 @@
 	</section>
 	<!-- end .section -->
 
-	<!-- Projects Row -->
-	<div class="container">
-		<h3 class="text-center">Events for you</h3>
-		<hr>
-		<div class="col-md-12">
-			<div class="row event_row">
-				<% @top_events.each do |event| %>
-				<%= list_event(event, "col-md-3") %>
-				<% end %>
-			</div>
-		</div>
 
-	</div>
 	<!-- /.row -->
 
 	<!-- Projects Row -->
