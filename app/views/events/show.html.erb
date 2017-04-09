@@ -51,11 +51,11 @@
 			<%= "This event has no description." %>
 			<% end %>
 
-			<div class="row">
+			<div class="row tags-section">
 				 <h4>Tags</h4>
 
 				<% @event.tags.each do |a| %>
-				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse" %>
+				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse btn-tags" %>
 					<% end %>
 
 
