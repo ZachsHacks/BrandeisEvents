@@ -237,16 +237,31 @@
 			});
 		});
 	</script>
+<script>
+// window.onload = function() {
+// document.getElementById('nav').classList.remove("navbar-default");
+// document.getElementById('nav').classList.add("navbar-transparent");
+// };
 
-	<!-- <script>
+$(document).ready(function(){
+$('#nav').removeClass('navbar-default');
+$('#nav').addClass('navbar-transparent');
+
+});
+</script>
+	<script>
+
 	window.onscroll = function () {
 		var nav = document.getElementById('nav');
-		if (window.pageYOffset > 500) {
-			// nav.classList.add("navbar-transparent"); nav.classList.add("navbar-default");
+
+		if (window.pageYOffset > 50) {
+			nav.classList.add("navbar-default");
+			nav.classList.remove("navbar-transparent");
 		} else {
-			nav.classList.add("navbar-transparent");
+			// nav.classList.remove("navbar-default");
+			// nav.classList.add("navbar-transparent");
 		}
 	}
-</script> -->
+</script>
 
 </html>
