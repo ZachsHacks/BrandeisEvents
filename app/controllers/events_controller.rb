@@ -24,9 +24,6 @@ class EventsController < ApplicationController
 	end
 
 	def home
-		if current_user
-			redirect_to current_user
-		end
 		@items = Event.all.pluck(:name)
 		@top_events =  Event.joins(:rsvps).order('choice desc')
 		grab_locations
@@ -43,7 +40,8 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-		@location = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
+		@location = geolocation
+		@current_location = request.location
 		@address = "#{@event.location}, Brandeis University, Waltham, MA, 02453"
 	end
 
@@ -119,6 +117,13 @@ class EventsController < ApplicationController
 		db_locations = Location.all.pluck(:name).uniq
 		active_locations = Event.all.pluck(:location).uniq
 		@locations = db_locations && active_locations
+	end
+
+	def geolocation
+		loc = []
+		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
+		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02453") if loc.nil?
+		return loc
 	end
 
 	def filter_dates(filter)
