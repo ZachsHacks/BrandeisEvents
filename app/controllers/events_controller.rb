@@ -41,7 +41,7 @@ class EventsController < ApplicationController
 	def show
 		@tags = EventTag.where(event_id: @event.id)
 		@location = geolocation
-		@ip = request.location.latitude
+		@ip = request.location
 		@current_latitude = request.location.latitude
 		@current_longitude = request.location.longitude
 		@address = "#{@event.location}, Brandeis University, Waltham, MA, 02453"

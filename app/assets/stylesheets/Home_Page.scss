@@ -79,10 +79,14 @@ text-transform: uppercase;
 
 }
 
+.navbar-transparent .navbar-nav>li>a:hover{
+	color:#42B5E8 !important;
+	background-color: transparent !important;
+}
 
 .navbar-transparent a:hover{
 
-color: #fff !important;
+// color: #fff !important;
 
 font-size: 14px;
 color: #fff;
