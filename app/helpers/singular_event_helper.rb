@@ -7,10 +7,7 @@ module SingularEventHelper
 
 	def title
 		<<-eos
-		<div class="col-md-7">
-		<h3>#{@event.name}</h3>
-		<p id="host">BrandeisEVENTS</p>
-		</div>
+
 		eos
 
 	end
@@ -50,19 +47,22 @@ module SingularEventHelper
 	end
 	def sidebar_individual_price(event)
 		s =""
+		unless @event.price.nil?
+
 		s<<"<h4>Price</h4>"
 		s<<"<div id='column_results'>"
 		s<<"<p>$#{event.price}</p>"
 		s<<"  </div>"
+	end
 
-		s<<"   <h4>Tags</h4>"
-		s<<"   <div id='column_results'>"
-		@event.tags.each do |a|
+		# s<<"   <h4>Tags</h4>"
+		# s<<"   <div id='column_results'>"
+		# # @event.tags.each do |a|
+		# #
+		# # 	s<<"   <p>#{a.name}</p>"
+		# # 	end
+		# 	s<<"   </div>"
 
-			s<<"   <p>#{a.name}</p>"
-			end
-			s<<"   </div>"
-			
 
 		s.html_safe
 	end

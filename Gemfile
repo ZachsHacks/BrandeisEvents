@@ -23,6 +23,8 @@ gem 'google_directions', '~> 0.1.6.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'cancancan'
 
+gem "font-awesome-rails"
+
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server

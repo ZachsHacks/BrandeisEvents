@@ -1,6 +1,7 @@
 class RsvpsController < ApplicationController
   before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
 
+
   # GET /rsvps
   # GET /rsvps.json
   def index

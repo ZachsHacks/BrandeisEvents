@@ -2,25 +2,40 @@
 <%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
+		<div class="col-md-8">
 		<% if @event.event_image_file_name.nil? %>
 
-		<%= image_tag "missing_large.png" %>
+		<%= image_tag "missing_large.png", class: "event-top-image" %>
 		<% else %>
-		<%= image_tag @event.event_image(:large)%>
+		<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 		<% end %>
+</div>
+<div class="col-md-4">
+	<h3><%= @event.name%></h3>
+	<p id="host">by <%= @event.host.name%></p>
+<div class="travel_times">
+	<p><%= fa_icon "car", style:"margin-right: 2px" %>  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "car"})%></p>
+	<p><%= fa_icon "bicycle" %> <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "bicycling"} )%>  </p>
+	<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "walking"} )%></p>
+</div>
+<% if logged_in? %>
 
+<div class="center-block">
+	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
+		<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
+		<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
+	</div>
+	</div>
+	<%end%>
+
+
+</div>
 	</div>
 	<div class="row">
 		<%= content %>
-		<% if logged_in? %>
-		<div class="col-md-5 pull-right">
-			<div class="btn-group pull-right" role="group" aria-label="...">
-				<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
-				<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
-			</div>
-		</div>
-		<%end%>
+
 	</div>
+
 	<div class="row main_body">
 		<div class="col-md-2">
 
@@ -36,9 +51,19 @@
 			<%= "This event has no description." %>
 			<% end %>
 
+			<div class="row tags-section">
+				 <h4>Tags</h4>
+
+				<% @event.tags.each do |a| %>
+				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse btn-tags" %>
+					<% end %>
 
 
-			<p>Drive Time:<%=drive_time_in_minutes = GoogleDirections.new("4 Casey Ct, Newtown PA 02453", "415 South St, Waltham MA 02453").drive_time_in_minutes %></p>
+			</div>
+
+
+			<p>Longitude:  <%= 		@current_latitude %></p>
+			<p>Lagitude: <%= 		@current_longitude %></p>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -80,14 +105,14 @@
 	          "width":  32,
 	          "height": 32
 	        },
-	        "infowindow": "hello!"
+	        "infowindow": "<%= @address %>"
 	      }
 	    ]);
 			handler.bounds.extendWith(markers);
 
  handler.fitMapToBounds();
   handler.getMap().setZoom(18)
-
+infowindow.open(Gmaps.map.map, marker.serviceObject);
 
 	  }
 	);

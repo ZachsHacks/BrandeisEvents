@@ -19,7 +19,7 @@ class Event < ApplicationRecord
 		thumb: '100x100>',
 		square: '200x200#',
 		medium: '300x300>',
-		large: '1170x175#',
+		large: '750x240#',
 	}
 
 	# Validate the attached image is image/jpg, image/png, etc

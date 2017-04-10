@@ -8,9 +8,6 @@ require_relative 'brandeis_event_parser'
 def create_events
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
-		if line["title"] != "SCCarnival" &&  line["title"] != "Panel: International Alumni in Health Care" && line["title"] != "Information Session: New Oriental"
-		  next
-	    end
 		title = line["title"]
 		description = get_description(line["content"])
 		location = get_location_info(line["content"])

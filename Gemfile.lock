@@ -40,13 +40,13 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (7.1.4)
-    aws-sdk (2.9.2)
-      aws-sdk-resources (= 2.9.2)
-    aws-sdk-core (2.9.2)
+    aws-sdk (2.9.6)
+      aws-sdk-resources (= 2.9.6)
+    aws-sdk-core (2.9.6)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.2)
-      aws-sdk-core (= 2.9.2)
+    aws-sdk-resources (2.9.6)
+      aws-sdk-core (= 2.9.6)
     aws-sigv4 (1.0.0)
     bindex (0.5.0)
     bootstrap-will_paginate (0.0.10)
@@ -268,7 +268,7 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.13)
+    uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     web-console (3.5.0)
       actionview (>= 5.0)
@@ -294,6 +294,7 @@ DEPENDENCIES
   faker
   ferret (~> 0.11.8.6)
   figaro
+  font-awesome-rails
   geocoder
   gmaps4rails (~> 2.1, >= 2.1.2)
   google_directions (~> 0.1.6.2)

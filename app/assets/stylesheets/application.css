@@ -14,6 +14,7 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-datetimepicker
+*= require font-awesome
  */
 
  a{
@@ -26,4 +27,11 @@ a:hover{
 }
 a:visited{
   color: #666 !important;
+}
+
+.btn-transparent{
+  background-color: transparent !important;
+    border-color: #ccc !important;
+    background-image: none !important;
+
 }
