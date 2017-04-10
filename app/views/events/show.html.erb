@@ -14,9 +14,9 @@
 	<h3><%= @event.name%></h3>
 	<p id="host">by <%= @event.host.name%></p>
 <div class="travel_times">
-	<p><%= fa_icon "car" %> 55 Minutes </p>
-	<p><%= fa_icon "bicycle" %> 55 Minutes </p>
-	<p><%= fa_icon "car" %> 55 Minutes </p>
+	<p><%= fa_icon "car" %> <%=drive_time_in_minutes = GoogleDirections.new("4 Casey CT, Newtown PA 18940", 	@current_address).drive_time_in_minutes %> minutes </p>
+	<p><%= fa_icon "bicycle" %> <%=drive_time_in_minutes = GoogleDirections.new("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "bicycling"}).drive_time_in_minutes %> minutes </p>
+	<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;"> <%=drive_time_in_minutes = GoogleDirections.new("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "walking"}).drive_time_in_minutes %> minutes </p>
 </div>
 <% if logged_in? %>
 
@@ -66,7 +66,7 @@
 			<p>Lagitude</p> <%= 		@current_longitude %>
 
 
-			<!-- <p>Drive Time:<%#=drive_time_in_minutes = GoogleDirections.new("4 Casey Ct, Newtown PA 02453", "415 South St, Waltham MA 02453").drive_time_in_minutes %></p> -->
+			<p>Drive Time:<%=drive_time_in_minutes = GoogleDirections.new(@address, 	@current_address).drive_time_in_minutes %></p>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
