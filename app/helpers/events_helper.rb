@@ -102,7 +102,7 @@ module EventsHelper
 	end
 
 	def is_host
-		(current_user && @event.host == current_user) || current_user.is_admin?
+		current_user && @event.host == current_user
 	end
 
 
