@@ -102,7 +102,19 @@ module EventsHelper
 	end
 
 	def is_host
-		current_user && @event.host == current_user
+		(current_user && @event.host == current_user) || current_user.is_admin?
+	end
+
+
+	def time_to_destination(starting, destination, type)
+		s =""
+		drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
+		hours = drive_time_in_minutes / 60
+		minutes = drive_time_in_minutes % 6
+
+		s = hours.to_s + " hours " + minutes.to_s + " minutes"
+
+		s.html_safe
 	end
 
 end
