@@ -28,6 +28,10 @@ class RsvpsController < ApplicationController
     preexisting = Rsvp.find_by(user: current_user, event_id: rsvp_params[:event_id])
     unless preexisting.nil?
       preexisting.delete
+      if rsvp_params[:choice].to_i == preexisting.choice
+        redirect_to preexisting.event
+        return
+      end
     end
     @rsvp = Rsvp.new(rsvp_params)
     respond_to do |format|
