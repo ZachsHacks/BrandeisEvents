@@ -25,10 +25,14 @@ class RsvpsController < ApplicationController
   # POST /rsvps
   # POST /rsvps.json
   def create
+    preexisting = Rsvp.find_by(user: current_user, event_id: rsvp_params[:event_id])
+    unless preexisting.nil?
+      preexisting.delete
+    end
     @rsvp = Rsvp.new(rsvp_params)
     respond_to do |format|
       if @rsvp.save
-        format.html { redirect_to @rsvp, notice: 'Rsvp was successfully created.' }
+        format.html { redirect_to @rsvp.event, notice: 'Rsvp was successfully created.' }
         format.json { render :show, status: :created, location: @rsvp }
       else
         format.html { render :new }

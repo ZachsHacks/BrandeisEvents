@@ -22,8 +22,9 @@
 
 <div class="center-block">
 	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
-		<%= button_to 'Going', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 1}, :method=>:post, class: "btn btn-default pull-left rsvp-button"  %>
-		<%= button_to 'Interested', {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => 2}, :method=>:post, class: "btn btn-default pull-right"  %>
+		<%= render partial: 'rsvp_button', locals: {choice: 1} %>
+		<%= render partial: 'rsvp_button', locals: {choice: 2} %>
+		<%= render partial: 'rsvp_button', locals: {choice: 3} %>
 	</div>
 	</div>
 	<%end%>
