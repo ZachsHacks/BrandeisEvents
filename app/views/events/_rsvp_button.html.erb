@@ -1,0 +1,1 @@
+<%= button_to get_option(choice), {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => choice}, :method=>:post, class: button_color(choice)  %>
