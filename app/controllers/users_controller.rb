@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     @interested_rsvps = @user.rsvps.select {|r| r.choice == 2}
   end
 
+
+  def creation_form
+    @user = User.find(params[:id])
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -44,6 +49,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -73,6 +79,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :bio, :is_host)
+      params.require(:user).permit(:first_name, :last_name, :email, :bio, :is_host, :phone)
     end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     get 'sessions/new'
-
+    get '/users/:id/creation_form' => 'users#creation_form'
     resources :event_tags
     resources :tags
     resources :interests
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     #post   '/login',   to: 'sessions#create'
     get '/logout',  to: 'sessions#destroy'
 		get '/search', to: 'events#search'
+
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root 'events#home'
 end
