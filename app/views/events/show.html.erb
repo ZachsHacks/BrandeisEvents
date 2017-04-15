@@ -21,9 +21,8 @@
 <% if logged_in? %>
 
 <div class="center-block">
-	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
-		<%= render partial: 'rsvp_button', locals: {choice: 1} %>
-		<%= render partial: 'rsvp_button', locals: {choice: 2} %>
+	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="..." id = "rsvp_buttons">
+		<%= render partial: 'rsvp_button' %>
 	</div>
 	</div>
 	<%end%>
