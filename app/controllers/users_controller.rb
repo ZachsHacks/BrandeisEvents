@@ -11,8 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @going_rsvps = @user.rsvps.select {|r| r.choice == 1}
-    @interested_rsvps = @user.rsvps.select {|r| r.choice == 2}
   end
 
 

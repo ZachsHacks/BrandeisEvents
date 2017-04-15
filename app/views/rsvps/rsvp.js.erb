@@ -1,1 +1,5 @@
-$("#rsvp_buttons").html("<%=escape_javascript(render(:partial => 'events/rsvp_button'))%>")
+if(document.getElementById("user_events")!=null){
+  $("#user_events").html("<%=escape_javascript(render(:partial => 'events/user_events'))%>")
+} else {
+  $("#rsvp_buttons_<%=@event_id%>").html("<%=escape_javascript(render(:partial => 'events/rsvp_button', locals: {event: @event}))%>")
+}

@@ -52,6 +52,7 @@ class RsvpsController < ApplicationController
 
   def rsvp
     @event = Event.find(rsvp_params[:event_id])
+    @event_id = @event.id
     @rsvps = current_user.rsvps
     @choice = rsvp_params[:choice]
 
