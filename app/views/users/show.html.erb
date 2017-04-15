@@ -11,45 +11,6 @@
         </section>
 
     </div>
-    <div class="col-md-12 RSVP_section">
-    <h4 class="text-left">RSVP'D Events</h4>
-    <hr>
-        <% if @going_rsvps.length != 0%>
-        <% @going_rsvps.each do |r| %>
+    <%= render partial: 'events/user_events' %>
 
-        <%= list_event(r.event, "col-md-3")%>
-        <% end %>
-        <% else %>
-          <p>You don't have any events. Add some!</p>
-        <% end %>
-      </div>
-      <div class="col-md-12 RSVP_section">
-  <h4 class="text-left">Recommended events for you!</h4>
-  <hr>
-
-      <% if recommendations.length != 0%>
-      <% recommendations.each do |event| %>
-      <div style="padding-right: 10px;">
-      <%= list_event(event, "col-md-3")%>
-    </div>
-      <% end %>
-      <% else %>
-        <p>You don't have any events. Add some!</p>
-      <% end %>
-    </div>
-          <div class="col-md-12 RSVP_section">
-      <h4 class="text-left">Events You are Interested In</h4>
-      <hr>
-
-          <% if @interested_rsvps.length != 0%>
-          <% @interested_rsvps.each do |r| %>
-          <div style="padding-right: 10px;">
-          <%= list_event(r.event, "col-md-3")%>
-        </div>
-          <% end %>
-          <% else %>
-            <p>You don't have any events. Add some!</p>
-          <% end %>
-        </div>
-
-        </div>
+</div>

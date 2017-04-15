@@ -55,6 +55,12 @@ gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
+# Use delayed job for running background jobs
+gem 'delayed_job_active_record'
+
+# Need daemons to start delayed_job
+gem 'daemons'
+
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production

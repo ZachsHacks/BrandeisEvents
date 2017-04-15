@@ -24,7 +24,7 @@
 			<div class="col-md-10">
 				<div class="row event_row">
 					<% @events.sort_by {|e| e.start}.each do |event| %>
-					<%= list_event(event, "col-md-4") %>
+					<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-4"} %>
 					<% end %>
 				</div>
 			</div>

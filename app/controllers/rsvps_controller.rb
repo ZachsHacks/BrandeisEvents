@@ -1,6 +1,6 @@
 class RsvpsController < ApplicationController
   before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token
 
   # GET /rsvps
   # GET /rsvps.json
@@ -25,14 +25,19 @@ class RsvpsController < ApplicationController
   # POST /rsvps
   # POST /rsvps.json
   def create
-    preexisting = Rsvp.find_by(user: current_user, event_id: rsvp_params[:event_id])
-    unless preexisting.nil?
-      preexisting.delete
-      if rsvp_params[:choice].to_i == preexisting.choice
-        redirect_to preexisting.event
-        return
+    @event = rsvp_params[:event_id]
+    @rsvps = current_user.rsvps
+
+    if has_rsvp?
+      if @preexisting.choice == rsvp_params[:choice].to_i
+        @preexisting.delete
+      else
+        @preexisting.update(rsvp_params)
       end
+      redirect_to @preexisting.event
+      return
     end
+
     @rsvp = Rsvp.new(rsvp_params)
     respond_to do |format|
       if @rsvp.save
@@ -42,6 +47,36 @@ class RsvpsController < ApplicationController
         format.html { render :new }
         format.json { render json: @rsvp.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def rsvp
+    @event = Event.find(rsvp_params[:event_id])
+    @event_id = @event.id
+    @rsvps = current_user.rsvps
+    @choice = rsvp_params[:choice]
+
+    if has_rsvp?
+      if @preexisting.choice == @choice.to_i
+        @preexisting.delete
+      else
+        @preexisting.update(rsvp_params)
+      end
+    else
+      Rsvp.create(rsvp_params)
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def has_rsvp?
+    if @rsvps.pluck(:event_id).include?(@event.id.to_i)
+      @preexisting = @rsvps.where(event: @event)[0]
+      true
+    else
+      false
     end
   end
 
