@@ -1,43 +1,82 @@
-<div id = "user_events">
-<div class="col-md-12 RSVP_section">
-<h4 class="text-left">Events you're going to</h4>
-<hr>
-    <% gather_user_events %>
-    <% if !@going_rsvps.nil? && @going_rsvps.length != 0%>
-    <% @going_rsvps.each do |r| %>
+<div id="user_events">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#home">RSV'D Events</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu1">Interested Events</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu2">Events For You</a>
+        </li>
+    </ul>
 
-    <%= render partial: 'events/list_event', locals: {event: r.event, col_length: "col-md-3"} %>
-    <% end %>
-    <% else %>
-      <p>You don't have any events. Add some!</p>
-    <% end %>
-  </div>
-  <div class="col-md-12 RSVP_section">
-<h4 class="text-left">Recommended events for you</h4>
-<hr>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <div class="col-md-12 RSVP_section">
+                <h4 class="text-left">Events you're going to</h4>
+                <hr>
+                <% gather_user_events %>
+                <% if !@going_rsvps.nil? && @going_rsvps.length != 0%>
+                <% @going_rsvps.each do |r| %>
 
-  <% if !recommendations.nil? &&  recommendations.length != 0%>
-  <% recommendations.each do |event| %>
-  <div style="padding-right: 10px;">
-  <%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-3"} %>
-</div>
-  <% end %>
-  <% else %>
-    <p>You don't have any events. Add some!</p>
-  <% end %>
-</div>
-      <div class="col-md-12 RSVP_section">
-  <h4 class="text-left">Events you're interested in</h4>
-  <hr>
+                <%= render partial: 'events/list_event', locals: {event: r.event, col_length: "col-md-3"} %>
+                <% end %>
+            <% else %>
+                <p>You don't have any events. Add some!</p>
+                <% end %>
+            </div>
 
-      <% if !@interested_rsvps.nil? && @interested_rsvps.length != 0%>
-      <% @interested_rsvps.each do |r| %>
-      <div style="padding-right: 10px;">
-      <%= render partial: 'events/list_event', locals: {event: r.event, col_length: "col-md-3"} %>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <div class="col-md-12 RSVP_section">
+                <h4 class="text-left">Events you're interested in</h4>
+                <hr>
+                <% if !@interested_rsvps.nil? && @interested_rsvps.length != 0%>
+                <% @interested_rsvps.each do |r| %>
+                <%= render partial: 'events/list_event', locals: {event: r.event, col_length: "col-md-3"} %>
+
+                <% end %>
+            <% else %>
+                <p>You don't have any events. Add some!</p>
+                <% end %>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <div class="col-md-12 RSVP_section">
+                <h4 class="text-left">Recommended events for you</h4>
+                <hr>
+
+                <% if !recommendations.nil? &&  recommendations.length != 0%>
+                <% recommendations.each do |event| %>
+
+                <%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-3"} %>
+
+                <% end %>
+            <% else %>
+                <p>You don't have any events. Add some!</p>
+                <% end %>
+            </div>
+        </div>
     </div>
-      <% end %>
-      <% else %>
-        <p>You don't have any events. Add some!</p>
-      <% end %>
-    </div>
+
 </div>
+
+<style>
+    .nav-pills > li,
+    .nav-tabs > li {
+        float: none;
+        display: inline-block;
+        *display: inline;
+        /* ie7 fix */
+        zoom: 1;
+        /* hasLayout ie7 trigger */
+    }
+
+    .nav-pills,
+    .nav-tabs {
+        text-align: center;
+    }
+  
+
+</style>
