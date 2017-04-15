@@ -1,6 +1,6 @@
 class RsvpsController < ApplicationController
   before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token
 
   # GET /rsvps
   # GET /rsvps.json
@@ -50,8 +50,29 @@ class RsvpsController < ApplicationController
     end
   end
 
+  def rsvp
+    @event = Event.find(rsvp_params[:event_id])
+    @event_id = @event.id
+    @rsvps = current_user.rsvps
+    @choice = rsvp_params[:choice]
+
+    if has_rsvp?
+      if @preexisting.choice == @choice.to_i
+        @preexisting.delete
+      else
+        @preexisting.update(rsvp_params)
+      end
+    else
+      Rsvp.create(rsvp_params)
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def has_rsvp?
-    if @rsvps.pluck(:event_id).include?(@event.to_i)
+    if @rsvps.pluck(:event_id).include?(@event.id.to_i)
       @preexisting = @rsvps.where(event: @event)[0]
       true
     else

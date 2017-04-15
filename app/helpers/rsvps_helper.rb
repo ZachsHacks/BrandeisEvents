@@ -1,19 +1,20 @@
 module RsvpsHelper
 
-  def get_option(choice)
+  def get_option(event, choice)
     @choice = choice
-    @selected = has_rsvp && same_choice
+    @selected = has_rsvp(event) && same_choice(event)
+
     s = ''
     s += '✓ ' if @selected
     s += option_text
   end
 
-  def has_rsvp
-    current_user.rsvps.pluck(:event_id).include?(@event.id)
+  def has_rsvp(event)
+    current_user.rsvps.pluck(:event_id).include?(event.id)
   end
 
-  def same_choice
-    !current_user.rsvps.find_by(event: @event, choice: @choice).nil?
+  def same_choice(event)
+    !current_user.rsvps.find_by(event: event, choice: @choice).nil?
   end
 
   def option_text

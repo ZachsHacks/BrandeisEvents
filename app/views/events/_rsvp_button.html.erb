@@ -1,1 +1,9 @@
-<%= button_to get_option(choice), {:controller => "rsvps", :action => "create", :event_id => @event.id,  :user_id=> session[:user_id].to_i, :choice => choice}, :method=>:post, class: button_color  %>
+<div id = "rsvp_buttons_<%=event.id%>">
+
+<% for choice in 1..2 %>
+
+<%= button_to get_option(event, choice), rsvp_path(event_id: event.id, user_id: session[:user_id].to_i, choice: choice), :remote => true, class: button_color  %>
+
+<% end %>
+
+</div>

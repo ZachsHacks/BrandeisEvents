@@ -21,7 +21,7 @@ module EventsHelper
 		string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
 		string << "<p>#{truncate event.description, :length => 100}</p>"
 		string << start_time(event) + location(event)
-		string << '</div>'
+		# string << '</div>'
 		string.html_safe
 	end
 
@@ -105,6 +105,10 @@ module EventsHelper
 		current_user && @event.host == current_user
 	end
 
+	def gather_user_events
+		@going_rsvps = current_user.rsvps.select {|r| r.choice == 1}
+	    @interested_rsvps = current_user.rsvps.select {|r| r.choice == 2}
+	end
 
 	def time_to_destination(starting, destination, type)
 		s =""
