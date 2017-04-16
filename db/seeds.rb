@@ -20,7 +20,6 @@ def create_events
 end
 
 def get_description(html)
-	byebug
 	d = Nokogiri::HTML(html)
 	description = ""
 	skip = 3
