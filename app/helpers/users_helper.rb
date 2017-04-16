@@ -1,5 +1,22 @@
 module UsersHelper
 
+    def gather_user_events
+		@going_rsvps = current_user.rsvps.select {|r| r.choice == 1}
+	    @interested_rsvps = current_user.rsvps.select {|r| r.choice == 2}
+	end
+
+    def get_events index
+        rsvps = case index
+        when 0
+            current_user.rsvps.select {|r| r.choice == 1}
+        when 1
+            current_user.rsvps.select {|r| r.choice == 2}
+        else recommendations
+        end
+
+        @user_events = rsvps.map { |r| r.event }
+    end
+
     def set_active
         @active = 0 if @active.nil?
 		@tab_classes = []
