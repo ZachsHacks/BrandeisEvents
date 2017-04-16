@@ -6,15 +6,17 @@ module UsersHelper
 	end
 
     def get_events index
-        rsvps = case index
+        @user_events = case index
         when 0
-            current_user.rsvps.select {|r| r.choice == 1}
+            map_to_events current_user.rsvps.select {|r| r.choice == 1}
         when 1
-            current_user.rsvps.select {|r| r.choice == 2}
+            map_to_events current_user.rsvps.select {|r| r.choice == 2}
         else recommendations
         end
+    end
 
-        @user_events = rsvps.map { |r| r.event }
+    def map_to_events rsvps
+        rsvps.map { |r| r.event }
     end
 
     def set_active
