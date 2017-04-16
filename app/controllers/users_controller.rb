@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    if @user != current_user
+        redirect_to root_path
+    end
   end
 
   def creation_form
