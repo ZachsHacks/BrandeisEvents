@@ -1,18 +1,19 @@
 <div id="user_events">
     <ul class="nav nav-tabs">
-        <li class="active">
-            <a data-toggle="tab" href="#home">RSV'D Events</a>
+        <% set_active %>
+        <li <%= @tab_classes[0] %> >
+            <a data-toggle="tab" href="#home">RSVP'd Events</a>
         </li>
-        <li>
+        <li <%= @tab_classes[1] %> >
             <a data-toggle="tab" href="#menu1">Interested Events</a>
         </li>
-        <li>
+        <li <%= @tab_classes[2] %> >
             <a data-toggle="tab" href="#menu2">Events For You</a>
         </li>
     </ul>
 
     <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
+        <div id="home" class = "<%= @tab_pane_classes[0] %>">
             <div class="col-md-12 RSVP_section">
                 <h4 class="text-left">Events you're going to</h4>
                 <hr>
@@ -28,7 +29,7 @@
             </div>
 
         </div>
-        <div id="menu1" class="tab-pane fade">
+        <div id="menu1" class = "<%= @tab_pane_classes[1] %>" >
             <div class="col-md-12 RSVP_section">
                 <h4 class="text-left">Events you're interested in</h4>
                 <hr>
@@ -42,7 +43,7 @@
                 <% end %>
             </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
+        <div id="menu2" class = "<%= @tab_pane_classes[2] %>">
             <div class="col-md-12 RSVP_section">
                 <h4 class="text-left">Recommended events for you</h4>
                 <hr>
@@ -77,6 +78,6 @@
     .nav-tabs {
         text-align: center;
     }
-  
+
 
 </style>
