@@ -27,12 +27,11 @@ class Event < ApplicationRecord
 
 	def self.search(params)
 		if params
-
 			name = params[:event].downcase unless params[:event].blank?
-			# location = params[:location].downcase unless params[:location].blank?
+			location = params[:location].downcase unless params[:location] == "all"
 			# date = Date.strptime(params[:date], '%m/%d/%Y %I:%M %p') unless params[:date].blank?
 			#self.where(['lower(name) LIKE ? OR lower(location) LIKE ? OR start LIKE ?', "%#{name}%", "%#{location}%", "%#{date}%"]).order('id DESC')
-			self.where(['lower(name) LIKE ?', "%#{name}%"]).order('id DESC')
+			self.where(['lower(name) LIKE ? AND lower(location) LIKE ?', "%#{name}%", "%#{location}%"]).order('id DESC')
 		else
 			order('id DESC')
 		end

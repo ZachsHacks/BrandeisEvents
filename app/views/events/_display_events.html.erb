@@ -17,8 +17,12 @@
 		<div class="row">
 			<div class=" events_list">
 				<div class="col-md-2 left-side-column">
+					<hr>
 					<%= sidebar_date %>
-					<%= sidebar(@locations) %>
+					<h4>Active Locations</h4>
+						<%= sidebar(@locations) %>
+					<hr>
+
 				</div>
 			</div>
 			<div class="col-md-10">
@@ -44,6 +48,7 @@
 
 
 	<style>
+
 	.top-thumbnail {
 		position: relative;
 	}

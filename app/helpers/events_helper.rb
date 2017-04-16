@@ -54,9 +54,7 @@ module EventsHelper
 	end
 
 	def sidebar(locations)
-		return_string = '<h4>Locations</h4>'
-		return_string << sidebar_locations(locations)
-		return_string.html_safe
+		sidebar_locations(locations).html_safe
 	end
 
 	def sidebar_locations(locations)
