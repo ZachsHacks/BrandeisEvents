@@ -105,11 +105,6 @@ module EventsHelper
 		current_user && @event.host == current_user
 	end
 
-	def gather_user_events
-		@going_rsvps = current_user.rsvps.select {|r| r.choice == 1}
-	    @interested_rsvps = current_user.rsvps.select {|r| r.choice == 2}
-	end
-
 	def time_to_destination(starting, destination, type)
 		s =""
 		drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes

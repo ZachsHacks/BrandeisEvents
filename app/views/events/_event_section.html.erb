@@ -1,0 +1,16 @@
+<div id="menu_<%= index %>" class = "<%= @tab_pane_classes[index] %>">
+    <div class="col-md-12 RSVP_section">
+        <h4 class="text-left"><%= @page_titles[index] %></h4>
+        <hr>
+        <% get_events(index) %>
+        <% if @user_events.length != 0%>
+        <% @user_events.each do |e| %>
+
+        <%= render partial: 'events/list_event', locals: {event: e, col_length: "col-md-3"} %>
+        <% end %>
+    <% else %>
+        <p>You don't have any events. Add some!</p>
+        <% end %>
+    </div>
+
+</div>

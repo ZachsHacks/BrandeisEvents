@@ -57,12 +57,14 @@ class RsvpsController < ApplicationController
     @choice = rsvp_params[:choice]
 
     if has_rsvp?
+      @active = @preexisting.choice - 1
       if @preexisting.choice == @choice.to_i
         @preexisting.delete
       else
         @preexisting.update(rsvp_params)
       end
     else
+      @active = 2
       Rsvp.create(rsvp_params)
     end
 

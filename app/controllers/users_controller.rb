@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-
   def creation_form
     @user = User.find(params[:id])
   end
