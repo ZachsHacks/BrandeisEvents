@@ -1,5 +1,5 @@
 <div class="search">
-	<form role="form" action=<%=search_path%> method="get">
+	<form id="search" role="form" action=<%=search_path%> method="get">
 		<div class="col-md-4">
 			<div class="form-group">
 				<label class="sr-only" for="location">Search Events or Catagories</label>
@@ -8,8 +8,14 @@
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
-				<label class="sr-only" for="location">Location</label>
-				<input type="text" class="form-control" id="location" placeholder="Location" name="location">
+				<select class="form-control" name="location" id="location" form="search">
+						<option value="all">All Locations</option>
+					<%@locations.sort.each do |l|%>
+						<option value=<%=l.downcase%>><%=l%></option>
+					<%end%>
+				</select>
+				<!-- <label class="sr-only" for="location">Location</label>
+				<input type="text" class="form-control" id="location" placeholder="Location" name="location"> -->
 			</div>
 		</div>
 		<div class="col-md-2">

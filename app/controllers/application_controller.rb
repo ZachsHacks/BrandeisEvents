@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery with: :exception
   include SessionsHelper
-  before_action :store_location
+  before_action :store_location, :grab_locations
   include CanCan::ControllerAdditions
 
   private
@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
+
+	def grab_locations
+		@locations = Location.all
+	end
 
   helper_method :current_user
 end
