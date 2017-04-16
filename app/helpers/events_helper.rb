@@ -8,7 +8,7 @@ module EventsHelper
 
 			s<< "#{params[:date].titleize}'s Events"
 		elsif params[:format]
-			s<< "Events in #{params[:format].titleize}"
+			s<< "#{params[:format].titleize}"
 		else
 			s<< "All Events"
 				end

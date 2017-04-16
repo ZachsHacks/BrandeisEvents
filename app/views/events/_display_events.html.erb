@@ -4,13 +4,13 @@
 	<div class="container">
 
 
-    <div class="top-thumbnail text-center">
+		<div class="top-thumbnail text-center">
 			<%= image_tag "All-Event.png", class:"img-responsive" %>
-        <div class="top-caption">
-            <h1><%= top_image_text %></h1>
+			<div class="top-caption">
+				<h1><%= top_image_text %></h1>
 
-        </div>
-    </div>
+			</div>
+		</div>
 
 
 
@@ -23,9 +23,15 @@
 			</div>
 			<div class="col-md-10">
 				<div class="row event_row">
+					<% if @events.size == 0 %>
+					<div class=text-center>
+						<h2>There are no events for this category. <br> Please try again later.</h2>
+					</div>
+					<% else %>
 					<% @events.sort_by {|e| e.start}.each do |event| %>
 					<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-4"} %>
 					<% end %>
+					<%end%>
 				</div>
 			</div>
 
@@ -37,19 +43,19 @@
 	</html>
 
 
-<style>
-.top-thumbnail {
-    position: relative;
-}
+	<style>
+	.top-thumbnail {
+		position: relative;
+	}
 
-.top-caption {
-    position: absolute;
-    top: 30%;
-    left: 0;
-    width: 100%;
-}
-.top-caption h1{
-	color: #fff;
-	font-size: 55px;
-}
-</style>
+	.top-caption {
+		position: absolute;
+		top: 30%;
+		left: 0;
+		width: 100%;
+	}
+	.top-caption h1{
+		color: #fff;
+		font-size: 55px;
+	}
+	</style>
