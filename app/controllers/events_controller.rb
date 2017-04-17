@@ -44,11 +44,11 @@ class EventsController < ApplicationController
 		@current_latitude = request.location.latitude
 		@current_longitude = request.location.longitude
 
-		if @current_latitude = 0.0 || @current_longitude = 0.0
-			#for localhost
-			@current_latitude = 42.366239
-			@current_longitude = -71.258469
-		end
+		# if @current_latitude = 0.0 || @current_longitude = 0.0
+		# 	#for localhost
+		# 	@current_latitude = 42.366239
+		# 	@current_longitude = -71.258469
+		# end
 
 
 		# @current_latitude = 42.366239
