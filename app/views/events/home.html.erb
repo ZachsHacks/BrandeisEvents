@@ -1,6 +1,6 @@
 <%= render "layouts/header" %>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <div class="section large transparent dark text-center slider">
 	<div class="container slider-text">
 		<h1>Discover <span style="color:#42B5E8">Brandeis University</span></h1>
@@ -177,7 +177,7 @@
 	<script>
 		$(function () {
 			var availableTags = <%=raw @items%>;
-			$("#search").autocomplete({source: availableTags});
+			$("#search-complete").autocomplete({source: availableTags});
 		});
 
 		$(function () {
