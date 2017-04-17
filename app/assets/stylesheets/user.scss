@@ -38,6 +38,17 @@ input.btn.btn-default.user_tab_button{
   padding-top: 10px;
 }
 
-#Person-name{
-  padding-bottom: 20px;
-}
+
+
+div.col-md-12.RSVP_section{
+  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ }
+
+ .profile-banner img{
+   margin-top: -20px;
+   border-radius:10px;
+    overflow:hidden;
+
+ }
