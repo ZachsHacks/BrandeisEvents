@@ -14,8 +14,11 @@ div.col-md-3.portfolio-item{
   margin-right:20px;
   margin-left: 20px;
     border: none !important;
+}
 
-
+div.user_tab_true.col-md-2.text-center.user_tab input {
+//color in current tab
+background-color: #ccc !important;
 }
 input.btn.btn-default.user_tab_button{
   border-bottom: none !important;
