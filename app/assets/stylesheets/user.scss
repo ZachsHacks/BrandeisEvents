@@ -1,67 +1,94 @@
-.RSVP_section{
-  padding-bottom: 50px;
+.RSVP_section {
+    padding-bottom: 50px;
 }
 
 .RSVP_section img {
-  width:260px;
+    width: 260px;
 }
 
-div.col-md-3.portfolio-item{
-  // margin-right: 10px;
+div.col-md-3.portfolio-item {
+    // margin-right: 10px;
 }
-.user_tab{
-  display: inline;
-  margin-right:20px;
-  margin-left: 20px;
+
+.user_tab {
+    display: inline;
+    margin-right: 20px;
+    margin-left: 20px;
     border: none !important;
-
 }
 
 div.user_tab_true.col-md-2.text-center.user_tab input {
-//color in current tab
-// background-color: #ccc !important;
-font-style: bold;
-border-style: solid;
+    //color in current tab
+    // background-color: #ccc !important;
+    font-style: bold;
+    border-style: solid;
     border-width: 2px;
-    border-color:  #d3d3d3;
-border-top-right-radius: 5px !important;
-border-top-left-radius: 5px !important;
-border-bottom-left-radius: 0px !important;
-border-bottom-right-radius: 0px !important;
-  border-bottom: none !important;
-}
-input.btn.btn-default.user_tab_button{
-  border: none;
-  // border-top-right-radius: 5px !important;
-  // border-top-left-radius: 5px !important;
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  width: 151px;
+    border-color: #d3d3d3;
+    border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: none !important;
 }
 
-
-.nav-tabs input{
-  text-align: center;
-  position: center;
-
+div.user_tab_false.col-md-2.text-center.user_tab input {
+    //prevent weird box shadow on chrome
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #fff !important;
 }
 
-.section-titles{
-  padding-top: 10px;
+input.btn.btn-default.user_tab_button {
+    border: none;
+    // border-top-right-radius: 5px !important;
+    // border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    width: 151px;
 }
 
+.nav-tabs input {
+    text-align: center;
+    position: center;
+}
 
+.section-titles {
+    padding-top: 10px;
+}
 
-div.col-md-12.RSVP_section{
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
- @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
- @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
- }
+div.col-md-12.RSVP_section {
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
 
- .profile-banner img{
-   margin-top: -20px;
-   border-radius:10px;
-    overflow:hidden;
+        to {
+            opacity: 1;
+        }
+    }
+    @-moz-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+.profile-banner img {
+    margin-top: -20px;
+    border-radius: 10px;
+    overflow: hidden;
     padding-bottom: 20px;
-
- }
+}
