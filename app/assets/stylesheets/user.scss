@@ -9,3 +9,35 @@
 div.col-md-3.portfolio-item{
   // margin-right: 10px;
 }
+.user_tab{
+  display: inline;
+  margin-right:20px;
+  margin-left: 20px;
+    border: none !important;
+
+
+}
+input.btn.btn-default.user_tab_button{
+  border-bottom: none !important;
+  border-top-right-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  width: 151px;
+}
+
+.nav-tabs input{
+  text-align: center;
+  position: center;
+
+}
+.user_tab_button_section{
+  margin-left: 255px;
+}
+.section-titles{
+  padding-top: 10px;
+}
+
+#Person-name{
+  padding-bottom: 20px;
+}

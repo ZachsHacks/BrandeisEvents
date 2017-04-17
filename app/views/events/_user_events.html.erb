@@ -3,9 +3,11 @@
 
 <div id="user_events">
     <ul class="nav nav-tabs">
+      <div class="user_tab_button_section">
         <% for i in 0..2 %>
             <%= render partial: 'events/event_tab', locals: {index: i} %>
         <% end %>
+      </div>
     </ul>
 
     <div class="tab-content">
@@ -13,22 +15,3 @@
     </div>
 
 </div>
-
-<style>
-    .nav-pills > li,
-    .nav-tabs > li {
-        float: none;
-        display: inline-block;
-        *display: inline;
-        /* ie7 fix */
-        zoom: 1;
-        /* hasLayout ie7 trigger */
-    }
-
-    .nav-pills,
-    .nav-tabs {
-        text-align: center;
-    }
-
-
-</style>
