@@ -1,3 +1,1 @@
-<li <%= @tab_classes[index] %> >
-    <a data-toggle="tab" href="#menu_<%= index %>"><%= @tab_titles[index] %></a>
-</li>
+<%= button_to @@tab_titles[index], get_events_path(index: index), :remote => true, class: 'btn btn-default'  %>

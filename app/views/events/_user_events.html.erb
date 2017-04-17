@@ -1,22 +1,15 @@
+<% @@tab_titles = ['RSVP\'d events', 'Interested Events', 'Events For You'] %>
+<% @@page_titles = ['Events you\'re going to', 'Events you\'re interested in', 'Recommended events for you'] %>
+
 <div id="user_events">
     <ul class="nav nav-tabs">
-        <% set_active %>
-
-        <% @tab_titles = ['RSVP\'d events', 'Interested Events', 'Events For You'] %>
-
         <% for i in 0..2 %>
             <%= render partial: 'events/event_tab', locals: {index: i} %>
         <% end %>
     </ul>
 
     <div class="tab-content">
-
-        <% @page_titles = ['Events you\'re going to', 'Events you\'re interested in', 'Recommended events for you'] %>
-
-        <% for i in 0..2 %>
-            <%= render partial: 'events/event_section', locals: {index: i} %>
-        <% end %>
-
+        <%= render partial: 'events/event_section', locals: {active_tab: @active_tab} %>
     </div>
 
 </div>

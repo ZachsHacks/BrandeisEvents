@@ -1,8 +1,8 @@
-<div id="menu_<%= index %>" class = "<%= @tab_pane_classes[index] %>">
+<div id="event_section">
     <div class="col-md-12 RSVP_section">
-        <h4 class="text-left"><%= @page_titles[index] %></h4>
+        <h4 class="text-left"><%= @@page_titles[active_tab] %></h4>
         <hr>
-        <% get_events(index) %>
+        <% get_events_helper %>
         <% if @user_events.length != 0%>
         <% @user_events.each do |e| %>
 

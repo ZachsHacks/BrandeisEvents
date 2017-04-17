@@ -66,7 +66,7 @@ class RsvpsController < ApplicationController
       Rsvp.create(rsvp_params)
     end
 
-    @active = rsvp_params[:choice].to_i - 1
+    @active_tab = rsvp_params[:choice].to_i - 1
 
     respond_to do |format|
       format.js
