@@ -55,10 +55,6 @@ module EventsHelper
 	end
 
 	def sidebar(locations)
-		sidebar_locations(locations).html_safe
-	end
-
-	def sidebar_locations(locations)
 		string = ""
 		string << "<div id='column_results'>"
 		string <<  "<p>" + link_to("All Locations", events_path) + "</p>"
@@ -67,12 +63,13 @@ module EventsHelper
 		end
 
 		string << "</div>"
-
+string.html_safe
 	end
 
 	def sidebar_date
 		string = ""
 		string << '<h4>Dates</h4>'
+		string << "<div id='column_results'>"
 		string << "<p>" + link_to("All Dates", events_path) + "</p>"
 		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
 		string << "<p>" + link_to("Tomorrow", events_path(:date => "tomorrow")) + "</p>"
@@ -80,25 +77,11 @@ module EventsHelper
 		string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
 		string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
 		string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
+		string << "</div>"
 		string << "<hr>"
 		string.html_safe
 	end
 
-	def search_bar
-		search_bar_string = <<-eos
-		<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-		<div class="search_bar_events">
-		<input type="text" class="form-control" placeholder="Search for...">
-
-		</div>
-		<!-- /input-group -->
-		</div>
-		<!-- /.col-lg-6 -->
-		</div>
-		eos
-		search_bar_string.html_safe
-	end
 
 	def is_host
 		current_user && @event.host == current_user

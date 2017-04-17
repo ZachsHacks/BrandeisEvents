@@ -2,8 +2,6 @@
 
 <section class="events_all_section">
 	<div class="container">
-
-
 		<div class="top-thumbnail text-center">
 			<%= image_tag "All-Event.png", class:"img-responsive" %>
 			<div class="top-caption">
@@ -17,7 +15,6 @@
 		<div class="row">
 			<div class=" events_list">
 				<div class="col-md-2 left-side-column">
-					<hr>
 					<%= sidebar_date %>
 					<h4>Active Locations</h4>
 						<%= sidebar(@locations) %>
@@ -26,6 +23,7 @@
 				</div>
 			</div>
 			<div class="col-md-10">
+				<input type="text" class="form-control event-page-search" placeholder="Search for...">
 				<div class="row event_row">
 					<% if @events.size == 0 %>
 					<div class=text-center>
