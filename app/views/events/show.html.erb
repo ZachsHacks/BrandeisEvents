@@ -40,10 +40,8 @@
 
 			<%= sidebar_individual_event %>
 
-</div>
-			<div id="column_results">
-
-			</div>
+		</div>
+		<div class="col-md-10 event-description">
 			<% if !@event.description.nil? %>
 			<%= @event.description.html_safe %>
 			<% else %>
@@ -51,24 +49,25 @@
 			<% end %>
 
 			<div class="row tags-section">
-				 <h4>Tags</h4>
+				 <!-- <h4>Tags</h4> -->
 
 				<% @event.tags.each do |a| %>
 				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse btn-tags" %>
 					<% end %>
-
+</div>
 
 			</div>
 
 
-			<p>Longitude:  <%= 		@current_latitude %></p>
-			<p>Lagitude: <%= 		@current_longitude %></p>
+			<!-- <p>Longitude:  <%= 		@current_latitude %></p>
+			<p>Lagitude: <%= 		@current_longitude %></p> -->
 		</div>
-		<div class="row">
-			<div class="col-md-12">
+		</div>
+		<!-- <div class="row">
+			<div class="col-md-12"> -->
 				<div id="map" style='width: 100%; height: 250px;'></div>
-			</div>
-		</div>
+			<!-- </div>
+		</div> -->
 
 		<% if is_host %>
 		<%= link_to 'Edit', edit_event_path(@event) %> |

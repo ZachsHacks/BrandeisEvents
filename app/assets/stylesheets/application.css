@@ -35,3 +35,18 @@ a:visited{
     background-image: none !important;
 
 }
+
+.copyright{
+  background-color: #0c1a1e;
+  margin-bottom: -10px;
+}
+.bottom_ul li a {
+    color: #fff !important;
+}
+.bottom_ul li a:hover {
+    color: #fff !important;
+}
+.bottom_ul li a:visited{
+  color: #fff !important;
+
+}
