@@ -15,6 +15,8 @@ div.col-md-3.portfolio-item {
     margin-right: 20px;
     margin-left: 20px;
     border: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 div.user_tab_true.col-md-2.text-center.user_tab input {
@@ -29,6 +31,11 @@ div.user_tab_true.col-md-2.text-center.user_tab input {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     border-bottom: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom-color: #fff !important;
+
+
 }
 
 div.user_tab_false.col-md-2.text-center.user_tab input {
@@ -47,10 +54,6 @@ input.btn.btn-default.user_tab_button {
     width: 151px;
 }
 
-.nav-tabs input {
-    text-align: center;
-    position: center;
-}
 
 .section-titles {
     padding-top: 10px;
@@ -91,4 +94,13 @@ div.col-md-12.RSVP_section {
     border-radius: 10px;
     overflow: hidden;
     padding-bottom: 20px;
+}
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+
+
+
+
 }
