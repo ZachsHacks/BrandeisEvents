@@ -17,14 +17,11 @@
   margin-top: -90px;
   padding: 200px 0;
 	padding-top: 270px;
-  color: #fff;
 	background-image: image-url("home-page-brandeis.png")
-  // background-image: url('http://campusnow-images.s3.amazonaws.com/images/home-page-brandeis.png');
-
-
 }
 .slider h1{
   font-size: 60px;
+	  color: #fff;
 	// font-family: 'Raleway Dots', cursive;
 
 }
@@ -282,15 +279,7 @@ text-transform: uppercase;background-color: none !important;
 			overflow: hidden;
 		}
 
-		a {
-			color: #fff;
-		}
-		a:hover figcaption {
-			opacity: 0.8;
-			left: 0;
-			color: #fff;
-			transition: all 0.7s;
-		}
+
 		.nopadding {
 			padding: 0 !important;
 			margin: 0 !important;
