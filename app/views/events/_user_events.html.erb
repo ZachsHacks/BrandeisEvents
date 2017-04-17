@@ -3,10 +3,8 @@
 
 <div id="user_events">
     <ul class="nav nav-tabs">
-      <div class="user_tab_button_section">
-        <% for i in 0..2 %>
-            <%= render partial: 'events/event_tab', locals: {index: i} %>
-        <% end %>
+      <div class="user_tab_button_section" id = "user_tabs">
+        <%= render partial: 'events/event_tab' %>
       </div>
     </ul>
 
