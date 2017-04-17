@@ -49,7 +49,9 @@ module EventsHelper
 	def location(event)
 		string = "<div class='col-xs-8 text-right'>"
 		string << "<span class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
-		string << "#{event.location}"
+		to_truncate = event.location
+		trunc = to_truncate.split.first(2).join(' ')
+		string << "#{trunc}"
 		string << "</div>"
 		string << "</div>"
 	end

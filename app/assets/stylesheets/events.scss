@@ -11,16 +11,16 @@
    01. Individual Event Page
    ========================================================================== */
 
-
-
-
-
 //Invidual Event
 .portfolio-item{
-  margin-top: 20px;
+  margin-top: 25px;
 
-  height: 350px !important;
+  min-height: 360px !important;
   padding-bottom: 30px;
+}
+
+.portfolio-item h4{
+min-height: 40px;
 }
 
 
@@ -81,4 +81,9 @@
 .left-side-column{
   margin-top: 20px;
   border-right: 1px solid #eee;
+}
+
+.rsvp_buttons{
+  position: absolute;
+bottom: 0px;
 }
