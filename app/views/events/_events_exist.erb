@@ -1,0 +1,11 @@
+<div class="row event_row">
+	<% if @events.size == 0 %>
+	<div class=text-center>
+		<h2>There are no events for this category. <br> Please try again later.</h2>
+	</div>
+	<% else %>
+	<% @events.sort_by {|e| e.start}.each do |event| %>
+	<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-4"} %>
+	<% end %>
+	<%end%>
+</div>

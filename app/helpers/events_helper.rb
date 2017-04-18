@@ -57,11 +57,15 @@ module EventsHelper
 	end
 
 	def sidebar(locations)
+
+
 		string = ""
 		string << "<div id='column_results'>"
 		string <<  "<p>" + link_to("All Locations", events_path) + "</p>"
+
 		locations.sort.each do |l|
-			string <<  "<p>" + link_to(l, events_path(l)) + "</p>"
+			s = l+ " (" + Event.where(location: l).count.to_s + ")"
+			string <<  "<p>" + link_to(s, events_path(l)) + "</p>"
 		end
 
 		string << "</div>"
@@ -72,8 +76,8 @@ string.html_safe
 		string = ""
 		string << '<h4>Dates</h4>'
 		string << "<div id='column_results'>"
-		string << "<p>" + link_to("All Dates", events_path) + "</p>"
-		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
+		string << "<p>" + link_to("All Dates", events_path, :remote => true) + "</p>"
+		string << "<p>" + link_to("Today", events_path(:date => "today"), :remote => true) + "</p>"
 		string << "<p>" + link_to("Tomorrow", events_path(:date => "tomorrow")) + "</p>"
 		string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
 		string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"

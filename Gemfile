@@ -54,7 +54,6 @@ gem 'figaro'
 
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
-
 # Use delayed job for running background jobs
 gem 'delayed_job_active_record'
 
