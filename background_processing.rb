@@ -16,7 +16,7 @@ class UpdateEventsWorker
 	def perform
 		puts "************************************************"
 		puts "Updating events with 'rails db:seed'..."
-		`rails db:seed`
+		rake "db:seed"
 		puts "Done!"
 		puts "************************************************"
 	end
@@ -27,4 +27,4 @@ class UpdateEventsWorker
 
 end
 
-Sidekiq::Cron::Job.create(name: 'Update Brandeis Events - every 6 hours', cron: '0 */6 * * *', class: 'UpdateEventsWorker')
+Sidekiq::Cron::Job.create(name: 'Update Brandeis Events - every 5 minutes', cron: '*/5 * * * *', class: 'UpdateEventsWorker')

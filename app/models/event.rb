@@ -1,3 +1,4 @@
+require "time"
 class Event < ApplicationRecord
 	belongs_to :user
 	alias_attribute :host, :user
@@ -28,14 +29,18 @@ class Event < ApplicationRecord
 	def self.search(params)
 		if params
 			if params[:event]
-			name = params[:event].downcase unless params[:event].blank?
-			if !params[:location]
-				#THis is present so that the all event search bar can search both title and loction
-				location = params[:event].downcase
+				name = params[:event].downcase unless params[:event].blank?
+				if !params[:location]
+					#THis is present so that the all event search bar can search both title and loction
+					location = params[:event].downcase
 			end
 		end
 			if params[:location]
 			location = params[:location].downcase unless params[:location] == "all"
+		end
+		if params[:date]
+			date_only = params[:date][/\A\d+/]
+			date_searched= Date.parse(date_only)
 		end
 			# date = Date.strptime(params[:date], '%m/%d/%Y %I:%M %p') unless params[:date].blank?
 			#self.where(['lower(name) LIKE ? OR lower(location) LIKE ? OR start LIKE ?', "%#{name}%", "%#{location}%", "%#{date}%"]).order('id DESC')
