@@ -18,6 +18,12 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'crack'
 gem 'typhoeus'
 gem 'nokogiri'
+gem 'wordnik'
+
+gem 'sidekiq'
+gem 'redis'
+
+gem 'related_word'
 gem 'geocoder'
 gem 'google_directions', '~> 0.1.6.2'
 gem 'rails_admin', '~> 1.1.1'
