@@ -16,6 +16,6 @@ module CampusNow
     #config.active_job.queue_adapter = :sidekiq
 
 
-      config.time_zone = 'Eastern Time (US & Canada)'
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
