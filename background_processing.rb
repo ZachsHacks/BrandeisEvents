@@ -16,7 +16,7 @@ class UpdateEventsWorker
 	def perform
 		puts "************************************************"
 		puts "Updating events with 'rails db:seed'..."
-		system("rails db:seed")
+		rails db:seed
 		puts "Done!"
 		puts "************************************************"
 	end
