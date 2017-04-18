@@ -1,5 +1,5 @@
 require "related_word"
-require "byebug"
+# require "byebug"
 
 class TagDictionary
 
