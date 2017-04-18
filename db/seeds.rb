@@ -67,7 +67,6 @@ def create_tags(event)
 	tags.each do |t|
 		event.tags.create(name: t)
 	end
-	byebug
 end
 
 def create_locations
