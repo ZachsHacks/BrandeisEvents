@@ -3,11 +3,11 @@ require 'sidekiq'
 require 'sidekiq-cron'
 
 Sidekiq.configure_client do |config|
-	config.redis = { db: 0 }
+	config.redis = { db: 1 }
 end
 
 Sidekiq.configure_server do |config|
-	config.redis = {db: 0}
+	config.redis = {db: 1}
 end
 
 class UpdateEventsWorker
@@ -16,7 +16,7 @@ class UpdateEventsWorker
 	def perform
 		puts "************************************************"
 		puts "Updating events with 'rails db:seed'..."
-		# rails db:seed
+		rake "db:seed"
 		puts "Done!"
 		puts "************************************************"
 	end
