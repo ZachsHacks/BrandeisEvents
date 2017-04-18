@@ -21,6 +21,7 @@ gem 'nokogiri'
 gem 'wordnik'
 
 gem 'sidekiq'
+gem "sidekiq-cron", "~> 0.4.0"
 gem 'redis'
 
 gem 'related_word'
