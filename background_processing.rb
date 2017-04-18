@@ -3,11 +3,11 @@ require 'sidekiq'
 require 'sidekiq-cron'
 
 Sidekiq.configure_client do |config|
-	config.redis = { db: 1 }
+	config.redis = { url: "redis://redistogo:716332eefed35759c634713605c23a05@barreleye.redistogo.com:11658/" }
 end
 
 Sidekiq.configure_server do |config|
-	config.redis = {db: 1}
+	config.redis = {url: "redis://redistogo:716332eefed35759c634713605c23a05@barreleye.redistogo.com:11658/"}
 end
 
 class UpdateEventsWorker
