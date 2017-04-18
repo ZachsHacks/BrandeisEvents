@@ -20,10 +20,6 @@ gem 'typhoeus'
 gem 'nokogiri'
 gem 'wordnik'
 
-gem 'sidekiq'
-gem "sidekiq-cron", "~> 0.4.0"
-gem 'redis'
-
 gem 'related_word'
 gem 'geocoder'
 gem 'google_directions', '~> 0.1.6.2'
