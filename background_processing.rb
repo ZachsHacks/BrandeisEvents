@@ -4,10 +4,12 @@ require 'sidekiq-cron'
 
 Sidekiq.configure_client do |config|
 	config.redis = { url: "redis://redistogo:716332eefed35759c634713605c23a05@barreleye.redistogo.com:11658/" }
+ config.redis = { :size => 1 }
 end
 
 Sidekiq.configure_server do |config|
 	config.redis = {url: "redis://redistogo:716332eefed35759c634713605c23a05@barreleye.redistogo.com:11658/"}
+config.redis = { :size => 7 }
 end
 
 class UpdateEventsWorker
