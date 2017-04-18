@@ -23,18 +23,15 @@
 				</div>
 			</div>
 			<div class="col-md-10">
-				<input type="text" class="form-control event-page-search" placeholder="Search for...">
-				<div class="row event_row">
-					<% if @events.size == 0 %>
-					<div class=text-center>
-						<h2>There are no events for this category. <br> Please try again later.</h2>
-					</div>
-					<% else %>
-					<% @events.sort_by {|e| e.start}.each do |event| %>
-					<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-4"} %>
-					<% end %>
-					<%end%>
-				</div>
+			 <form name="search" remote: "true" action=<%=search_path%>>
+	 <div class = "form-group">
+		  <%= text_field_tag :event, "",  :placeholder=>'Search Here for Anything', class:"form-control", onchange:"AJAXSearchForm();" %>
+	 </div>
+     </form>
+			<div id="events-happening">
+				<%= render partial: 'events/events_exist' %>
+			</div>
+
 			</div>
 
 			<div class="text-center"> <%= will_paginate %> </div>
