@@ -50,3 +50,8 @@ a:visited{
   color: #fff !important;
 
 }
+
+
+.hidden{
+  display: none;
+}

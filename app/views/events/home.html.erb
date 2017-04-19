@@ -208,23 +208,27 @@
 // document.getElementById('nav').classList.add("navbar-transparent");
 // };
 
+//for automatic loading since block of next code is only for scrolling
 $(document).ready(function(){
 $('#nav').removeClass('navbar-default');
 $('#nav').addClass('navbar-transparent');
-
+$('#logo').addClass('hidden');
 });
 </script>
 	<script>
 
 	window.onscroll = function () {
 		var nav = document.getElementById('nav');
+		var logo =  document.getElementById('logo');
 
 		if (window.pageYOffset > 50) {
 			nav.classList.add("navbar-default");
 			nav.classList.remove("navbar-transparent");
+			logo.classList.remove("hidden");
 		} else {
 			nav.classList.remove("navbar-default");
 			nav.classList.add("navbar-transparent");
+			logo.classList.add("hidden");
 		}
 	}
 </script>
