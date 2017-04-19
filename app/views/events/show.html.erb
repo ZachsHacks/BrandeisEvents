@@ -2,6 +2,11 @@
 <%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
+		<% if @event.start < Time.now %>
+		<div class="alert alert-warning">
+  <strong>This event has already taken place!</strong> Please view upcoming events <%= link_to "Here", events_path %>
+</div>
+<% end %>
 		<div class="col-md-8">
 		<% if @event.event_image_file_name.nil? %>
 
