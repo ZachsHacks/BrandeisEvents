@@ -38,17 +38,17 @@ class Event < ApplicationRecord
 			if params[:location]
 			location = params[:location].downcase unless params[:location] == "all"
 		end
-		if params[:date]
+		if !params[:date].blank?
 			date_only = params[:date][/\A\d+/]
 			date_searched= Date.parse(date_only)
 		end
 			# date = Date.strptime(params[:date], '%m/%d/%Y %I:%M %p') unless params[:date].blank?
 			#self.where(['lower(name) LIKE ? OR lower(location) LIKE ? OR start LIKE ?', "%#{name}%", "%#{location}%", "%#{date}%"]).order('id DESC')
 			if location==name
-				self.where(['lower(name) LIKE ? OR lower(location) LIKE ?', "%#{name}%", "%#{location}%"]).order('id DESC')
+				self.where(['lower(name) LIKE ? OR lower(description) LIKE ? OR lower(location) LIKE ?', "%#{name}%", "%#{name}%", "%#{location}%"]).order('id DESC')
 
 			else !location==name
-			self.where(['lower(name) LIKE ? AND lower(location) LIKE ?', "%#{name}%", "%#{location}%"]).order('id DESC')
+			self.where(['lower(name) LIKE ? OR lower(description) LIKE ? AND lower(location) LIKE ?', "%#{name}%", "%#{name}%", "%#{location}%"]).order('id DESC')
 end
 		else
 			order('id DESC')

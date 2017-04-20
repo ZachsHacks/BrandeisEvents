@@ -2,33 +2,47 @@
 <%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
+		<% if @event.start < Time.now %>
+			<div class="alert alert-warning">
+ <strong>This event has already taken place!</strong> Please view upcoming events <%= link_to "Here", events_path %>
+ </div>
+<% end %>
 		<div class="col-md-8">
-		<% if @event.event_image_file_name.nil? %>
+			<% if @event.event_image_file_name.nil? %>
 
-		<%= image_tag "missing_large.png", class: "event-top-image" %>
-		<% else %>
-		<%= image_tag @event.event_image(:large), class: "event-top-image"%>
-		<% end %>
-</div>
-<div class="col-md-4">
-	<h3><%= @event.name%></h3>
-	<p id="host">by <%= @event.host.name%></p>
-<div class="travel_times">
-	<p><%= fa_icon "car", style:"margin-right: 2px" %>  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "car"})%></p>
-	<p><%= fa_icon "bicycle" %> <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "bicycling"} )%>  </p>
-	<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "walking"} )%></p>
-</div>
-<% if logged_in? %>
+			<%= image_tag "missing_large.png", class: "event-top-image" %>
+			<% else %>
+			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
+			<% end %>
+		</div>
+		<div class="col-md-4">
+			<h3><%= @event.name%></h3>
+			<p id="host">by <%= @event.host.name%></p>
+			<div class="travel_times">
+				<p><%= fa_icon "car", style:"margin-right: 2px" %>  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "car"})%></p>
+				<p><%= fa_icon "bicycle" %> <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "bicycling"} )%>  </p>
+				<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">  <%= time_to_destination("4 Casey CT, Newtown PA 18940", 	@current_address, {mode: "walking"} )%></p>
+			</div>
+			<% if logged_in? %>
 
-<div class="center-block">
-	<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
-		<%= render partial: 'rsvp_button', locals: {event: @event} %>
-	</div>
-	</div>
-	<%end%>
+			<div class="center-block">
+				<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
+					<%= render partial: 'rsvp_button', locals: {event: @event} %>
+				</div>
+			</div>
+
+			<%else%>
+			<div class="center-block" role="group" aria-label="...">
+				<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
+					<p>
+					<%=button_to "Login", get_url, class: button_color%>
+					to RSVP to this event!</p>
+				</div>
+			</div>
+			<%end%>
 
 
-</div>
+		</div>
 	</div>
 	<div class="row">
 		<%= content %>
@@ -49,71 +63,71 @@
 			<% end %>
 
 			<div class="row tags-section">
-				 <!-- <h4>Tags</h4> -->
+				<!-- <h4>Tags</h4> -->
 
 				<% @event.tags.each do |a| %>
 				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse btn-tags" %>
-					<% end %>
-</div>
-
+				<% end %>
 			</div>
 
-
-			<!-- <p>Longitude:  <%= 		@current_latitude %></p>
-			<p>Lagitude: <%= 		@current_longitude %></p> -->
 		</div>
-		</div>
-		<!-- <div class="row">
-			<div class="col-md-12"> -->
-				<div id="map" style='width: 100%; height: 250px;'></div>
-			<!-- </div>
-		</div> -->
 
-		<% if is_host %>
-		<%= link_to 'Edit', edit_event_path(@event) %> |
-		<%= link_to 'Back', events_path %>
-		<% end %>
 
+		<!-- <p>Longitude:  <%= 		@current_latitude %></p>
+		<p>Lagitude: <%= 		@current_longitude %></p> -->
 	</div>
+</div>
+<!-- <div class="row">
+<div class="col-md-12"> -->
+<div id="map" style='width: 100%; height: 250px;'></div>
+<!-- </div>
+</div> -->
+
+<% if is_host %>
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+<% end %>
+
+</div>
 
 
 
 
 
-	<script type="text/javascript">
-	handler = Gmaps.build('Google');
-	handler.buildMap({
-	    provider: {
-	      disableDefaultUI: true
-	      // pass in other Google Maps API options here
-	    },
-	    internal: {
-	      id: 'map'
-	    }
-	  },
-	  function(){
-	    markers = handler.addMarkers([
-	      {
-	        "lat": <%=@location[0]%>,
-	        "lng": <%=@location[1]%>,
-					zoom: 4,
-	        "picture": {
-						// https://groups.google.com/forum/#!msg/Google-Maps-API/2k3T5hwI5Ck/RRso0D2jB1oJ
-	          "url": "http://maps.google.com/mapfiles/ms/icons/red.png",
-	          "width":  32,
-	          "height": 32
-	        },
-	        "infowindow": "<%= @address %>"
-	      }
-	    ]);
-			handler.bounds.extendWith(markers);
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({
+	provider: {
+		disableDefaultUI: true
+		// pass in other Google Maps API options here
+	},
+	internal: {
+		id: 'map'
+	}
+},
+function(){
+	markers = handler.addMarkers([
+		{
+			"lat": <%=@location[0]%>,
+			"lng": <%=@location[1]%>,
+			zoom: 4,
+			"picture": {
+				// https://groups.google.com/forum/#!msg/Google-Maps-API/2k3T5hwI5Ck/RRso0D2jB1oJ
+				"url": "http://maps.google.com/mapfiles/ms/icons/red.png",
+				"width":  32,
+				"height": 32
+			},
+			"infowindow": "<%= @address %>"
+		}
+	]);
+	handler.bounds.extendWith(markers);
 
- handler.fitMapToBounds();
-  handler.getMap().setZoom(18)
-infowindow.open(Gmaps.map.map, marker.serviceObject);
+	handler.fitMapToBounds();
+	handler.getMap().setZoom(18)
+	infowindow.open(Gmaps.map.map, marker.serviceObject);
 
-	  }
-	);
+}
+);
 </script>
 
 <style>

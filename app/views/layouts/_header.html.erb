@@ -14,7 +14,7 @@
                     <!-- Collection of nav links and other content for toggling -->
 
                     <div id="navbarCollapse" class="collapse navbar-collapse">
-											<%= link_to image_tag("https://www.brandeis.edu/communications/creative/downloads/4-inch-seal-pms-294.jpg", alt: "logo", size: "60x60"), '/', class: 'navbar-brand' %>
+											<%= link_to image_tag("https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Brandeis_University_seal.svg/1024px-Brandeis_University_seal.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%>
 											<%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -28,7 +28,7 @@
                             <% end %>
                             <% if is_admin? %>
                               <li>
-                                <%= link_to "Users", users_path %>
+                                <%= link_to "Admin Panel", rails_admin_path %>
                               </li>
                             <% else %>
                             <% end %>

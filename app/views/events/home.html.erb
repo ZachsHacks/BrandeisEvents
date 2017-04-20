@@ -77,7 +77,7 @@
 				</div>
 				<!-- end .col-md-3 -->
 				<div class="col-md-3 col-sm-6">
-					<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category04.jpg');">
+					<a href="" class="category-box" style="background-image: url('https://www.fandm.edu/uploads/files/228058013261536755-2011-state-of-the-union-fisheye.0.894.4096.1638.full.jpg');">
 						<div class="inner">
 							<span class="number">16</span>
 							<span class="title">Politics</span>
@@ -99,7 +99,7 @@
 				</div>
 				<!-- end .col-sm-6 -->
 				<div class="col-md-3 col-sm-6">
-					<a href="" class="category-box" style="background-image: url('http://explorecity.wecookcode.com/demo/images/category06.jpg');">
+					<a href="" class="category-box" style="background-image: url('https://s-media-cache-ak0.pinimg.com/originals/ec/32/5c/ec325cce717515ad7075eb66c5f0bb35.jpg');">
 						<div class="inner">
 							<span class="number">4</span>
 							<span class="title">Local</span>
@@ -126,7 +126,7 @@
 
 			<!-- end .row -->
 			<div class="text-center">
-				 <%= button_to "All Events", events_path, class: "btn btn-default btn-transparent"  %>
+				 <%= button_to "All Events", events_path, class: "btn btn-default btn-transparent", :method => "get"  %>
 			</div>
 			<!-- end .text-center -->
 
@@ -208,23 +208,27 @@
 // document.getElementById('nav').classList.add("navbar-transparent");
 // };
 
+//for automatic loading since block of next code is only for scrolling
 $(document).ready(function(){
 $('#nav').removeClass('navbar-default');
 $('#nav').addClass('navbar-transparent');
-
+$('#logo').addClass('hidden');
 });
 </script>
 	<script>
 
 	window.onscroll = function () {
 		var nav = document.getElementById('nav');
+		var logo =  document.getElementById('logo');
 
 		if (window.pageYOffset > 50) {
 			nav.classList.add("navbar-default");
 			nav.classList.remove("navbar-transparent");
+			logo.classList.remove("hidden");
 		} else {
 			nav.classList.remove("navbar-default");
 			nav.classList.add("navbar-transparent");
+			logo.classList.add("hidden");
 		}
 	}
 </script>
