@@ -22,43 +22,44 @@
 </div>
 
 <div class="form-group">
+	  <%= f.collection_select :location, Location.order(:name),:name,:name, {:include_blank => "Please select a location"}, {:class=>"form-control"}  %>
+</div>
+
+<!-- <div class="form-group">
 	<label for="formGroupExampleInput">Event Location</label>
 	<%= f.text_field :location, placeholder: "Enter Event Name", class: "form-control"%>
-</div>
-
-<div class="field">
+</div> -->
+<div class="row">
+<div class="field col-md-6">
 	<%= f.label :start %>
-	<%= f.datetime_select :start %>
+	<br/>
+	<%= f.datetime_select :start, class: "form-control" %>
 </div>
 
-<div class="field">
+
+<div class="field col-md-6">
 	<%= f.label :end %>
-	<%= f.datetime_select :end %>
+	<br/>
+	<%= f.datetime_select :end, class: "form-control" %>
+</div>
+</div> <!-- end row -->
+<div class="row">
+<div class="field col-md-6">
+<%= f.label :price %>
+<div class="input-group">
+
+  <span class="input-group-addon">$</span>
+  <%= f.number_field :price %>
+</div>
+</div>
 </div>
 
-<!-- <form class="form-horizontal form-pricing" role="form">
 
-
-		<label >Event Price</label>
-		<div class="price-slider">
-
-		<div id="slider"></div>
-		<input type="hidden" id="amount" class="form-control">
-
-	</div>
-
-</form>  -->
-
-
-<div class="field">
-	<%= f.label :price %>
-	<%= f.number_field :price %>
-</div>
 
 <!-- user selects tags for events -->
-
-<div class="tags">
+<div class="tags field">
 	<%= f.label "Tags" %>
+	<br>
 	<%= check_box_tag(:sports,1, false) %>
 	<%="Sports".html_safe %>
 	<br/>
@@ -73,199 +74,20 @@
 	<br/>
 	<%= check_box_tag(:religious,5, false) %>
 	<%="Religious".html_safe %>
-	<br/>
 </div>
 
+<div class="field">
 <%= f.label :event_image %>
 <%= f.file_field :event_image %>
-
-<div class="actions">
-	<%= f.submit %>
+</div>
+<div class="actions field">
+	<%= f.submit class: "btn btn-default btn-transparent" %>
 </div>
 
 <% end %>
 
 <style>
-
-	.price-box {
-		margin: 0 auto;
-		background: #E9E9E9;
-		border-radius: 10px;
-		padding: 40px 15px;
-		width: 500px;
-	}
-
-	.ui-widget-content {
-		border: 1px solid #bdc3c7;
-		background: #e1e1e1;
-		color: #222222;
-		margin-top: 4px;
-	}
-
-	.ui-slider .ui-slider-handle {
-		position: absolute !important;
-		z-index: 2 !important;
-		width: 3.2em !important;
-		height: 2.2em !important;
-		cursor: default !important;
-		margin: 0 -20px auto !important;
-		text-align: center !important;
-		line-height: 30px !important;
-		color: #FFFFFF !important;
-		font-size: 15px !important;
-	}
-
-	.ui-corner-all {
-		/*border-radius: 20px;*/
-	}
-
-	.ui-slider-horizontal .ui-slider-handle {
-		top: -3em !important;
-	}
-
-	.ui-state-default,
-	.ui-widget-content .ui-state-default {
-		background: #393a40 !important;
-	}
-
-	.ui-slider-horizontal .ui-slider-handle {
-		margin-left: -0.5em !important;
-	}
-
-	.ui-slider .ui-slider-handle {
-		cursor: pointer;
-	}
-	.ui-slider a,
-	.ui-slider a:focus {
-		cursor: pointer;
-		outline: none;
-	}
-
-	.lead p,
-	.price {
-		font-weight: 600;
-		font-size: 32px;
-		display: inline-block;
-		line-height: 60px;
-	}
-
-	h4.great {
-		background: #00ac98;
-		margin: 0 0 55px -60px;
-		padding: 7px 15px;
-		color: #ffffff;
-		font-size: 18px;
-		font-weight: 600;
-		border-radius: 5px;
-		display: inline-block;
-		-moz-box-shadow: 2px 4px 5px 0 #ccc;
-		-webkit-box-shadow: 2px 4px 5px 0 #ccc;
-		box-shadow: 2px 4px 5px 0 #ccc;
-	}
-
-	.price-slider {
-		margin-bottom: 70px;
-		margin-top: 50px;
-	}
-
-	.form-pricing {
-		background: #ffffff;
-		padding: 20px;
-		border-radius: 4px;
-	}
-
-	.price-form {
-		background: #ffffff;
-		margin-bottom: 10px;
-		padding: 20px;
-		border: 1px solid #eeeeee;
-		border-radius: 4px;
-	}
-
-	.form-group {
-		margin-bottom: 0;
-	}
-
-	.form-group span.price {
-		font-weight: 200;
-		display: inline-block;
-		color: #7f8c8d;
-		font-size: 14px;
-	}
-
-	.help-text {
-		display: block;
-		margin-top: 32px;
-		margin-bottom: 10px;
-		color: #737373;
-		position: absolute;
-		font-weight: 200;
-		text-align: right;
-		width: 188px;
-	}
-
-	.price-form label {
-		font-weight: 200;
-		font-size: 21px;
-	}
-
-	.ui-slider-range-min {
-		background: #2980b9;
-	}
-
-	.ui-slider-label-inner {
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-top: 10px solid #393a40;
-		display: block;
-		left: 50%;
-		margin-left: -10px;
-		position: absolute;
-		top: 100%;
-		z-index: 99;
-	}
-
+.field{
+	padding-top: 10px;
+}
 </style>
-
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-
-<script>
-	$(document).ready(function () {
-		$("#slider").slider({
-			range: "min",
-			animate: true,
-			value: 1,
-			min: 0,
-			max: 100,
-			step: 1,
-			slide: function (event, ui) {
-				update(1, ui.value); //changed
-			}
-		});
-
-		//Added, set initial value.
-		$("#amount").val(0);
-		$("#amount-label").text(0);
-
-		update();
-	});
-
-	//changed. now with parameter
-	function update(slider, val) {
-		//changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
-		var $amount = slider == 1
-			? val
-			: $("#amount").val();
-
-		/* commented
-         $amount = $( "#slider" ).slider( "value" );
-         $duration = $( "#slider2" ).slider( "value" );
-         */
-
-		$("#amount").val($amount);
-		$("#amount-label").text($amount);
-
-		$('#slider a').html('<label>' + $amount + '</label><div class="ui-slider-label-inner"></div>');
-	}
-</script>
