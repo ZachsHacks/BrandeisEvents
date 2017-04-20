@@ -19,6 +19,7 @@ class Ability
       else
         can :read, :all
       end
+			
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
