@@ -8,6 +8,7 @@ class Ability
       if user.is_admin?
         can :manage, :all
       elsif user.can_host?
+        can :read, Event
         can :create, Event
         can :update, Event do |event|
           event.user == user

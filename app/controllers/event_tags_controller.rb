@@ -1,6 +1,5 @@
 class EventTagsController < ApplicationController
   before_action :set_event_tag, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
 
   # GET /event_tags
