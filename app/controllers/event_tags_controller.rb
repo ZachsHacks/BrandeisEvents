@@ -1,6 +1,7 @@
 class EventTagsController < ApplicationController
   before_action :set_event_tag, only: [:show, :edit, :update, :destroy]
 
+
   # GET /event_tags
   # GET /event_tags.json
   def index
