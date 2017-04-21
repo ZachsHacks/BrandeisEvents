@@ -4,8 +4,9 @@ require 'active_support/core_ext'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
-	# load_and_authorize_resource
-	#till hunter fixes it
+
+	#load_and_authorize_resource
+
 
 	def search
 		@events = Event.search(params).paginate(page: params[:page], per_page: 9)
