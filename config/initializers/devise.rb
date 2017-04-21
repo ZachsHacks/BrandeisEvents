@@ -14,6 +14,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.omniauth :saml,
       idp_cert_fingerprint: 'fingerprint',
+      issuer: 'http://campusnow.herokuapp.com/',
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO'
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
