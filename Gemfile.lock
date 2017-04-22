@@ -327,6 +327,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   crack
   daemons
+  delayed_job
   delayed_job_active_record
   faker
   ferret (~> 0.11.8.6)

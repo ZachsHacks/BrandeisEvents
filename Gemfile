@@ -60,9 +60,8 @@ gem 'aws-sdk', '~> 2.3'
 
 # Use Twilio
 gem 'twilio-ruby'
-# Use delayed job for running background jobs
+gem 'delayed_job'
 gem 'delayed_job_active_record'
-
 # Need daemons to start delayed_job
 gem 'daemons'
 # Use workless to use less workers on heroku
