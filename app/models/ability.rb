@@ -9,6 +9,8 @@ class Ability
       if user.is_admin?
         can :manage, :all
         can :read, :all
+        can :access, :rails_admin   # grant access to rails_admin
+        can :dashboard              # grant access to the dashboard
       elsif user.can_host?
         can :read, :all
         can :create, Event
@@ -24,7 +26,7 @@ class Ability
           u.user == user
         end
       end
-			
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
