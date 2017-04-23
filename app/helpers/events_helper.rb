@@ -5,6 +5,8 @@ module EventsHelper
 		s=""
 		if params[:date]
 			s<< "#{params[:date].titleize}'s Events"
+		elsif params[:tag]
+			s<< "#{params[:tag].titleize}'s Events"
 		elsif params[:location]
 			s<< "#{params[:location].titleize}"
 		else
@@ -67,7 +69,7 @@ module EventsHelper
 		end
 
 		string << "</div>"
-string.html_safe
+		string.html_safe
 	end
 
 	def sidebar_date
