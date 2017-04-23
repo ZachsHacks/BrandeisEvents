@@ -1,17 +1,15 @@
 require 'nokogiri'
 
 module EventsHelper
-
 	def top_image_text
 		s=""
 		if params[:date]
-
 			s<< "#{params[:date].titleize}'s Events"
 		elsif params[:format]
 			s<< "#{params[:format].titleize}"
 		else
 			s<< "All Events"
-				end
+		end
 		s.html_safe
 	end
 

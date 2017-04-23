@@ -8,9 +8,6 @@ end
 #gem 'bcrypt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-shibboleth'
-gem 'devise'
-gem 'omniauth-saml'
 gem 'rails', '~> 5.0.2'
 
 gem 'will_paginate',           '3.1.0'
@@ -63,9 +60,8 @@ gem 'aws-sdk', '~> 2.3'
 
 # Use Twilio
 gem 'twilio-ruby'
-# Use delayed job for running background jobs
+gem 'delayed_job'
 gem 'delayed_job_active_record'
-
 # Need daemons to start delayed_job
 gem 'daemons'
 # Use workless to use less workers on heroku
