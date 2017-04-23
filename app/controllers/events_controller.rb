@@ -21,7 +21,7 @@ class EventsController < ApplicationController
 		elsif params[:date]
 			@events = filter_dates(params[:date])
 		else
-			@events = Event.paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
 		end
 		grab_locations
 	end
