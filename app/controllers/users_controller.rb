@@ -3,13 +3,6 @@ class UsersController < ApplicationController
   #load_and_authorize_resource
 
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-
   def get_events
     @active_tab = params[:index].to_i
     respond_to do |format|

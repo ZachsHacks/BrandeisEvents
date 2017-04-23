@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get '/users/:id/creation_form' => 'users#creation_form'
   resources :event_tags
-  resources :tags
   resources :interests
   resources :events
-  resources :users
+  resources :users, :except => :index
   get '/', to: 'events#home'
-  get '/events/new', to: 'event#new'
+  # get '/events/new', to: 'event#new'
   get '/login', to: 'sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

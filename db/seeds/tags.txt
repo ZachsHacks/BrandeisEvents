@@ -5,6 +5,7 @@ Government
 Israel Advocacy
 Fun
 Food
+Drink
 Acapella
 Charity
 Music
@@ -33,3 +34,4 @@ Running
 Skiing
 Frisbee
 Sports
+Other

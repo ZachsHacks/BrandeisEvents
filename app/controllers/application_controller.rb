@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
 		@all_locations = Location.all.pluck(:name)
 	end
 
+	def grab_all_events
+		@all_events = Event.all
+	end
+
   helper_method :current_user
 end

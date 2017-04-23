@@ -10,6 +10,7 @@ require_relative 'tag_dictionary'
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
 
+
 def create_events
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
@@ -20,7 +21,7 @@ def create_events
 		relavent_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
 		e = Event.find_or_create_by(name: title, description: description, location: location, start: date_time, user: User.first, image_id: image_id)
-		# create_tags(e)
+		create_tags(e) if e.save
 	end
 
 end
@@ -59,14 +60,40 @@ def create_host
 	User.find_or_create_by(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
 end
 
+def create_default_tags
+	File.open("db/seeds/tags.txt").each do |tag|
+		tag = tag.gsub("\t", "")
+		tag = tag.gsub("\n", "")
+		Tag.find_or_create_by(name: tag)
+	end
+	@tags = Tag.all.pluck(:name)
+end
+
 def create_tags(event)
 	description = event.description
-	word_list = description.split.map { |w| w.downcase } || event.name.split.map { |w| w.downcase }
-	word_list = word_list.uniq
-	tags = @dictionary.keys.select { |word| word_list.include?(word) } || @dictionary.values.select { |word| word_list.include?(word) }
-	tags.each do |t|
-		event.tags.create(name: t)
+	word_list = get_word_list(description)
+	keywords = keywords_from_word_list(word_list)
+tag_names = look_up(keywords)
+	tag_names.each do |t|
+	 	event.tags << Tag.find_by(name: t.capitalize)
+		#event.tags.create(name: t.capitalize)
 	end
+end
+
+def look_up(keywords)
+	if(keywords.empty?)
+		return ["Other"]
+	end
+	keywords.map { |k| @dictionary[k] }.uniq
+end
+
+def get_word_list(description)
+	(description.gsub(/\W/, ' ').split.map { |w| w.downcase } || event.name.gsub(/\W/, ' ').split.map { |w| w.downcase }).uniq
+end
+
+def keywords_from_word_list(word_list)
+	dict_words = @dictionary.keys | @dictionary.values.flatten
+	dict_words & word_list
 end
 
 def create_locations
@@ -84,6 +111,7 @@ def debug_events
 end
 
 create_host
-create_locations
+create_locations if !Location.any?
+create_default_tags if !Tag.any?
 create_events
-debug_events
+# debug_events

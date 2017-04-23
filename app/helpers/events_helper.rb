@@ -54,7 +54,7 @@ module EventsHelper
 		string << "</div>"
 	end
 
-	def sidebar(locations)
+	def sidebar(locations, event)
 
 
 		string = ""

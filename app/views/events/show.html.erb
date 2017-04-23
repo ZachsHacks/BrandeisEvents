@@ -67,7 +67,7 @@
 				<!-- <h4>Tags</h4> -->
 
 				<% @event.tags.each do |a| %>
-				<%= button_to a.name, events_path, class: "btn btn-default btn-inverse btn-tags" %>
+				<%= button_to a.name, events_path(:tag => a.name), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
 				<% end %>
 			</div>
 

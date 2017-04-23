@@ -7,7 +7,7 @@ class TagDictionary
 
 	def initialize
 		@word_finder = RelatedWord.new
-		if File.file?("db/seeds/dictionary_json.txt")
+		if File.file?("db/seeds/dictionary_json.txt") && !File.zero?("db/seeds/dictionary_json.txt")
 			@dictionary = JSON.parse(File.open("db/seeds/dictionary_json.txt").read)
 			@dictionary = {} if @dictionary.empty?
 		else
@@ -15,8 +15,10 @@ class TagDictionary
 		end
 
 		generate_dictionary if @dictionary == {}
+		write_to_file if File.file?("db/seeds/dictionary_json.txt") && File.zero?("db/seeds/dictionary_json.txt")
 
 	end
+
 
 	private
 
@@ -24,14 +26,24 @@ class TagDictionary
 		File.open("db/seeds/tags.txt").each do |tag|
 			tag = tag.gsub("\t", "")
 			tag = tag.gsub("\n", "")
-			self.populate(tag)
+			populate(tag)
 		end
+	end
+
+	def write_to_file
+
+		output = File.open( "db/seeds/dictionary_json.txt","w" )
+		output.write(@dictionary.to_json)
+		output.close
 	end
 
 	def populate(word)
 		word_list = @word_finder.find(word)
 		word_list = word_list.map { |line| line[:word].downcase}
-		@dictionary[word.downcase] = word_list.uniq
+		word_list.each do |w|
+					@dictionary[w] = word.downcase
+		end
+		@dictionary[word.downcase] = word.downcase
 	end
 
 end
@@ -51,7 +63,3 @@ end
 # 	tag = tag.gsub("\n", "")
 # 	td.populate(tag)
 # end
-#
-# output = File.open( "seeds/dictionary_json.txt","w" )
-# output.write(td.dictionary.to_json)
-# output.close

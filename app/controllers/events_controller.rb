@@ -16,8 +16,10 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
+		
+		@all_events = Event.all
 		if params[:format]
-			@events = Event.where(location: params[:format]).paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ? AND location LIKE ?", Date.today, params[:format]).paginate(page: params[:page], per_page: 9)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
 		else
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
 	def home
 		@items = Event.all.pluck(:name)
 		@top_events =  Event.joins(:rsvps).order('choice desc')
-		grab_locations
+		@locations = Location.all.pluck(:name)#grab_locations
 
 		if 	@top_events.count < 4
 			@top_events = Event.all
@@ -127,7 +129,7 @@ class EventsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
-		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image, :date)
+		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image, :date, :tag)
 	end
 
 	def grab_locations
@@ -158,7 +160,7 @@ class EventsController < ApplicationController
 			return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.end_of_month)}.paginate(page: params[:page], per_page: 9)
 		end
 
-		return Event.all
+		return Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)
 	end
 
 end
