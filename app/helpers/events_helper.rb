@@ -5,8 +5,8 @@ module EventsHelper
 		s=""
 		if params[:date]
 			s<< "#{params[:date].titleize}'s Events"
-		elsif params[:format]
-			s<< "#{params[:format].titleize}"
+		elsif params[:location]
+			s<< "#{params[:location].titleize}"
 		else
 			s<< "All Events"
 		end
@@ -54,7 +54,7 @@ module EventsHelper
 		string << "</div>"
 	end
 
-	def sidebar(locations, event)
+	def sidebar(locations)
 
 
 		string = ""
@@ -63,7 +63,7 @@ module EventsHelper
 
 		locations.sort.each do |l|
 			s = l+ " (" + Event.where(location: l).count.to_s + ")"
-			string <<  "<p>" + link_to(s, events_path(l)) + "</p>"
+			string <<  "<p>" + link_to(s, events_path(:location => l)) + "</p>"
 		end
 
 		string << "</div>"

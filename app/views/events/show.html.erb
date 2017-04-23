@@ -66,8 +66,9 @@
 			<div class="row tags-section">
 				<!-- <h4>Tags</h4> -->
 
-				<% @event.tags.each do |a| %>
-				<%= button_to a.name, events_path(:tag => a.name), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
+				<% @event.tags.each do |tag| %>
+				<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
+
 				<% end %>
 			</div>
 

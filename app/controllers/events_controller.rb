@@ -16,12 +16,12 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		
-		@all_events = Event.all
-		if params[:format]
-			@events = Event.where("start > ? AND location LIKE ?", Date.today, params[:format]).paginate(page: params[:page], per_page: 9)
+		if params[:location]
+			@events = Event.where("start > ? AND location LIKE ?", Date.today, params[:location]).paginate(page: params[:page], per_page: 9)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
+		elsif params[:tag]
+			@events = filter_tags(params[:tag])
 		else
 			@events = Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
 		end
@@ -140,9 +140,13 @@ class EventsController < ApplicationController
 
 	def geolocation
 		loc = []
-		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
-		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02453") if loc.nil?
+		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02454")
+		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02454") if loc.nil?
 		return loc
+	end
+
+	def filter_tags(tag)
+		Tag.find(tag).events.paginate(page: params[:page], per_page: 9)
 	end
 
 	def filter_dates(filter)
