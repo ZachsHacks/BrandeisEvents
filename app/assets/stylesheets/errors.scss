@@ -1,0 +1,28 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.section {
+	position: relative;
+	padding: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.slider{
+  margin-top: -90px;
+  padding: 200px 0;
+	padding-top: 270px;
+	background-image: image-url("home-page-brandeis.png")
+}
+.slider h1{
+  font-size: 60px;
+	  color: #fff;
+	// font-family: 'Raleway Dots', cursive;
+}
+
+.slider h3{
+  font-size: 25px;
+	  color: #fff;
+	// font-family: 'Raleway Dots', cursive;
+}

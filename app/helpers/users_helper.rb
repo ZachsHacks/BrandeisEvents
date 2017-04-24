@@ -9,7 +9,7 @@ module UsersHelper
         else recommendations
         end
 
-        @user_events = @user_events.sort_by { |e| e.start  }
+        @user_events = @user_events.sort_by { |e| e.start  }#.paginate(page: params[:page], per_page: 8)
     end
 
     def map_to_events rsvps

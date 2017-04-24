@@ -14,6 +14,7 @@ module CampusNow
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :delayed_job
+    config.exceptions_app = self.routes
 
     config.time_zone = 'Eastern Time (US & Canada)'
   end
