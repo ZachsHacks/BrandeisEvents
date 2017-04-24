@@ -14,6 +14,12 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.omniauth :saml,
       idp_cert_fingerprint: 'dd923df70f6e866edceee93b2584a772c9406b29',
+      issuer: 'campusnow.herokuapp.com',
+      request_attributes: [
+        { :name => 'mail;eppn', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Email address' },
+        { :name => 'GivenName', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Given name' },
+        { :name => 'sn', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Family name' }
+    ],
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO'
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
