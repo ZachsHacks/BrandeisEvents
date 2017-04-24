@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
   get '/users/:id/creation_form' => 'users#creation_form'
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
 
