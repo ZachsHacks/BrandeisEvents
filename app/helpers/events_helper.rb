@@ -57,10 +57,9 @@ module EventsHelper
 	end
 
 	def sidebar(locations)
-
-
 		string = ""
-		string << "<div id='column_results'>"
+		string <<"<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#locations'><h4><strong>Locations</strong></h4></button>"
+		string << "<div class='collapse' id='locations'>"
 		string <<  "<p>" + link_to("All Locations", events_path) + "</p>"
 
 		locations.sort.each do |l|
@@ -72,36 +71,51 @@ module EventsHelper
 		string.html_safe
 	end
 
-	def sidebar_date
+	def sidebar_tags
 		string = ""
-		string << '<h4>Dates</h4>'
-		string << "<div id='column_results'>"
-		string << "<p>" + link_to("All Dates", events_path) + "</p>"
-		string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
-		string << "<p>" + link_to("Tomorrow", events_path(:date => "tomorrow")) + "</p>"
-		string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
-		string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
-		string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
-		string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
-		string << "</div>"
-		string << "<hr>"
-		string.html_safe
+		string <<"<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#tags'><h4><strong>Categories</strong></h4></button>"
+		string << "<div class='collapse' id='tags'>"
+		string <<  "<p>" + link_to("All Categories", events_path) + "</p>"
+			Tag.all.sort.each do |tag|
+				s =" (" + Tag.find(tag.id).events.count.to_s + ")"
+				string <<  "<p>" + link_to(tag.name + s, events_path(:tag => tag.id)) + "</p>"
+			end
+
+			string << "</div>"
+			string << "<hr>"
+			string.html_safe
+		end
+
+		def sidebar_date
+			string = ""
+			string <<"<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#dates'><h4><strong>Dates</strong></h4></button>"
+			string << "<div class='collapse' id='dates'>"
+			string << "<p>" + link_to("All Dates", events_path) + "</p>"
+			string << "<p>" + link_to("Today", events_path(:date => "today")) + "</p>"
+			string << "<p>" + link_to("Tomorrow", events_path(:date => "tomorrow")) + "</p>"
+			string << "<p>" + link_to("This Week", events_path(:date => "this week")) + "</p>"
+			string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
+			string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
+			string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
+			string << "</div>"
+			string << "<hr>"
+			string.html_safe
+		end
+
+
+		def is_host
+			current_user && @event.host == current_user
+		end
+
+		def time_to_destination(starting, destination, type)
+			s =""
+			drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
+			hours = drive_time_in_minutes / 60
+			minutes = drive_time_in_minutes % 6
+
+			s = hours.to_s + " hours " + minutes.to_s + " minutes"
+
+			s.html_safe
+		end
+
 	end
-
-
-	def is_host
-		current_user && @event.host == current_user
-	end
-
-	def time_to_destination(starting, destination, type)
-		s =""
-		drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
-		hours = drive_time_in_minutes / 60
-		minutes = drive_time_in_minutes % 6
-
-		s = hours.to_s + " hours " + minutes.to_s + " minutes"
-
-		s.html_safe
-	end
-
-end
