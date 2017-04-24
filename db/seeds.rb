@@ -74,7 +74,8 @@ def create_tags(event)
 	keywords = keywords_from_word_list(word_list)
 tag_names = look_up(keywords)
 	tag_names.each do |t|
-	 	event.tags << Tag.find_by(name: t.capitalize)
+		tag = Tag.find_by(name: t.capitalize)
+	 	event.tags << tag unless event.tags.include?(tag)
 		#event.tags.create(name: t.capitalize)
 	end
 end

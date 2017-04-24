@@ -6,7 +6,7 @@ module EventsHelper
 		if params[:date]
 			s<< "#{params[:date].titleize}'s Events"
 		elsif params[:tag]
-			s<< "#{params[:tag].titleize}'s Events"
+			s<< "Category: #{Tag.find(params[:tag]).name.titleize}"
 		elsif params[:location]
 			s<< "#{params[:location].titleize}"
 		else
