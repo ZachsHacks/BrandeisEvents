@@ -212,23 +212,26 @@
 $(document).ready(function(){
 $('#nav').removeClass('navbar-default');
 $('#nav').addClass('navbar-transparent');
-$('#logo').addClass('hidden');
+$('#logo_scrolling').addClass('hidden');
 });
 </script>
 	<script>
 
 	window.onscroll = function () {
 		var nav = document.getElementById('nav');
+		var logo_scrolling =  document.getElementById('logo_scrolling');
 		var logo =  document.getElementById('logo');
 
 		if (window.pageYOffset > 50) {
 			nav.classList.add("navbar-default");
 			nav.classList.remove("navbar-transparent");
-			logo.classList.remove("hidden");
+			logo_scrolling.classList.remove("hidden");
+			logo.classList.add("hidden");
 		} else {
 			nav.classList.remove("navbar-default");
 			nav.classList.add("navbar-transparent");
-			logo.classList.add("hidden");
+			logo_scrolling.classList.add("hidden");
+			logo.classList.remove("hidden");
 		}
 	}
 </script>
