@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'static_pages/error'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
   get '/users/:id/creation_form' => 'users#creation_form'
@@ -15,7 +13,6 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
-  get '/error', to: 'static_pages#error'
 
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
 
