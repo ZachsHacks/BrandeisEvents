@@ -1,0 +1,18 @@
+<%= render "layouts/header" %>
+
+
+<div class="section large transparent dark text-center slider">
+	<div class="container slider-text">
+		<h1><%= error %></h1>
+		<h3> Don't take it personally, Aaron just misspelled something.</h3>
+		<h3> We still love you.</h3>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+$('#nav').removeClass('navbar-default');
+$('#nav').addClass('navbar-transparent');
+$('#logo').addClass('hidden');
+});
+</script>
