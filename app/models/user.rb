@@ -4,6 +4,7 @@ class User < ApplicationRecord
 		has_many :events, through: :rsvps
 		has_many :interests
 		has_many :tags, through: :interests
+		devise :omniauthable, :omniauth_providers => [:saml]
 
     class << self
       def from_omniauth(auth_hash)
