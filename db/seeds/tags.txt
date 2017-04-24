@@ -5,6 +5,7 @@ Government
 Israel
 Fun
 Food
+Free
 Drink
 Acapella
 Charity
@@ -20,19 +21,5 @@ Science
 Fashion
 Arts
 Student Union
-Baseball
-Basketball
-Cross country
-Jumping
-Swimming
-Tennis
-Diving
-Fencing
-Soccer
-Track
-Field
-Running
-Skiing
-Frisbee
 Sports
 Other

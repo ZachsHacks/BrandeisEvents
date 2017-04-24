@@ -88,7 +88,8 @@ def look_up(keywords)
 end
 
 def get_word_list(description)
-	(description.gsub(/\W/, ' ').split.map { |w| w.downcase } || event.name.gsub(/\W/, ' ').split.map { |w| w.downcase }).uniq
+	wl = (description.gsub(/\W/, ' ').split.map { |w| w.downcase } || event.name.gsub(/\W/, ' ').split.map { |w| w.downcase }).uniq
+	wl.map {|word| word.singularize}
 end
 
 def keywords_from_word_list(word_list)

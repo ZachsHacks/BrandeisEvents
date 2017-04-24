@@ -40,6 +40,7 @@ class TagDictionary
 	def populate(word)
 		word_list = @word_finder.find(word)
 		word_list = word_list.map { |line| line[:word].downcase}
+		word_list = word_list.map {|w| w.singularize}
 		word_list.each do |w|
 					@dictionary[w] = word.downcase
 		end
