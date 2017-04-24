@@ -105,8 +105,8 @@ def create_locations
 end
 
 def debug_events
-	Event.where(location: "Other").each do |e|
-		get_location_info(e.description)
+	Tag.where(name: "Other").first.events.each do |e|
+
 	end
 end
 
@@ -114,4 +114,4 @@ create_host
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
 create_events
-# debug_events
+#debug_events
