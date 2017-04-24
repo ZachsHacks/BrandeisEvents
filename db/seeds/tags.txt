@@ -2,7 +2,7 @@ Academic
 Religious
 Political
 Government
-Israel Advocacy
+Israel
 Fun
 Food
 Drink
@@ -13,7 +13,8 @@ Outdoors
 Indoors
 Holiday
 Health
-Film and Media
+Film
+Media
 Technology
 Science
 Fashion
