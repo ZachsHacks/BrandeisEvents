@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
+  get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
 
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
 

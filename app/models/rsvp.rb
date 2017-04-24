@@ -5,13 +5,13 @@ class Rsvp < ApplicationRecord
 	validates :user_id, :uniqueness => { :scope => :event_id}
 
 	 after_create :reminder
-		#
-		#
-	  # @@REMINDER_TIME = 30.minutes # minutes before appointment
-		#
-	  # def when_to_run
-	  #   time - @@REMINDER_TIME
-	  # end
+
+
+	  @@REMINDER_TIME = 30.minutes # minutes before appointment
+
+	  def when_to_run
+	    Event.find(self.event_id).start - @@REMINDER_TIME
+	  end
 
 	  # Notify our appointment attendee X minutes before the appointment time
 
@@ -37,6 +37,6 @@ class Rsvp < ApplicationRecord
 	   end
 	 end
 
-	    handle_asynchronously :reminder, :run_at => Proc.new { 1.minutes.from_now}
+	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
 
 end
