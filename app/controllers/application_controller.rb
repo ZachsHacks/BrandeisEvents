@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
   before_action :store_location, :grab_all_locations
   include CanCan::ControllerAdditions
 
-  private
+
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
-
+  private
 	def grab_all_locations
 		@all_locations = Location.all.pluck(:name)
 	end

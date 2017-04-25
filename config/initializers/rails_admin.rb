@@ -1,6 +1,10 @@
+
 RailsAdmin.config do |config|
 
-  config.authorize_with :cancan
+  config.parent_controller = "ApplicationController"
+  config.authorize_with do
+    redirect_to main_app.root_path unless current_user.is_admin?
+  end
 
   ### Popular gems integration
 
@@ -11,7 +15,7 @@ RailsAdmin.config do |config|
   # config.current_user_method(&:current_user)
 
   ## == Cancan ==
-  # config.authorize_with :cancan
+  #config.authorize_with :cancan
 
   ## == Pundit ==
   # config.authorize_with :pundit
