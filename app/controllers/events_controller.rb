@@ -140,8 +140,8 @@ class EventsController < ApplicationController
 
 	def geolocation
 		loc = []
-		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02454")
-		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02454") if loc.nil?
+		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
+		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02453") if loc.nil?
 		return loc
 	end
 
