@@ -1,6 +1,7 @@
 require 'faker'
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
+require_relative 'twinword'
 
 @user_count = User.count
 
@@ -10,33 +11,38 @@ require_relative 'tag_dictionary'
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
 
+@keyword_finder = TwinWord.new
 
 def create_events
 	@manual = false
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
 		title = line["title"]
-		description = get_description(line["content"])
+		description, description_text = get_description(line["content"])#get_description(line["content"])
+		# description_text = Nokogiri::HTML(line["content"]).text
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
 		relevant_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
-		e = Event.find_or_create_by(name: title, description: description, location: location, start: date_time, user: User.first, image_id: image_id)
+		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first, image_id: image_id)
 		create_tags(e) if e.save
 	end
 	@manual = true
 end
 
 def get_description(html)
-	d = Nokogiri::HTML(html)
-	description = ""
-	skip = 3
-	d.xpath("//p").children.each do |line|
-		description << line.text if skip <= 0 && !line.text.blank?
-		description << "\n" if line.name == "br"
-		skip -= 1
-	end
-	description
+	start = html.index "m. "
+	description = html[start+3, html.length]
+	description_text = Nokogiri::HTML(html).text
+	start = description_text.index "m. "
+	description_text = description_text[start+3, description_text.length]
+	# description = ""
+	# skip = 3
+	# d.xpath("//p").children.each do |line|
+	# 	description << line.text if skip <= 0
+	# 	skip -= 1
+	# end
+	return description.html_safe, description_text
 end
 
 def get_location_info(html)
@@ -71,11 +77,14 @@ end
 
 def create_tags(event)
 	description = event.description
+	#without api
 	word_list = get_word_list(description)
 	keywords = keywords_from_word_list(word_list)
-tag_names = look_up(keywords)
+	tag_names = look_up(keywords)
+	#with api
+	#tag_names = @keyword_finder.find(description)
 	tag_names.each do |t|
-		tag = Tag.find_by(name: t.capitalize)
+		tag = Tag.find_or_create_by(name: t.capitalize)
 	 	event.tags << tag unless event.tags.include?(tag)
 		#event.tags.create(name: t.capitalize)
 	end
