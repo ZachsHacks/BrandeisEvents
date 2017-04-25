@@ -9,8 +9,10 @@ class Event < ApplicationRecord
 
     # has_many :tags, :through => :event_tags
     # has_many :event_tags
-    validates :name, presence: true
-    validates :description, presence: true
+    if @manual
+        validates :name, presence: true, length: { maximum: 50 }
+        validates :description, presence: true, length: { minimum: 80 }
+    end
 
     def host
         user
