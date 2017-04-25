@@ -2,9 +2,11 @@ Academic
 Religious
 Political
 Government
-Israel Advocacy
+Israel
 Fun
 Food
+Free
+Drink
 Acapella
 Charity
 Music
@@ -12,24 +14,13 @@ Outdoors
 Indoors
 Holiday
 Health
-Film and Media
+Film
+Media
 Technology
 Science
 Fashion
+Theater
 Arts
 Student Union
-Baseball
-Basketball
-Cross country
-Jumping
-Swimming
-Tennis
-Diving
-Fencing
-Soccer
-Track
-Field
-Running
-Skiing
-Frisbee
 Sports
+Other

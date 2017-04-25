@@ -1,5 +1,5 @@
 <div class="row event_row">
-	<% if @events.size == 0 %>
+	<% if @events.nil? || @events.size == 0 %>
 	<div class=text-center>
 		<h2>There are no events for this category. <br> Please try again later.</h2>
 	</div>

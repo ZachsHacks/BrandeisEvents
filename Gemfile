@@ -18,7 +18,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'crack'
 gem 'typhoeus'
 gem 'nokogiri'
-gem 'wordnik'
+gem 'unirest', '~> 1.1.2'
 
 gem 'related_word'
 gem 'geocoder'
@@ -57,11 +57,17 @@ gem 'figaro'
 
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
-# Use delayed job for running background jobs
-gem 'delayed_job_active_record'
 
+gem 'sidekiq'
+
+# Use Twilio
+gem 'twilio-ruby'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 # Need daemons to start delayed_job
 gem 'daemons'
+# Use workless to use less workers on heroku
+gem "workless", "~> 1.2.2"
 
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'

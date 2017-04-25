@@ -1,15 +1,19 @@
 <div id="event_section">
-    <div class="col-md-12 RSVP_section">
-        <h3 class="section-titles text-center"><%= section_titles[active_tab] %></h3>
-        <% get_events_helper %>
-        <% if @user_events.length != 0%>
-        <% @user_events.each do |e| %>
+	<div class="col-md-12 RSVP_section">
+		<h3 class="section-titles text-center"><%= section_titles[active_tab] %></h3>
+		<% get_events_helper %>
+		<% if @user_events.length != 0%>
 
-        <%= render partial: 'events/list_event', locals: {event: e, col_length: "col-md-3"} %>
-        <% end %>
-    <% else %>
-        <p>You don't have any events. Add some!</p>
-        <% end %>
-    </div>
+		<% @user_events.each do |e| %>
+
+		<%= render partial: 'events/list_event', locals: {event: e, col_length: "col-md-3"} %>
+		<% end %>
+
+		<% else %>
+		<p>You don't have any events. Add some!</p>
+		<% end %>
+
+			
+	</div>
 
 </div>

@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in?
-  load_and_authorize_resource
-
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  #load_and_authorize_resource
 
 
   def get_events
@@ -28,6 +21,9 @@ class UsersController < ApplicationController
 
   def creation_form
     @user = User.find(params[:id])
+    if @user != current_user
+        redirect_to root_path
+    end
   end
 
   # GET /users/new
@@ -48,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to  new_account_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

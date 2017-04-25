@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414220755) do
+ActiveRecord::Schema.define(version: 20170425174154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170414220755) do
     t.string   "event_image_content_type"
     t.integer  "event_image_file_size"
     t.datetime "event_image_updated_at"
+    t.string   "description_text"
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
@@ -85,24 +86,25 @@ ActiveRecord::Schema.define(version: 20170414220755) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",                   null: false
-    t.string   "uid",                        null: false
+    t.string   "provider",                        null: false
+    t.string   "uid",                             null: false
     t.string   "location"
     t.string   "image_url"
     t.string   "url"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "last_name"
     t.string   "first_name"
     t.string   "email"
     t.text     "bio"
-    t.boolean  "can_host",   default: false
-    t.boolean  "is_admin",   default: false
+    t.boolean  "can_host",        default: false
+    t.boolean  "is_admin",        default: false
     t.string   "phone"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
+    t.integer  "recommendations", default: [],                 array: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
     t.index ["provider"], name: "index_users_on_provider", using: :btree
     t.index ["uid"], name: "index_users_on_uid", using: :btree
