@@ -1,5 +1,10 @@
 RailsAdmin.config do |config|
 
+  # config.authorize_with do
+  #
+  #   current_user = User.find(:id)
+  #   redirect_to main_app.root_path unless current_user.is_admin?
+  # end
   config.authorize_with :cancan
 
   ### Popular gems integration

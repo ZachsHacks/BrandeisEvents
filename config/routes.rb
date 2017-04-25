@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :events
   resources :users, :except => :index
   get '/', to: 'events#home'
-  # get '/events/new', to: 'event#new'
+  get '/events/new', to: 'event#new'
   get '/login', to: 'sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

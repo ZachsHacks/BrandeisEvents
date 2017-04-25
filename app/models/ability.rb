@@ -3,14 +3,23 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-    #
+
       user ||= User.new # guest user (not logged in)
-      #can :read, :all
+      can :read, :all
+      #############################
+      #this is where I put the statements that allow us to use the admin dashboard
+      # to make sure they did what I thought they should
+      #can :access, :rails_admin
+      #can :dashboard
+
       if user.is_admin?
+
         can :manage, :all
         can :read, :all
-        can :access, :rails_admin   # grant access to rails_admin
-        can :dashboard              # grant access to the dashboard
+        #these two below are the ones that allow us to use the admin dashboard where they should be
+        can :access, :rails_admin
+        can :dashboard
+        ########################################
       elsif user.can_host?
         can :read, :all
         can :create, Event
@@ -20,9 +29,13 @@ class Ability
         can :destroy, Event do |event|
           event.user == user
         end
+        byebug
       else
         can :read, :all
         can :update, User do |u|
+          u.user == user
+        end
+        can :edit, User do |u|
           u.user == user
         end
       end
