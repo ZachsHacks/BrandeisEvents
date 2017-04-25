@@ -19,7 +19,7 @@ module EventsHelper
 		string = ''
 		string << "<div class='#{col_length} portfolio-item'>"
 		string <<  event_image(event)
-		string << "<h4> <a href='#{event_path(event.id)}'> #{event.name}</a></h4>"
+		string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, :length => 50}</a></h4>"
 		string << "<p>#{truncate event.description, :length => 100}</p>"
 		string << start_time(event) + location(event)
 		# string << '</div>'
