@@ -61,11 +61,7 @@ class Event < ApplicationRecord
 	        end
 	    end
 
-    def self.all_current_locations
-        all.pluck(:location)
-    end
-
-    def count_words(string, substring)
-        string.scan(/(?=#{substring})/).count
-    end
+		def description_plain_text
+			Nokogiri::HTML(self.description).text
+		end
 end

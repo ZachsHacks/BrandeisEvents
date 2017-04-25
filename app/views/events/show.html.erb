@@ -3,10 +3,11 @@
 <div class="container">
 	<div class="row">
 		<% if @event.start < Time.now %>
-			<div class="alert alert-warning">
- <strong>This event has already taken place!</strong> Please view upcoming events <%= link_to "Here", events_path %>
- </div>
-<% end %>
+		<div class="alert alert-warning">
+			<strong>This event has already taken place!</strong> Please view upcoming events <%= link_to "Here", events_path %>
+		</div>
+		<% end %>
+
 		<div class="col-md-8">
 			<% if @event.event_image_file_name.nil? %>
 
@@ -15,8 +16,9 @@
 			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 			<% end %>
 		</div>
+
 		<div class="col-md-4">
-			<h3><%= @event.name%></h3>
+			<h2><%= @event.name%></h2>
 			<p id="host">by <%= @event.host.name%></p>
 			<div class="travel_times">
 				<p><%= fa_icon "car", style:"margin-right: 2px" %>  <%= time_to_destination(@current_address, 	@address, {mode: "car"})%></p>
@@ -34,61 +36,57 @@
 			<%else%>
 			<div class="center-block" role="group" aria-label="...">
 				<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
-				<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
-					<p>
-					<%=button_to "Login", get_url, class: button_color%>
-					to RSVP to this event!</p>
+					<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
+						<p>
+							<%=button_to "Login", get_url, class: button_color%>
+							to RSVP to this event!</p>
+						</div>
+					</div>
+					<%end%>
+
+
 				</div>
 			</div>
-			<%end%>
+
+			<div class="row main_body">
+				<div class="col-md-2">
+
+					<%= sidebar_individual_event %>
+
+				</div>
+				<div class="col-md-10 event-description">
+					<% if !@event.description.nil? %>
+					<%= @event.description.html_safe %>
+					<% else %>
+					<%= "This event has no description." %>
+					<% end %>
+
+					<div class="row tags-section">
+						<!-- <h4>Tags</h4> -->
+
+						<% @event.tags.each do |tag| %>
+						<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
+
+						<% end %>
+					</div>
+
+				</div>
 
 
-		</div>
-	</div>
-	<div class="row">
-		<%= content %>
-
-	</div>
-
-	<div class="row main_body">
-		<div class="col-md-2">
-
-			<%= sidebar_individual_event %>
-
-		</div>
-		<div class="col-md-10 event-description">
-			<% if !@event.description.nil? %>
-			<%= @event.description.html_safe %>
-			<% else %>
-			<%= "This event has no description." %>
-			<% end %>
-
-			<div class="row tags-section">
-				<!-- <h4>Tags</h4> -->
-
-				<% @event.tags.each do |tag| %>
-				<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
-
-				<% end %>
+				<!-- <p>Longitude:  <%= 		@current_latitude %></p>
+				<p>Lagitude: <%= 		@current_longitude %></p> -->
 			</div>
-
 		</div>
+		<!-- <div class="row">
+		<div class="col-md-12"> -->
+		<div id="map" style='width: 100%; height: 250px;'></div>
+		<!-- </div>
+	</div> -->
 
-
-		<!-- <p>Longitude:  <%= 		@current_latitude %></p>
-		<p>Lagitude: <%= 		@current_longitude %></p> -->
-	</div>
-</div>
-<!-- <div class="row">
-<div class="col-md-12"> -->
-<div id="map" style='width: 100%; height: 250px;'></div>
-<!-- </div>
-</div> -->
-
-<% if is_host %>
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
-<% end %>
+	<% if is_host %>
+	<%= link_to 'Edit', edit_event_path(@event) %> |
+	<%= link_to 'Back', events_path %>
+	<% end %>
 
 </div>
 

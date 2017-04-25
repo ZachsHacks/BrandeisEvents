@@ -21,7 +21,7 @@ module EventsHelper
 		string <<  event_image(event)
 		string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, :length => 50}</a></h4>"
 		string << list_tags(event)
-		string << "<p>#{truncate event.description, :length => 100}</p>"
+		string << "<p>#{(truncate event.description_text, :length => 100)}</p>"
 		string << start_time(event) + location(event)
 		# string << '</div>'
 		string.html_safe

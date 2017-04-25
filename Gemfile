@@ -18,7 +18,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'crack'
 gem 'typhoeus'
 gem 'nokogiri'
-gem 'wordnik'
+gem 'unirest', '~> 1.1.2'
 
 gem 'related_word'
 gem 'geocoder'
