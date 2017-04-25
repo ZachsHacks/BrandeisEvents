@@ -3,12 +3,12 @@ require 'nokogiri'
 module EventsHelper
 	def top_image_text
 		s=""
-		if params[:date] != ""
+		if params[:date] && params[:date] != ""
 			# byebug
 			s<< "#{params[:date].titleize}'s Events"
 		elsif params[:tag]
 			s<< "Category: #{Tag.find(params[:tag]).name.titleize}"
-		elsif params[:location] != "all"
+		elsif params[:location] && params[:location] != "all"
 			s<< "#{params[:location].titleize}"
 		else
 			s<< "All Events"

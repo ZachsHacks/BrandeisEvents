@@ -22,34 +22,6 @@ class RsvpsController < ApplicationController
   def edit
   end
 
-  # POST /rsvps
-  # POST /rsvps.json
-  def create
-    @event = rsvp_params[:event_id]
-    @rsvps = current_user.rsvps
-
-    if has_rsvp?
-      if @preexisting.choice == rsvp_params[:choice].to_i
-        @preexisting.delete
-      else
-        @preexisting.update(rsvp_params)
-      end
-      redirect_to @preexisting.event
-      return
-    end
-
-    @rsvp = Rsvp.new(rsvp_params)
-    respond_to do |format|
-      if @rsvp.save
-        format.html { redirect_to @rsvp.event, notice: 'Rsvp was successfully created.' }
-        format.json { render :show, status: :created, location: @rsvp }
-      else
-        format.html { render :new }
-        format.json { render json: @rsvp.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def rsvp
     @event = Event.find(rsvp_params[:event_id])
     @event_id = @event.id
@@ -65,6 +37,7 @@ class RsvpsController < ApplicationController
     else
       Rsvp.create(rsvp_params)
     end
+    current_user.delay.get_recommendations
 
     @active_tab = rsvp_params[:choice].to_i - 1
 

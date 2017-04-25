@@ -58,6 +58,8 @@ gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
+gem 'sidekiq'
+
 # Use Twilio
 gem 'twilio-ruby'
 gem 'delayed_job'
