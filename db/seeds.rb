@@ -12,6 +12,7 @@ require_relative 'tag_dictionary'
 
 
 def create_events
+	@manual = false
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
 		title = line["title"]
@@ -23,7 +24,7 @@ def create_events
 		e = Event.find_or_create_by(name: title, description: description, location: location, start: date_time, user: User.first, image_id: image_id)
 		create_tags(e) if e.save
 	end
-
+	@manual = true
 end
 
 def get_description(html)
