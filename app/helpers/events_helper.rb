@@ -20,10 +20,28 @@ module EventsHelper
 		string << "<div class='#{col_length} portfolio-item'>"
 		string <<  event_image(event)
 		string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, :length => 50}</a></h4>"
+		string << list_tags(event)
 		string << "<p>#{truncate event.description, :length => 100}</p>"
 		string << start_time(event) + location(event)
 		# string << '</div>'
 		string.html_safe
+	end
+
+	def list_tags(e)
+		string = "<div class='text-left'>"
+		icon = "<span class='glyphicon glyphicon-tags' class='col-md-2'></span>"
+		string << "<p>#{icon} #{top_tags(e)} </p>"
+		string << "</div>"
+	end
+
+	def top_tags(e)
+		tags = e.tags.pluck(:name).sort
+		if tags.count >= 3
+			return "#{tags[0]}, #{tags[1]}, #{tags[2]}"
+		elsif tags.count == 2
+			return "#{tags[0]}, #{tags[1]}"
+		else tags[0]
+		end
 	end
 
 	def event_image(event)
