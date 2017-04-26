@@ -1,7 +1,6 @@
 module UsersHelper
 
     def get_events_helper
-        # byebug
         @user_events = case @active_tab
         when 0
             map_to_events current_user.rsvps.select {|r| r.choice == 1}
