@@ -20,6 +20,7 @@ gem 'typhoeus'
 gem 'nokogiri'
 gem 'unirest', '~> 1.1.2'
 
+
 gem 'related_word'
 gem 'geocoder'
 gem 'google_directions', '~> 0.1.6.2'

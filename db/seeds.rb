@@ -31,8 +31,8 @@ def create_events
 end
 
 def get_description(html)
-	start = html.index "m. "
-	description = html[start+3, html.length]
+	start = html.index "br"
+	description = html[start+9, html.length]
 	description_text = Nokogiri::HTML(html).text
 	start = description_text.index "m. "
 	description_text = description_text[start+3, description_text.length]
@@ -68,6 +68,7 @@ end
 
 def create_default_tags
 	File.open("db/seeds/tags.txt").each do |tag|
+
 		tag = tag.gsub("\t", "")
 		tag = tag.gsub("\n", "")
 		Tag.find_or_create_by(name: tag)
