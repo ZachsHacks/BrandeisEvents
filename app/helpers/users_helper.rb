@@ -1,15 +1,20 @@
 module UsersHelper
 
     def get_events_helper
+        # byebug
         @user_events = case @active_tab
         when 0
             map_to_events current_user.rsvps.select {|r| r.choice == 1}
         when 1
             map_to_events current_user.rsvps.select {|r| r.choice == 2}
-        else recommendations
+        else current_user.recommendations.map { |e| Event.find(e) }
         end
 
-        @user_events = @user_events.sort_by { |e| e.start  }#.paginate(page: params[:page], per_page: 8)
+        if @user_events.nil?
+            @user_events = []
+        end
+
+        @user_events = @user_events.sort_by { |e| e.start  }.paginate(page: params[:page], per_page: 8)
     end
 
     def map_to_events rsvps

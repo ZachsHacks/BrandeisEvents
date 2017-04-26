@@ -9,8 +9,10 @@ class Event < ApplicationRecord
 
     # has_many :tags, :through => :event_tags
     # has_many :event_tags
-    validates :name, presence: true, length: { maximum: 50 }
-    validates :description, presence: true, length: { minimum: 80 }
+    if @manual
+        validates :name, presence: true, length: { maximum: 50 }
+        validates :description, presence: true, length: { minimum: 80 }
+    end
 
     def host
         user
@@ -59,11 +61,7 @@ class Event < ApplicationRecord
 	        end
 	    end
 
-    def self.all_current_locations
-        all.pluck(:location)
-    end
-
-    def count_words(string, substring)
-        string.scan(/(?=#{substring})/).count
-    end
+		def description_plain_text
+			Nokogiri::HTML(self.description).text
+		end
 end
