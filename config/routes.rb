@@ -11,13 +11,14 @@ Rails.application.routes.draw do
   resources :events
   resources :users, :except => :index
   get '/', to: 'events#home'
-  get '/events/new', to: 'event#new'
+  get '/events/new', to: 'events#new'
   get '/login', to: 'sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
   get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
+  get '/top_events_json', to: 'events#top_events', :defaults => { :format => :json }
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all

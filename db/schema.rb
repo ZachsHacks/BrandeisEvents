@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170426201812) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "events_count", default: 0
+    t.string   "image"
   end
 
   create_table "users", force: :cascade do |t|

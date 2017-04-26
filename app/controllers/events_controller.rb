@@ -29,15 +29,12 @@ class EventsController < ApplicationController
 	end
 
 	def home
-		@items = Event.all.pluck(:name)
-		@top_events =  Event.joins(:rsvps).order('choice desc')
+		#need caching
+		all_events = Event.all
+		@items = all_events.pluck(:name)
+		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(4).reverse
 		@locations = Location.all.pluck(:name)#grab_locations
-		@top_tags = Tag.all.sort_by {|t| t.events.count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
-
-		if 	@top_events.count < 4
-			@top_events = Event.all
-		end
-		@top_events = @top_events[0,4]
+		@top_tags = Tag.all.sort_by {|t| t.events_count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
 
 	end
 	# GET /events/1
@@ -61,6 +58,16 @@ class EventsController < ApplicationController
 		@current_address = Geocoder.search(geo_localization).first.address
 
 		@address = "#{@event.location}, Brandeis University, Waltham, MA, 02453"
+	end
+
+	def top_events
+		@top_events =  Event.all.sort_by{|e| e.rsvps_count}.last(10).reverse
+
+		respond_to do |format|
+    format.html{}
+    format.json{
+			 render json: @top_events.to_json}
+  end
 	end
 
 	# GET /events/new

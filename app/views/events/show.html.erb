@@ -1,5 +1,4 @@
 
-<%= render "layouts/header" %>
 <div class="container">
 	<div class="row">
 		<% if @event.start < Time.now %>
@@ -51,7 +50,7 @@
 		</div>
 
 			<div class="row main_body">
-				<div class="col-md-2">
+				<div class="col-md-2 individual_event_sidebar">
 
 					<%= sidebar_individual_event %>
 
@@ -63,15 +62,15 @@
 					<%= "This event has no description." %>
 					<% end %>
 
-					<div class="row tags-section">
-						<!-- <h4>Tags</h4> -->
 
-						<% @event.tags.each do |tag| %>
-						<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
+				</div>
+				<div class="row tags-section">
+					<!-- <h4>Tags</h4> -->
 
-						<% end %>
-					</div>
+					<% @event.tags.each do |tag| %>
+					<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
 
+					<% end %>
 				</div>
 
 
@@ -81,7 +80,7 @@
 		</div>
 		<!-- <div class="row">
 		<div class="col-md-12"> -->
-		<div id="map" style='width: 100%; height: 250px;'></div>
+		<div id="map" style='width: 100%; height: 200px;'></div>
 		<!-- </div>
 	</div> -->
 
@@ -112,7 +111,6 @@ function(){
 		{
 			"lat": <%=@location[0]%>,
 			"lng": <%=@location[1]%>,
-			zoom: 4,
 			"picture": {
 				// https://groups.google.com/forum/#!msg/Google-Maps-API/2k3T5hwI5Ck/RRso0D2jB1oJ
 				"url": "http://maps.google.com/mapfiles/ms/icons/red.png",
@@ -125,7 +123,7 @@ function(){
 	handler.bounds.extendWith(markers);
 
 	handler.fitMapToBounds();
-	handler.getMap().setZoom(18)
+	handler.getMap().setZoom(16)
 	infowindow.open(Gmaps.map.map, marker.serviceObject);
 
 }
