@@ -24,18 +24,18 @@ class Ability
           event.user == user
         end
         can :update, User do |u|
-          u.user == user
+          u == user
         end
         can :edit, User do |u|
-          u.user == user
+          u == user
         end
       else
         can :read, :all
         can :update, User do |u|
-          u.user == user
+          u == user
         end
         can :edit, User do |u|
-          u.user == user
+          u == user
         end
       end
   end
