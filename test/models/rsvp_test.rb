@@ -14,4 +14,29 @@ class RsvpTest < ActiveSupport::TestCase
 		end
 	end
 
+	test "users can Un-RSVP to an event" do
+		@user.rsvps.destroy_all
+		@user.rsvps.create(event_id: Event.ids.sample, choice: 1)
+		assert_difference('Rsvp.count', -1) do
+			# byebug
+			@user.rsvps.last.destroy
+		end
+	end
+
+	test "users can change from RSVP to interested" do
+		@user.rsvps.destroy_all
+		@user.rsvps.create(event_id: Event.ids.sample, choice: 1)
+		assert_difference('@user.rsvps.select {|r| r.choice ==1}.count', -1) do
+			@user.rsvps.last.choice = 2
+		end
+	end
+
+	test "users can change from Interested to RSVPS" do
+		@user.rsvps.destroy_all
+		@user.rsvps.create(event_id: Event.ids.sample, choice: 2)
+		assert_difference('@user.rsvps.select {|r| r.choice ==2}.count', -1) do
+			@user.rsvps.last.choice = 1
+		end
+	end
+
 end
