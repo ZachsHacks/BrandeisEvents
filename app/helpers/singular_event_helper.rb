@@ -11,7 +11,7 @@ module SingularEventHelper
 
 
 	def sidebar_individual_event
-		return_string = "<br><br>"
+		return_string = ""
 		return_string << sidebar_individual_date(@event) +  sidebar_individual_locations(@event) + sidebar_individual_price(@event)
 		return_string.html_safe
 	end

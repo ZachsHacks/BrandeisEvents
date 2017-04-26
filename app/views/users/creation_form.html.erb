@@ -16,44 +16,50 @@
     </div>
   <% end %>
 
-  <input type="checkbox" id="trigger" name="question">  Subscribe to text message alerts for events
+  <h5 ><input type="checkbox" id="trigger" name="question">  Subscribe to text message alerts for events</h5></input>
 
-
-      <div class="field" id="hidden_fields">
+    <div class="form-group" id="hidden_fields">
         <%= f.label :Phone_Number %>
-        <%= f.text_field :phone %>
+        <%= f.text_field :phone, class: "form-control" %>
     </div>
 
 
   <div class="field">
     <%= f.label :street %>
-    <%= f.text_field :street %>
+    <%= f.text_field :street, class: "form-control"  %>
   </div>
 
 
   <div class="field">
     <%= f.label :city %>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, class: "form-control"  %>
   </div>
 
   <div class="field">
     <%= f.label :state %>
-    <%= f.text_field :state %>
+    <%= f.text_field :state, class: "form-control"  %>
   </div>
 
   <div class="field">
     <%= f.label :zip_code %>
-    <%= f.text_field :zip_code %>
+    <%= f.text_field :zip_code, class: "form-control"  %>
   </div>
 
 
 
+  <div class="row tags-section-user">
+    <!-- <h4>Tags</h4> -->
 
+    <% Tag.all.each do |tag| %>
+    <%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags-user-page" , :method => :get%>
+
+    <% end %>
+  </div>
 
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default btn-transparent btn-submit-user"%>
   </div>
 <% end %>
 
