@@ -1,6 +1,23 @@
 class InterestsController < ApplicationController
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
 
+  def add_interest
+    @tag = Tag.find(params[:tag_id])
+    @tag_id = @tag.id
+    @preexisting = current_user.interests.find_by(tag_id: @tag_id)
+
+    if @preexisting.nil?
+        Interest.create(user: current_user, tag: @tag)
+    else
+        @preexisting.delete
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
   # GET /interests
   # GET /interests.json
   def index
