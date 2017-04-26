@@ -119,6 +119,7 @@ GEM
       excon (~> 0.45)
       multi_json (~> 1.8)
     i18n (0.8.1)
+    icalendar (2.4.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -332,6 +333,7 @@ DEPENDENCIES
   google_directions (~> 0.1.6.2)
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
+  icalendar
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
