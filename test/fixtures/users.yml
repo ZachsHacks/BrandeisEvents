@@ -9,6 +9,24 @@ host:
   can_host: true
   is_admin: false
 
+host2:
+  provider: google
+  first_name: Example3
+  last_name: User3
+  uid: zweiss3
+  email: user3@example.com
+  can_host: true
+  is_admin: false
+
+admin:
+  provider: google2
+  first_name: Example2
+  last_name: User2
+  uid: hstusnick
+  email: user2@example.com
+  can_host: true
+  is_admin: true
+
 two:
   provider: google1
   first_name: Example1
