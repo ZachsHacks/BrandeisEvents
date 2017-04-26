@@ -1,4 +1,4 @@
-<%= render "layouts/header" %>
+
 
 
 <div class="section large transparent dark text-center slider">
@@ -16,18 +16,18 @@
 
 <!-- Projects Row -->
 <section class="your-events-section">
-<div class="container ">
-	<h3 class="text-center">Events for you</h3>
-	<hr>
-	<div class="col-md-12">
-		<div class="row event_row">
-			<% @top_events.each do |event| %>
-			<%= render partial: 'list_event', locals: {event: event, col_length: "col-md-3"} %>
-			<% end %>
+	<div class="container ">
+		<h3 class="text-center">Events for you</h3>
+		<hr>
+		<div class="col-md-12">
+			<div class="row event_row">
+				<% @top_events.each do |event| %>
+				<%= render partial: 'list_event', locals: {event: event, col_length: "col-md-3"} %>
+				<% end %>
+			</div>
 		</div>
-	</div>
 
-</div>
+	</div>
 </div>
 </section>
 
@@ -126,7 +126,7 @@
 
 			<!-- end .row -->
 			<div class="text-center">
-				 <%= button_to "All Events", events_path, class: "btn btn-default btn-transparent", :method => "get"  %>
+				<%= button_to "All Events", events_path, class: "btn btn-default btn-transparent", :method => "get"  %>
 			</div>
 			<!-- end .text-center -->
 
@@ -162,54 +162,56 @@
 
 	<script type="text/javascript">
 
-		var j = jQuery.noConflict();
+	var j = jQuery.noConflict();
 
-		j(document).ready(function () {
+	j(document).ready(function () {
 
-			j('#datetimepicker1').datetimepicker();
+		j('#datetimepicker1').datetimepicker({
+			format: 'MM/DD/YYYY'
+		});
 
-		})
+	})
 	</script>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-		$(function () {
-			var availableTags = <%=raw @items%>;
-			$("#search-complete").autocomplete({source: availableTags});
-		});
+	$(function () {
+		var availableTags = <%=raw @items%>;
+		$("#search-complete").autocomplete({source: availableTags});
+	});
 
-		$(function () {
-			var availableTags = <%=raw @locations%>;
-			$("#location").autocomplete({source: availableTags});
-		});
+	$(function () {
+		var availableTags = <%=raw @locations%>;
+		$("#location").autocomplete({source: availableTags});
+	});
 	</script>
 
 
 
 	<script>
-		$(document).ready(function () {
+	$(document).ready(function () {
 
-			$('ul a').click(function () {
-				var $anchor = $(this);
+		$('ul a').click(function () {
+			var $anchor = $(this);
 
-				$('html, body').animate({
-					scrollTop: $($anchor.attr('href')).offset().top
-				}, 2000);
-				return false;
-				helpers : {}
-			});
+			$('html, body').animate({
+				scrollTop: $($anchor.attr('href')).offset().top
+			}, 2000);
+			return false;
+			helpers : {}
 		});
+	});
 	</script>
-<script>
-//for automatic loading since block of next code is only for scrolling
-$(document).ready(function(){
-$('#nav').removeClass('navbar-default');
-$('#nav').addClass('navbar-transparent');
-$('#logo_scrolling').addClass('hidden');
-});
-</script>
+	<script>
+	//for automatic loading since block of next code is only for scrolling
+	$(document).ready(function(){
+		$('#nav').removeClass('navbar-default');
+		$('#nav').addClass('navbar-transparent');
+		$('#logo_scrolling').addClass('hidden');
+	});
+	</script>
 	<script>
 
 	window.onscroll = function () {
@@ -229,6 +231,6 @@ $('#logo_scrolling').addClass('hidden');
 			logo.classList.remove("hidden");
 		}
 	}
-</script>
+	</script>
 
-</html>
+	</html>

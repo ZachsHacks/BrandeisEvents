@@ -22,7 +22,6 @@ def create_events
 		# description_text = Nokogiri::HTML(line["content"]).text
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
-		relevant_website = line["gc:weblink"]
 		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
 		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first, image_id: image_id)
 		create_tags(e) if e.save
