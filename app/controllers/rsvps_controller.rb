@@ -43,6 +43,7 @@ class RsvpsController < ApplicationController
     respond_to do |format|
       format.js
     end
+    
   end
 
   def has_rsvp?

@@ -24,7 +24,7 @@ module RsvpsHelper
     end
   end
 
-  def button_color
+  def rsvp_button_color
     if @selected
       'btn btn-primary'
     else
