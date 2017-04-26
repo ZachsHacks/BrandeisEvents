@@ -68,11 +68,12 @@ class EventsController < ApplicationController
 	def new
 		@event = Event.new
 		@tags = ["religious", "clubs", "food", "academic", "sports"]
+		authorize! :new, @event
 	end
 
 	# GET /events/1/edit
 	def edit
-
+		authorize! :edit
 	end
 
 	# POST /events
@@ -82,7 +83,7 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		@event.host = current_user
 		@presenter = EventPresenter.new(@event)
-
+		authorize! :create, @event
 		respond_to do |format|
 			if @event.save
 				@presenter.create_tags(params)
@@ -98,6 +99,7 @@ class EventsController < ApplicationController
 	# PATCH/PUT /events/1
 	# PATCH/PUT /events/1.json
 	def update
+		authorize! :update
 		respond_to do |format|
 			if @event.update(event_params)
 				@presenter.update_tags(params)
@@ -114,6 +116,7 @@ class EventsController < ApplicationController
 	# DELETE /events/1.json
 	def destroy
 		@event.destroy
+		authorize! :destroy
 		respond_to do |format|
 			format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
 			format.json { head :no_content }
@@ -140,8 +143,8 @@ class EventsController < ApplicationController
 
 	def geolocation
 		loc = []
-		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
-		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02453") if loc.nil?
+		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02454")
+		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02454") if loc.nil?
 		return loc
 	end
 
