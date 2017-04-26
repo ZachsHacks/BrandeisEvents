@@ -24,23 +24,4 @@ class User < ApplicationRecord
         "#{first_name} #{last_name}"
     end
 
-	def get_recommendations
-	  user_events = self.events
-	  recs = []
-
-	  user_events.each do |e|
-		recs << has_common_tag(e)
-	  end
-	  self.update(recommendations: recs.flatten.uniq)
-	end
-	handle_asynchronously :get_recommendations
-
-	def has_common_tag(e)
-	  common_tag = []
-	  e.tags.each do |t|
-		  common_tag << t.events.select { |e| !e.users.include?(self)}.map { |e| e.id }
-	  end
-	  common_tag
-	end
-
 end

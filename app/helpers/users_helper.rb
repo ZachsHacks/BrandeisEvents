@@ -7,7 +7,7 @@ module UsersHelper
             map_to_events current_user.rsvps.select {|r| r.choice == 1}
         when 1
             map_to_events current_user.rsvps.select {|r| r.choice == 2}
-        else current_user.recommendations.map { |e| Event.find(e) }
+        else recommendations
         end
 
         if @user_events.nil?

@@ -37,7 +37,6 @@ class RsvpsController < ApplicationController
     else
       Rsvp.create(rsvp_params)
     end
-    current_user.delay.get_recommendations
 
     @active_tab = rsvp_params[:choice].to_i - 1
 
