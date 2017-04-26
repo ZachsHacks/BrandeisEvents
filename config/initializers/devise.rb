@@ -13,14 +13,17 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.omniauth :saml,
-      idp_cert_fingerprint: 'dd923df70f6e866edceee93b2584a772c9406b29',
+      idp_cert_fingerprint: 'DD:92:3D:F7:0F:6E:86:6E:DC:EE:E9:3B:25:84:A7:72:C9:40:6B:29',
       issuer: 'campusnow.herokuapp.com',
       request_attributes: [
-        { :name => 'mail;eppn', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Email address' },
-        { :name => 'GivenName', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Given name' },
-        { :name => 'sn', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Family name' }
+        { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'Email address' },
+        { :name => 'GivenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'Given name' },
+        { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'Family name' }
     ],
-      idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO'
+      idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
+    #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
+    #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
+      callback_url: 'localhost:3000/users/auth/saml/callback'
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 

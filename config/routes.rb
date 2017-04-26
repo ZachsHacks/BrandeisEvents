@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :interests
   resources :events
   resources :users, :except => :index
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users
   get '/', to: 'events#home'
   # get '/events/new', to: 'event#new'
   get '/login', to: 'sessions#create'
