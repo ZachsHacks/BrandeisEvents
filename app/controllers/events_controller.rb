@@ -32,14 +32,13 @@ class EventsController < ApplicationController
 		@items = Event.all.pluck(:name)
 		@top_events =  Event.joins(:rsvps).order('choice desc')
 		@locations = Location.all.pluck(:name)#grab_locations
+		@top_tags = Tag.all.sort_by {|t| t.events.count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
 
 		if 	@top_events.count < 4
 			@top_events = Event.all
 		end
 		@top_events = @top_events[0,4]
 
-		# @top_tags = Tag.group(:name).order('name DESC').limit(5)
-		@top_tags = Tag.all.limit(4)
 	end
 	# GET /events/1
 	# GET /events/1.json

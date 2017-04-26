@@ -4,7 +4,6 @@ module EventsHelper
 	def top_image_text
 		s=""
 		if params[:date] && params[:date] != ""
-			# byebug
 			s<< "#{params[:date].titleize}'s Events"
 		elsif params[:tag]
 			s<< "Category: #{Tag.find(params[:tag]).name.titleize}"
