@@ -17,13 +17,13 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		if params[:location]
-			@events = Event.where("start > ? AND location LIKE ?", Date.today, params[:location]).paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ? AND location LIKE ?", Time.now, params[:location]).paginate(page: params[:page], per_page: 9)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
 		elsif params[:tag]
 			@events = filter_tags(params[:tag])
 		else
-			@events = Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
 		end
 		grab_locations
 	end
