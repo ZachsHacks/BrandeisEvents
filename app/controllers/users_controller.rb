@@ -34,7 +34,9 @@ class UsersController < ApplicationController
                     # adds hour for now for ending time
                     event.dtend = e.start + 1 * 60 * 60
                     event.summary = e.name
-                    event.uid = event.url = "http://campusnow.herokuapp.com/events#{e.id}"
+                    event.uid = event.url = "http://campusnow.herokuapp.com/events/#{e.id}"
+                    event.location = e.location
+                    event.description = event.description
                     cal.add_event(event)
                       end
                     cal.publish
