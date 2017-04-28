@@ -15,12 +15,12 @@ Devise.setup do |config|
   config.omniauth :saml,
       idp_cert_fingerprint: 'DD:92:3D:F7:0F:6E:86:6E:DC:EE:E9:3B:25:84:A7:72:C9:40:6B:29',
       issuer: 'campusnow.herokuapp.com',
-      request_attributes: [],
-    #     { :name => 'uid', :friendly_name => 'uid' },
-    #     { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'mail' },
-    #     { :name => 'givenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'givenName' },
-    #     { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'sn' }
-    # ],
+      request_attributes: [
+        { :name => 'uid', :friendly_name => 'uid' },
+        { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'mail' },
+        { :name => 'givenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'givenName' },
+        { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'sn' }
+    ],
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
