@@ -36,7 +36,7 @@ class UsersController < ApplicationController
                     event.summary = e.name
                     event.uid = event.url = "http://campusnow.herokuapp.com/events/#{e.id}"
                     event.location = e.location
-                    event.description = e.description
+                    event.description = e.description_text
                     cal.add_event(event)
                       end
                     cal.publish
