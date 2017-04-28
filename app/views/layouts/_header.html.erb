@@ -37,7 +37,7 @@
                                 <li> <%= link_to "Sign out", logout_path %> </li>
                             <% else %>
                                 <li> <%= link_to "Login", get_url %> </li>
-                                <li> <%= link_to "Shibboleth", shibboleth_redirect_path %> </li>
+                                <li> <%= link_to "Shibboleth", user_saml_omniauth_authorize_path %> </li>
                             <% end %>
                         </ul>
                     </div>
