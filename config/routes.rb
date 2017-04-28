@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
   get '/top_events_json', to: 'events#top_events', :defaults => { :format => :json }
 
+  get 'users/:id/to_icalender', to: 'users#to_icalender', as: 'calendar-sync'
+
+
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
