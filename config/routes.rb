@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   resources :interests
   resources :events
   resources :users, :except => :index
-  devise_for :users
+  devise_for :users, :skip => [:omniauth_callbacks]
   get '/', to: 'events#home'
   # get '/events/new', to: 'event#new'
+  get '/shibboleth_redirect' => redirect('https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO')
   get '/login', to: 'sessions#create'
-  post '/users/auth/saml/callback2', to: 'sessions#create'
+  post '/users/auth/saml/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
