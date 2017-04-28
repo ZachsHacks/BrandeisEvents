@@ -21,8 +21,8 @@ Devise.setup do |config|
     #     { :name => 'givenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'givenName' },
     #     { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'sn' }
     # ],
-      idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
-    #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
+    #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
+      idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
       callback_url: 'https://campusnow-shib.herokuapp.com/users/auth/saml/callback2'
 
