@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/', to: 'events#home'
   # get '/events/new', to: 'event#new'
   get '/login', to: 'sessions#create'
-  post '/users/auth/saml/callback2', to: 'sessions#create'
+  get '/users/auth/saml/callback2', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
