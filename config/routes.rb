@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
   get '/users/:id/creation_form' => 'users#creation_form'
+   get '/users/auth/:provider/callback', to: 'sessions#create'
   resources :event_tags
   resources :interests
   resources :events
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   get '/', to: 'events#home'
   # get '/events/new', to: 'event#new'
   get '/login', to: 'sessions#create'
-  get '/users/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
