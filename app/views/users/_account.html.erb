@@ -57,7 +57,7 @@
     <%= f.text_field :zip_code, class: "form-control"  %>
   </div>
 
-  <%= link_to("Subscribe to Calendar", "webcal://campusnow.herokuapp.com/#{current_user.id}/calendar-sync", :class=>"btn btn-default btn-transparent btn-submit-user submit-bring-way-down" ) %>
+  <%= link_to("Subscribe to Calendar", "webcal://campusnow.herokuapp.com/users/#{current_user.id}/calendar-sync", :class=>"btn btn-default btn-transparent btn-submit-user submit-bring-way-down" ) %>
 
   <div class="actions">
     <%= f.submit class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
