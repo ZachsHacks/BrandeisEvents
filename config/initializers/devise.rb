@@ -17,9 +17,9 @@ Devise.setup do |config|
       issuer: 'campusnow.herokuapp.com',
       request_attributes: [
         { :name => 'uid', :friendly_name => 'uid' },
-        { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'email address' },
-        { :name => 'givenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'given name' },
-        { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'family name' }
+        { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'mail' },
+        { :name => 'givenName', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'givenName' },
+        { :name => 'sn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'sn' }
     ],
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
