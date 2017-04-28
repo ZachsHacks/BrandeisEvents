@@ -173,7 +173,7 @@ class EventsController < ApplicationController
 			return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.end_of_month)}.paginate(page: params[:page], per_page: 9)
 		end
 
-		return Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)
+		return Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)
 	end
 
 end
