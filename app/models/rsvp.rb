@@ -1,7 +1,7 @@
 require 'twilio-ruby'
 class Rsvp < ApplicationRecord
 	belongs_to :user
-	belongs_to :event
+	belongs_to :event, counter_cache: :rsvps_count
 	validates :user_id, :uniqueness => { :scope => :event_id}
 
 	 after_create :reminder

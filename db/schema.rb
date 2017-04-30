@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414220755) do
+ActiveRecord::Schema.define(version: 20170426201812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,14 +45,16 @@ ActiveRecord::Schema.define(version: 20170414220755) do
     t.datetime "start"
     t.datetime "end"
     t.integer  "price"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "user_id"
     t.string   "image_id"
     t.string   "event_image_file_name"
     t.string   "event_image_content_type"
     t.integer  "event_image_file_size"
     t.datetime "event_image_updated_at"
+    t.string   "description_text"
+    t.integer  "rsvps_count",              default: 0
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
@@ -80,8 +82,10 @@ ActiveRecord::Schema.define(version: 20170414220755) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "image"
+    t.integer  "events_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|

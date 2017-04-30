@@ -42,7 +42,7 @@ min-height: 40px;
 }
 
 .tags-section{
-  padding-bottom: 20px;
+  // padding-bottom: 40px;
 }
 .event-top-image{
   width: 750px;
@@ -64,12 +64,14 @@ min-height: 40px;
 .top-caption h1{
   color: #fff;
   font-size: 55px;
+  letter-spacing: 2px;
 }
 
 .event-description{
   line-height: 30px;
   font-family: 'Open Sans', sans-serif;
   padding-bottom: 20px;
+  padding-top:20px;
 
 }
 
@@ -82,7 +84,7 @@ min-height: 40px;
   margin-top: 20px;
   border-right: 1px solid #eee;
 }
-// 
+//
 // .rsvp_buttons{
 //
 //   position: absolute;

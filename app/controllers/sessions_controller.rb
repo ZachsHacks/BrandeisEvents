@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :store_location
+	skip_before_action :store_location
+
 
   def create
     begin
@@ -14,11 +15,11 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
-    if current_user
-      session.delete(:user_id)
-      flash[:success] = 'See you!'
-    end
-    redirect_back_or root_path
-  end
+	def destroy
+		if current_user
+			session.delete(:user_id)
+			flash[:success] = 'See you!'
+		end
+		redirect_back_or root_path
+	end
 end

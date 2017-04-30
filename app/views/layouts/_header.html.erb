@@ -14,7 +14,8 @@
                     <!-- Collection of nav links and other content for toggling -->
 
                     <div id="navbarCollapse" class="collapse navbar-collapse">
-											<%= link_to image_tag("https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Brandeis_University_seal.svg/1024px-Brandeis_University_seal.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%>
+                                            <!-- <%= link_to image_tag("Brandeis_seal_white.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%> -->
+                                            <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand'%>
 											<%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -33,11 +34,10 @@
                             <% else %>
                             <% end %>
                             <% if logged_in? %>
-                                <li> <%= link_to "Your Events", current_user%> </li>
+                                <li> <%= link_to "Dashboard", current_user%> </li>
                                 <li> <%= link_to "Sign out", logout_path %> </li>
                             <% else %>
-                                <li> <%= link_to "Login", get_url %> </li>
-                                <li> <%= link_to "Shibboleth", user_saml_omniauth_authorize_path %> </li>
+                                <li> <%= link_to "Login", user_saml_omniauth_authorize_path %> </li>
                             <% end %>
                         </ul>
                     </div>

@@ -17,29 +17,25 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		if params[:location]
-			@events = Event.where("start > ? AND location LIKE ?", Date.today, params[:location]).paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ? AND location LIKE ?", Time.now, params[:location]).paginate(page: params[:page], per_page: 9)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
 		elsif params[:tag]
 			@events = filter_tags(params[:tag])
 		else
-			@events = Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
 		end
 		grab_locations
 	end
 
 	def home
-		@items = Event.all.pluck(:name)
-		@top_events =  Event.joins(:rsvps).order('choice desc')
+		#need caching
+		all_events = Event.all
+		@items = all_events.pluck(:name)
+		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(4).reverse
 		@locations = Location.all.pluck(:name)#grab_locations
+		@top_tags = Tag.all.sort_by {|t| t.events_count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
 
-		if 	@top_events.count < 4
-			@top_events = Event.all
-		end
-		@top_events = @top_events[0,4]
-
-		# @top_tags = Tag.group(:name).order('name DESC').limit(5)
-		@top_tags = Tag.all.limit(4)
 	end
 	# GET /events/1
 	# GET /events/1.json
@@ -64,15 +60,26 @@ class EventsController < ApplicationController
 		@address = "#{@event.location}, Brandeis University, Waltham, MA, 02453"
 	end
 
+	def top_events
+		@top_events =  Event.all.sort_by{|e| e.rsvps_count}.last(10).reverse.map {|e| [e.name, e.start, e.location]}
+
+		respond_to do |format|
+    format.html{}
+    format.json{
+			 render json: @top_events.to_json}
+  end
+	end
+
 	# GET /events/new
 	def new
 		@event = Event.new
 		@tags = ["religious", "clubs", "food", "academic", "sports"]
+		authorize! :new, @event
 	end
 
 	# GET /events/1/edit
 	def edit
-
+		authorize! :edit
 	end
 
 	# POST /events
@@ -82,7 +89,7 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		@event.host = current_user
 		@presenter = EventPresenter.new(@event)
-
+		authorize! :create, @event
 		respond_to do |format|
 			if @event.save
 				@presenter.create_tags(params)
@@ -98,6 +105,7 @@ class EventsController < ApplicationController
 	# PATCH/PUT /events/1
 	# PATCH/PUT /events/1.json
 	def update
+		authorize! :update
 		respond_to do |format|
 			if @event.update(event_params)
 				@presenter.update_tags(params)
@@ -114,6 +122,7 @@ class EventsController < ApplicationController
 	# DELETE /events/1.json
 	def destroy
 		@event.destroy
+		authorize! :destroy
 		respond_to do |format|
 			format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
 			format.json { head :no_content }
@@ -140,8 +149,8 @@ class EventsController < ApplicationController
 
 	def geolocation
 		loc = []
-		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02454")
-		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02454") if loc.nil?
+		loc = Geocoder.coordinates("#{@event.location}, Brandeis University, Waltham, MA, 02453")
+		loc = Geocoder.coordinates("Brandeis University, Waltham, MA, 02453") if loc.nil?
 		return loc
 	end
 
@@ -164,7 +173,7 @@ class EventsController < ApplicationController
 			return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.end_of_month)}.paginate(page: params[:page], per_page: 9)
 		end
 
-		return Event.where("start > ?", Date.today).paginate(page: params[:page], per_page: 9)
+		return Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)
 	end
 
 end

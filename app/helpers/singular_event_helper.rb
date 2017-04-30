@@ -1,16 +1,5 @@
 module SingularEventHelper
 
-	def content
-		content_string = title
-		content_string.html_safe
-	end
-
-	def title
-		<<-eos
-
-		eos
-
-	end
 	def description
 		return_string = <<-eos
 		<div class="col-md-10">
@@ -22,24 +11,23 @@ module SingularEventHelper
 
 
 	def sidebar_individual_event
-
-		return_string =
-		sidebar_individual_date(@event) +  sidebar_individual_locations(@event) + sidebar_individual_price(@event)
+		return_string = ""
+		return_string << sidebar_individual_date(@event) +  sidebar_individual_locations(@event) + sidebar_individual_price(@event)
 		return_string.html_safe
 	end
 
 
 	def sidebar_individual_date(event)
 		<<-eos
-		<h4>Dates</h4>
+		<h3>Date and Time</h3>
 		<div id="column_results">
-		<p>#{event.start.strftime("%a %B %d %I:%M ") } </p>
+		<p>#{event.start.strftime("%A, %B %e at %l:%M %P") }</p>
 		</div>
 		eos
 	end
 	def sidebar_individual_locations(event)
 		<<-eos
-		<h4>Locations</h4>
+		<h3>Location</h3>
 		<div id="column_results">
 		<p>#{event.location}</p>
 		</div>
@@ -47,27 +35,15 @@ module SingularEventHelper
 	end
 	def sidebar_individual_price(event)
 		s =""
-		unless @event.price.nil?
-
-		s<<"<h4>Price</h4>"
+		s<<"<h3>Price</h3>"
 		s<<"<div id='column_results'>"
-		s<<"<p>$#{event.price}</p>"
+		if (event.price.nil? || event.price == 0)
+			s<< "<p>FREE</p>"
+		else
+			s<<"<p>$#{event.price}</p>"
+		end
 		s<<"  </div>"
 	end
-
-		# s<<"   <h4>Tags</h4>"
-		# s<<"   <div id='column_results'>"
-		# # @event.tags.each do |a|
-		# #
-		# # 	s<<"   <p>#{a.name}</p>"
-		# # 	end
-		# 	s<<"   </div>"
-
-
-		s.html_safe
-	end
-
-
 
 
 end

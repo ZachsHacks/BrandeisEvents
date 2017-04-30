@@ -20,13 +20,15 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'crack'
 gem 'typhoeus'
 gem 'nokogiri'
-gem 'wordnik'
+gem 'unirest', '~> 1.1.2'
+
 
 gem 'related_word'
 gem 'geocoder'
 gem 'google_directions', '~> 0.1.6.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'cancancan'
+gem 'icalendar'
 
 gem "font-awesome-rails"
 
@@ -89,7 +91,7 @@ group :test do
 	gem 'minitest-reporters',       '1.1.9'
 	gem 'guard',                    '2.13.0'
 	gem 'guard-minitest',           '2.4.4'
-end
+end 
 
 group :development do
 	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
