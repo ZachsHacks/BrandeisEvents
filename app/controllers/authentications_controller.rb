@@ -3,12 +3,12 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 
     def saml
         begin
-            hash = request.env['omniauth.auth']
-            byebug
-            # puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
-            # puts "UID =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.1']}"
-            # puts "First name =  #{hash.attributes['urn:oid:2.5.4.42']}"
-            # puts "Last name =  #{hash.attributes['urn:oid:2.5.4.4']}"
+            hash = request.env['omniauth.auth'].raw_info
+            # byebug
+            puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
+            puts "UID =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.1']}"
+            puts "First name =  #{hash.attributes['urn:oid:2.5.4.42']}"
+            puts "Last name =  #{hash.attributes['urn:oid:2.5.4.4']}"
             # redirect_to root_path
         #   @user = User.from_omniauth(request.env['omniauth.auth'])
         #   session[:user_id] = @user.id
@@ -16,6 +16,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         #   redirect_back_or @user
         rescue
           flash[:warning] = 'There was an error while trying to authenticate you...'
+          puts 'You\'re screwed...'
           redirect_to root_path
         end
     end
