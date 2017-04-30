@@ -4,7 +4,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     def saml
         begin
             hash = request.env['omniauth.auth']
-            puts hash.keys.each do |k|
+            hash.keys.each do |k|
                 puts "hash[#{k}]: #{hash[k]}"
 
             end
