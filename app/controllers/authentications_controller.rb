@@ -3,10 +3,10 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 
     def saml
         begin
-            hash = request.env['omniauth.auth']#['extra']['raw_info'].attributes
-            hash.keys.each do |k|
-                puts "hash[#{k}]: #{hash[k]}"
-            end
+            # hash = request.env['omniauth.auth']#['extra']['raw_info'].attributes
+            # hash.keys.each do |k|
+            #     puts "hash[#{k}]: #{hash[k]}"
+            # end
 
             # byebug
             # puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
