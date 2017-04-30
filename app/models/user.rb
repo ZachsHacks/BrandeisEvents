@@ -27,9 +27,10 @@ class User < ApplicationRecord
       end
 
 	  def parse hash
+		  puts @data[hash]
 		  s = JSON.parse(@data[hash])[0]
-		  puts s
-		  s
+		#   puts s
+		  @data[hash]
 	  end
 
     end
