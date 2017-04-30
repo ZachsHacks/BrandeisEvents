@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :store_location, :verify_authenticity_token
+  skip_before_action :store_location
 
   def create
     begin
