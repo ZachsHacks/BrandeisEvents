@@ -4,10 +4,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     def saml
         begin
             hash = request.env['omniauth.auth']
-            puts 'Attributes:\n\n\n'
-            puts hash.attributes if hash.attributes
-            puts '\n\n\nRaw info:\n\n\n'
-            puts hash.raw_info if hash.raw_info
+            puts hash.keys
             # byebug
             # puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
             # puts "UID =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.1']}"
