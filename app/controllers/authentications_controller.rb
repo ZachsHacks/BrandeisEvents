@@ -21,7 +21,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 
     def saml
         hash = request.env['omniauth.auth']
-        new_user = User.find_by(uid: hash['urn:oid:0.9.2342.19200300.100.1.1'][0]).nil?
+        new_user = User.find_by(uid: hash['extra']['raw_info'].attributes['urn:oid:0.9.2342.19200300.100.1.1'][0]).nil?
         @user = User.from_omniauth(hash)
         session[:user_id] = @user.id
         flash[:success] = "Welcome, #{@user.name}!"
