@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :store_location, :grab_all_locations
   include CanCan::ControllerAdditions
+  skip_before_action :verify_authenticity_token
 
   private
 
