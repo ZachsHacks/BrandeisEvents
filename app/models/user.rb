@@ -15,9 +15,9 @@ class User < ApplicationRecord
       def from_omniauth(auth_hash)
 		data = auth_hash['extra']['raw_info'].attributes
 		user = find_or_create_by(uid: data['urn:oid:0.9.2342.19200300.100.1.1'], provider: auth_hash['provider'])
-        user.first_name = data['urn:oid:2.5.4.42']
-        user.last_name = data['urn:oid:2.5.4.4']
-        user.email = data['urn:oid:0.9.2342.19200300.100.1.3']
+        user.first_name = data['urn:oid:2.5.4.42'][0]
+        user.last_name = data['urn:oid:2.5.4.4'][0]
+        user.email = data['urn:oid:0.9.2342.19200300.100.1.3'][0]
         user.bio = 'No bio yet...'
         user.save!
         user
