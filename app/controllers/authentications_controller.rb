@@ -2,9 +2,12 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     skip_before_action :verify_authenticity_token
 
     def saml
-        puts '😃 We made it!'
         begin
-            puts request.env['omniauth.auth']
+            hash = request.env['omniauth.auth']
+            puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
+            puts "UID =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.1']}"
+            puts "First name =  #{hash.attributes['urn:oid:2.5.4.42']}"
+            puts "Last name =  #{hash.attributes['urn:oid:2.5.4.4']}"
             # redirect_to root_path
         #   @user = User.from_omniauth(request.env['omniauth.auth'])
         #   session[:user_id] = @user.id
