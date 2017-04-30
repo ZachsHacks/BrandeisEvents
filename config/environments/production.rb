@@ -1,5 +1,7 @@
 Rails.application.configure do
 
+  config.force_ssl = true
+
   config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
