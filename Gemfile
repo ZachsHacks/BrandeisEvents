@@ -91,7 +91,7 @@ group :test do
 	gem 'minitest-reporters',       '1.1.9'
 	gem 'guard',                    '2.13.0'
 	gem 'guard-minitest',           '2.4.4'
-end 
+end
 
 group :development do
 	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

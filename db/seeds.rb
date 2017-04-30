@@ -65,6 +65,12 @@ def create_host
 	User.find_or_create_by(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
 end
 
+def create_local_users
+	User.find_or_create_by(uid: "test_admin", provider: "local", first_name: "Admin",   email: "test_admin@brandeis.edu", can_host: true, is_admin: true)
+	User.find_or_create_by(uid: "test_host", provider: "local", first_name: "Host",   email: "test_host@brandeis.edu", can_host: true, is_admin: false)
+	User.find_or_create_by(uid: "test_guest", provider: "local", first_name: "Guest",   email: "test_guest@brandeis.edu", can_host: false, is_admin: false)
+end
+
 def create_default_tags
 	File.open("db/seeds/tags.txt").each do |tag|
 
@@ -122,6 +128,7 @@ def debug_events
 end
 
 create_host
+create_local_users if Rails.env.development?
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
 create_events
