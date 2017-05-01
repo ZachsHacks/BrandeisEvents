@@ -33,8 +33,21 @@ a:visited{
   background-color: transparent !important;
     border-color: #ccc !important;
     background-image: none !important;
-
 }
+
+.bottom_ul li a {
+    color: #fff !important;
+}
+.bottom_ul li a:hover {
+    color: #fff !important;
+}
+.bottom_ul li a:visited{
+  color: #fff !important;
+}
+.hidden{
+  display: none;
+}
+
 
 /* ==========================================================================
    08. Footer
@@ -44,7 +57,8 @@ a:visited{
 	 .icon { float:left; margin-right:5px;}
 
 
-	 .copyright { min-height:50px; background-color:#000000;}
+	 .copyright { min-height:50px; background-color: #0c1a1e;
+     margin-bottom: -10px;}
 	 .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
 	 .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
 	 .post p { font-size:12px; color:#FFF; line-height:20px;}
@@ -56,21 +70,5 @@ a:visited{
 
 
 .copyright{
-  background-color: #0c1a1e;
-  margin-bottom: -10px;
-}
-.bottom_ul li a {
-    color: #fff !important;
-}
-.bottom_ul li a:hover {
-    color: #fff !important;
-}
-.bottom_ul li a:visited{
-  color: #fff !important;
 
-}
-
-
-.hidden{
-  display: none;
 }

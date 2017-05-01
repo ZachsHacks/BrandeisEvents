@@ -1,9 +1,10 @@
-
 <div class="container">
 	<div class="row">
 		<% if @event.start < Time.now %>
 		<div class="alert alert-warning">
-			<strong>This event has already taken place!</strong> Please view upcoming events <%= link_to "Here", events_path %>
+			<strong>This event has already taken place!</strong>
+			Please view upcoming events
+			<%= link_to "Here", events_path %>
 		</div>
 		<% end %>
 
@@ -11,19 +12,24 @@
 			<% if @event.event_image_file_name.nil? %>
 
 			<%= image_tag "missing_large.png", class: "event-top-image" %>
-			<% else %>
+		<% else %>
 			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 			<% end %>
 		</div>
 
 		<div class="col-md-4">
 			<h2><%= @event.name%></h2>
-			<p id="host">by <%= @event.host.name%></p>
+			<p id="host">by
+				<%= @event.host.name%></p>
 			<div class="travel_times">
-	
-				<p><%= fa_icon "car", style:"margin-right: 2px" %>  <%= time_to_destination(@current_address, 	@address, {mode: "car"})%></p>
-				<p><%= fa_icon "bicycle" %> <%= time_to_destination(@current_address, 	@address, {mode: "bicycling"} )%>  </p>
-				<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">  <%= time_to_destination(@current_address, 	@address, {mode: "walking"} )%></p>
+
+				<p><%= fa_icon "car", style:"margin-right: 2px" %>
+					<%= time_to_destination(@current_address, 	@address, {mode: "car"})%></p>
+				<p><%= fa_icon "bicycle" %>
+					<%= time_to_destination(@current_address, 	@address, {mode: "bicycling"} )%>
+				</p>
+				<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">
+					<%= time_to_destination(@current_address, 	@address, {mode: "walking"} )%></p>
 			</div>
 			<% if logged_in? %>
 
@@ -40,78 +46,71 @@
 						<p>
 							<%=button_to "Login", get_url, class: rsvp_button_color%>
 							to RSVP to this event!</p>
-						</div>
 					</div>
-
-
-
 				</div>
+
 			</div>
-			<%end%>
+		</div>
+		<%end%>
+	</div>
+
+	<div class="row main_body">
+		<div class="col-md-2 individual_event_sidebar">
+
+			<%= sidebar_individual_event %>
+
+		</div>
+		<div class="col-md-10 event-description">
+			<% if !@event.description.nil? %>
+			<%= @event.description.html_safe %>
+		<% else %>
+			<%= "This event has no description." %>
+			<% end %>
+
+		</div>
+		<div class="row tags-section">
+			<!-- <h4>Tags</h4> -->
+
+			<% @event.tags.each do |tag| %>
+			<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
+
+			<% end %>
 		</div>
 
-			<div class="row main_body">
-				<div class="col-md-2 individual_event_sidebar">
-
-					<%= sidebar_individual_event %>
-
-				</div>
-				<div class="col-md-10 event-description">
-					<% if !@event.description.nil? %>
-					<%= @event.description.html_safe %>
-					<% else %>
-					<%= "This event has no description." %>
-					<% end %>
-
-
-				</div>
-				<div class="row tags-section">
-					<!-- <h4>Tags</h4> -->
-
-					<% @event.tags.each do |tag| %>
-					<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
-
-					<% end %>
-				</div>
-
-
-				<!-- <p>Longitude:  <%= 		@current_latitude %></p>
+		<!-- <p>Longitude:  <%= 		@current_latitude %></p>
 				<p>Lagitude: <%= 		@current_longitude %></p> -->
-			</div>
-		</div>
-		<!-- <div class="row">
+	</div>
+</div>
+<!-- <div class="row">
 		<div class="col-md-12"> -->
-		<div id="map" style='width: 100%; height: 200px;'></div>
-		<!-- </div>
+<div id="map" style='width: 100%; height: 200px;'></div>
+<!-- </div>
 	</div> -->
 
-	<% if is_host %>
-	<%= link_to 'Edit', edit_event_path(@event) %> |
-	<%= link_to 'Back', events_path %>
-	<% end %>
+<% if is_host %>
+<%= link_to 'Edit', edit_event_path(@event) %>
+|
+<%= link_to 'Back', events_path %>
+<% end %>
 
 </div>
 
 <p id="demo"></p>
 
+<script>
+$(document).ready(function () {
+	var x = document.getElementById("demo");
 
-
-
-	<script>
-	$(document).ready(function(){
-		var x = document.getElementById("demo");
-
-		if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-		function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-}
-	});
-	</script>
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	} else {
+		x.innerHTML = "Geolocation is not supported by this browser.";
+	}
+	function showPosition(position) {
+		x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+	}
+});
+</script>
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
@@ -123,8 +122,7 @@ handler.buildMap({
 	internal: {
 		id: 'map'
 	}
-},
-function(){
+}, function () {
 	markers = handler.addMarkers([
 		{
 			"lat": <%=@location[0]%>,
@@ -132,7 +130,7 @@ function(){
 			"picture": {
 				// https://groups.google.com/forum/#!msg/Google-Maps-API/2k3T5hwI5Ck/RRso0D2jB1oJ
 				"url": "http://maps.google.com/mapfiles/ms/icons/red.png",
-				"width":  32,
+				"width": 32,
 				"height": 32
 			},
 			"infowindow": "<%= @address %>"
@@ -144,19 +142,18 @@ function(){
 	handler.getMap().setZoom(16)
 	infowindow.open(Gmaps.map.map, marker.serviceObject);
 
-}
-);
+});
 </script>
 
 <style>
-.rsvp-button{
+.rsvp-button {
 	margin-right: 5px;
 }
-.btn-group{
+.btn-group {
 	display: inline;
 	margin-top: 20px;
 }
 form {
-	display: inline
+	display: inline;
 }
 </style>
