@@ -64,9 +64,10 @@
 
 
 				</div>
+				</div>
 				<div class="row tags-section">
 					<!-- <h4>Tags</h4> -->
-
+<div class="col-md-12 col-md-offset-2">
 					<% @event.tags.each do |tag| %>
 					<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
 
@@ -76,6 +77,7 @@
 
 				<!-- <p>Longitude:  <%= 		@current_latitude %></p>
 				<p>Lagitude: <%= 		@current_longitude %></p> -->
+			</div>
 			</div>
 		</div>
 		<!-- <div class="row">
