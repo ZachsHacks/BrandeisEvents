@@ -17,17 +17,6 @@
 *= require font-awesome
  */
 
- a{
-   color: #666 !important;
- }
-a:hover{
-  background-color: transparent;
-  color: #42B5E8 !important;
-  text-decoration: none !important;
-}
-a:visited{
-  color: #666 !important;
-}
 
 .btn-transparent{
   background-color: transparent !important;
