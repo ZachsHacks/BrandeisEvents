@@ -13,8 +13,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.omniauth :saml,
-      idp_cert_fingerprint: 'DD:92:3D:F7:0F:6E:86:6E:DC:EE:E9:3B:25:84:A7:72:C9:40:6B:29',
-      issuer: 'campusnow.herokuapp.com',
+      idp_cert_fingerprint: ENV['SHIB_FINGERPRINT'],
+      issuer: ENV['SHIB_ENTITY_ID'],
       request_attributes: [
         { :name => 'uid', :friendly_name => 'uid' },
         { :name => 'mail;eppn', :name_format => 'name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient', :friendly_name => 'mail' },
@@ -28,10 +28,8 @@ Devise.setup do |config|
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
-  config.omniauth :google_oauth2, '865024761143-n55m4diodacl1bkgclam8nbq09q7rl4n.apps.googleusercontent.com',
-  '0IVZqF3YUCpZa1eeAc_wuXOE', {
-    scope: 'profile email'
-  }
+  config.omniauth :google_oauth2, ENV['GOOGLE_AUTH_ID'],
+                  ENV['GOOGLE_AUTH_SECRET'], scope: 'profile email'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
