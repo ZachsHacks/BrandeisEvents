@@ -37,7 +37,8 @@
                                 <li> <%= link_to "Dashboard", current_user%> </li>
                                 <li> <%= link_to "Sign out", logout_path %> </li>
                             <% else %>
-                                <li> <%= link_to "Login", user_saml_omniauth_authorize_path %> </li>
+                                <li> <%= link_to "Login",
+                                Rails.env.development? ? user_google_oauth2_omniauth_authorize_path : user_saml_omniauth_authorize_path %> </li>
                             <% end %>
                         </ul>
                     </div>

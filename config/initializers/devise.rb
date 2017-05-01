@@ -24,9 +24,14 @@ Devise.setup do |config|
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
-      callback_url: 'https://campusnow-shib.herokuapp.com/users/auth/saml/callback'
+      callback_url: 'https://campusnow.herokuapp.com/users/auth/saml/callback'
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  config.omniauth :google_oauth2, '865024761143-n55m4diodacl1bkgclam8nbq09q7rl4n.apps.googleusercontent.com',
+  '0IVZqF3YUCpZa1eeAc_wuXOE', {
+    scope: 'profile email'
+  }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

@@ -22,7 +22,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     def saml
         hash = request.env['omniauth.auth']
         new_user = User.find_by(uid: hash['extra']['raw_info'].attributes['urn:oid:0.9.2342.19200300.100.1.1'][0]).nil?
-        @user = User.from_omniauth(hash)
+        @user = User.from_saml(hash)
         session[:user_id] = @user.id
         flash[:success] = "Welcome, #{@user.name}!"
         if new_user
@@ -33,5 +33,23 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     rescue
         flash[:warning] = 'There was an error while trying to authenticate you...'
         redirect_to root_path
+    end
+
+    def google_oauth2
+      begin
+        google_hash = request.env['omniauth.auth']
+        new_user = User.find_by(email: google_hash["info"]["email"]).nil?
+        @user = User.from_omniauth(google_hash)
+        session[:user_id] = @user.id
+        flash[:success] = "Welcome, #{@user.name}!"
+        if new_user
+          redirect_to new_account_path(@user.id)
+        else
+          redirect_back_or @user
+        end
+      rescue
+        flash[:warning] = 'There was an error while trying to authenticate you...'
+        redirect_to root_path
+      end
     end
 end
