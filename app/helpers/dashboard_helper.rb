@@ -5,7 +5,7 @@ module DashboardHelper
 	end
 
 	def section_titles
-		['Events you\'re going to', 'Events you\'re interested in', 'Past events', 'Recommended events for you', current_user.name]
+		['Events you\'re going to', 'Events you\'re interested in', 'Recommended events for you', 'Past events', current_user.name]
 	end
 
 end
