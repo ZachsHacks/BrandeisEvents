@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'users/:id/calendar-sync', to: 'users#to_icalender'
 
 
-  match "/404", :to => "errors#not_found", :via => :all
+  match '/404', :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
   post '/add_interest', to: 'interests#add_interest', as: 'add_interest'

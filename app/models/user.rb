@@ -12,6 +12,8 @@ class User < ApplicationRecord
 		# puts "First name =  #{hash.attributes['urn:oid:2.5.4.42']}"
 		# puts "Last name =  #{hash.attributes['urn:oid:2.5.4.4']}"
 
+		validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
+
     class << self
       def from_saml(auth_hash)
 		puts "auth_hash = #{auth_hash}"

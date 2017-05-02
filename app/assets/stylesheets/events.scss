@@ -1,44 +1,33 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
-
-
-
-
+@import url( 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
 
 /* ==========================================================================
    01. Individual Event Page
    ========================================================================== */
-
-//Invidual Event
-.portfolio-item{
-  margin-top: 25px;
-
-  min-height: 360px !important;
-  padding-bottom: 30px;
+.portfolio-item {
+    margin-top: 25px;
+    min-height: 360px !important;
+    padding-bottom: 30px;
 }
 
-.portfolio-item h4{
-min-height: 40px;
+.portfolio-item h4 {
+    min-height: 40px;
 }
 
-
-.five-px-padding{
-   padding: 5px !important;
-   margin: 0 !important;
+.five-px-padding {
+    padding: 5px !important;
+    margin: 0 !important;
 }
 
-
-#column_results{
-  margin-left: 10px;
-  margin-top: 10px;
+#column_results {
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
-
-.btn-tags{
-  border-radius: 15px !important;
-
+.btn-tags {
+    border-radius: 15px !important;
 }
 
 .tags-section{
@@ -49,44 +38,41 @@ min-height: 40px;
   height: 240px;
 }
 
+.event-top-image {
+    width: 750px;
+    height: 240px;
+}
 
 .top-thumbnail {
-  position: relative;
-  margin-top: -10px;
+    position: relative;
+    margin-top: -10px;
 }
 
 .top-caption {
-  position: absolute;
-  top: 30%;
-  left: 0;
-  width: 100%;
-}
-.top-caption h1{
-  color: #fff;
-  font-size: 55px;
-  letter-spacing: 2px;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
 }
 
-.event-description{
-  line-height: 30px;
-  font-family: 'Open Sans', sans-serif;
-  padding-bottom: 20px;
-  padding-top:20px;
-
+.top-caption h1 {
+    color: #fff;
+    font-size: 55px;
+    letter-spacing: 2px;
 }
 
-
-.event-page-search{
-  margin-top: 20px;
+.event-description {
+    line-height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
-.left-side-column{
-  margin-top: 20px;
-  border-right: 1px solid #eee;
+.event-page-search {
+    margin-top: 20px;
 }
-//
-// .rsvp_buttons{
-//
-//   position: absolute;
-// bottom: 0px;
-// }
+
+.left-side-column {
+    margin-top: 20px;
+    border-right: 1px solid #eee;
+}
