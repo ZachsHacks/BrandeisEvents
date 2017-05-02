@@ -45,7 +45,6 @@ def get_description(html)
 end
 
 def get_location_info(html)
-	byebug
 	parsed_html = Nokogiri::HTML(html)
 	data = parsed_html.xpath("//a")
 	location = []
