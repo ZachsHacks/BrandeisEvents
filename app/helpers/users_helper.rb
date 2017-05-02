@@ -8,7 +8,7 @@ module UsersHelper
             map_to_events current_user.rsvps.select {|r| r.choice == 2}
         when 2
             recommendations
-        else current_user.events.where { |e| Time.now > e.end}
+        else current_user.events.select { |e| Time.now > e.end}
         end
 
         if @user_events.nil?
