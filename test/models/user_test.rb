@@ -9,15 +9,15 @@ class UserTest < ActiveSupport::TestCase
 		@user_is_host = users(:host)#User.new(provider: "google", uid: "acarr", first_name: "Example2", last_name: "User2", email: "user1@example.com", can_host: true)
 	end
 
-	# test "phone should not take letters" do
-	# 	@user.phone = "aaa"
-	# 	assert_not @user.valid?
-	# end
-	#
-	# test "phone should be 10 numbers" do
-	# 	@user.phone = "88888888888"
-	# 	assert_not @user.valid?
-	# end
+	test "phone should not take letters" do
+		@user.phone = "aaa"
+		assert_not @user.valid?
+	end
+
+	test "phone should be 10 numbers" do
+		@user.phone = "88888888888"
+		assert_not @user.valid?
+	end
 
 	# test "should be valid" do
 	# 	assert @user.valid?
