@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :events
   resources :users, :except => :index
   devise_for :users, :controllers => { :omniauth_callbacks => "authentications"}
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
   get '/', to: 'events#home'
   get '/events/new', to: 'events#new'
   get '/login', to: 'sessions#create'

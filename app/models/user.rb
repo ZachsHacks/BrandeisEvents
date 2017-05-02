@@ -4,13 +4,7 @@ class User < ApplicationRecord
 		has_many :events, through: :rsvps
 		has_many :interests
 		has_many :tags, through: :interests
-		devise :omniauthable,
-		       omniauth_providers: [Rails.env.development? ? :google_oauth2 : :saml]
-
-		# puts "Email =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.3']}"
-		# puts "UID =  #{hash.attributes['urn:oid:0.9.2342.19200300.100.1.1']}"
-		# puts "First name =  #{hash.attributes['urn:oid:2.5.4.42']}"
-		# puts "Last name =  #{hash.attributes['urn:oid:2.5.4.4']}"
+		devise :omniauthable, omniauth_providers: [:saml]
 
 		validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
 
