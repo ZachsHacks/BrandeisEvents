@@ -154,7 +154,7 @@ class EventsController < ApplicationController
 		end
 
 		def filter_tags(tag)
-			Tag.find(tag).events.paginate(page: params[:page], per_page: 9)
+			Tag.find(tag).events.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)
 		end
 
 		def filter_dates(filter)
