@@ -15,6 +15,8 @@ module UsersHelper
             @user_events = []
         end
 
+        @user_events = @user_events.select { |e| Time.now <= e.start} unless @active_tab == 3
+
         @user_events = @user_events.sort_by { |e| e.start  }.paginate(page: params[:page], per_page: 8)
     end
 
