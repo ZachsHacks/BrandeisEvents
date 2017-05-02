@@ -6,7 +6,7 @@ class User < ApplicationRecord
 		has_many :tags, through: :interests
 		devise :omniauthable, omniauth_providers: [:saml]
 
-		validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" } unless phone.nil?
+		validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" } unless self.phone.nil?
 
     class << self
       def from_saml(auth_hash)
