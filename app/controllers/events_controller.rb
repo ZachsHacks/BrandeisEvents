@@ -171,7 +171,6 @@ class EventsController < ApplicationController
 			else
 				return Event.where("start < ?", Time.now).reverse.paginate(page: params[:page], per_page: 9)
 			end
-
 		end
 
 	end
