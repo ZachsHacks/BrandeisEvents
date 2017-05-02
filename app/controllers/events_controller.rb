@@ -169,10 +169,9 @@ class EventsController < ApplicationController
 			elsif filter == "this weekend"
 				return Event.all.select {|e| e.start.to_date.between?(Date.today, Date.today.next_day(7)) && e.start.to_date.on_weekend?}.paginate(page: params[:page], per_page: 9)
 			else
-				return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.end_of_month)}.paginate(page: params[:page], per_page: 9)
+				return Event.where("start < ?", Time.now).reverse.paginate(page: params[:page], per_page: 9)
 			end
 
-			return Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)
 		end
 
 	end

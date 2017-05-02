@@ -115,6 +115,7 @@ module EventsHelper
 			string << "<p>" + link_to("This Weekend", events_path(:date => "this weekend")) + "</p>"
 			string << "<p>" + link_to("Next Week", events_path(:date => "next week")) + "</p>"
 			string << "<p>" + link_to("This Month", events_path(:date => "this month")) + "</p>"
+			string << "<p>" + link_to("Past Events", events_path(:date => "past")) + "</p>"
 			string << "</div>"
 			string << "<hr>"
 			string.html_safe
