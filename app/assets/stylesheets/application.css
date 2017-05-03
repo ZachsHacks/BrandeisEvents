@@ -17,16 +17,16 @@
 *= require font-awesome
  */
 
- @media (min-width: 1200px) {
+ @media (min-width: 1390px) {
      .container{
          width: 1370px !important;
      }
  }
- @media (min-width: 900px) {
+ /*@media (min-width: 780px) {
      .container{
-         width: 1200px !important;
+         width: 1000px !important;
      }
- }
+ }*/
  a{
    color: #666 !important;
  }
