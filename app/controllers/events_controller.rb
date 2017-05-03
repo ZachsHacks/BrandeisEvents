@@ -17,13 +17,13 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		if params[:location]
-			@events = Event.where("start > ? AND location LIKE ?", Time.now, params[:location]).paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ? AND location LIKE ?", Time.now, params[:location]).paginate(page: params[:page], per_page: 12)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
 		elsif params[:tag]
 			@events = filter_tags(params[:tag])
 		else
-			@events = Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 9)#Event.paginate(page: params[:page], per_page: 9)
+			@events = Event.where("start > ?", Time.now).paginate(page: params[:page], per_page: 12)#Event.paginate(page: params[:page], per_page: 9)
 		end
 		grab_locations
 	end
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 		#need caching
 		all_events = Event.all
 		@items = all_events.pluck(:name)
-		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(4).reverse
+		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(5).reverse
 		@locations = Location.all.pluck(:name)#grab_locations
 		@top_tags = Tag.all.sort_by {|t| t.events_count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
 

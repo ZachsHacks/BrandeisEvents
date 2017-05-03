@@ -5,7 +5,7 @@
 	</div>
 	<% else %>
 	<% @events.sort_by {|e| e.start}.each do |event| %>
-	<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-4"} %>
+	<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-3"} %>
 	<% end %>
 	<%end%>
 </div>

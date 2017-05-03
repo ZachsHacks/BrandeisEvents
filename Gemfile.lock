@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/gettyimages/gettyimages-api_ruby.git
+  revision: 591ad0f7931718a922222e33781b4baa6efe8281
+  specs:
+    ConnectSDK (1.0.2.Beta)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -332,6 +338,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ConnectSDK!
   aws-sdk (~> 2.3)
   bootstrap-will_paginate (= 0.0.10)
   bootstrap3-datetimepicker-rails (~> 4.17.47)
