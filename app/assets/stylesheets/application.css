@@ -22,6 +22,11 @@
          width: 1370px !important;
      }
  }
+ @media (min-width: 900px) {
+     .container{
+         width: 1200px !important;
+     }
+ }
  a{
    color: #666 !important;
  }

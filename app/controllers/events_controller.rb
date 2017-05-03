@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 		#need caching
 		all_events = Event.all
 		@items = all_events.pluck(:name)
-		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(5).reverse
+		@top_events =  all_events.sort_by{|e| e.rsvps_count}.last(4).reverse
 		@locations = Location.all.pluck(:name)#grab_locations
 		@top_tags = Tag.all.sort_by {|t| t.events_count}.last(7).reverse.map {|t| [t.events.count, t.name, t.id]}
 
