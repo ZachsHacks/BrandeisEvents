@@ -1,3 +1,5 @@
+require 'shutterstock-ruby'
+require 'byebug'
 # # require "ConnectSdk"
 #
 # class Ghety
@@ -19,5 +21,6 @@
 # 	# puts "Id: #{image["id"]} URL: #{image["display_sizes"][0]["uri"]}"
 # end
 
-result = ShutterstockRuby::Images.search('Cat') # Returns a hash of the parsed JSON result.
+result = ShutterstockRuby::Images.search('Cat')
+byebug # Returns a hash of the parsed JSON result.
 puts result
