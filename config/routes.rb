@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'sessions/new'
+	get '/login/:user_id' => 'sessions#login_local' if Rails.env.development?
   get '/users/:id/creation_form' => 'users#creation_form'
   get '/users/auth/:provider/callback', to: 'sessions#create'
   resources :event_tags
