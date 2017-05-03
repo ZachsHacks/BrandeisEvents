@@ -27,7 +27,8 @@ def create_events
 		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
 
 		create_tags(e)
-		e.image_id = imageUrl(e.tags).to_s if e.save
+		e.image_id = imageUrl(e.name).to_s if e.save
+		e.save
 		# e.image_id = "http://aarongold.com"
 
 	end
@@ -122,23 +123,17 @@ def create_locations
 	end
 end
 
-def imageUrl(tags)
+def imageUrl(name)
 # create instance of the Connect SDK
-all_tags = ""
-tags.each do |tag|
-	all_tags << " #{tag.name}"
-end
+# all_tags = ""
+# tags.each do |tag|
+# 	all_tags << " #{tag.name}"
+# end
 	connectSdk = ConnectSdk.new(ENV['ghety_api_key'], ENV['ghety_api_secret'])
-	search_results = connectSdk
-	.search().images()
-	.with_phrase(all_tags)
-	.with_page(2)
-	.with_page_size(1)
-	.execute()
-
-	return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
-
-
+	search_results = connectSdk.search.images.with_phrase(name).execute
+	if !search_results["images"].empty?
+			return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
+	end
 end
 
 def debug_events
