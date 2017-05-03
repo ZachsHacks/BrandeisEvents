@@ -38,7 +38,7 @@ class RsvpsController < ApplicationController
       Rsvp.create(rsvp_params)
     end
 
-    @active_tab = rsvp_params[:choice].to_i - 1 unless @event.start > Time.now
+    @active_tab = rsvp_params[:choice].to_i - 1 unless @event.start < Time.now
 
     respond_to do |format|
       format.js
