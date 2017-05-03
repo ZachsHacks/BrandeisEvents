@@ -6,12 +6,16 @@ module UsersHelper
             map_to_events current_user.rsvps.select {|r| r.choice == 1}
         when 1
             map_to_events current_user.rsvps.select {|r| r.choice == 2}
-        else recommendations
+        when 2
+            recommendations
+        else current_user.events.select { |e| Time.now > e.start}
         end
 
         if @user_events.nil?
             @user_events = []
         end
+
+        @user_events = @user_events.select { |e| Time.now <= e.start} unless @active_tab == 3
 
         @user_events = @user_events.sort_by { |e| e.start  }.paginate(page: params[:page], per_page: 8)
     end
