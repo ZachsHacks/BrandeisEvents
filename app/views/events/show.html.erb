@@ -10,8 +10,11 @@
 
 		<div class="col-md-8">
 			<% if @event.event_image_file_name.nil? %>
-
+			<% if @event.image_id.blank? %>
 			<%= image_tag "missing_large.png", class: "event-top-image" %>
+			<%else %>
+				<%= image_tag "#{@event.image_id}", class: "event-top-image" %>
+			<% end %>
 		<% else %>
 			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 			<% end %>
@@ -70,7 +73,7 @@
 		</div>
 		<div class="row tags-section">
 			<!-- <h4>Tags</h4> -->
-
+<div class="col-md-2" style="margin-right:20px;">&nbsp;</div>
 			<% @event.tags.each do |tag| %>
 			<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
 
@@ -156,4 +159,5 @@ handler.buildMap({
 form {
 	display: inline;
 }
+
 </style>
