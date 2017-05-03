@@ -20,4 +20,4 @@
 # end
 
 result = ShutterstockRuby::Images.search('Cat') # Returns a hash of the parsed JSON result.
-puts result[]
+puts result

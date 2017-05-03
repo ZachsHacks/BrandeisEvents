@@ -1,8 +1,8 @@
 <% for index in 0..4 %>
-  <div class="col-sm-offset-2">
+  <!-- <div class="col-sm-offset-2"> -->
 <div class="user_tab_<%= @active_tab == index %> col-md-2 text-center user_tab">
 <%= button_to tab_titles[index], get_events_path(index: index), :remote => true, class: 'btn btn-default user_tab_button'  %>
-</div>
+<!-- </div> -->
 </div>
 
 <% end %>
