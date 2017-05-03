@@ -22,8 +22,7 @@
 
 		<div class="col-md-4">
 			<h2><%= @event.name%></h2>
-			<p id="host">by
-				<%= @event.host.name%></p>
+			<p id="host">by <%= @event.host.name%></p>
 			<div class="travel_times">
 
 				<p><%= fa_icon "car", style:"margin-right: 2px" %>
@@ -56,6 +55,7 @@
 			</div>
 		<%end%>
 	</div>
+		</div>
 
 	<div class="row main_body">
 		<div class="col-md-2 individual_event_sidebar">
