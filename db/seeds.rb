@@ -2,6 +2,8 @@ require 'faker'
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
 require_relative 'twinword'
+require "ConnectSdk"
+# require_relative 'ghetty'
 
 @user_count = User.count
 
@@ -22,10 +24,15 @@ def create_events
 		# description_text = Nokogiri::HTML(line["content"]).text
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
-		image_id = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCV8cQhEbPEz0yF0piMIseNgxSAKW7FOImmw7LoWS3wniHvGZW"
-		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first, image_id: image_id)
-		create_tags(e) if e.save
+		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
+
+		create_tags(e)
+		e.image_id = imageUrl(e.tags).to_s if e.save
+		# e.image_id = "http://aarongold.com"
+
 	end
+
+
 	@manual = true
 end
 
@@ -113,6 +120,25 @@ def create_locations
 		line = line.gsub("\n", "")
 		Location.find_or_create_by(name: line)
 	end
+end
+
+def imageUrl(tags)
+# create instance of the Connect SDK
+all_tags = ""
+tags.each do |tag|
+	all_tags << " #{tag.name}"
+end
+	connectSdk = ConnectSdk.new(ENV['ghety_api_key'], ENV['ghety_api_secret'])
+	search_results = connectSdk
+	.search().images()
+	.with_phrase(all_tags)
+	.with_page(2)
+	.with_page_size(1)
+	.execute()
+
+	return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
+
+
 end
 
 def debug_events

@@ -48,7 +48,12 @@ module EventsHelper
 		s = ""
 		s<<"<a href='#{event_path(event.id)}'>"
 		if event.event_image_file_name.nil?
-			s<< image_tag('missing_thumbnail.png').html_safe
+			# s<< image_tag('missing_thumbnail.png').html_safe
+			if event.image_id.nil?
+			 s<< image_tag('missing_thumbnail.png').html_safe
+		 else
+			s<< image_tag(event.image_id).html_safe
+		end
 		else
 			s<< image_tag(event.event_image(:thumbnail)).html_safe
 		end
