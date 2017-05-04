@@ -17,11 +17,18 @@
 *= require font-awesome
  */
 
+ @media (min-width: 970px) {
+   .container {
+     width: 1000px !important;
+   }
+ }
  @media (min-width: 1390px) {
      .container{
          width: 1370px !important;
      }
  }
+
+
  /*@media (min-width: 780px) {
      .container{
          width: 1000px !important;
