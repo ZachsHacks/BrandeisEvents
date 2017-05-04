@@ -85,10 +85,10 @@ end
 
 def create_default_tags
 	File.open("db/seeds/tags.txt").each do |tag|
-
 		tag = tag.gsub("\t", "")
 		tag = tag.gsub("\n", "")
-		Tag.find_or_create_by(name: tag)
+		tag = tag.split(" ")
+		Tag.find_or_create_by(name: tag[0], image: tag[1])
 	end
 	@tags = Tag.all.pluck(:name)
 end
