@@ -1,8 +1,9 @@
-Mark Berger=Studio Recital
+Mark Berger=classical music recital
 Class of=college celebration party
 Senior class=college celebration party
-Helène Aylon=Helene Aylon
+Helène Aylon=Art Gallery
 Shabbat Services=Shabbat Dinner
-Full Stack=computer science coding
+Full Stack:=computer science coding
 Senior Week:=college celebration party
+Senior Class=college celebration party
 Introducing...Lenny Bruce!=Lenny Bruce
