@@ -21,11 +21,17 @@
    .container {
      width: 1000px !important;
    }
+   .portfolio-item {
+       margin-top: 20px;
+       min-height: 395px !important;
+       overflow: hidden;
+   }
  }
  @media (min-width: 1390px) {
      .container{
          width: 1370px !important;
      }
+
  }
 
 
