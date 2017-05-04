@@ -1,12 +1,12 @@
 require "related_word"
-# require "byebug"
+
 
 class TagDictionary
-
 	attr_reader :dictionary
 
 	def initialize
 		@word_finder = RelatedWord.new
+
 		if File.file?("db/seeds/dictionary_json.txt") && !File.zero?("db/seeds/dictionary_json.txt")
 			@dictionary = JSON.parse(File.open("db/seeds/dictionary_json.txt").read)
 			@dictionary = {} if @dictionary.empty?
@@ -26,7 +26,8 @@ class TagDictionary
 		File.open("db/seeds/tags.txt").each do |tag|
 			tag = tag.gsub("\t", "")
 			tag = tag.gsub("\n", "")
-			populate(tag) unless tag == "Other"
+			tag = tag.split(" ")
+			populate(tag[0]) unless tag == "Other"
 		end
 	end
 
@@ -48,19 +49,3 @@ class TagDictionary
 	end
 
 end
-
-# Wordnik.configure do |config|
-# 	config.api_key = '5c43d251812f5d116dd5d0df80c0ab2fb760fea7b03af5557'
-# end
-#
-#
-# puts Wordnik.word.get_related('sports', :type => 'hypernym', :use_canonical => true)
-# #
-# td = TagDictionary.new
-# #
-# #
-# File.open("seeds/tags.txt").each do |tag|
-# 	tag = tag.gsub("\t", "")
-# 	tag = tag.gsub("\n", "")
-# 	td.populate(tag)
-# end

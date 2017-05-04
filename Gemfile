@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # 	"https://github.com/#{repo_name}.git"
 # end
 # bcrypt for authentication
-#gem 'bcrypt'
+# gem 'bcrypt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'omniauth-google-oauth2'
 gem 'devise'
@@ -22,7 +22,6 @@ gem 'typhoeus'
 gem 'nokogiri'
 gem 'unirest', '~> 1.1.2'
 
-
 gem 'related_word'
 gem 'geocoder'
 gem 'google_directions', '~> 0.1.6.2'
@@ -30,7 +29,7 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'cancancan'
 gem 'icalendar'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 # Use postgres as the database for Active Record
 gem 'pg'
@@ -69,11 +68,11 @@ gem 'delayed_job_active_record'
 # Need daemons to start delayed_job
 gem 'daemons'
 # Use workless to use less workers on heroku
-gem "workless", "~> 1.2.2"
+gem 'workless', '~> 1.2.2'
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
- gem 'ConnectSDK', :path => 'vendor/gettyimages-api_ruby-master'
+gem 'ConnectSDK', path: 'vendor/gettyimages-api_ruby-master'
 # gem 'ConnectSDK',  git: "https://github.com/gettyimages/gettyimages-api_ruby.git"
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
@@ -86,27 +85,27 @@ gem "workless", "~> 1.2.2"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
-	gem 'byebug', platform: :mri
+    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    gem 'byebug', platform: :mri
 end
 
 group :test do
-	gem 'rails-controller-testing', '0.1.1'
-	gem 'minitest-reporters',       '1.1.9'
-	gem 'guard',                    '2.13.0'
-	gem 'guard-minitest',           '2.4.4'
+    gem 'rails-controller-testing', '0.1.1'
+    gem 'minitest-reporters',       '1.1.9'
+    gem 'guard',                    '2.13.0'
+    gem 'guard-minitest',           '2.4.4'
 end
 
 group :development do
-	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-	gem 'web-console', '>= 3.3.0'
-	gem 'listen', '~> 3.0.5'
-	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-	gem 'spring'
-	gem 'spring-watcher-listen', '~> 2.0.0'
+    # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+    gem 'web-console', '>= 3.3.0'
+    gem 'listen', '~> 3.0.5'
+    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+    gem 'spring'
+    gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-#Google maps gem
+# Google maps gem

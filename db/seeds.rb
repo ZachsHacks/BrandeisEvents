@@ -12,7 +12,6 @@ require "ConnectSDK"
 
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
-
 @keyword_finder = TwinWord.new
 @count = 0
 @image_hash = Hash.new
