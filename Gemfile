@@ -57,7 +57,6 @@ gem 'google-image'
 gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
-gem 'image_suckr'
 gem 'figaro'
 
 gem 'paperclip'
@@ -74,9 +73,7 @@ gem "workless", "~> 1.2.2"
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
-gem 'ConnectSDK', :git => 'git://github.com/gettyimages/gettyimages-api_ruby.git'
-gem 'flickr_fu', '~> 0.3.4'
-gem "shutterstock-ruby"
+gem 'ConnectSDK', :git => 'https://github.com/gettyimages/gettyimages-api_ruby.git'
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production

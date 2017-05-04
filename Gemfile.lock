@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/gettyimages/gettyimages-api_ruby.git
+  remote: https://github.com/gettyimages/gettyimages-api_ruby.git
   revision: 591ad0f7931718a922222e33781b4baa6efe8281
   specs:
     ConnectSDK (1.0.2.Beta)
@@ -103,11 +103,8 @@ GEM
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
-    flickr_fu (0.3.4)
-      mime-types
-      xml-magic
-    font-awesome-rails (4.7.0.1)
-      railties (>= 3.2, < 5.1)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     formatador (0.2.5)
     geocoder (1.4.3)
     globalid (0.4.0)
@@ -139,7 +136,6 @@ GEM
       multi_json (~> 1.8)
     i18n (0.8.1)
     icalendar (2.4.1)
-    image_suckr (0.2.0)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -291,8 +287,6 @@ GEM
       tilt (>= 1.1, < 3)
     session (3.2.0)
     shellany (0.0.1)
-    shutterstock-ruby (0.2.0)
-      rest-client (~> 1)
     slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -311,7 +305,7 @@ GEM
     tilt (2.0.7)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
+    turbolinks-source (5.0.2)
     twilio-ruby (4.13.0)
       builder (>= 2.1.2)
       jwt (~> 1.0)
@@ -342,7 +336,6 @@ GEM
       heroku-api
       rails
       rush
-    xml-magic (0.1.1)
 
 PLATFORMS
   ruby
@@ -363,7 +356,6 @@ DEPENDENCIES
   faker
   ferret (~> 0.11.8.6)
   figaro
-  flickr_fu (~> 0.3.4)
   font-awesome-rails
   geocoder
   gmaps4rails (~> 2.1, >= 2.1.2)
@@ -372,7 +364,6 @@ DEPENDENCIES
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   icalendar
-  image_suckr
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
@@ -389,7 +380,6 @@ DEPENDENCIES
   rails_admin (~> 1.1.1)
   related_word
   sass-rails (~> 5.0)
-  shutterstock-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
