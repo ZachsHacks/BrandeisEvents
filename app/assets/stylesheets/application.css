@@ -26,10 +26,21 @@
        min-height: 395px !important;
        overflow: hidden;
    }
+   .portfolio-item h4{
+      min-height: 60px;
+   }
  }
  @media (min-width: 1390px) {
      .container{
          width: 1370px !important;
+     }
+     .portfolio-item h4{
+        min-height: 40px;
+     }
+     .portfolio-item {
+         margin-top: 20px;
+         min-height: 365px !important;
+         overflow: hidden;
      }
 
  }
