@@ -2,7 +2,7 @@
 # require 'image_suckr'
 # require "ConnectSdk"
 
-# class Ghety
+# class Getty
 #
 # 	def imageUrl(tags)
 # create instance of the Connect SDK
