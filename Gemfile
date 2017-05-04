@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-	repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-	"https://github.com/#{repo_name}.git"
-end
+# git_source(:github) do |repo_name|
+# 	repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+# 	"https://github.com/#{repo_name}.git"
+# end
 # bcrypt for authentication
 #gem 'bcrypt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -73,7 +73,7 @@ gem "workless", "~> 1.2.2"
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
-gem 'ConnectSDK', :git => 'https://github.com/gettyimages/gettyimages-api_ruby.git'
+gem 'ConnectSDK',  git: "https://github.com/gettyimages/gettyimages-api_ruby.git"
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production
