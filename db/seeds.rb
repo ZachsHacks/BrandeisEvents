@@ -2,7 +2,7 @@ require 'faker'
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
 require_relative 'twinword'
-require "ConnectSdk"
+require "ConnectSDK"
 # require_relative 'ghetty'
 
 @user_count = User.count
