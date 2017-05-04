@@ -29,6 +29,12 @@
    .portfolio-item h4{
       min-height: 60px;
    }
+   .event-tags{
+     height: 20px;
+     overflow: hidden;
+     margin-bottom: 10px;
+   }
+
  }
  @media (min-width: 1390px) {
      .container{

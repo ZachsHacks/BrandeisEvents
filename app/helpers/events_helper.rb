@@ -20,7 +20,6 @@ module EventsHelper
         string << "<div class='#{col_length} portfolio-item'>"
         string << event_image(event)
         string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, length: 50}</a></h4>"
-
         string << list_tags(event)
         string << "<p>#{(truncate event.description_text, length: 85)}</p>"
         string << start_time(event) + location(event)
@@ -29,9 +28,9 @@ module EventsHelper
     end
 
     def list_tags(e)
-        string = "<div class='text-left'>"
+        string = "<div class='text-left event-tags'>"
         icon = "<span class='glyphicon glyphicon-tags' class='col-md-2'></span>"
-        string << "<p>#{icon} #{truncate top_tags(e), length: 20}  </p>"
+        string << "<p>#{icon} #{truncate top_tags(e), length: 70}  </p>"
         string << '</div>'
     end
 
