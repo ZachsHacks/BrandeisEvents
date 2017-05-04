@@ -15,6 +15,7 @@ require "ConnectSDK"
 
 @keyword_finder = TwinWord.new
 @count = 0
+@image_hash = Hash.new
 
 def create_events
 	@manual = false
@@ -30,11 +31,11 @@ def create_events
 		split_string = e.name.gsub(/[^0-9a-z ]/i, '')
 
 		split_string = e.name.split()
-		if split_string[0]== "Introducing...Lenny"
-			e.image_id = imageUrl("Lenny Bruce")
+		first_two_words = split_string[0] + " " + split_string[1]
+		if @image_hash.key?(first_two_words)
+			e.image_id = imageUrl(@image_hash[first_two_words])
 		else
-
-			e.image_id = imageUrl(split_string[0] + " " + split_string[1])
+			e.image_id = imageUrl(first_two_words)
 		end
 
 		e.save
@@ -150,6 +151,13 @@ end
 	end
 end
 
+def update_image_queries
+	File.open('db/image_name_dictionary.txt').each do |line|
+	b,c = line.split(/=/)
+	  @image_hash[b] = c
+		puts "second part + " " + #{c}"
+	end
+end
 def debug_events
 	Tag.where(name: "Other").first.events.each do |e|
 
@@ -159,5 +167,6 @@ end
 create_host
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
+update_image_queries
 create_events
 #debug_events
