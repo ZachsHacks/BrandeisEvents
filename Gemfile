@@ -73,7 +73,8 @@ gem "workless", "~> 1.2.2"
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
-gem 'ConnectSDK',  git: "https://github.com/gettyimages/gettyimages-api_ruby.git"
+ gem 'ConnectSDK', :path => 'vendor/gettyimages-api_ruby-master'
+# gem 'ConnectSDK',  git: "https://github.com/gettyimages/gettyimages-api_ruby.git"
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 # Use Redis adapter to run Action Cable in production

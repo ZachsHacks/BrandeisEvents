@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/gettyimages/gettyimages-api_ruby.git
-  revision: 591ad0f7931718a922222e33781b4baa6efe8281
+PATH
+  remote: vendor/gettyimages-api_ruby-master
   specs:
     ConnectSDK (1.0.2.Beta)
 
