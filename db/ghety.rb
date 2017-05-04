@@ -6,9 +6,10 @@ require "ConnectSdk"
 #
 # 	def imageUrl(tags)
 # create instance of the Connect SDK
-connectSdk = ConnectSdk.new(ENV['ghety_api_key'], ENV['ghety_api_secret'])
+connectSdk = ConnectSdk.new("dxjuk6uxtmdgttrrufcmyvsx", "YuZjDSer9kNfA56mfEuq6ZjuPSekfNKpwCAZkVVdaXvf7")
 
-search_results = connectSdk.search.images.with_phrase("Helène Aylon | Afterword: For the Children").execute
+search_results = connectSdk.search.images.with_phrase("tennis").execute
+byebug
 if !search_results["images"].empty?
 	  puts "URL: #{search_results["images"][0]["display_sizes"][0]["uri"]}"
 end

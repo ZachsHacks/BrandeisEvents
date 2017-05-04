@@ -9,6 +9,7 @@
 		<% end %>
 
 		<div class="col-md-8">
+			<div class="top-image">
 			<% if @event.event_image_file_name.nil? %>
 			<% if @event.image_id.blank? %>
 			<%= image_tag "missing_large.png", class: "event-top-image" %>
@@ -18,7 +19,7 @@
 		<% else %>
 			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 			<% end %>
-		</div>
+		</div>	</div>
 
 		<div class="col-md-4">
 			<h2><%= @event.name%></h2>

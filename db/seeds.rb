@@ -14,6 +14,7 @@ require "ConnectSdk"
 @dictionary = TagDictionary.new.dictionary
 
 @keyword_finder = TwinWord.new
+@count = 0
 
 def create_events
 	@manual = false
@@ -26,8 +27,15 @@ def create_events
 		date_time = Time.parse(line["published"].to_s)
 		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
 
-		create_tags(e)
-		e.image_id = imageUrl(e.name).to_s if e.save
+		create_tags(e) if e.save
+
+		split_string = e.name.split()
+		if split_string[0]== "Introducing...Lenny"
+			e.image_id = imageUrl("Lenny Bruce")
+		else
+			e.image_id = imageUrl(split_string[0] + " " + split_string[1])
+		end
+
 		e.save
 		# e.image_id = "http://aarongold.com"
 
@@ -129,7 +137,12 @@ def imageUrl(name)
 # tags.each do |tag|
 # 	all_tags << " #{tag.name}"
 # end
-	connectSdk = ConnectSdk.new(ENV['ghety_api_key'], ENV['ghety_api_secret'])
+@count+= 1
+if @count >42
+puts @count
+puts name
+end
+ connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
 	search_results = connectSdk.search.images.with_phrase(name).execute
 	if !search_results["images"].empty?
 			return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"

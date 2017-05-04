@@ -8,11 +8,23 @@
 .main_body{
   //content un
   padding-top: 20px;
+}.top-image{
+  height: 240px !important;
+  overflow: hidden;
+  width: 100% !important;
+  position: relative;
 }
-.event_img{
-  padding-bottom: 20px;
-  height:175px !important;
+.top-image img{
+  position:absolute;
+   left: -100%;
+   right: -100%;
+   top: -100%;
+   bottom: -100%;
+   margin: auto;
+   min-height: 100%;
+   min-width: 100%;
 }
+
 .main_body p{
   line-height:20px;
 }
