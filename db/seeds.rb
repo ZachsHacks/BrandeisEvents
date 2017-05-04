@@ -26,13 +26,14 @@ def create_events
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
 		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
-
 		create_tags(e) if e.save
+		split_string = e.name.gsub(/[^0-9a-z ]/i, '')
 
 		split_string = e.name.split()
 		if split_string[0]== "Introducing...Lenny"
 			e.image_id = imageUrl("Lenny Bruce")
 		else
+
 			e.image_id = imageUrl(split_string[0] + " " + split_string[1])
 		end
 
