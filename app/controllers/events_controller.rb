@@ -41,7 +41,7 @@ class EventsController < ApplicationController
 	def show
 		@tags = EventTag.where(event_id: @event.id)
 		if !@lat_lng.nil?
-			cordinates = @lat_lng.split("|")
+			cordinates = @lat_lng.split("_")
 			@current_latitude = cordinates[0]
 			@current_longitude = cordinates[1]
 		else

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
   def current_user_location
       @lat_lng = cookies[:lat_lng]
+
   end
 
   private

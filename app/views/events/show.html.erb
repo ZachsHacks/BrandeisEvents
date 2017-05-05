@@ -1,4 +1,4 @@
-
+<!--
 <%if @lat_lng.nil? %>
 
 <script>
@@ -12,9 +12,9 @@ function setGeoCookie(position) {
 				expiration.setDate(expiration.getDate()+1);
   var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
 	console.log(cookie_val)
-  document.cookie = "lat_lng=" + cookie_val + "; expires=" + expiration.toGMTString();
+  document.cookie = "lat_lng=" + escape(cookie_val) + "; expires=" + expiration.toGMTString();
 }
-</script>
+</script> -->
 <% end %>
 <div class="container">
 	<div class="row">
