@@ -1,21 +1,4 @@
 
-<%if @lat_lng.nil? %>
-
-<script>
- getGeoLocation();
-function getGeoLocation() {
-  navigator.geolocation.getCurrentPosition(setGeoCookie);
-}
-
-function setGeoCookie(position) {
-	var expiration = new Date();
-				expiration.setDate(expiration.getDate()+1);
-  var cookie_val = position.coords.latitude + "_" + position.coords.longitude;
-	console.log(cookie_val)
-  document.cookie = "lat_lng=" + escape(cookie_val) + "; expires=" + expiration.toGMTString();
-}
-</script>
-<% end %>
 <section class="main-header text-center">
             <nav role="navigation" class="navbar navbar-default  navbar-fixed-top" id ="nav">
                 <div class="container">
