@@ -1,3 +1,19 @@
+
+<%if @lat_lng.nil? %>
+
+<script>
+ getGeoLocation();
+function getGeoLocation() {
+  navigator.geolocation.getCurrentPosition(setGeoCookie);
+}
+
+function setGeoCookie(position) {
+  var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
+	console.log(cookie_val)
+  document.cookie = "lat_lng=" + escape(cookie_val);
+}
+</script>
+<% end %>
 <div class="container">
 	<div class="row">
 		<% if @event.start < Time.now %>
@@ -20,7 +36,6 @@
 			<%= image_tag @event.event_image(:large), class: "event-top-image"%>
 			<% end %>
 		</div>	</div>
-
 		<div class="col-md-4">
 			<h2><%= @event.name%></h2>
 			<p id="host">by <%= @event.host.name%></p>
@@ -101,7 +116,7 @@
 
 <p id="demo"></p>
 
-<script>
+<!-- <script>
 $(document).ready(function () {
 	var x = document.getElementById("demo");
 
@@ -114,7 +129,7 @@ $(document).ready(function () {
 		x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 	}
 });
-</script>
+</script> -->
 
 <script type="text/javascript">
 handler = Gmaps.build('Google');
@@ -137,14 +152,12 @@ handler.buildMap({
 				"width": 32,
 				"height": 32
 			},
-			"infowindow": "<%= @address %>"
 		}
 	]);
 	handler.bounds.extendWith(markers);
 
 	handler.fitMapToBounds();
 	handler.getMap().setZoom(16)
-	infowindow.open(Gmaps.map.map, marker.serviceObject);
 
 });
 </script>

@@ -134,8 +134,7 @@ module EventsHelper
         s = ''
         drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
         hours = drive_time_in_minutes / 60
-        minutes = drive_time_in_minutes % 6
-
+        minutes = drive_time_in_minutes % 60
         s = hours.to_s + ' hours ' + minutes.to_s + ' minutes'
 
         s.html_safe

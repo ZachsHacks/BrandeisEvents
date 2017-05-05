@@ -40,23 +40,19 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		@tags = EventTag.where(event_id: @event.id)
-		@location = geolocation
-		@current_latitude = request.location.latitude
-		@current_longitude = request.location.longitude
-
-		if @current_latitude == 0.0 || @current_longitude == 0.0
+		if !@lat_lng.nil?
+			cordinates = @lat_lng.split("|")
+			@current_latitude = cordinates[0]
+			@current_longitude = cordinates[1]
+		else
 			#for localhost
-			@current_latitude = 42.366239
+			@current_latitude = 40.285973
 			@current_longitude = -71.258469
 		end
-
-
-		# @current_latitude = 42.366239
-		# @current_longitude = -71.258469
+	@location = geolocation
 		geo_localization = "#{@current_latitude},#{@current_longitude}"
 		@current_address = Geocoder.search(geo_localization).first.address
-
-		@address = "#{@event.location}, Brandeis University, Waltham, MA, 02453"
+		@address = "#{@event.location}, Waltham, MA, 02453"
 	end
 
 	def top_events
@@ -104,7 +100,6 @@ class EventsController < ApplicationController
 			authorize! :update
 			respond_to do |format|
 				if @event.update(event_params)
-					@presenter.update_tags(params)
 					format.html { redirect_to @event, notice: 'Event was successfully updated.' }
 					format.json { render :show, status: :ok, location: @event }
 				else
@@ -129,7 +124,6 @@ class EventsController < ApplicationController
 		# Use callbacks to share common setup or constraints between actions.
 		def set_event
 			@event = Event.find(params[:id])
-			@presenter = EventPresenter.new(@event)
 		end
 
 		# Never trust parameters from the scary internet, only allow the white list through.
