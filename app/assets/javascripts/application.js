@@ -18,3 +18,15 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .
+
+function getGeoLocation() {
+  navigator.geolocation.getCurrentPosition(setGeoCookie);
+}
+
+function setGeoCookie(position) {
+  var expiration = new Date();
+        expiration.setDate(expiration.getDate()+1);
+  var cookie_val = position.coords.latitude + "_" + position.coords.longitude;
+  console.log(cookie_val)
+  document.cookie = "lat_lng=" + escape(cookie_val) + "; expires=" + expiration.toGMTString();
+}

@@ -26,6 +26,12 @@
         <meta name="author" content="">
 
     </head>
+    <%if @lat_lng.nil? %>
+
+    <script>
+     getGeoLocation();
+    </script>
+    <% end %>
 <%= render "layouts/header" %>
     <body>
         <%= yield %>
