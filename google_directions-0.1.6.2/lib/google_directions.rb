@@ -8,7 +8,7 @@ class GoogleDirections
 
   attr_reader :status, :doc, :xml, :origin, :destination, :options
 
-  @@base_url = 'http://maps.googleapis.com/maps/AIzaSyAxSCdwoVA5yILG25oukwFgcDTgJoc4MyY/directions/xml'
+  @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
 
   @@default_options = {
     :language => :en,
