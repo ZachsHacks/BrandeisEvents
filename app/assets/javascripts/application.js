@@ -25,7 +25,7 @@ function getGeoLocation() {
 
 function setGeoCookie(position) {
   var expiration = new Date();
-        expiration.setDate(expiration.getDate()+1);
+        expiration.setTime(expiration.getTime()+(10*60*1000));
   var cookie_val = position.coords.latitude + "_" + position.coords.longitude;
   console.log(cookie_val)
   document.cookie = "lat_lng=" + escape(cookie_val) + "; expires=" + expiration.toGMTString();
