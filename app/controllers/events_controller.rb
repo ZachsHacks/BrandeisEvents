@@ -46,8 +46,8 @@ class EventsController < ApplicationController
 			@current_longitude = cordinates[1]
 		else
 			#for localhost
-			@current_latitude = 40.285973
-			@current_longitude = -71.258469
+			@current_latitude = 42.366365
+			@current_longitude = -71.259591
 		end
 	@location = geolocation
 		geo_localization = "#{@current_latitude},#{@current_longitude}"

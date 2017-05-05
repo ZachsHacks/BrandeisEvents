@@ -1,5 +1,5 @@
 
-<!-- <%if @lat_lng.nil? %>
+<%if @lat_lng.nil? %>
 
 <script>
  getGeoLocation();
@@ -14,7 +14,7 @@ function setGeoCookie(position) {
   document.cookie = "lat_lng=" + escape(cookie_val) + expiration;
 }
 </script>
-<% end %> -->
+<% end %>
 <div class="container">
 	<div class="row">
 		<% if @event.start < Time.now %>
