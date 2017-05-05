@@ -20,7 +20,6 @@ b,c = line.split(/=/)
 	puts "First part + " " + #{a[a]}"
 	puts "second part + " " + #{c}"
 end
-byebug
 puts "hello"
 
 
