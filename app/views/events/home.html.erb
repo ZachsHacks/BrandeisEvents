@@ -17,7 +17,7 @@
 		<h3 class="text-center">Events for you</h3>
 		<hr>
 		<div class="col-md-12">
-			<div class="row event_row">
+			<div class="row event_row events-home">
 				<% @top_events.each do |event| %>
 				<%= render partial: 'list_event', locals: {event: event, col_length: "col-md-3"} %>
 				<% end %>
@@ -144,7 +144,7 @@
 		<h3 class="text-center">Top Events</h3>
 		<hr>
 		<div class="col-md-12">
-			<div class="row event_row">
+			<div class="row event_row events-home">
 				<% @top_events.each do |event| %>
 				<%= render partial: 'events/list_event', locals: {event: event, col_length: "col-md-3"} %>
 				<% end %>
@@ -231,4 +231,9 @@
 	}
 	</script>
 
+<style>
+.events-home img{
+	height: 150px;
+}
+</style>
 	</html>
