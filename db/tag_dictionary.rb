@@ -26,7 +26,7 @@ class TagDictionary
 		File.open("db/seeds/tags.txt").each do |tag|
 			tag = tag.gsub("\t", "")
 			tag = tag.gsub("\n", "")
-			tag = tag.split(":")
+			tag = tag.split("~")
 			populate(tag[0]) unless tag == "Other"
 		end
 	end

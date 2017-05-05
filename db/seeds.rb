@@ -86,7 +86,7 @@ def create_default_tags
 	File.open("db/seeds/tags.txt").each do |tag|
 		tag = tag.gsub("\t", "")
 		tag = tag.gsub("\n", "")
-		tag = tag.split(":")
+		tag = tag.split("~")
 		image = tag[1].delete(' ')
 		Tag.find_or_create_by(name: tag[0], image: image)
 	end
