@@ -88,7 +88,6 @@ def create_default_tags
 		tag = tag.gsub("\n", "")
 		tag = tag.split(":")
 		image = tag[1].delete(' ')
-		byebug
 		Tag.find_or_create_by(name: tag[0], image: image)
 	end
 	@tags = Tag.all.pluck(:name)

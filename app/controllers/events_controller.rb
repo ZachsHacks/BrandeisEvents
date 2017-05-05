@@ -1,5 +1,4 @@
 
-require './presenters/event_presenter'
 require 'active_support/core_ext'
 
 class EventsController < ApplicationController
@@ -87,11 +86,9 @@ class EventsController < ApplicationController
 
 			@event = Event.new(event_params)
 			@event.host = current_user
-			@presenter = EventPresenter.new(@event)
 			authorize! :create, @event
 			respond_to do |format|
 				if @event.save
-					@presenter.create_tags(params)
 					format.html { redirect_to @event, notice: 'Event was successfully created.' }
 					format.json { render :show, status: :created, location: @event }
 				else

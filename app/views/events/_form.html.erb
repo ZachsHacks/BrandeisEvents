@@ -58,22 +58,15 @@
 
 <!-- user selects tags for events -->
 <div class="tags field">
-	<%= f.label "Tags" %>
-	<br>
-	<%= check_box_tag(:sports,1, false) %>
-	<%="Sports".html_safe %>
-	<br/>
-	<%= check_box_tag(:academic,2, false) %>
-	<%="Academics".html_safe %>
-	<br/>
-	<%= check_box_tag(:food,3, false) %>
-	<%="Free Food".html_safe %>
-	<br/>
-	<%= check_box_tag(:clubs,4, false) %>
-	<%="Clubs".html_safe %>
-	<br/>
-	<%= check_box_tag(:religious,5, false) %>
-	<%="Religious".html_safe %>
+<%= f.label "Tags" %>
+<br/<
+<% Tag.all.each do |tags| %>
+<%= hidden_field_tag "event[tag][]" %>
+ <%= check_box_tag "event[tag][]", tags.id, @event.tags.include?(tags.id) %>
+
+<%=tags.name %>
+<br/>
+<%end %>
 </div>
 
 <div class="field">
