@@ -18,8 +18,8 @@ module CampusNow
 
     config.time_zone = 'Eastern Time (US & Canada)'
 
-    config.after_initialize do
-  Delayed::Job.scaler = :heroku_cedar
-end
+#     config.after_initialize do
+#   Delayed::Job.scaler = :heroku_cedar
+# end
   end
 end
