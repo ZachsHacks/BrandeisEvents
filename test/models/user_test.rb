@@ -15,7 +15,11 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "phone should be 10 numbers" do
-		@user.phone = "88888888888"
+		@user.phone = "8888888888888"
+		assert_not @user.valid?
+	end
+	test "phone should be more than 9 numbers" do
+		@user.phone = "888888888"
 		assert_not @user.valid?
 	end
 
