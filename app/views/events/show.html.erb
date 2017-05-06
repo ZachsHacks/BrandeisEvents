@@ -71,10 +71,10 @@
 			<%= "This event has no description." %>
 			<% end %>
 
-		</div>
-		<div class="row tags-section">
+
+		<div class=" tags-section">
+
 			<!-- <h4>Tags</h4> -->
-<div class="col-md-2" style="margin-right:20px;">&nbsp;</div>
 			<% @event.tags.each do |tag| %>
 			<%= link_to tag.name, events_path(:tag => tag.id), class: "btn btn-default btn-inverse btn-tags" , :method => :get%>
 
@@ -83,7 +83,7 @@
 
 		<!-- <p>Longitude:  <%= 		@current_latitude %></p>
 				<p>Lagitude: <%= 		@current_longitude %></p> -->
-	</div>
+
 </div>
 <div class="container">
 <div class="row">
@@ -92,6 +92,7 @@
 </div>
 	</div>
 	</div>
+		</div>
 
 <% if is_host %>
 <%= link_to 'Edit', edit_event_path(@event) %>
