@@ -15,20 +15,18 @@ require "ConnectSDK"
 @image_hash = Hash.new
 
 def create_events
-	@manual = false
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
 		title = line["title"]
 		description, description_text = get_description(line["content"])
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
-		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
-
-		create_tags(e) if e.save
-		generate_image(e) if e.save
-		e.save
+		e = Event.find_or_initialize_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
+		e.save(validate: false) if e.new_record?
+		create_tags(e) if e.save(validate: false)
+		generate_image(e) if e.save(validate: false)
+		e.save(validate: false)
 	end
-	@manual = true #this is to prevent the feed from having conflicts with validations. (check event.rb)
 end
 
 def generate_image(event)
