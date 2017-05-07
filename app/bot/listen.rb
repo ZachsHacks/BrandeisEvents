@@ -13,7 +13,7 @@ Bot.on :message do |message|
   Bot.deliver({
     recipient: message.sender,
     message: {
-      text: "The top upcoming event is #{@top_events[0][0]} at #{@top_events[0][2]} on #{@top_events[0][1]}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[0][3]}. We also recomend going to #{@top_events[1][0]]} on #{@top_events[0][1]}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[0][3]}. "
+      text: "The top upcoming event is #{@top_events[0][0]} at #{@top_events[0][2]} on #{@top_events[0][1]}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[0][3]}. We also recomend going to #{@top_events[1][0]} on #{@top_events[0][1]}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[0][3]}. "
     }
   }, access_token: ENV["ACCESS_TOKEN_Facebook"])
 end
