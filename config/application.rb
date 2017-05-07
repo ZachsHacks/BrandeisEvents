@@ -17,6 +17,7 @@ module CampusNow
     config.exceptions_app = self.routes
 
     config.time_zone = 'Eastern Time (US & Canada)'
+    # config.active_record.default_timezone = 'Eastern Time (US & Canada)'
 
 #     config.after_initialize do
 #   Delayed::Job.scaler = :heroku_cedar
