@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post '/get_events', to: 'users#get_events', as: 'get_events'
   get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
   get '/top_events_json', to: 'events#top_events', :defaults => { :format => :json }
+  get '/top_events_on_day/:date', to: 'events#top_events_on_day', :defaults => { :format => :json }
+
 
   get 'users/:id/calendar-sync', to: 'users#to_icalender'
 

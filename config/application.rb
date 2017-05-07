@@ -17,6 +17,7 @@ module CampusNow
     config.exceptions_app = self.routes
 
     config.time_zone = 'Eastern Time (US & Canada)'
+    Date::DATE_FORMATS[:default] = "%m/%d/%Y"
     # config.active_record.default_timezone = 'Eastern Time (US & Canada)'
 
 #     config.after_initialize do
