@@ -41,7 +41,7 @@ class Event < ApplicationRecord
 
 			events = events.where(['lower(name) LIKE ?', "%#{name.downcase}%"]) if name.present?
 			events = events.where(['lower(location) LIKE ?', "%#{location.downcase}%"]) if location.present? && location != "all"
-			events = events.where(['start > ?', date]) if date.present?
+			events = events.where(:start => date.beginning_of_day..date.end_of_day) if date.present?
 
 			return events
 			# if params[:event]

@@ -3,7 +3,9 @@ require 'nokogiri'
 module EventsHelper
     def top_image_text
         s = ''
-        s << if params[:date] && params[:date] != ''
+        s << if params[:action] == "search"
+								'Search'
+						elsif params[:date] && params[:date] != ''
                  params[:date].titleize.to_s
              elsif params[:tag]
                  "Category: #{Tag.find(params[:tag]).name.titleize}"
