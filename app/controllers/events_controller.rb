@@ -150,15 +150,15 @@ class EventsController < ApplicationController
 
 		def filter_dates(filter)
 			if filter == "today"
-				return Event.all.select {|e| e.start.to_date == Date.today}.paginate(page: params[:page], per_page: 12)
+				return Event.where(:start => Date.today.beginning_of_day..Date.today.end_of_day).paginate(page: params[:page], per_page: 12)
 			elsif filter == "tomorrow"
-				return Event.all.select {|e| e.start.to_date == Date.tomorrow}.paginate(page: params[:page], per_page: 12)
+				return Event.where(:start => Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day).paginate(page: params[:page], per_page: 12)
 			elsif filter == "this week"
-				return Event.all.select {|e| e.start.to_date.between?(Date.today,Date.today.next_day(7))}.paginate(page: params[:page], per_page: 12)
+				return Event.where(:start => Date.today.beginning_of_day..Date.today.next_day(7).end_of_day).paginate(page: params[:page], per_page: 12)
 			elsif filter == "next week"
-				return Event.all.select {|e| e.start.to_date.between?(Date.today.next_day(7),Date.today.next_day(14))}.paginate(page: params[:page], per_page: 12)
+				return Event.where(:start => Date.today.next_day(7).beginning_of_day..Date.today.next_day(14).end_of_day).paginate(page: params[:page], per_page: 12)
 			elsif filter == "this weekend"
-				return Event.all.select {|e| e.start.to_date.between?(Date.today, Date.today.next_day(7)) && e.start.to_date.on_weekend?}.paginate(page: params[:page], per_page: 12)
+				return Event.where(:start => Date.today.beginning_of_day..Date.today.next_day(7).end_of_day).select {|e| e.start.to_date.on_weekend? }.paginate(page: params[:page], per_page: 12)
 			else
 				return Event.where("start < ?", Time.now).reverse.paginate(page: params[:page], per_page: 12)
 			end
