@@ -15,9 +15,11 @@
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
+//= require social-share-button
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .
+
 
 function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie);
