@@ -45,7 +45,7 @@ class Event < ApplicationRecord
 			return events
 
 		else
-			order('id ASC')
+			Event.where('start > ?', Date.today).order('id ASC')
 		end
 	end
 
