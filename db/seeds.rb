@@ -103,7 +103,7 @@ def create_tags(event)
 	#tag_names = @keyword_finder.find(description)
 	tag_names.each do |t|
 		tag = Tag.find_or_create_by(name: t.capitalize)
-	 	event.tags << tag unless event.tags.include?(tag)
+		event.tags << tag unless event.tags.include?(tag)
 		#event.tags.create(name: t.capitalize)
 	end
 end
@@ -134,33 +134,28 @@ def create_locations
 end
 
 def imageUrl(name)
-# create instance of the Connect SDK
-# all_tags = ""
-# tags.each do |tag|
-# 	all_tags << " #{tag.name}"
-# end
-@count+= 1
-if @count >42
-puts @count
-puts name
-end
- connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
+	# create instance of the Connect SDK
+	# all_tags = ""
+	# tags.each do |tag|
+	# 	all_tags << " #{tag.name}"
+	# end
+	@count+= 1
+	if @count >42
+		puts @count
+		puts name
+	end
+	connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
 	search_results = connectSdk.search.images.with_phrase(name).execute
 	if !search_results["images"].empty?
-			return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
+		return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
 	end
 end
 
 def update_image_queries
 	File.open('db/image_name_dictionary.txt').each do |line|
-	b,c = line.split(/=/)
-	  @image_hash[b] = c
+		b,c = line.split(/=/)
+		@image_hash[b] = c
 		puts "second part + " " + #{c}"
-	end
-end
-def debug_events
-	Tag.where(name: "Other").first.events.each do |e|
-
 	end
 end
 
