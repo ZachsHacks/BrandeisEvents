@@ -4,7 +4,7 @@ module EventsHelper
     def top_image_text
         s = ''
         s << if params[:action] == "search"
-								'Search'
+								'Search Results'
 						elsif params[:date] && params[:date] != ''
                  params[:date].titleize.to_s
              elsif params[:tag]
