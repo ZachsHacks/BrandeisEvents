@@ -29,42 +29,21 @@ class Event < ApplicationRecord
 	validates_attachment_content_type :event_image, content_type: /\Aimage\/.*\Z/
 
 	def self.search(params)
-
 		if params
 
 			events = Event.all
-
-			name = params[:event]
+			#name or description
+			n_or_d = params[:event]
 			location = params[:location]
 			date = params[:date]
 			date = Date.strptime(params[:date], "%m/%d/%Y") if date.present?
-
-			events = events.where(['lower(name) LIKE ?', "%#{name.downcase}%"]) if name.present?
+	
+			events = events.where(['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{n_or_d.downcase}%", "%#{n_or_d.downcase}%"]) if n_or_d.present?
 			events = events.where(['lower(location) LIKE ?', "%#{location.downcase}%"]) if location.present? && location != "all"
 			events = events.where(:start => date.beginning_of_day..date.end_of_day) if date.present?
 
 			return events
-			# if params[:event]
-			# 	name = params[:event].downcase unless params[:event].blank?
-			# 	# THis is present so that the all event search bar can search both title and loction
-			# 	location = params[:event].downcase unless params[:location] == 'all'
-			# end
-			# if params[:location]
-			# 	location = params[:location].downcase unless params[:location] == 'all'
-			# end
-			#
-			# if location == name
-			# 	where(['lower(name) LIKE ? OR lower(description) LIKE ? OR lower(location) LIKE ?', "%#{name}%", "%#{name}%", "%#{location}%"]).order('id ASC')
-			# #d = Date.strptime(params[:date], "%m/%d/%Y")
-			# else location != name
-			# 	if (params[:event].present? && params[:location].present?)
-			# 		where(['lower(name) LIKE ? AND lower(description) LIKE ? AND lower(location) LIKE ?', "%#{name}%", "%#{name}%", "%#{location}%"]).order('id ASC')
-			# 	elsif (!params[:event].present? && params[:location].present?)
-			# 		where(['lower(location) LIKE ?', "%#{location}%"]).order('id DESC')
-			# 	else
-			# 		where(['lower(name) LIKE ? OR lower(description) LIKE ? OR lower(location) LIKE ?', "%#{name}%", "%#{name}%", "%#{location}%"]).order('id ASC')
-			# 	end
-			# end
+
 		else
 			order('id ASC')
 		end
