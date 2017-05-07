@@ -11,7 +11,7 @@
 				<select class="form-control" name="location" id="location" form="search">
 						<option value="all">All Locations</option>
 					<%@locations.sort.each do |l|%>
-						<option value=<%=l.downcase%>><%=l%></option>
+						<option value=<%=l%>><%=l%></option>
 					<%end%>
 				</select>
 				<!-- <label class="sr-only" for="location">Location</label>
@@ -21,7 +21,7 @@
 		<div class="col-md-2">
 			<div class="form-group">
 				<div id='datetimepicker1' class="input-group">
-					<input type="date" class="form-control" placeholder="Date" name=date>
+					<input type="date" class="form-control" placeholder="MM/DD/YYYY" name=date>
 					<span class="input-group-addon">
 						<i class="glyphicon glyphicon-calendar"></i>
 					</span>
