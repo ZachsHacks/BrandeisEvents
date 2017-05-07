@@ -37,7 +37,7 @@ class Event < ApplicationRecord
 			location = params[:location]
 			date = params[:date]
 			date = Date.strptime(params[:date], "%m/%d/%Y") if date.present?
-	
+
 			events = events.where(['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{n_or_d.downcase}%", "%#{n_or_d.downcase}%"]) if n_or_d.present?
 			events = events.where(['lower(location) LIKE ?', "%#{location.downcase}%"]) if location.present? && location != "all"
 			events = events.where(:start => date.beginning_of_day..date.end_of_day) if date.present?
@@ -49,7 +49,4 @@ class Event < ApplicationRecord
 		end
 	end
 
-	def description_plain_text
-		Nokogiri::HTML(self.description).text
-	end
 end
