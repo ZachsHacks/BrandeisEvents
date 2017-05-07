@@ -10,6 +10,7 @@ class Rsvp < ApplicationRecord
 	  @@REMINDER_TIME = 30.minutes # minutes before appointment
 
 	  def when_to_run
+			byebug
 	    Event.find(self.event_id).start - @@REMINDER_TIME
 	  end
 
