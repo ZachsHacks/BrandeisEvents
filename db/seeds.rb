@@ -141,12 +141,12 @@ def imageUrl(name)
 	# end
 	@count+= 1
 	if @count >42
-		puts @count
-		puts name
+		#puts @count
+		#puts name
 	end
 	connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
 	search_results = connectSdk.search.images.with_phrase(name).execute
-	if !search_results["images"].empty?
+	if !search_results["images"].nil? && !search_results["images"].empty?
 		return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
 	end
 end
@@ -155,7 +155,7 @@ def update_image_queries
 	File.open('db/image_name_dictionary.txt').each do |line|
 		b,c = line.split(/=/)
 		@image_hash[b] = c
-		puts "second part + " " + #{c}"
+		#puts "second part + " " + #{c}"
 	end
 end
 
