@@ -15,5 +15,5 @@ Bot.on :message do |message|
     message: {
       text: "The top upcoming event is #{@top_events[0].name}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[0].id}. We also recomend going to #{@top_events[1].name}. It can be found at http://CampusNow.herokuapp.com/events/#{@top_events[1].id}. "
     }
-  }, access_token: ENV["ACCESS_TOKEN"])
+  }, access_token: ENV["ACCESS_TOKEN_Facebook"])
 end
