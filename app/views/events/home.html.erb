@@ -44,7 +44,7 @@
 					<a href=<%=events_path(:tag => @top_tags[0][2])%> class="category-box" style='background-image: url(<%=@top_tags[0][3]%>);'>
 						<div class="inner">
 							<span class="number"><%=@top_tags[0][0]%></span>
-							<span class="title"><%=@top_tags[0][1]%></span>
+							<span class="title tags"><%=@top_tags[0][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -56,7 +56,7 @@
 						<div class="inner">
 
 							<span class="number"><%=@top_tags[1][0]%></span>
-							<span class="title"><%=@top_tags[1][1]%></span>
+							<span class="title tags"><%=@top_tags[1][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -67,7 +67,7 @@
 					<a href=<%=events_path(:tag => @top_tags[2][2])%> class="category-box" style="background-image: url(<%=@top_tags[2][3]%>);">
 						<div class="inner">
 							<span class="number"><%=@top_tags[2][0]%></span>
-							<span class="title"><%=@top_tags[2][1]%></span>
+							<span class="title tags"><%=@top_tags[2][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -78,7 +78,7 @@
 					<a href=<%=events_path(:tag => @top_tags[3][2])%> class="category-box" style="background-image: url(<%=@top_tags[3][3]%>);">
 						<div class="inner">
 							<span class="number"><%=@top_tags[3][0]%></span>
-							<span class="title"><%=@top_tags[3][1]%></span>
+							<span class="title tags"><%=@top_tags[3][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -89,7 +89,7 @@
 					<a href=<%=events_path(:tag => @top_tags[4][2])%> class="category-box" style="background-image: url(<%=@top_tags[4][3]%>);">
 						<div class="inner">
 							<span class="number"><%=@top_tags[4][0]%></span>
-							<span class="title"><%=@top_tags[4][1]%></span>
+							<span class="title tags"><%=@top_tags[4][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -100,7 +100,7 @@
 					<a href=<%=events_path(:tag => @top_tags[5][2])%> class="category-box" style="background-image: url(<%=@top_tags[5][3]%>);">
 						<div class="inner">
 							<span class="number"><%=@top_tags[5][0]%></span>
-							<span class="title"><%=@top_tags[5][1]%></span>
+							<span class="title tags"><%=@top_tags[5][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -111,7 +111,7 @@
 					<a href=<%=events_path(:tag => @top_tags[6][2])%> class="category-box" style="background-image: url(<%=@top_tags[6][3]%>);">
 						<div class="inner">
 							<span class="number"><%=@top_tags[6][0]%></span>
-							<span class="title"><%=@top_tags[6][1]%></span>
+							<span class="title tags"><%=@top_tags[6][1]%></span>
 						</div>
 						<!-- end .inner -->
 					</a>
@@ -232,6 +232,9 @@
 	</script>
 
 <style>
+.tags {
+	font-family: Helvetica;
+}
 .events-home img{
 	height: 150px;
 }
