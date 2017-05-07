@@ -1,7 +1,6 @@
 require 'faker'
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
-require_relative 'twinword'
 require "ConnectSDK"
 # require_relative 'ghetty'
 
@@ -12,7 +11,6 @@ require "ConnectSDK"
 
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
-@keyword_finder = TwinWord.new
 @count = 0
 @image_hash = Hash.new
 
@@ -21,29 +19,27 @@ def create_events
 	@locations = Location.all.pluck(:name)
 	@data.each do |line|
 		title = line["title"]
-		description, description_text = get_description(line["content"])#get_description(line["content"])
-		# description_text = Nokogiri::HTML(line["content"]).text
+		description, description_text = get_description(line["content"])
 		location = get_location_info(line["content"])
 		date_time = Time.parse(line["published"].to_s)
 		e = Event.find_or_create_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
+
 		create_tags(e) if e.save
-		split_string = e.name.gsub(/[^0-9a-z ]/i, '')
-
-		split_string = e.name.split()
-		first_two_words = split_string[0] + " " + split_string[1]
-		if @image_hash.key?(first_two_words)
-			e.image_id = imageUrl(@image_hash[first_two_words])
-		else
-			e.image_id = imageUrl(first_two_words)
-		end
-
+		generate_image(e) if e.save
 		e.save
-		# e.image_id = "http://aarongold.com"
-
 	end
+	@manual = true #this is to prevent the feed from having conflicts with validations. (check event.rb)
+end
 
-
-	@manual = true
+def generate_image(event)
+	split_string = event.name.gsub(/[^0-9a-z ]/i, '')
+	split_string = event.name.split()
+	first_two_words = split_string[0] + " " + split_string[1]
+	if @image_hash.key?(first_two_words)
+		event.image_id = imageUrl(@image_hash[first_two_words])
+	else
+		event.image_id = imageUrl(first_two_words)
+	end
 end
 
 def get_description(html)
@@ -52,12 +48,6 @@ def get_description(html)
 	description_text = Nokogiri::HTML(html).text
 	start = description_text.index "m. "
 	description_text = description_text[start+3, description_text.length]
-	# description = ""
-	# skip = 3
-	# d.xpath("//p").children.each do |line|
-	# 	description << line.text if skip <= 0
-	# 	skip -= 1
-	# end
 	return description.html_safe, description_text
 end
 
@@ -74,7 +64,6 @@ def get_location_info(html)
 			return location.first if location.size >= 1
 		end
 	end
-
 	return "Other"
 end
 
@@ -95,16 +84,12 @@ end
 
 def create_tags(event)
 	description = event.description
-	#without api
 	word_list = get_word_list(description)
 	keywords = keywords_from_word_list(word_list)
 	tag_names = look_up(keywords)
-	#with api
-	#tag_names = @keyword_finder.find(description)
 	tag_names.each do |t|
 		tag = Tag.find_or_create_by(name: t.capitalize)
 		event.tags << tag unless event.tags.include?(tag)
-		#event.tags.create(name: t.capitalize)
 	end
 end
 
@@ -134,16 +119,7 @@ def create_locations
 end
 
 def imageUrl(name)
-	# create instance of the Connect SDK
-	# all_tags = ""
-	# tags.each do |tag|
-	# 	all_tags << " #{tag.name}"
-	# end
 	@count+= 1
-	if @count >42
-		#puts @count
-		#puts name
-	end
 	connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
 	search_results = connectSdk.search.images.with_phrase(name).execute
 	if !search_results["images"].nil? && !search_results["images"].empty?
@@ -155,7 +131,6 @@ def update_image_queries
 	File.open('db/image_name_dictionary.txt').each do |line|
 		b,c = line.split(/=/)
 		@image_hash[b] = c
-		#puts "second part + " " + #{c}"
 	end
 end
 
@@ -164,4 +139,3 @@ create_locations if !Location.any?
 create_default_tags if !Tag.any?
 update_image_queries
 create_events
-#debug_events
