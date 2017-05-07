@@ -14,8 +14,10 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-datetimepicker
+ *=require social-share-button
 *= require font-awesome
  */
+/*@import "social-share-button";*/
 
  @media (min-width: 970px) {
    .container {
