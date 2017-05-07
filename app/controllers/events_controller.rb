@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     end
 
     def top_events
-        @top_events = Event.where('start > ?', Date.today).sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
+        @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
 
         respond_to do |format|
             format.html {}
