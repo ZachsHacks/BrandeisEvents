@@ -53,15 +53,14 @@ module EventsHelper
 	def event_image(event)
 		s = ''
 		s << "<a href='#{event_path(event.id)}'>"
-		s << if event.event_image_file_name.nil?
-			# s<< image_tag('missing_thumbnail.png').html_safe
+		if event.event_image_file_name.nil?
 			if event.image_id.blank?
-				image_tag('missing_thumbnail.png').html_safe
+				s << image_tag('missing_thumbnail.png').html_safe
 			else
-				image_tag(event.image_id).html_safe
+				s << image_tag(event.image_id).html_safe
 			end
 		else
-			image_tag(event.event_image(:thumbnail)).html_safe
+			s << image_tag(event.event_image(:square)).html_safe
 		end
 		s << '</a>'
 	end
