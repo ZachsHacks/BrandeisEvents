@@ -15,13 +15,13 @@ class EventsController < ApplicationController
     # GET /events.json
     def index
         if params[:location]
-            @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location]).paginate(page: params[:page], per_page: 12)
+            @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
         elsif params[:date]
-            @events = filter_dates(params[:date])
+            @events = filter_dates(params[:date]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
         elsif params[:tag]
-            @events = filter_tags(params[:tag])
+            @events = filter_tags(params[:tag]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
         else
-            @events = Event.where('start > ?', Time.now).paginate(page: params[:page], per_page: 12) # Event.paginate(page: params[:page], per_page: 9)
+            @events = Event.where('start > ?', Time.now).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
         end
         grab_locations
     end
@@ -157,22 +157,22 @@ class EventsController < ApplicationController
       end
 
     def filter_tags(tag)
-        Tag.find(tag).events.where('start > ?', Time.now).paginate(page: params[:page], per_page: 12)
+        Tag.find(tag).events.where('start > ?', Time.now)
       end
 
     def filter_dates(filter)
         if filter == 'today'
-            Event.where(start: Date.today.beginning_of_day..Date.today.end_of_day).paginate(page: params[:page], per_page: 12)
+            Event.where(start: Date.today.beginning_of_day..Date.today.end_of_day)
         elsif filter == 'tomorrow'
-            Event.where(start: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day).paginate(page: params[:page], per_page: 12)
+            Event.where(start: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day)
         elsif filter == 'this week'
-            Event.where(start: Date.today.beginning_of_day..Date.today.next_day(7).end_of_day).paginate(page: params[:page], per_page: 12)
+            Event.where(start: Date.today.beginning_of_day..Date.today.next_day(7).end_of_day)
         elsif filter == 'next week'
-            Event.where(start: Date.today.next_day(7).beginning_of_day..Date.today.next_day(14).end_of_day).paginate(page: params[:page], per_page: 12)
+            Event.where(start: Date.today.next_day(7).beginning_of_day..Date.today.next_day(14).end_of_day)
         elsif filter == 'this weekend'
-            Event.where(start: Date.today.beginning_of_day..Date.today.next_day(7).end_of_day).select { |e| e.start.to_date.on_weekend? }.paginate(page: params[:page], per_page: 12)
+            Event.where(start: Date.today.beginning_of_day..Date.today.next_day(7).end_of_day).select { |e| e.start.to_date.on_weekend? }
         else
-            Event.where('start < ?', Time.now).reverse.paginate(page: params[:page], per_page: 12)
+            Event.where('start < ?', Time.now).reverse
         end
       end
   end
