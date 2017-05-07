@@ -18,6 +18,9 @@ module CampusNow
 
     config.time_zone = 'Eastern Time (US & Canada)'
     Date::DATE_FORMATS[:default] = "%m/%d/%Y"
+
+    config.paths.add File.join("app", "bot"), glob: File.join("**","*.rb")
+config.autoload_paths += Dir[Rails.root.join("app", "bot", "*")]
     # config.active_record.default_timezone = 'Eastern Time (US & Canada)'
 
 #     config.after_initialize do

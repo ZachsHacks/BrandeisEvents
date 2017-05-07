@@ -61,6 +61,8 @@ gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
+gem 'facebook-messenger', '~> 0.11.1'
+
 # Use Twilio
 gem 'twilio-ruby'
 gem 'delayed_job'
