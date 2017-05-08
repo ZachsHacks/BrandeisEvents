@@ -1,24 +1,14 @@
 module RecommendationHelper
 
   def recommendations
-    user_events = current_user.events
-    recs = Set.new
+    user_tags = current_user.events.map { |e| e.tags }.flatten | current_user.tags
+    recs = []
 
-    user_events.each do |e|
-      recs = recs + has_common_tag(e)
+    user_tags.each do |t|
+      recs << t.events.select { |e| !e.users.include?(current_user) }
     end
 
-    recs
-  end
-
-  def has_common_tag(e)
-    common_tag = Set.new
-    Event.all.each do |current_event|
-      if (current_event.tags & e.tags).length >= 1 && !current_event.users.include?(current_user)
-        common_tag << current_event
-      end
-    end
-    common_tag
+    recs.flatten
   end
 
 end
