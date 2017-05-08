@@ -81,7 +81,7 @@ class EventsController < ApplicationController
 
     # GET /events/1/edit
     def edit
-        authorize! :edit
+        authorize! :edit, @event
       end
 
     # POST /events
@@ -104,7 +104,7 @@ class EventsController < ApplicationController
     # PATCH/PUT /events/1
     # PATCH/PUT /events/1.json
     def update
-        authorize! :update
+        authorize! :update, @event
         respond_to do |format|
             if @event.update(event_params)
                 format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -120,7 +120,7 @@ class EventsController < ApplicationController
     # DELETE /events/1.json
     def destroy
         @event.destroy
-        authorize! :destroy
+        authorize! :destroy, @event
         respond_to do |format|
             format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
             format.json { head :no_content }

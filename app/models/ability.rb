@@ -17,24 +17,18 @@ class Ability
       elsif user.can_host?
         can :read, :all
         can :create, Event
-        can :update, Event do |event|
-          event.user == user
+				#this allows a host to do anything to an event that belongs to them
+        can :manage, Event do |event|
+          event.host == user
         end
-        can :destroy, Event do |event|
-          event.user == user
-        end
-        can :update, User do |u|
-          u == user
-        end
-        can :edit, User do |u|
+				#this allows a host to do anything to their own profile
+        can :manage, User do |u|
           u == user
         end
       else
         can :read, :all
-        can :update, User do |u|
-          u == user
-        end
-        can :edit, User do |u|
+				#this allows a user to do anything to their own profile
+        can :manage, User do |u|
           u == user
         end
       end

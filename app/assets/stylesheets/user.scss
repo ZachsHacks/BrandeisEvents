@@ -34,8 +34,6 @@ div.user_tab_true.col-md-2.text-center.user_tab input {
     -webkit-box-shadow: none;
     box-shadow: none;
     border-bottom-color: #fff !important;
-
-
 }
 
 div.user_tab_false.col-md-2.text-center.user_tab input {
@@ -53,7 +51,6 @@ input.btn.btn-default.user_tab_button {
     border-bottom-right-radius: 0 !important;
     width: 151px;
 }
-
 
 .section-titles {
     padding-top: 10px;
@@ -95,25 +92,39 @@ div.col-md-12.RSVP_section {
     overflow: hidden;
     padding-bottom: 20px;
 }
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {}
 
-@media only screen
-and (min-device-width : 375px)
-and (max-device-width : 667px) {
-
-
-
-
+.btn-tags-user-page {
+    border-radius: 15px !important;
+    margin-top: 15px;
 }
 
-.btn-tags-user-page{
-  border-radius: 15px !important;
-  margin-top: 15px;
-}
-.tags-section-user{
-  padding-left: 15px;
-  padding-bottom: 20px;
+.tags-section-user {
+    padding-left: 15px;
+    padding-bottom: 20px;
 }
 
-.btn-submit-user{
-  border-radius: 10px !important;
+.btn-submit-user {
+    border-radius: 10px !important;
 }
+
+#tags-section-user {
+    padding-bottom: 20px;
+}
+
+.interest_button input {
+    display: inline;
+    list-style-type: none;
+    margin-left: 20px;
+    float: left;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+    .interest_button form {
+        display: inline !important;
+    }
+
+    .button_to,
+    .button_to div {
+        display: inline-block;
+    }

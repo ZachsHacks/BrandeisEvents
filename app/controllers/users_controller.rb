@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     # GET /users/new
     def new
         @user = User.new
-        authorize! :new
+        authorize! :new, @user
     end
 
     # GET /users/1/edit
