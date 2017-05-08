@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/top_events_on_day/:date', to: 'events#top_events_on_day', :defaults => { :format => :json }
 
 
-  get '/:uid/:calendar_hash/calendar-sync', to: 'users#to_icalender'
+  get 'users/:calendar_hash/calendar-sync', to: 'users#to_icalendar'
 
 
   match '/404', :to => "errors#not_found", :via => :all

@@ -24,6 +24,7 @@ class EventsController < ApplicationController
     grab_locations
   end
 
+  # Gather 
   def home
     all_events = Event.all
     @items = all_events.pluck(:name)
