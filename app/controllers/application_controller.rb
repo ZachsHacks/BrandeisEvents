@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :store_location, :grab_all_locations, :current_user, :current_user_location
   include CanCan::ControllerAdditions
 
-# This method gives us a convenient way to access the logged-in user
+  # This method gives us a convenient way to access the logged-in user
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end

@@ -1,6 +1,7 @@
 class AuthenticationsController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
+  # This method is called to enable users to log in with Shibboleth
   def saml
     hash = request.env['omniauth.auth']
     new_user = User.find_by(uid: hash['extra']['raw_info'].attributes['urn:oid:0.9.2342.19200300.100.1.1'][0]).nil?

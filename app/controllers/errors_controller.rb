@@ -1,3 +1,4 @@
+# This controller maps errors to their codes to facilitate our custom error pages
 class ErrorsController < ApplicationController
   def not_found
     render(:status => 404)
