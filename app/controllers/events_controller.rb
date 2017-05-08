@@ -9,8 +9,6 @@ class EventsController < ApplicationController
         grab_locations
     end
 
-    # GET /events
-    # GET /events.json
     def index
         if params[:location]
             @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
