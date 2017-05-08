@@ -15,5 +15,12 @@ class ApplicationController < ActionController::Base
     @lat_lng = cookies[:lat_lng]
   end
 
+  private
+
+# This method sets @all_locations
+  def grab_all_locations
+    @all_locations = Location.all.pluck(:name)
+  end
+
   helper_method :current_user # so any line of code can call current_user
 end
