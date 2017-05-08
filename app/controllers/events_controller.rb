@@ -49,16 +49,16 @@ class EventsController < ApplicationController
     @address = "#{@event.location}, Waltham, MA, 02453"
   end
 
-    def top_events
-        @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
+  def top_events
+    @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
 
-        respond_to do |format|
-            format.html {}
-            format.json do
-                render json: @top_events.to_json
-            end
-        end
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @top_events.to_json
       end
+    end
+  end
 
     def top_events_on_day
         # for alexa and other chat bots as well as future integration with other apps
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
 
     # GET /events/1/edit
     def edit
-        authorize! :edit
+        authorize! :edit, @event
       end
 
     # POST /events
@@ -103,7 +103,7 @@ class EventsController < ApplicationController
     # PATCH/PUT /events/1
     # PATCH/PUT /events/1.json
     def update
-        authorize! :update
+        authorize! :update, @event
         respond_to do |format|
             if @event.update(event_params)
                 format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -119,7 +119,7 @@ class EventsController < ApplicationController
     # DELETE /events/1.json
     def destroy
         @event.destroy
-        authorize! :destroy
+        authorize! :destroy, @event
         respond_to do |format|
             format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
             format.json { head :no_content }

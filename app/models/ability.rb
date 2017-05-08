@@ -17,14 +17,17 @@ class Ability
       elsif user.can_host?
         can :read, :all
         can :create, Event
+				#this allows a host to do anything to an event that belongs to them
         can :manage, Event do |event|
           event.host == user
         end
+				#this allows a host to do anything to their own profile
         can :manage, User do |u|
           u == user
         end
       else
         can :read, :all
+				#this allows a user to do anything to their own profile
         can :manage, User do |u|
           u == user
         end
