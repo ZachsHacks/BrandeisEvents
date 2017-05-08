@@ -11,8 +11,7 @@ class Event < ApplicationRecord
 	validates :description, presence: true, allow_blank: false, length: { minimum: 80 }
 	validates :location, presence: true
 	validates :start, presence: true
-	validates :end, presence: true
-	
+
 
 	def host
 		user

@@ -20,8 +20,9 @@ def create_events
 		title = line["title"]
 		description, description_text = get_description(line["content"])
 		location = get_location_info(line["content"])
+		location_id = Location.find_by(name: location).id
 		date_time = Time.parse(line["published"].to_s)
-		e = Event.find_or_initialize_by(name: title, description: description, description_text: description_text, location: location, start: date_time, user: User.first)
+		e = Event.find_or_initialize_by(name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: date_time, user: User.first)
 		e.save(validate: false) if e.new_record?
 		create_tags(e) if e.save(validate: false)
 		generate_image(e) if e.save(validate: false)
