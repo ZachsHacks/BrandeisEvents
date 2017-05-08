@@ -91,9 +91,9 @@ module EventsHelper
 		string << '<p>' + link_to('All Locations', events_path) + '</p>'
 
 		locations.sort.each do |l|
-			count = Event.where(location: l).where('start > ?', Date.today).count.to_s
-			s = l + ' (' + count + ')'
-			string << '<p>' + link_to(s, events_path(location: l)) + '</p>'
+			count = l.events.where('start > ?', Date.today).count.to_s
+			s = l.name + ' (' + count + ')'
+			string << '<p>' + link_to(s, events_path(location: l.name)) + '</p>'
 		end
 
 		string << '</div>'
