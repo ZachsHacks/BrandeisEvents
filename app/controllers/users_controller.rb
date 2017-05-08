@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     def to_icalender
-        @user = User.find(params[:uid, :calendar_hash])
+        @user = User.find(params[:uid])
         respond_to do |format|
             format.html
             format.ics do
