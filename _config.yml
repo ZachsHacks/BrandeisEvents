@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: CampusNow
+description: CampusNow is a service for universities that allows students to easily find campus events that they are interested in. Currently the application is exclusive to Brandeis students, faculty, and staff. Without signing in, anyone can search and find events with ease. They can search by date, name, description, category, or location. When signed in, Brandeis users are able to save events as going or interested, see events that are recommended for them, save events to their calendar, and receive text message reminders about the event. The event page shows a user every piece of information you would expect about the event; title, description, price, date and time, distance from a user's location, RSVP buttons, tags, location, and a map. Events can be added to the website by approved hosts. All of this is possible on an easy to use and attractive interface.
+show_downloads: true
