@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   # Get events based on search parameters
   def index
     if params[:location]
-      @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location])
+      @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
     elsif params[:date]
       @events = filter_dates(params[:date]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
     elsif params[:tag]
