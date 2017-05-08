@@ -49,16 +49,16 @@ class EventsController < ApplicationController
     @address = "#{@event.location}, Waltham, MA, 02453"
   end
 
-    def top_events
-        @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
+  def top_events
+    @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }
 
-        respond_to do |format|
-            format.html {}
-            format.json do
-                render json: @top_events.to_json
-            end
-        end
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: @top_events.to_json
       end
+    end
+  end
 
     def top_events_on_day
         # for alexa and other chat bots as well as future integration with other apps

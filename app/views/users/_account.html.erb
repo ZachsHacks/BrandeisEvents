@@ -34,8 +34,8 @@
 		<%= f.text_field :phone, class: "form-control" %>
 	</div>
 
-	<%= link_to("Subscribe to Calendar Feed", "webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
-	<%="  (Or manually subscribe using this link: webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
+	<%= link_to("Subscribe to Calendar Feed", "webcal://campusnow.herokuapp.com/#{current_user.uid}/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+	<%="  (Or manually subscribe using this link: webcal://campusnow.herokuapp.com/#{current_user.uid}/#{current_user.calendar_hash}/calendar-sync)"%>
 	<br/>
 
 	<div class="actions">
