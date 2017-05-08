@@ -2,53 +2,52 @@
 require 'active_support/core_ext'
 
 class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-    def search
-        @events = Event.search(params).paginate(page: params[:page], per_page: 12)
-        grab_locations
-    end
+  def search
+    @events = Event.search(params).paginate(page: params[:page], per_page: 12)
+    grab_locations
+  end
 
-    def index
-        if params[:location]
-            @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
-        elsif params[:date]
-            @events = filter_dates(params[:date]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
-        elsif params[:tag]
-            @events = filter_tags(params[:tag]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
-        else
-            @events = Event.where('start > ?', Time.now).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
-        end
-        grab_locations
+  # Get events based on search parameters
+  def index
+    if params[:location]
+      @events = Event.where('start > ? AND location LIKE ?', Time.now, params[:location])
+    elsif params[:date]
+      @events = filter_dates(params[:date]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
+    elsif params[:tag]
+      @events = filter_tags(params[:tag]).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
+    else
+      @events = Event.where('start > ?', Time.now).sort_by{|e| e.start}.paginate(page: params[:page], per_page: 12)
     end
+    @events.sort_by { :start }.paginate(page: params[:page], per_page: 12)
+    grab_locations
+  end
 
-    def home
-        # need caching
-        all_events = Event.all
-        @items = all_events.pluck(:name)
-        @top_events = all_events.sort_by(&:rsvps_count).last(4).reverse
-        @locations = Location.all.pluck(:name) # grab_locations
-        @top_tags = Tag.all.sort_by(&:events_count).last(7).reverse.map { |t| [t.events.count, t.name, t.id, t.image] }
-    end
+  def home
+    all_events = Event.all
+    @items = all_events.pluck(:name)
+    @top_events = all_events.sort_by(&:rsvps_count).last(4).reverse
+    @locations = Location.all.pluck(:name) # grab_locations
+    @top_tags = Tag.all.sort_by(&:events_count).last(7).reverse.map { |t| [t.events.count, t.name, t.id, t.image] }
+  end
 
-    # GET /events/1
-    # GET /events/1.json
-    def show
-        @tags = EventTag.where(event_id: @event.id)
-        if !@lat_lng.nil?
-            cordinates = @lat_lng.split('_')
-            @current_latitude = cordinates[0]
-            @current_longitude = cordinates[1]
-        else
-            # for localhost
-            @current_latitude = 42.366365
-            @current_longitude = -71.259591
-        end
-        @location = geolocation
-        geo_localization = "#{@current_latitude},#{@current_longitude}"
-        @current_address = Geocoder.search(geo_localization).first.address
-        @address = "#{@event.location}, Waltham, MA, 02453"
+  def show
+    @tags = EventTag.where(event_id: @event.id)
+    if !@lat_lng.nil?
+      coordinates = @lat_lng.split('_')
+      @current_latitude = coordinates[0]
+      @current_longitude = coordinates[1]
+    else
+      # For local use, we hardcoded a test coordinate pair
+      @current_latitude = 42.366365
+      @current_longitude = -71.259591
     end
+    @location = geolocation
+    geo_localization = "#{@current_latitude},#{@current_longitude}"
+    @current_address = Geocoder.search(geo_localization).first.address
+    @address = "#{@event.location}, Waltham, MA, 02453"
+  end
 
     def top_events
         @top_events = Event.all.sort_by(&:rsvps_count).last(10).reverse.map { |e| [e.name, e.start, e.location] }

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-
+  # This method sets the user's location as @lat_lng
   def current_user_location
     @lat_lng = cookies[:lat_lng]
   end
