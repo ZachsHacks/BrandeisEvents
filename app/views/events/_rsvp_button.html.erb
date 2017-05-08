@@ -1,9 +1,0 @@
-<div id = "rsvp_buttons_<%=event.id%>" class="rsvp_buttons">
-
-<% for choice in 1..2 %>
-
-<%= button_to get_option(event, choice), rsvp_path(event_id: event.id, user_id: session[:user_id].to_i, choice: choice), :remote => true, class: rsvp_button_color  %>
-
-<% end %>
-
-</div>
