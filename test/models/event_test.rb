@@ -6,7 +6,6 @@ class EventTest < ActiveSupport::TestCase
 		@manual = true
 		@host = users(:host)
 		@guest = users(:two)
-
 		@event = events(:one)
 		@event.user_id = @host.id
 	end
