@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
 	def search
 		@events = Event.search(params).paginate(page: params[:page], per_page: 12)
-		grab_locations
+		@locations = Location.all.select {|l| l.events.count > 0}
 	end
 
 	# Get events based on search parameters
