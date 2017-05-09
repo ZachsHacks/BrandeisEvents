@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   post '/rsvp', to: 'rsvps#rsvp', as: 'rsvp'
   post '/add_interest', to: 'interests#add_interest', as: 'add_interest'
 
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'events#home'
 end

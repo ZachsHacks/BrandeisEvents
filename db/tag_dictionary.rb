@@ -13,10 +13,8 @@ class TagDictionary
 		else
 			@dictionary = {}
 		end
-
 		generate_dictionary if @dictionary == {}
 		write_to_file if File.file?("db/seeds/dictionary_json.txt") && File.zero?("db/seeds/dictionary_json.txt")
-
 	end
 
 
@@ -32,7 +30,6 @@ class TagDictionary
 	end
 
 	def write_to_file
-
 		output = File.open( "db/seeds/dictionary_json.txt","w" )
 		output.write(@dictionary.to_json)
 		output.close

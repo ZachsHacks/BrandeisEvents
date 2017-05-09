@@ -1,18 +1,28 @@
-require 'faker'
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
 require "ConnectSDK"
 # require_relative 'ghetty'
 
-@user_count = User.count
-
+puts "Obtaining Brandeis' Feed..."
 #trumba data for brandeis events
 @data = BrandeisEventParser.new.get_data
 
+puts "Grabbing Tag Dictionary..."
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
+
 @count = 0
+
+#special cases for image queries
 @image_hash = Hash.new
+
+def get_image_url_hash
+	if File.file?("db/image_url_dictionary.txt") && !File.zero?("db/image_url_dictionary.txt")
+		@image_url_hash =  JSON.parse(File.open("db/image_url_dictionary.txt").read)
+	else
+		@image_url_hash =  Hash.new
+	end
+end
 
 def create_events
 	@locations = Location.all.pluck(:name)
@@ -35,9 +45,9 @@ def generate_image(event)
 	split_string = event.name.split()
 	first_two_words = split_string[0] + " " + split_string[1]
 	if @image_hash.key?(first_two_words)
-		event.image_id = imageUrl(@image_hash[first_two_words])
+		event.image_id = image_url(@image_hash[first_two_words])
 	else
-		event.image_id = imageUrl(first_two_words)
+		event.image_id = image_url(first_two_words)
 	end
 end
 
@@ -117,11 +127,14 @@ def create_locations
 	end
 end
 
-def imageUrl(name)
+def image_url(name)
+	name = name.gsub("\n", "").downcase
+	return @image_url_hash[name] if !@image_url_hash[name].nil?
 	@count+= 1
 	connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
 	search_results = connectSdk.search.images.with_phrase(name).execute
 	if !search_results["images"].nil? && !search_results["images"].empty?
+		@image_url_hash[name] = search_results["images"][0]["display_sizes"][0]["uri"].to_s
 		return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
 	end
 end
@@ -133,8 +146,22 @@ def update_image_queries
 	end
 end
 
-create_host
+def update_image_url_hash
+	output = File.open( "db/image_url_dictionary.txt","w" )
+	output.write(@image_url_hash.to_json)
+	output.close
+end
+
+puts "Starting seeding"
+create_host if !User.any?
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
+puts "update_image_queries"
 update_image_queries
+puts "get_image_url_hash"
+get_image_url_hash
+puts "create_events"
 create_events
+puts "update_image_url_hash"
+update_image_url_hash
+puts "Done!"
