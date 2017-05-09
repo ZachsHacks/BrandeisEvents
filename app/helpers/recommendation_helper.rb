@@ -8,7 +8,7 @@ module RecommendationHelper
       recs << t.events.select { |e| !e.users.include?(current_user) }
     end
 
-    recs.flatten
+    recs.flatten.uniq
   end
 
 end
