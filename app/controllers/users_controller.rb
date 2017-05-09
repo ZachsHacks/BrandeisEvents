@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     redirect_to root_path if @user != current_user
   end
 
-  def to_icalender
+  def to_icalendar
     @user = User.find(params[:calendar_hash])
     respond_to do |format|
       format.html
