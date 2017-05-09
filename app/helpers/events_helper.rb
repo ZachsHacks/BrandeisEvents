@@ -17,7 +17,7 @@ module EventsHelper
 		s.html_safe
 	end
 
-	def list_event(event, col_length)
+	def list_event_helper(event, col_length)
 		string = ''
 		string << "<div class='#{col_length} portfolio-item'>"
 		string << event_image(event)

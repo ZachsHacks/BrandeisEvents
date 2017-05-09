@@ -21,7 +21,7 @@ class EventsController < ApplicationController
 		else
 			@events = Event.where('start > ?', Time.now)
 		end
-		@events = @events.sort_by{:start}.paginate(page: params[:page], per_page: 12)
+		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
 		@locations = Location.all.select {|l| l.events.count > 0}
 	end
 
