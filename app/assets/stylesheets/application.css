@@ -15,7 +15,7 @@
  *= require bootstrap
  *= require bootstrap-datetimepicker
  *=require social-share-button
-*= require font-awesome
+ *= require font-awesome
  */
 
 
