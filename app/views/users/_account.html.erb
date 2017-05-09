@@ -5,7 +5,7 @@
 	<div class="row" id="tags-section-user">
 		<div class="col-md-12 text-left">
 			<h4>Interests</h4>
-			<% Tag.all.each do |tag| %>
+			<% Tag.all.sort_by { |t| t.name }.each do |tag| %>
 			<%= render partial: 'interests/interest_button', locals: {tag: tag} %>
 			<% end %>
 		</div>
@@ -31,15 +31,16 @@
 			<%= f.text_field :phone, class: "form-control" %>
 		</div>
 
-		<%= link_to("Subscribe to Calendar Feed", "webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
-		<%="  (Or manually subscribe using this link: webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
-		<br/>
-
 		<div class="actions">
-			<%= f.submit class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
+			<%= f.submit "Update phone number", class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
 		</div>
 
 		<% end %>
+
+
+		<%= link_to("Subscribe to Calendar Feed", "webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+		<%="  (Or manually subscribe using this link: webcal://campusnow.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
+		<br/>
 
 	</div>
 
