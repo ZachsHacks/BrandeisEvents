@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20170509022300) do
     t.boolean  "is_admin",      default: false
     t.string   "phone"
     t.string   "calendar_hash"
-    t.string   "hash"
+    t.string   "uid_hash"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
     t.index ["provider"], name: "index_users_on_provider", using: :btree
     t.index ["uid"], name: "index_users_on_uid", using: :btree

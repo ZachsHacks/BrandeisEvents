@@ -20,8 +20,8 @@ class User < ApplicationRecord
 			user.last_name = parse('urn:oid:2.5.4.4')
 			user.email = parse('urn:oid:0.9.2342.19200300.100.1.3')
 			user.bio = 'No bio yet...'
-			user.hash = User.digest("#{user.uid}#{user.provider}").gsub!(/[^0-9A-Za-z]/, '')
-			user.calendar_hash = "#{user.uid}_#{user.hash}_#{user.provider}"
+			user.uid_hash = User.digest("#{user.uid}#{user.provider}").gsub!(/[^0-9A-Za-z]/, '')
+			user.calendar_hash = "#{user.uid}_#{user.uid_hash}_#{user.provider}"
 			user.save!
 			user
 		end
