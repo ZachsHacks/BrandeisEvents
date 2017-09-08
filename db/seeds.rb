@@ -61,14 +61,13 @@ def get_description(html)
   description = html[start+9, html.length]
   description_text = Nokogiri::HTML(html).text
   start = description_text.index "m. "
-  description_text = description_text[start+3, description_text.length]
+	if !start.nil?
+		description_text = description_text[start+3, description_text.length]
+	end
   return description.html_safe, description_text
 end
 
 def get_location_info(html)
-	if html.nil? || html.blank?
-		byebug
-	end
   parsed_html = Nokogiri::HTML(html)
   data = parsed_html.xpath("//a")
   location = []
