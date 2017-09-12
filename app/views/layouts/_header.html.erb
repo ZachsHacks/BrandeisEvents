@@ -13,10 +13,11 @@
             </div>
             <!-- Collection of nav links and other content for toggling -->
 
+            <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand'%>
+            <%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <!-- <%= link_to image_tag("Brandeis_seal_white.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%> -->
-                <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand'%>
-                <%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
