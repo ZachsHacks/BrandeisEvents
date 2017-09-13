@@ -12,8 +12,7 @@
 
             </div>
             <!-- Collection of nav links and other content for toggling -->
-
-            <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand'%>
+            <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand', id: 'navbar-brand-link'%>
             <%= link_to "CampusNow", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <!-- <%= link_to image_tag("Brandeis_seal_white.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%> -->
@@ -51,3 +50,33 @@
         </div>
     </nav>
 </section>
+
+<style>
+#logo_text{
+  margin-top: -40px;
+  font-size: 80%;
+}
+.logo_text_move_up{
+
+  padding-top: 0px !important;
+  font-size: 80%;
+}
+#logo_scrolling{
+display: none;
+}
+#navbar-default{
+  display: none !important;
+}
+.navbar-default-mobile{
+  background-color: #fff;
+padding-top:-30px;
+  min-height: 70px;
+  margin-top: -40px;
+  color: #000000 !important;
+}.black-text{
+  color: #000000 !important;
+}
+.navbar-header{
+  color: #000000 !important;
+}
+</style>

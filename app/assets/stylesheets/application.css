@@ -17,7 +17,10 @@
  *=require social-share-button
  *= require font-awesome
  */
-
+ .hidden {
+     display: none !important;
+     visibility: hidden;
+ }
 
 /*@import "social-share-button";*/
 
