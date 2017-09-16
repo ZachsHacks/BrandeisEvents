@@ -65,7 +65,7 @@ gem 'social-share-button'
 
 # Use Twilio
 gem 'twilio-ruby'
-gem 'delayed_job'
+# gem 'delayed_job', '~> 4.1', '>= 4.1.3'
 gem 'delayed_job_active_record'
 # Need daemons to start delayed_job
 gem 'daemons'
