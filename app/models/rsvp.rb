@@ -28,7 +28,7 @@ class Rsvp < ApplicationRecord
 			start_time = @e.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")
 			event_name = @e.name
 	     reminder = "Hi #{@user.first_name}. Just a reminder that you have an Event (#{event_name}) coming up in 30 minutes at #{start_time}. The event can be viewed at campusnow.herokuapp.com/events/#{event_id}."
-	     message = @client.account.messages.create(
+			 message = @client.account.messages.create(
 	       :from => @twilio_number,
 	       :to => @user.phone,
 	       :body => reminder,
