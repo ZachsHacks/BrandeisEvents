@@ -17,7 +17,8 @@ class Rsvp < ApplicationRecord
 
 	  def reminder
 				user_id = self.user_id
-			if !user_id.nil?
+				byebug
+			if !user_id.nil? && User.find(user_id).phone
 	    @twilio_number = ENV['TWILLIO_NUMBER']
 	    @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
 	    # time_str = ((self.event_id).localtime).strftime("%I:%M%p on %b. %d, %Y")
