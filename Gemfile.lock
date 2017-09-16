@@ -352,7 +352,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   crack
   daemons
-  delayed_job
   delayed_job_active_record
   devise
   faker
@@ -396,4 +395,4 @@ DEPENDENCIES
   workless_revived (~> 1.2.4)
 
 BUNDLED WITH
-   1.15.1
+   1.15.4
