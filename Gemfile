@@ -70,7 +70,7 @@ gem 'delayed_job_active_record'
 # Need daemons to start delayed_job
 gem 'daemons'
 # Use workless to use less workers on heroku
-gem "workless_revived", "~> 1.2.4"
+gem 'workless_revived', '~> 1.2.4'
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
