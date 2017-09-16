@@ -22,8 +22,8 @@ module CampusNow
 		config.paths.add File.join("app", "bot"), glob: File.join("**","*.rb")
 		# config.active_record.default_timezone = 'Eastern Time (US & Canada)'
 
-		config.after_initialize do
-	    Delayed::Job.scaler = :heroku
-	  end
+		# config.after_initialize do
+	  #   Delayed::Job.scaler = :heroku
+	  # end
 	end
 end
