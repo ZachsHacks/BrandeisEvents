@@ -6,7 +6,6 @@ class Rsvp < ApplicationRecord
 
 	 after_create :reminder
 
-
 	  @@REMINDER_TIME = 30.minutes # minutes before appointment
 
 	  def when_to_run
@@ -36,7 +35,18 @@ class Rsvp < ApplicationRecord
 	     puts message.to
 	   end
 	 end
+	 if User.find(self.user_id).rsvps.count > 1
+@user = User.find(user_id)
+		 reminder = "Hi #{@user.first_name}. You've been entered into a lottery!."
+		 message = @client.account.messages.create(
+		 	:from => @twilio_number,
+		 	:to => @user.phone,
+		 	:body => reminder,
+		 )
+		 puts message.to
+		   handle_asynchronously :reminder, :run_at 30.minutes.from_now
 
+	 end
 	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
 
 end
