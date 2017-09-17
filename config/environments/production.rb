@@ -1,5 +1,5 @@
 Rails.application.configure do
-
+config.time_zone = 'Eastern Time (US & Canada)'
   # config.after_initialize do
   #     Delayed::Job.scaler = :heroku
   #   end
