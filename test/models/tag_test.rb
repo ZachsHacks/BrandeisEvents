@@ -19,7 +19,7 @@ class TagTest < ActiveSupport::TestCase
   test "Can delete tag to an event" do
       @event.tags.create(name: "politics")
     assert_difference('@event.tags.count', -1) do
-      # byebug
+  
       @event.tags.last.destroy
     end
   end

@@ -53,6 +53,6 @@ class Rsvp < ApplicationRecord
 	 end
 
 	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
-			 handle_asynchronously :reminder, :run_at => 30.minutes.from_now
+			 handle_asynchronously :reminder, :run_at => 1.minutes.from_now
 
 end
