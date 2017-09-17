@@ -47,7 +47,7 @@ class Rsvp < ApplicationRecord
 		 user_id = self.user_id
 		 @user = User.find(user_id)
 
-				reminder_survey = "Hi. You've been entered into a lottery!."
+				reminder_survey = "Thank you for using CampusNow! Now that you've RSVP'D to 5 events, you've been selected to be entered to with a 25 dollar amazon gift card. Simply fill out the below form! http://google.com "
 				message_survey = @client.account.messages.create(
 				 :from => @twilio_number,
 				 :to => @user.phone,
