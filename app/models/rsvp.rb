@@ -44,10 +44,8 @@ class Rsvp < ApplicationRecord
 		 if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 1
 		 @twilio_number = ENV['TWILLIO_NUMBER']
 		 @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
-		 # time_str = ((self.event_id).localtime).strftime("%I:%M%p on %b. %d, %Y")
 		 user_id = self.user_id
 		 @user = User.find(user_id)
-		 event_name = @e.name
 
 				reminder_survey = "Hi. You've been entered into a lottery!."
 				message_survey = @client.account.messages.create(
