@@ -17,7 +17,6 @@ class Rsvp < ApplicationRecord
 
 	  def reminder
 				user_id = self.user_id
-				byebug
 			if !user_id.nil? && User.find(user_id).phone
 	    @twilio_number = ENV['TWILLIO_NUMBER']
 	    @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']

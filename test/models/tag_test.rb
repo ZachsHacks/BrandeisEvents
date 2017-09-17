@@ -12,7 +12,6 @@ class TagTest < ActiveSupport::TestCase
 
   test "Can add tag to an event" do
     assert_difference('@event.tags.count', 1) do
-      # byebug
       @event.tags.create(name: "politics")
     end
   end

@@ -9,7 +9,6 @@ class RsvpTest < ActiveSupport::TestCase
 	test "users can RSVP to an event" do
 		@user.rsvps.destroy_all
 		assert_difference('Rsvp.count', 1) do
-			# byebug
 			@user.rsvps.create(event_id: Event.ids.sample, choice: 1)
 		end
 	end
@@ -18,7 +17,6 @@ class RsvpTest < ActiveSupport::TestCase
 		@user.rsvps.destroy_all
 		@user.rsvps.create(event_id: Event.ids.sample, choice: 1)
 		assert_difference('Rsvp.count', -1) do
-			# byebug
 			@user.rsvps.last.destroy
 		end
 	end
