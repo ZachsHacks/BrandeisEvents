@@ -5,6 +5,7 @@ class Rsvp < ApplicationRecord
 	validates :user_id, :uniqueness => { :scope => :event_id}
 
 	 after_create :reminder
+	 after_create :survey
 
 	  @@REMINDER_TIME = 30.minutes # minutes before appointment
 
@@ -33,26 +34,32 @@ class Rsvp < ApplicationRecord
 	       :body => reminder,
 	     )
 	     puts message.to
-
-
-
-
-			 if User.find(self.user_id).rsvps.count > 1
-
-				 reminder_survey = "Hi #{@user.first_name}. You've been entered into a lottery!."
-				 message_survey = @client.account.messages.create(
-				 	:from => @twilio_number,
-				 	:to => @user.phone,
-				 	:body => reminder_survey,
-				 )
-				 puts message_survey.to
-
-
-			 end
 	   end
 	 end
 
+
+
+	 def survey
+			 user_id = self.user_id
+		 if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 1
+		 @twilio_number = ENV['TWILLIO_NUMBER']
+		 @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
+		 # time_str = ((self.event_id).localtime).strftime("%I:%M%p on %b. %d, %Y")
+		 user_id = self.user_id
+		 @user = User.find(user_id)
+		 event_name = @e.name
+
+				reminder_survey = "Hi #{@user.first_name}. You've been entered into a lottery!."
+				message_survey = @client.account.messages.create(
+				 :from => @twilio_number,
+				 :to => @user.phone,
+				 :body => reminder_survey,
+				)
+				puts message_survey.to
+		end
+	end
+
 	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
-			 handle_asynchronously :reminder, :run_at => 1.minutes.from_now
+			 handle_asynchronously :survey, :run_at => 1.minutes.from_now
 
 end
