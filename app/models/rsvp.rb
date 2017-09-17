@@ -49,7 +49,7 @@ class Rsvp < ApplicationRecord
 		 @user = User.find(user_id)
 		 event_name = @e.name
 
-				reminder_survey = "Hi #{@user.first_name}. You've been entered into a lottery!."
+				reminder_survey = "Hi. You've been entered into a lottery!."
 				message_survey = @client.account.messages.create(
 				 :from => @twilio_number,
 				 :to => @user.phone,
