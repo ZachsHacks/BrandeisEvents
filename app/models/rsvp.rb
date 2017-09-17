@@ -41,13 +41,12 @@ class Rsvp < ApplicationRecord
 
 	 def survey
 			 user_id = self.user_id
-		 if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 4s
+		 if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 4
 		 @twilio_number = ENV['TWILLIO_NUMBER']
 		 @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
-		 user_id = self.user_id
-		 @user = User.find(user_id)
+		 @user = User.find(self.user_id)
 
-if  @user.rsvps.count >4
+		 if  @user.rsvps.count >4
 				reminder_survey = "Thank you for using CampusNow! Now that you've RSVP'D to 5 events, you've been selected to be entered to with a 25 dollar amazon gift card. Simply fill out the below form! http://google.com "
 				message_survey = @client.account.messages.create(
 				 :from => @twilio_number,
@@ -55,9 +54,11 @@ if  @user.rsvps.count >4
 				 :body => reminder_survey,
 				)
 				puts message_survey.to
+				end
 		end
 	end
-		end
+	# end
+
 
 	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
 			 handle_asynchronously :survey, :run_at => 1.minutes.from_now
