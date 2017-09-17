@@ -33,20 +33,26 @@ class Rsvp < ApplicationRecord
 	       :body => reminder,
 	     )
 	     puts message.to
+
+
+
+
+			 if User.find(self.user_id).rsvps.count > 1
+
+				 reminder_survey = "Hi #{@user.first_name}. You've been entered into a lottery!."
+				 message_survey = @client.account.messages.create(
+				 	:from => @twilio_number,
+				 	:to => @user.phone,
+				 	:body => reminder_survey,
+				 )
+				 puts message_survey.to
+
+
+			 end
 	   end
 	 end
-	 if User.find(self.user_id).rsvps.count > 1
-@user = User.find(user_id)
-		 reminder = "Hi #{@user.first_name}. You've been entered into a lottery!."
-		 message = @client.account.messages.create(
-		 	:from => @twilio_number,
-		 	:to => @user.phone,
-		 	:body => reminder,
-		 )
-		 puts message.to
-		   handle_asynchronously :reminder, :run_at 30.minutes.from_now
 
-	 end
 	    handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
+			 handle_asynchronously :reminder, :run_at => 30.minutes.from_now
 
 end
