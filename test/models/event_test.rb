@@ -29,4 +29,10 @@ class EventTest < ActiveSupport::TestCase
 		assert 0, @event.rsvps.count
 	end
 
+	test "events should be searchable by name" do
+		results = Event.search(name: 'Group')
+		assert 1, results.count
+		assert :one, results.first
+	end
+
 end

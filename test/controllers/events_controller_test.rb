@@ -69,6 +69,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   #############################
 
   test "should get index" do
+      byebug
     get events_url
     assert_response :success
   end

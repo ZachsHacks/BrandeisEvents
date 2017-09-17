@@ -92,7 +92,7 @@ def create_default_tags
     tag = tag.gsub("\t", "")
     tag = tag.gsub("\n", "")
     image = tag
-    Tag.find_or_create_by(name: tag[0], image: image)
+    Tag.find_or_create_by(name: tag, image: image)
   end
   @tags = Tag.all.pluck(:name)
 end

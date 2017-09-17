@@ -1,18 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: "My Event"
-  description: "Thisjxdjddfsioasdjfioajdsiofadsjfioasdjfiodsjfiosd evensdajiofdajidfsjoaidjaiosdjsdiofjst is awesome"
-  location: MyString
-  start: 2017-02-07 20:59:06
-  end: 2017-02-08 20:59
+  name: "Group Exercise: Cycle"
+  description: This cardiovascular class will get your heart pumping while cycling on indoor stationary bikes using drills, imagery and/or themes. Cycling is a great workout that people of all fitness levels can enjoy.
+  location: Gosman Sports and Convocation Center
+  start: "2017-09-12 07:30:00"
+  end: "2017-09-12 08:30:00"
 
-#
-# two:
-#   name: MyString1
-#   description: MyText1
-#   location: MyString1
-#   start: 2017-02-07 20:59:06
-#   end: 2017-02-07 20:59:06
-#   price: 1
-#   host_id: 1
+two:
+  name: "Physics Department Colloquium: How to control the size of a self-assembling, self-filling shell"
+  description: "Speaker: Michael Hagan (Brandeis)\n\nAbstract: The self-assembly of a protein shell around a cargo is a common mechanism of encapsulation in biology. For example, many viruses assemble an icosahedral protein shell (capsid) around the the viral nucleic acid. Some viruses then acquire an additional exterior coating by budding through a cell membrane. Similarly, bacterial microcompartments (BMCs) are large icosahedral protein shells that assemble around collections of enzymes to act as organelles inside of bacteria.\n\nIn this talk I will use coarse-grained computational models and simple scaling calculations to illuminate the factors that control such a self-assembly process. I will particularly focus on how material properties (such as nucleic acid electric charge, membrane bending modulus, or enzyme cohesive forces) control assembly pathways and the size of the assembled shell.\n\nHost: Bulbul Chakraborty, Bjoern Penning.\n\nContact Dawn Mitchell, 781-736-2804 for more information."
+  location: Abelson Bass Yalem Building
+  start: "2017-09-12 16:00:00"
+  end: "2017-09-12 17:00:00"
+
+three:
+  name: Selections from Sonetti Spirituali
+  description: The Brandeis Department of Music and the Mandel Center for the Humanities present 6-7 free noontime concerts throughout the year. These concerts take place in the Mandel Center for the Humanities Atrium, include a light lunch following the 45-60 minute performance, and are free and open to the public.
+  location: Mandel Center for the Humanities
+  start: "2017-09-13 12:00:00"
+  end: "2017-09-13 13:00:00"
