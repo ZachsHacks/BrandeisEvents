@@ -46,7 +46,7 @@ class Rsvp < ApplicationRecord
       @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
       @user = User.find(self.user_id)
 
-      if  @user.rsvps.count >4 && @user.survey_sent == false
+      if  @user.rsvps.count >4 && !@user.survey_sent == true
 
 				@user.survey_sent == true
 				@user.save

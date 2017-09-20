@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   get '/', to: 'events#home'
   get '/events/new', to: 'events#new'
+  get '/events/new/trumba', to: 'events#new_trumba'
   get '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search'

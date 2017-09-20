@@ -79,6 +79,10 @@ class EventsController < ApplicationController
 		authorize! :new, @event
 	end
 
+	def new_trumba
+
+	end
+
 	# GET /events/1/edit
 	def edit
 		authorize! :edit, @event

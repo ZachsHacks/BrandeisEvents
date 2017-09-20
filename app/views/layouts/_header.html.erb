@@ -22,6 +22,10 @@
                     <li>
                         <%= link_to "Browse Events", events_path %>
                     </li>
+
+                    <li>
+                        <%= link_to "Add Event", events_new_trumba_path %>
+                    </li>
                     <% if can_host? %>
                     <li>
                         <%= link_to "Add Event", events_new_path %>
