@@ -46,9 +46,8 @@ class Rsvp < ApplicationRecord
       @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
       @user = User.find(self.user_id)
 
-      if  @user.rsvps.count >4 && !@user.survey_sent == true
-
-				@user.survey_sent == true
+      if  @user.rsvps.count > 4 && @user.survey_sent != true
+				@user.survey_sent = true
 				@user.save
         reminder_survey = "Thank you for using BrandeisEvents! Now that you've RSVP'D to 5 events, you've been selected to be entered to with a 25 dollar amazon gift card. Simply fill out the below form! http://google.com "
         message_survey = @client.account.messages.create(
