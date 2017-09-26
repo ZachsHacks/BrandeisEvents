@@ -6,7 +6,7 @@ class User < ApplicationRecord
 	has_many :tags, through: :interests
 	devise :omniauthable, omniauth_providers: [:saml]
 
-	validates :phone, :allow_blank => true, format: { with:  /\d[0-9]\)*\z/, message: "bad format" }, length: {minimum: 10, maximum: 10}
+	validates :phone, :allow_blank => true, format: { with:  /\d[0-9]\)*\z/, message: "bad format" }, :numericality => true, length: {minimum: 10, maximum: 10}
 
 	class << self
 		def from_saml(auth_hash)

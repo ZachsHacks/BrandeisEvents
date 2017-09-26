@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+		user_params["phone"] = user_params["phone"].gsub!(/[^0-9A-Za-z]/, '') if user_params["phone"]
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
@@ -75,12 +76,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     authorize! :update, @user
+		user_params["phone"] = user_params["phone"].gsub!(/[^0-9A-Za-z]/, '') if user_params["phone"]
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html { redirect_to(@user, :error => 'Account could not be updated.')  }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
