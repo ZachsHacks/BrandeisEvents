@@ -59,7 +59,7 @@
 		<div class="col-md-2 individual_event_sidebar">
 
 			<%= sidebar_individual_event %>
-			<%= social_share_button_tag(@event.name) %>
+			<%= social_share_button_tag(@event.name, :url =>"https://www.brandeisevents.com/events/#{@event.id}") %>
 		</div>
 		<div class="col-md-10 event-description">
 			<% if !@event.description.nil? %>
