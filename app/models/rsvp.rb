@@ -49,7 +49,7 @@ class Rsvp < ApplicationRecord
       if  @user.rsvps.count > 4 && @user.survey_sent != true
 				@user.survey_sent = true
 				@user.save
-        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a  $25 Amazon gift card. Enter here: http://google.com to win!"
+        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a  $25 Amazon gift card. Enter here: http://bit.ly/2xEWEsL to win!"
         message_survey = @client.account.messages.create(
           :from => @twilio_number,
           :to => @user.phone,
