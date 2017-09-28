@@ -3,9 +3,7 @@ require 'nokogiri'
 module EventsHelper
 	def top_image_text
 		s = ''
-		s << if params[:action] == "search"
-			'Search Results'
-		elsif params[:date] && params[:date] != ''
+		s << if params[:date] && params[:date] != ''
 			params[:date].titleize.to_s
 		elsif params[:tag]
 			"Category: #{Tag.find(params[:tag]).name.titleize}"
@@ -88,12 +86,12 @@ module EventsHelper
 		string = ''
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#locations'><h4><strong>Locations</strong></h4></button>"
 		string << "<div class='collapse' id='locations'>"
-		string << '<p>' + link_to('All Locations', events_path) + '</p>'
+		string << '<p>' + link_to('All Locations', filter_events_path, remote: true) + '</p>'
 
 		locations.sort.each do |l|
 			count = l.events.where('start > ?', Date.today).count.to_s
 			s = l.name + ' (' + count + ')'
-			string << '<p>' + link_to(s, events_path(location: l.name)) + '</p>'
+			string << '<p>' + link_to(s, filter_events_path(location: l.name), remote: true) + '</p>'
 		end
 
 		string << '</div>'
@@ -104,10 +102,10 @@ module EventsHelper
 		string = ''
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#tags'><h4><strong>Categories</strong></h4></button>"
 		string << "<div class='collapse' id='tags'>"
-		string << '<p>' + link_to('All Categories', events_path) + '</p>'
+		string << '<p>' + link_to('All Categories', filter_events_path, remote: true) + '</p>'
 		Tag.all.select { |t| t.events.count > 0 }.sort.each do |tag|
 			s = ' (' + Tag.find(tag.id).events.count.to_s + ')'
-			string << '<p>' + link_to(tag.name + s, events_path(tag: tag.id)) + '</p>'
+			string << '<p>' + link_to(tag.name + s, filter_events_path(tag: tag.id), remote: true) + '</p>'
 		end
 
 		string << '</div>'
@@ -119,14 +117,14 @@ module EventsHelper
 		string = ''
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#dates'><h4><strong>Dates</strong></h4></button>"
 		string << "<div class='collapse' id='dates'>"
-		string << '<p>' + link_to('All Dates', events_path) + '</p>'
-		string << '<p>' + link_to('Today', events_path(date: 'today')) + '</p>'
-		string << '<p>' + link_to('Tomorrow', events_path(date: 'tomorrow')) + '</p>'
-		string << '<p>' + link_to('This Week', events_path(date: 'this week')) + '</p>'
-		string << '<p>' + link_to('This Weekend', events_path(date: 'this weekend')) + '</p>'
-		string << '<p>' + link_to('Next Week', events_path(date: 'next week')) + '</p>'
-		string << '<p>' + link_to('This Month', events_path(date: 'this month')) + '</p>'
-		string << '<p>' + link_to('Past Events', events_path(date: 'past events')) + '</p>'
+		string << '<p>' + link_to('All Dates', filter_events_path, remote: true) + '</p>'
+		string << '<p>' + link_to('Today', filter_events_path(date: 'today'), remote: true) + '</p>'
+		string << '<p>' + link_to('Tomorrow', filter_events_path(date: 'tomorrow'), remote: true) + '</p>'
+		string << '<p>' + link_to('This Week', filter_events_path(date: 'this week'), remote: true) + '</p>'
+		string << '<p>' + link_to('This Weekend', filter_events_path(date: 'this weekend'), remote: true) + '</p>'
+		string << '<p>' + link_to('Next Week', filter_events_path(date: 'next week'), remote: true) + '</p>'
+		string << '<p>' + link_to('This Month', filter_events_path(date: 'this month'), remote: true) + '</p>'
+		string << '<p>' + link_to('Past Events', filter_events_path(date: 'past events'), remote: true) + '</p>'
 		string << '</div>'
 		string << '<hr>'
 		string.html_safe

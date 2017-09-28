@@ -14,6 +14,12 @@ class EventsController < ApplicationController
 
 	# Get events based on search parameters
 	def index
+		@events = Event.where('start > ?', Time.now)
+		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
+		@locations = Location.all.select {|l| l.events.count > 0}
+	end
+
+	def filter_events
 		@events = []
 		if params[:location]
 			@events = Location.find_by(name: params[:location]).events.where('start > ?', Time.now)
@@ -25,7 +31,9 @@ class EventsController < ApplicationController
 			@events = Event.where('start > ?', Time.now)
 		end
 		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
-		@locations = Location.all.select {|l| l.events.count > 0}
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def home

@@ -4,8 +4,8 @@
 	<div class="container">
 		<div class="top-thumbnail text-center">
 			<%= image_tag "All-Event.png", class:"img-responsive" %>
-			<div class="top-caption">
-				<h1><%= top_image_text %></h1>
+			<div class="top-caption" id = "top-image">
+				<%= render partial: 'top_caption' %>
 			</div>
 		</div>
 
