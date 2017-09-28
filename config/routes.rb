@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/events/new/trumba', to: 'events#new_trumba'
   get '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  get '/search', to: 'events#search'
+  get '/search', to: 'events#search', as: 'search'
   post '/get_events', to: 'users#get_events', as: 'get_events'
   get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
   get '/top_events_json', to: 'events#top_events', :defaults => { :format => :json }

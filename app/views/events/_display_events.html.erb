@@ -22,11 +22,12 @@
 				</div>
 			</div>
 			<div class="col-md-10">
-			 <form name="search" remote: "true" action=<%=search_path%>>
 	 <div class = "form-group">
-		  <%= text_field_tag :event, "",  :placeholder=>'Search Here for Anything', class:"form-control", onchange:"AJAXSearchForm();" %>
-	 </div>
-     </form>
+
+	 <%= form_tag(search_path, :method => "get", remote: true) do %>
+ </div>
+	 <%= text_field_tag :event, params[:event], placeholder: "Search here for anything", class: "form-control" %>
+	 <% end %>
 			<div id="events-happening">
 				<%= render partial: 'events/events_exist' %>
 			</div>
