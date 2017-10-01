@@ -2,6 +2,7 @@ require 'icalendar'
 
 class UsersController < ApplicationController
   before_action :logged_in?
+	skip_before_action :verify_authenticity_token
 
   def get_events
     @active_tab = params[:index].to_i
@@ -82,8 +83,9 @@ class UsersController < ApplicationController
         format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { redirect_to(@user, :error => 'Account could not be updated.')  }
+        format.html
         format.json { render json: @user.errors, status: :unprocessable_entity }
+				format.js
       end
     end
   end
