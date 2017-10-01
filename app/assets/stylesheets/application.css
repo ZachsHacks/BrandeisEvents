@@ -17,6 +17,16 @@
  *=require social-share-button
  *= require font-awesome
  */
+
+.landing-page {
+  height: 100vh;
+}
+
+.container {
+  width: 100vw !important;
+  padding: 0 30px !important;
+}
+
  .hidden {
      display: none !important;
      visibility: hidden;
@@ -25,9 +35,9 @@
 /*@import "social-share-button";*/
 
 @media (min-width: 970px) {
-    .container {
+    /*.container {
         width: 1000px !important;
-    }
+    }*/
     .portfolio-item {
         margin-top: 20px;
         min-height: 395px !important;
@@ -44,9 +54,7 @@
 }
 
 @media (min-width: 1390px) {
-    .container {
-        width: 1370px !important;
-    }
+
     .portfolio-item h4 {
         min-height: 40px;
     }
@@ -187,4 +195,66 @@ a:visited {
     display: inline-block;
     height: 28px !important;
     width: 28px !important;
+}
+
+
+
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px)  {
+  .navbar-toggle{
+    margin-top: 30px;
+  }
+  #logo_text{
+    margin-top: -40px;
+    font-size: 80%;
+  }
+  .logo_text_move_up{
+
+    padding-top: 0px !important;
+    font-size: 80%;
+  }
+  #logo_scrolling{
+  display: none;
+  }
+  .navbar-default-mobile{
+  background-color: #fff;
+padding-top:-30px;
+  min-height: 70px;
+  margin-top: -40px;
+  color: #000000 !important;
+}
+
+#logo_text{
+  height: 30px !important;
+}
+
+ }
+
+
+
+
+ .logo_text_mobile{
+  margin-top: -60px !important;
+   font-size: 80%;
+ }
+.logo_text_move_up{
+
+  font-size: 80%;
+  padding-top: 0px !important;
+
+}
+
+#navbar-default{
+  display: none !important;
+}
+
+.black-text{
+  color: #000000 !important;
+}
+.navbar-header{
+  color: #000000 !important;
+}
+.hidden{
+  display: none !important;
 }
