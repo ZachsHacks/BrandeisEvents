@@ -66,18 +66,18 @@ module EventsHelper
 	def start_time(event)
 		<<-eos
 		<div class="row">
-		<div class="col-xs-4">
+		<div class="col-xs-12">
 		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>#{event.start.strftime('%-m/%-d %-l:00%P')}
 		</div>
 		eos
 	end
 
 	def location(event)
-		string = "<div class='col-xs-8 text-right'>"
-		string << "<span class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
+		string = "<div class='col-xs-12 text-right'>"
 		to_truncate = event.location
 		trunc = to_truncate.split.first(2).join(' ')
 		string << trunc.to_s
+		string << "<span style='margin-left: -19px;' class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
 		string << '</div>'
 		string << '</div>'
 	end
