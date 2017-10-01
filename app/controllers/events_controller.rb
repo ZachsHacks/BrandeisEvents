@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 		@events = Event.search(params).paginate(page: params[:page], per_page: 12)
 		@locations = Location.all.select {|l| l.events.count > 0}
 		respond_to do |format|
+			format.html
 			format.js
 		end
 	end
