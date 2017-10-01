@@ -168,7 +168,7 @@ class EventsController < ApplicationController
 
 	def filter_dates(filter)
 		if filter == 'today'
-			Event.where(start: Date.today.beginning_of_day..Date.today.end_of_day)
+			Event.where(start: Time.now..Date.today.end_of_day)
 		elsif filter == 'tomorrow'
 			Event.where(start: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day)
 		elsif filter == 'this week'
