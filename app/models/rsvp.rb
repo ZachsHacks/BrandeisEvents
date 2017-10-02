@@ -47,7 +47,7 @@ class Rsvp < ApplicationRecord
       if !@user.survey_sent
 		@user.survey_sent = true
 		@user.save
-        UserMailer.survey(@user)
+        UserMailer.survey(@user).deliver!
         if User.find(user_id).phone
             reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
             message_survey = @client.api.account.messages.create(
