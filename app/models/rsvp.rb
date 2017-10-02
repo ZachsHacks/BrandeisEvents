@@ -49,7 +49,7 @@ class Rsvp < ApplicationRecord
       if  @user.rsvps.count > 4 && @user.survey_sent != true
 				@user.survey_sent = true
 				@user.save
-        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a  $25 Amazon gift card. Enter here: http://bit.ly/2xEWEsL to win!"
+        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a $25 Amazon gift card. Enter here: http://bit.ly/2xEWEsL to win!"
         message_survey = @client.api.account.messages.create(
           :from => @twilio_number,
           :to => @user.phone,
@@ -58,8 +58,8 @@ class Rsvp < ApplicationRecord
         puts message_survey.to
       end
     end
+    UserMailer.survey(user)
   end
-  # end
 
 
   handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}

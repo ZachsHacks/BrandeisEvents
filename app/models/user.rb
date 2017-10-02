@@ -35,6 +35,10 @@ class User < ApplicationRecord
 		"#{first_name} #{last_name}"
 	end
 
+	def email
+		return "#{uid}@brandeis.edu"
+	end
+
 	def User.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
 		BCrypt::Engine.cost
