@@ -73,11 +73,11 @@ module EventsHelper
 	end
 
 	def location(event)
-		string = "<div class='col-xs-12 text-right'>"
+		string = "<div class='col-xs-12'>"
+		string << "<span style='margin-left: -21px;' class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
 		to_truncate = event.location
 		trunc = to_truncate.split.first(2).join(' ')
-		string << trunc.to_s
-		string << "<span style='margin-left: -19px;' class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
+		string << " " + trunc.to_s
 		string << '</div>'
 		string << '</div>'
 	end
