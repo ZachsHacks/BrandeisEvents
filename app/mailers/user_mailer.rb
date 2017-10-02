@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
 
     def survey(user)
         @user = user
-        mail(to: @user.email, subject: 'BrandeisEvents Survey! ($$$)').deliver!
+        mail(to: @user.email, subject: 'BrandeisEvents Survey!').deliver!
     end
 
 end
