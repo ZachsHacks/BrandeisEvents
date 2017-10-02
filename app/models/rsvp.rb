@@ -41,23 +41,25 @@ class Rsvp < ApplicationRecord
 
   def survey
     user_id = self.user_id
-    if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 4
+    if !user_id.nil? && User.find(self.user_id).rsvps.count > 4
       @twilio_number = ENV['TWILLIO_NUMBER']
       @client = Twilio::REST::Client.new(ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET'])
       @user = User.find(self.user_id)
 
-      if  @user.rsvps.count > 4 && @user.survey_sent != true
-				@user.survey_sent = true
-				@user.save
-        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a $25 Amazon gift card. Enter here: http://bit.ly/2xEWEsL to win!"
-        message_survey = @client.api.account.messages.create(
-          :from => @twilio_number,
-          :to => @user.phone,
-          :body => reminder_survey,
-        )
-        puts message_survey.to
+      if  !@user.survey_sent
+		@user.survey_sent = true
+		@user.save
+        if User.find(user_id).phone
+            reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
+            message_survey = @client.api.account.messages.create(
+                :from => @twilio_number,
+                :to => @user.phone,
+                :body => reminder_survey,
+            )
+            puts message_survey.to
+        end
+        UserMailer.survey(user)
       end
-      UserMailer.survey(user)
     end
   end
 
