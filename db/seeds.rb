@@ -29,10 +29,15 @@ def create_events
   @data.each do |line|
     title = line["title"]
     description, description_text = get_description(line["content"])
+		if description.include? "$"
+			price_start_index = description.index("$").to_i + 1
+			price_stop_index = description.index(/\s/, price_start_index-1)
+			price = description[price_start_index..price_stop_index-1].strip
+		end
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
     date_time = Time.parse(line["published"].to_s)
-    e = Event.find_or_initialize_by(name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: date_time, user: User.first)
+    e = Event.find_or_initialize_by(price: price.to_i || 0, name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: date_time, user: User.first)
     e.save(validate: false) if e.new_record?
     create_tags(e) if e.save(validate: false)
     generate_image(e) if e.save(validate: false)
