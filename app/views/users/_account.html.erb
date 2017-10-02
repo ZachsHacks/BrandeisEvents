@@ -27,7 +27,7 @@
 		<% end %>
 
 		<div class="form-group" id="hidden_fields">
-			<%= f.label :Phone_Number, "Valid mobile phone number" %>
+			<%= f.label :Phone_Number, "Want to receive SMS alerts about events? If so, please enter your mobile phone number:" %>
 			<%= f.text_field :phone, class: "form-control" %>
 		</div>
 
@@ -38,8 +38,8 @@
 		<% end %>
 
 
-		<%= link_to("Subscribe to Calendar Feed", "webcal://BrandeisEvents.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
-		<%="  (Or manually subscribe using this link: webcal://BrandeisEvents.herokuapp.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
+		<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+		<%="  (Or manually subscribe using this link: webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
 		<br/>
 
 	</div>
