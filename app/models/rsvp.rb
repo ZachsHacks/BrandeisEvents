@@ -28,7 +28,7 @@ class Rsvp < ApplicationRecord
       start_time = @e.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")
       event_name = @e.name
       reminder = "Hi #{@user.first_name}. Just a reminder that you have an event (#{event_name}) coming up in 30 minutes at #{start_time}. The event can be viewed at BrandeisEvents.com/events/#{event_id}."
-      message = @client.account.messages.create(
+      message = @client.api.account.messages.create(
         :from => @twilio_number,
         :to => @user.phone,
         :body => reminder,
@@ -37,29 +37,29 @@ class Rsvp < ApplicationRecord
     end
   end
 
-
-
   def survey
     user_id = self.user_id
-    if !user_id.nil? && User.find(user_id).phone && User.find(self.user_id).rsvps.count > 4
+    if !user_id.nil? && User.find(self.user_id).rsvps.count > 4
       @twilio_number = ENV['TWILLIO_NUMBER']
       @client = Twilio::REST::Client.new(ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET'])
       @user = User.find(self.user_id)
 
-      if  @user.rsvps.count > 4 && @user.survey_sent != true
-				@user.survey_sent = true
-				@user.save
-        reminder_survey = "Thanks for using BrandeisEvents! Now that you've RSVP'D to 5 events, you are eligible to win a  $25 Amazon gift card. Enter here: http://bit.ly/2xEWEsL to win!"
-        message_survey = @client.api.account.messages.create(
-          :from => @twilio_number,
-          :to => @user.phone,
-          :body => reminder_survey,
-        )
-        puts message_survey.to
+      if !@user.survey_sent
+		@user.survey_sent = true
+		@user.save
+        UserMailer.survey(@user).deliver!
+        if User.find(user_id).phone
+            reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
+            message_survey = @client.api.account.messages.create(
+                :from => @twilio_number,
+                :to => @user.phone,
+                :body => reminder_survey,
+            )
+            puts message_survey.to
+        end
       end
     end
   end
-  # end
 
 
   handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}

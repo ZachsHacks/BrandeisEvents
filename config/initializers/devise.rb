@@ -12,6 +12,9 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+  config.secret_key = '952e03b748cc4778aefdc4ea0c172b479b24288831cbcb5eeb5f6800ccc93d2aa56f358125a1d665c04a456b3e88bae4da6701bf7474f5ccdab23b96
+  24a1e5a2'
+
   config.omniauth :saml,
       idp_cert_fingerprint: ENV['SHIB_FINGERPRINT'],
       issuer: ENV['SHIB_ENTITY_ID'],
