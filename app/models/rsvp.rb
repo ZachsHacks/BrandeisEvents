@@ -57,8 +57,8 @@ class Rsvp < ApplicationRecord
         )
         puts message_survey.to
       end
+      UserMailer.survey(user)
     end
-    UserMailer.survey(user)
   end
 
 
