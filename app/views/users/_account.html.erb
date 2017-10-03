@@ -4,7 +4,7 @@
 
 	<div class="row" id="tags-section-user">
 		<div class="col-md-12 text-left">
-			<h4>Interests</h4>
+			<h4>Your Event Interests:</h4>
 			<% Tag.all.sort_by { |t| t.name }.each do |tag| %>
 			<%= render partial: 'interests/interest_button', locals: {tag: tag} %>
 			<% end %>

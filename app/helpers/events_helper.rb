@@ -22,9 +22,9 @@ module EventsHelper
 		string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, length: 50}</a></h4>"
 		string << list_tags(event)
 		if event.host.first_name == "BrandeisEvents"
-			string << "<p>#{(truncate event.description_text, length: 85)}</p>"
+			string << "<p>#{(truncate event.description_text, length: 65)}</p>"
 		else
-			string << "<p>#{(truncate event.description, length: 85)}</p>"
+			string << "<p>#{(truncate event.description, length: 65)}</p>"
 		end
 		string << start_time(event) + location(event)
 		# string << '</div>'
