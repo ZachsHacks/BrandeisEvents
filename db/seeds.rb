@@ -45,8 +45,8 @@ def create_events
         generate_image(e)
         events << e
     end
-    Event.import events, validate: false
   end
+  Event.import events, validate: false
 end
 
 def generate_image(event)
