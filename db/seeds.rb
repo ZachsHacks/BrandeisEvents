@@ -30,11 +30,10 @@ def create_events
   @data.each do |line|
     title = line["title"]
     description, description_text = get_description(line["content"])
-		if description.include? "$" && !price_override(title)
+		if (description.include? "$") && !price_override(title)
 			price_start_index = description.index("$").to_i + 1
 			price_stop_index = description.index(/\s/, price_start_index-1)
 			price = description[price_start_index..price_stop_index-1].strip
-            price = nil if price.to_i && price.to_i == 0
 		end
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
