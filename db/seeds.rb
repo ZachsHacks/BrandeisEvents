@@ -40,12 +40,12 @@ def create_events
     date_time = Time.parse(line["published"].to_s)
     e = Event.find_or_initialize_by(price: price.to_i || 0, name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: date_time, user: User.first)
     if e.new_record?
-        create_tags(e)
         generate_image(e)
         events << e
     end
   end
   Event.import events, validate: false
+  events.each { |e| create_tags(e)}
 end
 
 def price_override(title)
