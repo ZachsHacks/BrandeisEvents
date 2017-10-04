@@ -5,7 +5,7 @@ require 'activerecord-import'
 
 puts "Obtaining Brandeis' Feed..."
 #trumba data for brandeis events
-@data = BrandeisEventParser.new.get_data
+@data = BrandeisEventParser.new.get_data_json
 
 puts "Grabbing Tag Dictionary..."
 #dictionary for creating tags (related words)
@@ -29,16 +29,19 @@ def create_events
   events = []
   @data.each do |line|
     title = line["title"]
-    description, description_text = get_description(line["content"])
-		if (description.include? "$") && !price_override(title)
+    description, description_text = line["description"]
+		debugger
+		if to_b(line["requiresPayment"])#(description.include? "$") && !price_override(title)
+			debugger
 			price_start_index = description.index("$").to_i + 1
 			price_stop_index = description.index(/\s/, price_start_index-1)
 			price = description[price_start_index..price_stop_index-1].strip
 		end
-    location = get_location_info(line["content"])
+    location = Nokogiri::HTML(line["location"]).text
     location_id = Location.find_by(name: location).id
-    date_time = Time.parse(line["published"].to_s)
-    e = Event.find_or_initialize_by(price: price.to_i || 0, name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: date_time, user: User.first)
+    start_time = Time.parse(line["startDateTime"])
+	  end_time = Time.parse(line["endDateTime"])
+    e = Event.find_or_initialize_by(price: price.to_i || 0, name: title, description: description, description_text: description_text, location: location, location_id: location_id, start: start_time, end: end_time, user: User.first)
     if e.new_record?
         generate_image(e)
         events << e
@@ -46,6 +49,11 @@ def create_events
   end
   Event.import events, validate: false
   events.each { |e| create_tags(e)}
+end
+
+def to_b(string)
+	h = { "true"=>true, true=>true, "false"=>false, false=>false }
+	return h[string]
 end
 
 def price_override(title)
@@ -79,22 +87,6 @@ def get_description(html)
 		description_text = description_text[start+3, description_text.length]
 	end
   return description.html_safe, description_text
-end
-
-def get_location_info(html)
-  parsed_html = Nokogiri::HTML(html)
-  data = parsed_html.xpath("//a")
-  location = []
-  data.each do |line|
-    words = line.text.downcase.gsub!(/[^A-Za-z]/, ' ') || line.text.downcase unless line.text.nil?
-    location = @locations.select { |l| l.downcase.include? words }
-    return location.first if location.size >= 1
-    words.split(" ").each do |word|
-      location = @locations.select { |l| l.downcase.include? word }
-      return location.first if location.size >= 1
-    end
-  end
-  return "Other"
 end
 
 def create_host
