@@ -18,6 +18,10 @@ class EventsController < ApplicationController
 		@events = Event.where('start > ?', Time.now)
 		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
 		@locations = Location.all.select {|l| l.events.count > 0}
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def filter_events

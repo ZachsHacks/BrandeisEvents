@@ -1,3 +1,10 @@
 $("#top-image").html("<%=escape_javascript(render(:partial => 'top_caption'))%>")
 $("#events-happening").html("<%=escape_javascript(render(:partial => 'events_exist'))%>")
 $("#paginate").html("<%=escape_javascript(render(:partial => 'paginate'))%>")
+$('#events-happening').append('<%= j render @events %>');
+<% if @events.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @events %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>
