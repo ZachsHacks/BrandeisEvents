@@ -10,7 +10,9 @@
       <p>No RSVPs yet, but that doesn't mean no one will be there!</p>
       <%else%>
         <% @event.rsvps.each do |r| %>
-      <p>-<%=r.user.name%></p>
+        <%if r.user.view_rsvp != false%>
+        <p>-<%=r.user.name%></p>
+          <%end%>
         <%end%>
       <%end%>
     </div>
