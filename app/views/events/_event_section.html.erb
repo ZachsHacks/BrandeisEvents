@@ -1,8 +1,8 @@
 <div id="event_section">
 	<div class="col-md-12 RSVP_section">
 		<h3 class="section-titles text-center"><%= section_titles[active_tab] %></h3>
-		<% if active_tab != 3 %>
 		<% get_events_helper %>
+
 		<% if @user_events.length != 0%>
 
 		<% @user_events.each do |e| %>
@@ -12,12 +12,6 @@
 
 		<% else %>
 		<p>You don't have any events. Add some!</p>
-		<% end %>
-
-		<% else %>
-
-		<%= render partial: 'users/account' %>
-
 		<% end %>
 
 	</div>
