@@ -26,15 +26,20 @@ end
 
 def create_events
   @locations = Location.all.pluck(:name)
+  price_overrides = JSON.parse(File.open("db/price_overrides.txt").read)
   events = []
   @data.each do |line|
     title = line["title"]
     description, description_text = get_description(line["content"])
-		if (description.include? "$") && !price_override(title)
-			price_start_index = description.index("$").to_i + 1
-			price_stop_index = description.index(/\s/, price_start_index-1)
-			price = description[price_start_index..price_stop_index-1].strip
-		end
+    if !(price_overrides.include? title)
+        if (description.include? "$")
+    		price_start_index = description.index("$").to_i + 1
+    		price_stop_index = description.index(/\s/, price_start_index-1)
+    		price = description[price_start_index..price_stop_index-1].strip
+        end
+    else
+        price = price_overrides[title]
+    end
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
     date_time = Time.parse(line["published"].to_s)
@@ -46,12 +51,6 @@ def create_events
   end
   Event.import events, validate: false
   events.each { |e| create_tags(e)}
-end
-
-def price_override(title)
-    blacklist = ["Trivia"]
-    blacklist.each{ |s| return true if title.include? s }
-    return false
 end
 
 def generate_image(event)

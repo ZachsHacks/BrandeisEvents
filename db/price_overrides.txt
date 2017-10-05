@@ -1,0 +1,3 @@
+{"Trivia": 0,
+"Group Exercise: Cycle": 10,
+"Faculty/Staff Yoga": 10}
