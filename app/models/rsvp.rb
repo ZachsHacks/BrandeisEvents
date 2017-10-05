@@ -49,7 +49,7 @@ class Rsvp < ApplicationRecord
 		@user.save
         UserMailer.survey(@user).deliver!
         if User.find(user_id).phone
-            reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
+            reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
             message_survey = @client.api.account.messages.create(
                 :from => @twilio_number,
                 :to => @user.phone,
