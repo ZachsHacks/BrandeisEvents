@@ -54,6 +54,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     authorize! :edit, @user
+		respond_to do |format|
+			format.html
+			format.js
+		end
   end
 
   # POST /users

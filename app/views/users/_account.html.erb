@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<h1 class="section-titles text-center">Settings</h1>
+
 
 <div class="container">
 
@@ -27,20 +28,24 @@
 		<% end %>
 
 		<div class="form-group" id="hidden_fields">
-			<%= f.label :Phone_Number, "Want to receive SMS alerts about events? If so, please enter your mobile phone number:" %>
-			<%= f.text_field :phone, class: "form-control" %>
-		</div>
-
-		<div class="actions">
-			<%= f.submit "Update mobile phone number", class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
+			<div class="col-xs-3">
+				<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
+				<%= f.text_field :phone, class: "form-control" %>
+			</br>
+				<div class="actions">
+					<%= f.submit "Update mobile phone number", class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
+				</div>
+			</div>
 		</div>
 
 		<% end %>
 
 
+	<div class="col-md-12">
 		<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
 		<%="  (Or manually subscribe using this link: webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
 		<br/>
+	</div>
 
 	</div>
 
