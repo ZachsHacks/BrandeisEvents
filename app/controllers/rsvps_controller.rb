@@ -87,6 +87,6 @@ class RsvpsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rsvp_params
-      params.permit(:user_id, :event_id, :choice, :authenticity_token)
+      params.permit(:user_id, :event_id, :choice)
     end
 end
