@@ -26,35 +26,44 @@
 			</ul>
 		</div>
 		<% end %>
-<h3> Reminder Settings</h3>
-		<div class="form-group" id="hidden_fields">
-			<div class="col-xs-3">
+<h3>Reminder Settings</h3>
+		<div class="row form-group" id="hidden_fields">
+			<div class="col-md-4">
 				<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
+				<br/><br/>
 				<%= f.text_field :phone, class: "form-control" %>
-				<div class="form-inline">
+			</div>
+				<div class="col-md-4 form-inline">
 					<%= f.label :Email_alert_time, "How far in advance do you want to receive text reminders? (Leave 0 for never)" %>
+<br/><br/>
 					<%= f.number_field :text_time_num, class: "form-control" %>
-					<%= f.select :text_time_unit, ['days', 'hours', 'minutes']%>
+					<%= f.select :text_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
 				</div>
-				<div class="form-inline">
+				<div class="col-md-4 form-inline">
 					<%= f.label :Email_alert_time, "How far in advance do you want to receive email reminders at #{current_user.email}? (Leave 0 for never)" %>
+<br/><br/>
 					<%= f.number_field :email_time_num, class: "form-control" %>
-					<%= f.select :email_time_unit, ['days', 'hours', 'minutes']%>
-				</div>
-			</br>
-				<div class="actions">
-					<%= f.submit "Update reminder settings", class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>
+					<%= f.select :email_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
 				</div>
 			</div>
+				<div class="actions">
+					<%= f.submit "Update reminder settings", class: "btn btn-default btn-transparent"%>
+				</div>
+
+				<h3>Subscribe to Calendar Feed</h3>
+				<p>Subscribe to your own personal calendar filled with the events you RSVD'd to! Simply press the below button or manually subscribe using this link: <br/> <%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></p>
+				<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+
+			</div>
+
+
 		</div>
 
 		<% end %>
 
 
 	<div class="col-md-12">
-		<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
-		<%="  (Or manually subscribe using this link: webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%>
-		<br/>
+			<br/>
 	</div>
 
 	</div>

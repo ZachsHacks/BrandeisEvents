@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20171009062131) do
     t.string   "phone"
     t.string   "calendar_hash"
     t.boolean  "survey_sent"
+    t.boolean  "view_rsvp"
     t.integer  "email_time_num",  default: 0
     t.string   "email_time_unit", default: "days"
     t.integer  "text_time_num",   default: 30
