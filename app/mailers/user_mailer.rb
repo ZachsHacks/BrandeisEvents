@@ -31,7 +31,7 @@ class UserMailer < ApplicationMailer
       def survey_reminders
         User.select{ |u| !(ENV['ALREADY_SENT'].split("\n").include? u.uid)}.each { |u|
             if(u.survey_sent)
-                UserMailer.received_survey_reminder(u).deliver! unless (ENV['RESPONDENTS'].split("\n").include? u.email)
+                UserMailer.received_survey_reminder(u).deliver! unless (ENV['RESPONDENTS'].split("\n").map {|s| s.downcase}.include? u.email)
             else
                 UserMailer.not_received_survey_reminder(u).deliver! unless ENV['SURVEY_SPAM_OVERRIDE'].split("\n").include? u.email
             end
