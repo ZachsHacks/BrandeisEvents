@@ -65,6 +65,8 @@ GEM
     builder (3.2.3)
     byebug (9.1.0)
     cancancan (2.0.0)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -182,6 +184,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    numerizer (0.1.1)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -345,6 +348,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   cancancan
+  chronic_duration
   coffee-rails (~> 4.2)
   crack
   daemons

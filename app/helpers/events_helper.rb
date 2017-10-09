@@ -67,7 +67,7 @@ module EventsHelper
 		<<-eos
 		<div class="row">
 		<div class="col-xs-12">
-		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>#{event.start.strftime('%-m/%-d %-l:00%P')}
+		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>#{event.start.strftime('%-m/%-d %l:%M %p')}
 		</div>
 		eos
 	end
