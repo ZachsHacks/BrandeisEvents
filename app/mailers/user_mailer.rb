@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
 
 
       def survey_reminders
-        User.all.each { |u|
+        User.select{ |u| !(ENV['ALREADY_SENT'].split("\n").include? u.uid)}.each { |u|
             if(u.survey_sent)
                 UserMailer.received_survey_reminder(u).deliver! unless (ENV['RESPONDENTS'].split("\n").include? u.email)
             else
