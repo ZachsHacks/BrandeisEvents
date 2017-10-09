@@ -28,25 +28,24 @@
 		<% end %>
 <h3>Reminder Settings</h3>
 		<div class="row form-group" id="hidden_fields">
-			<div class="col-xs-4">
+			<div class="col-md-4">
 				<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
 				<br/><br/>
 				<%= f.text_field :phone, class: "form-control" %>
 			</div>
-				<div class="col-xs-4 form-inline">
+				<div class="col-md-4 form-inline">
 					<%= f.label :Email_alert_time, "How far in advance do you want to receive text reminders? (Leave 0 for never)" %>
 <br/><br/>
 					<%= f.number_field :text_time_num, class: "form-control" %>
 					<%= f.select :text_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
 				</div>
-				<div class="col-xs-4 form-inline">
+				<div class="col-md-4 form-inline">
 					<%= f.label :Email_alert_time, "How far in advance do you want to receive email reminders at #{current_user.email}? (Leave 0 for never)" %>
 <br/><br/>
 					<%= f.number_field :email_time_num, class: "form-control" %>
 					<%= f.select :email_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
 				</div>
 			</div>
-			</br>
 				<div class="actions">
 					<%= f.submit "Update reminder settings", class: "btn btn-default btn-transparent"%>
 				</div>
