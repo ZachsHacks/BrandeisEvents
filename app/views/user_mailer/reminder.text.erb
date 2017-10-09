@@ -1,5 +1,5 @@
 Hi <%=@user.first_name%>!
 
-Just a reminder that you have an event (<%=@event.name%>) coming up in 30 minutes at <%=@event.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")%>. The event can be viewed at brandeisevents.com/events/<%=@event.id%>.
+Just a reminder that you have an event (<%=@event.name%>) coming up at <%=@event.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")%>. The event can be viewed at <%=@event.url%>.
 
 -BrandeisEvents

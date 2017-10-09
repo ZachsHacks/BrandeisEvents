@@ -35,7 +35,7 @@ class Rsvp < ApplicationRecord
       @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
       start_time = @event.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")
       event_name = @event.name
-      reminder = "Hi #{@user.first_name}. Just a reminder that you have an event (#{event_name}) coming up in 30 minutes at #{start_time}. The event can be viewed at BrandeisEvents.com/events/#{event_id}."
+      reminder = "Hi #{@user.first_name}. Just a reminder that you have an event (#{event_name}) coming up at #{start_time}. The event can be viewed at #{@event.url}."
       message = @client.api.account.messages.create(
         :from => @twilio_number,
         :to => @user.phone,
