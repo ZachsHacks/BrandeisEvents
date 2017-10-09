@@ -31,6 +31,16 @@
 			<div class="col-xs-3">
 				<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
 				<%= f.text_field :phone, class: "form-control" %>
+				<div class="form-inline">
+					<%= f.label :Email_alert_time, "How far in advance do you want to receive text reminders? (Leave 0 for never)" %>
+					<%= f.number_field :text_time_num, class: "form-control" %>
+					<%= f.select :text_time_unit, ['days', 'hours', 'minutes']%>
+				</div>
+				<div class="form-inline">
+					<%= f.label :Email_alert_time, "How far in advance do you want to receive email reminders at #{current_user.email}? (Leave 0 for never)" %>
+					<%= f.number_field :email_time_num, class: "form-control" %>
+					<%= f.select :email_time_unit, ['days', 'hours', 'minutes']%>
+				</div>
 			</br>
 				<div class="actions">
 					<%= f.submit "Update mobile phone number", class: "btn btn-default btn-transparent btn-submit-user submit-bring-way-down"%>

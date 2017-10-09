@@ -38,7 +38,7 @@ class RsvpsController < ApplicationController
       Rsvp.create(rsvp_params)
     end
 
-    @active_tab = @event.start < Time.now ? 3 : rsvp_params[:choice].to_i - 1 
+    @active_tab = @event.start < Time.now ? 3 : rsvp_params[:choice].to_i - 1
 
     respond_to do |format|
       format.js
@@ -87,6 +87,6 @@ class RsvpsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rsvp_params
-      params.permit(:user_id, :event_id, :choice)
+      params.permit(:user_id, :event_id, :choice, :authenticity_token)
     end
 end

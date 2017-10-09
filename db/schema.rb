@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917062547) do
+ActiveRecord::Schema.define(version: 20171009062131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,22 +90,26 @@ ActiveRecord::Schema.define(version: 20170917062547) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",                      null: false
-    t.string   "uid",                           null: false
+    t.string   "provider",                            null: false
+    t.string   "uid",                                 null: false
     t.string   "location"
     t.string   "image_url"
     t.string   "url"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "last_name"
     t.string   "first_name"
     t.string   "email"
     t.text     "bio"
-    t.boolean  "can_host",      default: false
-    t.boolean  "is_admin",      default: false
+    t.boolean  "can_host",        default: false
+    t.boolean  "is_admin",        default: false
     t.string   "phone"
     t.string   "calendar_hash"
     t.boolean  "survey_sent"
+    t.integer  "email_time_num",  default: 0
+    t.string   "email_time_unit", default: "days"
+    t.integer  "text_time_num",   default: 30
+    t.string   "text_time_unit",  default: "minutes"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
     t.index ["provider"], name: "index_users_on_provider", using: :btree
     t.index ["uid"], name: "index_users_on_uid", using: :btree

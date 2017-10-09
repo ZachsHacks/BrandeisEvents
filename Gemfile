@@ -11,6 +11,7 @@ gem 'omniauth-google-oauth2'
 gem 'devise'
 gem 'omniauth-saml'
 gem 'activerecord-import'
+gem 'chronic_duration'
 gem 'rails', '~> 5.0.2'
 
 gem 'will_paginate',           '3.1.0'
