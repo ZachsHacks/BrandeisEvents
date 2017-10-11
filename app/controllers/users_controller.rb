@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.ics do
+        headers['Content-Type'] = "text/calendar; charset=UTF-8"
         cal = Icalendar::Calendar.new
         @user.events.each do |e|
           event = Icalendar::Event.new
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
           # adds hour for now for ending time
           event.dtend = e.start + 1 * 60 * 60
           event.summary = e.name
-          event.uid = event.url = "http://BrandeisEvents.com/events/#{e.id}"
+          event.uid = event.url = e.url
           event.location = e.location
           event.description = e.description_text
           cal.add_event(event)
