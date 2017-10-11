@@ -1,6 +1,5 @@
 <h1 class="section-titles text-center">Settings</h1>
 
-
 <div class="container">
 
 	<div class="row" id="tags-section-user">
@@ -19,77 +18,91 @@
 		<h2><%= pluralize(current_user.errors.count, "error") %>
 			prohibited this @user from being saved:</h2>
 
-			<ul>
-				<% current_user.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
+		<ul>
+			<% current_user.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<h3>Reminder Settings</h3>
+	<div class="row form-group" id="hidden_fields">
+		<div class="col-md-4">
+			<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
+			<br/><br/>
+			<%= f.text_field :phone, class: "form-control" %>
 		</div>
-		<% end %>
-<h3>Reminder Settings</h3>
-		<div class="row form-group" id="hidden_fields">
-			<div class="col-md-4">
-				<%= f.label :Phone_Number, "Want to receive SMS alerts about events? Please enter your mobile phone number:" %>
-				<br/><br/>
-				<%= f.text_field :phone, class: "form-control" %>
-			</div>
-				<div class="col-md-4 form-inline">
-					<%= f.label :Email_alert_time, "How far in advance do you want to receive text reminders? (Leave 0 for never)" %>
-<br/><br/>
-					<%= f.number_field :text_time_num, class: "form-control" %>
-					<%= f.select :text_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
-				</div>
-				<div class="col-md-4 form-inline">
-					<%= f.label :Email_alert_time, "How far in advance do you want to receive email reminders at #{current_user.email}? (Leave 0 for never)" %>
-<br/><br/>
-					<%= f.number_field :email_time_num, class: "form-control" %>
-					<%= f.select :email_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
-				</div>
-			</div>
-				<div class="actions">
-					<%= f.submit "Update reminder settings", class: "btn btn-default btn-transparent"%>
-				</div>
-
-				<h3>Subscribe to Calendar Feed</h3>
-				<p>Subscribe to your own personal calendar filled with the events you RSVD'd to! Simply press the below buttons or manually subscribe using this link: <br/> <%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></p>
-				<%= link_to("Open in Calendar app", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
-				|
-				<%= link_to("Add to Google Calendar", "https://calendar.google.com/calendar/render?cid=webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync.ics#main_7", :class=>"btn btn-default btn-transparent", :target=>:blank, :id =>"calendar-feed-button" ) %>
-
-			</div>
-
-
+		<div class="col-md-4 form-inline">
+			<%= f.label :Email_alert_time, "How far in advance do you want to receive text reminders? (Leave 0 for never)" %>
+			<br/><br/>
+			<%= f.number_field :text_time_num, class: "form-control" %>
+			<%= f.select :text_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
 		</div>
+		<div class="col-md-4 form-inline">
+			<%= f.label :Email_alert_time, "How far in advance do you want to receive email reminders at #{current_user.email}? (Leave 0 for never)" %>
+			<br/><br/>
+			<%= f.number_field :email_time_num, class: "form-control" %>
+			<%= f.select :email_time_unit, ['days', 'hours', 'minutes'], { :include_blank => "Please select a time"}, {:class => "form-control"}%>
+		</div>
+	</div>
+	<div class="actions">
+		<%= f.submit "Update reminder settings", class: "btn btn-default btn-transparent"%>
+	</div>
 
-		<% end %>
+	<% end %>
 
+	<div class="row">
 
-	<div class="col-md-12">
+		<div class="col-md-6">
+			<h3>Subscribe to Calendar Feed</h3>
+			<p>Subscribe to your own personal calendar filled with the events you RSVD'd to! Simply press the below button or manually subscribe using this link:
+				<br/>
+				<%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></p>
+			<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+		</div>
+		<div class="col-md-6 form-inline">
+			<h3>Privacy</h3>
+			<%= form_for current_user, remote: true do |f| %>
+			<%= f.label :hide_rsvp, "Would you like to hide your name from the RSVP list? By default you are displayed under an events RSVP list." %>
 			<br/>
-	</div>
+			<%= f.label "Hide Your RSVPs" %>
+			<%= f.check_box :hide_rsvp %><br/>
+			<%= f.submit "Update privacy settings", class: "btn btn-default btn-transparent"%>
+			<% end %>
+		</div>
 
 	</div>
 
-	<script type="text/javascript">
-	//Phone appears if checkbox is cliked or not. This is for if a user unselects adding a phone number it will delte it from the field.
-	$(function () {
+</div>
 
-		// Get the form fields and hidden div
-		var checkbox = $("#trigger");
-		var hidden = $("#hidden_fields");
+</div>
 
-		// Hide the fields. hidden.hide();
-		checkbox.change(function () {
-			// Check to see if the checkbox is checked. If it is, show the fields and populate the input. If not, hide the fields.
-			if (checkbox.is(':checked')) {
-				// Show the hidden fields.
-				hidden.show();
-			} else {
-				// Make sure that the hidden fields are indeed hidden.
-				hidden.hide();
-				//if hidden then erases value
-				$("#hidden_field").val("");
-			}
-		});
+<div class="col-md-12">
+<br/>
+</div>
+
+</div>
+
+<script type="text/javascript">
+//Phone appears if checkbox is cliked or not. This is for if a user unselects adding a phone number it will delte it from the field.
+$(function () {
+
+	// Get the form fields and hidden div
+	var checkbox = $("#trigger");
+	var hidden = $("#hidden_fields");
+
+	// Hide the fields. hidden.hide();
+	checkbox.change(function () {
+		// Check to see if the checkbox is checked. If it is, show the fields and populate the input. If not, hide the fields.
+		if (checkbox.is(':checked')) {
+			// Show the hidden fields.
+			hidden.show();
+		} else {
+			// Make sure that the hidden fields are indeed hidden.
+			hidden.hide();
+			//if hidden then erases value
+			$("#hidden_field").val("");
+		}
 	});
-	</script>
+});
+</script>
