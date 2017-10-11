@@ -57,7 +57,7 @@
 			<h3>Subscribe to Calendar Feed</h3>
 			<p>Subscribe to your own personal calendar filled with the events you RSVD'd to! Simply press the below button or manually subscribe using this link:
 				<br/>
-				<%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></p>
+				<span style="word-wrap: break-word;"><%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></span></p>
 			<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
 		</div>
 		<div class="col-md-6 form-inline">
