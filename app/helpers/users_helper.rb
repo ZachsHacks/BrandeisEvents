@@ -21,6 +21,18 @@ module UsersHelper
         rsvps.map { |r| r.event }
     end
 
+    def opt_in_or_out(user)
+        "Click here to #{privacy_variable(user)} events' RSVP lists!"
+    end
+
+    def privacy_variable(user)
+        user.hide_rsvp == true ? 'show your name on' : 'hide your name from'
+    end
+
+    def privacy_button_color(user)
+      user.hide_rsvp == true ? 'btn btn-default' : 'btn btn-danger'
+    end
+
     # def set_active
     #     @active = 0 if @active.nil?
 	# 	@tab_classes = []
