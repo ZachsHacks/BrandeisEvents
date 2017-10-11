@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.ics do
-        headers['Content-Type'] = "text/calendar; charset=UTF-8"
         cal = Icalendar::Calendar.new
         @user.events.each do |e|
           event = Icalendar::Event.new
