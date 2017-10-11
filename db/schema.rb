@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171009062131) do
+=======
+ActiveRecord::Schema.define(version: 20171011174620) do
+>>>>>>> rsvplist
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,11 +110,18 @@ ActiveRecord::Schema.define(version: 20171009062131) do
     t.string   "phone"
     t.string   "calendar_hash"
     t.boolean  "survey_sent"
+<<<<<<< HEAD
     t.boolean  "view_rsvp"
+=======
+>>>>>>> rsvplist
     t.integer  "email_time_num",  default: 0
     t.string   "email_time_unit", default: "days"
     t.integer  "text_time_num",   default: 30
     t.string   "text_time_unit",  default: "minutes"
+<<<<<<< HEAD
+=======
+    t.boolean  "hide_rsvp"
+>>>>>>> rsvplist
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
     t.index ["provider"], name: "index_users_on_provider", using: :btree
     t.index ["uid"], name: "index_users_on_uid", using: :btree

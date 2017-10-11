@@ -45,7 +45,7 @@ module SingularEventHelper
 		s<<"  </div>"
 	end
 
-	
+
 
 
 
