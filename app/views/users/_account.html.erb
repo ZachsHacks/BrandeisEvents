@@ -59,9 +59,12 @@
 				<br/>
 				<span style="word-wrap: break-word;"><%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></span></p>
 			<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+			|
+			<%= link_to("Add to Google Calendar", "https://calendar.google.com/calendar/render?cid=webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync.ics#main_7", :class=>"btn btn-default btn-transparent", :target=>:blank, :id =>"calendar-feed-button" ) %>
 		</div>
-		<div class="col-md-6 form-inline">
+		<!-- <div class="col-md-6 form-inline">
 			<h3>Privacy</h3>
+			<p> Would you like to hide your name from the RSVP list? By default you are displayed under an events RSVP list.
 			<%= form_for current_user, remote: true do |f| %>
 			<%= f.label :hide_rsvp, "Would you like to hide your name from the RSVP list? By default you are displayed under an events RSVP list." %>
 			<br/>
@@ -69,7 +72,7 @@
 			<%= f.check_box :hide_rsvp %><br/>
 			<%= f.submit "Update privacy settings", class: "btn btn-default btn-transparent"%>
 			<% end %>
-		</div>
+		</div> -->
 
 	</div>
 
