@@ -45,8 +45,10 @@ def create_events
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
     start = Time.parse(line["published"].to_s)
-    e = Event.find_or_initialize_by(name: name, start: start, user: User.first)
-    e.trumba_id = trumba_id
+    e = Event.find_or_initialize_by(trumba_id: trumba_id)
+    e.name = name
+    e.start = start
+    e.user = User.first
     e.price = price.to_i || 0
     e.description = description
     e.description_text = description_text
@@ -187,12 +189,12 @@ puts "Starting seeding"
 create_host if !User.any?
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
-puts "update_image_queries"
+puts "Updating image queries..."
 update_image_queries
-puts "get_image_url_hash"
+puts "Getting image URLs..."
 get_image_url_hash
-puts "create_events"
+puts "Creating events..."
 create_events
-puts "update_image_url_hash"
+puts "Updating image URLs..."
 update_image_url_hash
 puts "Done!"
