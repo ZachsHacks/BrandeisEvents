@@ -64,8 +64,11 @@ def create_events
     end
   end
   Event.import new_events, validate: false
-  Event.destroy Event.select {|e| !(e.seen_during_seeding || e.start.past?)}
   new_events.each { |e| create_tags(e)}
+
+  Event.destroy Event.select {|e| !(e.seen_during_seeding || e.start.past?)}
+  EventTag.destroy EventTag.select{ |t| !Event.exists?(t.event_id) }
+  Rsvp.destroy Rsvp.select{ |r| !Event.exists?(r.event_id) }
 end
 
 def generate_image(event)
