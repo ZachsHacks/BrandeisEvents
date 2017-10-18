@@ -25,6 +25,7 @@ def get_image_url_hash
 end
 
 def create_events
+  Event.update_all(seen_during_seeding: false)
   @locations = Location.all.pluck(:name)
   price_overrides = JSON.parse(File.open("db/price_overrides.txt").read)
   new_events = []
@@ -54,6 +55,7 @@ def create_events
     e.description_text = description_text
     e.location = location
     e.location_id = location_id
+    e.seen_during_seeding = true
     if e.new_record?
         generate_image(e)
         new_events << e
@@ -62,6 +64,7 @@ def create_events
     end
   end
   Event.import new_events, validate: false
+  Event.destroy Event.select {|e| !(e.seen_during_seeding || e.start.past?)}
   new_events.each { |e| create_tags(e)}
 end
 
