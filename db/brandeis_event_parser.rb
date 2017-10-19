@@ -24,3 +24,10 @@ class BrandeisEventParser
 	end
 
 end
+
+parser = BrandeisEventParser.new
+
+xml_data = parser.get_data_xml
+json_data = parser.get_data_json
+byebug
+puts 'hi!'

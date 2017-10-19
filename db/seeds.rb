@@ -6,7 +6,7 @@ require 'activerecord-import'
 puts "Obtaining Brandeis' Feed..."
 #trumba data for brandeis events
 @data = BrandeisEventParser.new.get_data_json
-
+byebug
 puts "Grabbing Tag Dictionary..."
 #dictionary for creating tags (related words)
 @dictionary = TagDictionary.new.dictionary
