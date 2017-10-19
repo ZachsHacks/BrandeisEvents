@@ -10,7 +10,7 @@
       <p>No RSVPs yet, but that doesn't mean no one will be there!</p>
       <%else%>
         <% @event.rsvps.each do |r| %>
-        <%if r.user.view_rsvp != false%>
+        <%if r.user.hide_rsvp != true%>
         <p>-<%=r.user.name%></p>
           <%end%>
         <%end%>
@@ -18,7 +18,6 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
     </div>
   </div>
 </div>

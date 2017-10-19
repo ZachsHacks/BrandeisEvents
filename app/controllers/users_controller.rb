@@ -11,6 +11,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_privacy
+    @user = User.find(params[:user_id])
+    @user.hide_rsvp = !@user.hide_rsvp
+    @user.save
+    respond_to do |format|
+        format.js
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     redirect_to root_path if @user != current_user
@@ -22,10 +31,11 @@ class UsersController < ApplicationController
   end
 
   def to_icalendar
-    @user = User.find(params[:calendar_hash])
+    @user = User.find_by(calendar_hash: params[:calendar_hash])
     respond_to do |format|
       format.html
       format.ics do
+        headers['Content-Type'] = "text/calendar; charset=UTF-8"
         cal = Icalendar::Calendar.new
         @user.events.each do |e|
           event = Icalendar::Event.new
@@ -33,7 +43,7 @@ class UsersController < ApplicationController
           # adds hour for now for ending time
           event.dtend = e.start + 1 * 60 * 60
           event.summary = e.name
-          event.uid = event.url = "http://BrandeisEvents.herokuapp.com/events/#{e.id}"
+          event.uid = event.url = e.url
           event.location = e.location
           event.description = e.description_text
           cal.add_event(event)

@@ -64,7 +64,7 @@ class EventsController < ApplicationController
 		end
 		@location = geolocation
 		geo_localization = "#{@current_latitude},#{@current_longitude}"
-		@current_address = Geocoder.search(geo_localization).first.address
+		@current_address = Geocoder.search(geo_localization).first.address || "Brandeis University, Waltham, MA, 02453"
 		@address = "#{@event.location}, Waltham, MA, 02453"
 	end
 

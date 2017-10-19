@@ -25,7 +25,6 @@ def get_image_url_hash
 end
 
 def create_events
-  Event.update_all(seen_during_seeding: false)
   @locations = Location.all.pluck(:name)
   price_overrides = JSON.parse(File.open("db/price_overrides.txt").read)
   new_events = []
@@ -46,16 +45,13 @@ def create_events
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
     start = Time.parse(line["published"].to_s)
-    e = Event.find_or_initialize_by(trumba_id: trumba_id)
-    e.name = name
-    e.start = start
-    e.user = User.first
+    e = Event.find_or_initialize_by(name: name, start: start, user: User.first)
+    e.trumba_id = trumba_id
     e.price = price.to_i || 0
     e.description = description
     e.description_text = description_text
     e.location = location
     e.location_id = location_id
-    e.seen_during_seeding = true
     if e.new_record?
         generate_image(e)
         new_events << e
@@ -65,10 +61,6 @@ def create_events
   end
   Event.import new_events, validate: false
   new_events.each { |e| create_tags(e)}
-
-  Event.destroy Event.select {|e| !(e.seen_during_seeding || e.start.past?)}
-  EventTag.destroy EventTag.select{ |t| !Event.exists?(t.event_id) }
-  Rsvp.destroy Rsvp.select{ |r| !Event.exists?(r.event_id) }
 end
 
 def generate_image(event)
@@ -195,12 +187,12 @@ puts "Starting seeding"
 create_host if !User.any?
 create_locations if !Location.any?
 create_default_tags if !Tag.any?
-puts "Updating image queries..."
+puts "update_image_queries"
 update_image_queries
-puts "Getting image URLs..."
+puts "get_image_url_hash"
 get_image_url_hash
-puts "Creating events..."
+puts "create_events"
 create_events
-puts "Updating image URLs..."
+puts "update_image_url_hash"
 update_image_url_hash
 puts "Done!"
