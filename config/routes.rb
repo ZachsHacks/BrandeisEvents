@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/search', to: 'events#search', as: 'search'
   get '/filter_events', to: 'events#filter_events', as: 'filter_events'
   post '/get_events', to: 'users#get_events', as: 'get_events'
+  post '/change_privacy', to: 'users#change_privacy', as: 'change_privacy'
   get 'users/:id/new_account', to: 'users#creation_form', as: 'new_account'
   get '/top_events_json', to: 'events#top_events', :defaults => { :format => :json }
   get '/top_events_on_day/:date', to: 'events#top_events_on_day', :defaults => { :format => :json }

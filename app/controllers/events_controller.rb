@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 	end
 
 	def home
-		all_events = Event.all
+		all_events = Event.where("start > ?", Time.now)
 		@items = all_events.pluck(:name)
 		@top_events = all_events.sort_by(&:rsvps_count).last(4).reverse
 		@locations = Location.all.pluck(:name) # grab_locations
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 		end
 		@location = geolocation
 		geo_localization = "#{@current_latitude},#{@current_longitude}"
-		@current_address = Geocoder.search(geo_localization).first.address
+		@current_address = Geocoder.search(geo_localization).first.address || "Brandeis University, Waltham, MA, 02453"
 		@address = "#{@event.location}, Waltham, MA, 02453"
 	end
 

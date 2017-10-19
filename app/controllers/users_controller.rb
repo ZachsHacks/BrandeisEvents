@@ -11,6 +11,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_privacy
+    @user = User.find(params[:user_id])
+    @user.hide_rsvp = !@user.hide_rsvp
+    @user.save
+    respond_to do |format|
+        format.js
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     redirect_to root_path if @user != current_user
@@ -22,10 +31,11 @@ class UsersController < ApplicationController
   end
 
   def to_icalendar
-    @user = User.find(params[:calendar_hash])
+    @user = User.find_by(calendar_hash: params[:calendar_hash])
     respond_to do |format|
       format.html
       format.ics do
+        headers['Content-Type'] = "text/calendar; charset=UTF-8"
         cal = Icalendar::Calendar.new
         @user.events.each do |e|
           event = Icalendar::Event.new
@@ -33,7 +43,7 @@ class UsersController < ApplicationController
           # adds hour for now for ending time
           event.dtend = e.start + 1 * 60 * 60
           event.summary = e.name
-          event.uid = event.url = "http://BrandeisEvents.herokuapp.com/events/#{e.id}"
+          event.uid = event.url = e.url
           event.location = e.location
           event.description = e.description_text
           cal.add_event(event)
@@ -54,6 +64,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     authorize! :edit, @user
+		respond_to do |format|
+			format.html
+			format.js
+		end
   end
 
   # POST /users
@@ -110,6 +124,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :bio, :is_host, :phone, :street, :city, :zip_code, :state)
+    params.require(:user).permit(:first_name, :last_name, :email, :bio, :is_host, :phone, :street, :city, :zip_code, :state, :text_time_num, :text_time_unit, :email_time_num, :email_time_unit)
   end
 end

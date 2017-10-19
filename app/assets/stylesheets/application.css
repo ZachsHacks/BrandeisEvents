@@ -27,6 +27,10 @@
   padding: 0 30px !important;
 }
 
+
+body{
+  padding-bottom: 30px;
+}
  .hidden {
      display: none !important;
      visibility: hidden;

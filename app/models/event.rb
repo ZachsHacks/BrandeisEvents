@@ -17,6 +17,10 @@ class Event < ApplicationRecord
 		user
 	end
 
+	def url
+		"brandeisevents.com/events/#{self.id}"
+	end
+
 	has_attached_file :event_image, styles: {
 		thumb: '100x100>',
 		square: '200x200#',

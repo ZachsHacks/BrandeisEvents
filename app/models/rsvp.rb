@@ -4,30 +4,38 @@ class Rsvp < ApplicationRecord
   belongs_to :event, counter_cache: :rsvps_count
   validates :user_id, :uniqueness => { :scope => :event_id}
 
-  after_create :reminder
+  after_create :email
+  after_create :text
   after_create :survey
 
-  @@REMINDER_TIME = 30.minutes # minutes before appointment
 
-  def when_to_run
-    Event.find(self.event_id).start - @@REMINDER_TIME
+  def when_to_email
+    @user = User.find(user_id)
+    Event.find(self.event_id).start - ChronicDuration.parse("#{@user.email_time_num}#{@user.email_time_unit}", :keep_zero => true).seconds
+  end
+
+  def when_to_text
+    @user = User.find(user_id)
+    Event.find(self.event_id).start - ChronicDuration.parse("#{@user.text_time_num}#{@user.text_time_unit}", :keep_zero => true).seconds
   end
 
   # Notify our appointment attendee X minutes before the appointment time
 
-  def reminder
-    user_id = self.user_id
-    if !user_id.nil? && User.find(user_id).phone
+  def email
+      @user = User.find(user_id)
+      @event = Event.find(event_id)
+      UserMailer.reminder(@user, @event).deliver! unless @user.email_time_num == 0
+  end
+
+  def text
+    @user = User.find(user_id)
+    @event = Event.find(event_id)
+    if @user.phone && @user.email_time_num != 0
       @twilio_number = ENV['TWILLIO_NUMBER']
       @client = Twilio::REST::Client.new ENV['TWILLIO_ACCOUNT'], ENV['TWILLIO_SECRET']
-      # time_str = ((self.event_id).localtime).strftime("%I:%M%p on %b. %d, %Y")
-      event_id = self.event_id
-      user_id = self.user_id
-      @e = Event.find(event_id)
-      @user = User.find(user_id)
-      start_time = @e.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")
-      event_name = @e.name
-      reminder = "Hi #{@user.first_name}. Just a reminder that you have an event (#{event_name}) coming up in 30 minutes at #{start_time}. The event can be viewed at BrandeisEvents.com/events/#{event_id}."
+      start_time = @event.start.in_time_zone().strftime("%I:%M%p on %b. %d, %Y")
+      event_name = @event.name
+      reminder = "Hi #{@user.first_name}. Just a reminder that you have an event (#{event_name}) coming up at #{start_time}. The event can be viewed at #{@event.url}."
       message = @client.api.account.messages.create(
         :from => @twilio_number,
         :to => @user.phone,
@@ -49,7 +57,7 @@ class Rsvp < ApplicationRecord
 		@user.save
         UserMailer.survey(@user).deliver!
         if User.find(user_id).phone
-            reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
+            reminder_survey = "Thanks for using BrandeisEvents! You've RSVP'D to 5 events & are now eligible to win a $25 Amazon gift card. Enter at: http://bit.ly/2xEWEsL"
             message_survey = @client.api.account.messages.create(
                 :from => @twilio_number,
                 :to => @user.phone,
@@ -62,7 +70,8 @@ class Rsvp < ApplicationRecord
   end
 
 
-  handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run}
+  handle_asynchronously :email, :run_at => Proc.new { |i| i.when_to_email}
+  handle_asynchronously :text, :run_at => Proc.new { |i| i.when_to_text}
   handle_asynchronously :survey, :run_at => 1.minutes.from_now
 
 end
