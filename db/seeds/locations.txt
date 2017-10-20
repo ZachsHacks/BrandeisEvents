@@ -1,4 +1,4 @@
-Abelson Bass Yalem Building 
+Abelson Bass Yalem Building
 Abraham Shapiro Academic Complex
 Bassine Science Building
 Berlin Chapel
@@ -7,6 +7,7 @@ Bethlehem Chapel
 Brown Social Science Center
 Carl and Ruth Shapiro Admissions Center
 Carl J. Shapiro Science Center
+Charles River Apartments
 Edison-Lecks Science Building
 Epstein Building
 Faculty Club
@@ -28,6 +29,7 @@ Hassenfeld Conference Center
 Heller-Brown Building
 Hiatt Career Center
 Irving Presidential Enclave
+Intercultural Center
 Heller School
 Mandel Center
 Kosow-Wolfson-Rosensweig Building
@@ -64,6 +66,8 @@ Spingold Theater Center
 Stoneman Infirmary and Public Safety
 Usdan Student Center
 Volen National Center for Complex Systems
+Various Locations
 Wein Faculty Center
 Wasserman
 Other
+Online

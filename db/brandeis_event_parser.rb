@@ -42,12 +42,8 @@ class BrandeisEventParser
 		xml = get_data_xml
 		json = get_data_json
 		ids = events_xml_has_but_not_json(xml, json)
-		xml = []
-
 		xml = xml.select {|e| ids.include? (e["id"].slice(e["id"].rindex('/')+1..-1).to_i)}
-
 		return xml
-
 	end
 
 end
