@@ -35,7 +35,23 @@ body{
      display: none !important;
      visibility: hidden;
  }
-
+ @media (max-width: 767px) {
+   .hidden-desktop {
+     display: inherit !important;
+   }
+   .visible-desktop {
+     display: none !important;
+   }
+   .visible-phone {
+     display: inherit !important;
+   }
+   .hidden-phone {
+     display: none !important;
+   }
+   .slider{
+     padding-top: 30vh !important;
+   }
+ }
 /*@import "social-share-button";*/
 
 @media (min-width: 970px) {
