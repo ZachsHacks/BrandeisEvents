@@ -60,16 +60,20 @@ body{
     }*/
     .portfolio-item {
         margin-top: 20px;
-        min-height: 395px !important;
+        min-height: 350px !important;
         overflow: hidden;
     }
     .portfolio-item h4 {
-        min-height: 60px;
+        /*min-height: 60px;*/
+        max-height: 36px;
+        overflow: hidden;
     }
     .event-tags {
         height: 20px;
         overflow: hidden;
         margin-bottom: 10px;
+    }.event-description-home{
+      min-height: 56px !important;
     }
 }
 
