@@ -59,7 +59,9 @@
 		<div class="col-md-2 individual_event_sidebar">
 
 			<%= sidebar_individual_event %>
+			<%if logged_in?%>
 			<button class="btn btn-default btn-inverse " data-toggle="modal" data-target="#myModal">RSVP List </button>
+			<%end%>
 			<%= social_share_button_tag(@event.name, :url =>"https://www.brandeisevents.com/events/#{@event.id}") %>
 			</div>
 		<div class="col-md-10 event-description">
@@ -82,7 +84,7 @@
 
 
 			 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				 <%= render "events/display_rsvps",  locals: {event: @event}%>
+				 <%= render "events/display_rsvps",  locals: {event: @event} %>
 			 </div>
 		<!-- <div class="container"> -->
 		</div>
