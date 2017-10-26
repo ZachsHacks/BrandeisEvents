@@ -53,20 +53,22 @@
 
 	<div class="row">
 
-		<!-- <div class="col-md-6"> -->
+		<div class="col-md-6">
 			<h3>Subscribe to Calendar Feed</h3>
-			<p>Subscribe to your own personal calendar filled with the events you RSVD'd to! Simply press the below button or manually subscribe using this link:
+			<p>Subscribe to your own personal calendar, filled with the events you've RSVP'd to!
 				<br/>
-				<span style="word-wrap: break-word;"><%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync)"%></span></p>
+				Just press one of the below buttons or manually subscribe with this link:
+				<br/>
+				<span style="word-wrap: break-word;"><%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync"%></span></p>
 			<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
 			|
 			<%= link_to("Add to Google Calendar", "https://calendar.google.com/calendar/render?cid=webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync.ics#main_7", :class=>"btn btn-default btn-transparent", :target=>:blank, :id =>"calendar-feed-button" ) %>
 		</div>
-	<!-- <div class="col-md-6 form-inline">
+	<div class="col-md-6 form-inline">
 		<div id="privacy">
 			<%= render partial: 'change_privacy', locals: {user: User.find(current_user.id)} %>
 		</div>
-	</div> -->
+	</div>
 
 	</div>
 
