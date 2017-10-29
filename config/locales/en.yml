@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+
+  anonymity:
+    one: '1 user who wishes to remain anonymous'
+    other: '%{count} users who wish to remain anonymous'
