@@ -21,7 +21,3 @@
 
 en:
   hello: "Hello world"
-
-  anonymity:
-    one: '1 anonymous user'
-    other: '%{count} anonymous users'
