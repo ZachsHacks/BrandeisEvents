@@ -1,23 +1,25 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h4 class="modal-title" id="myModalLabel">RSVPs to <%=@event.name%></h4>
-    </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">RSVPs to <%=@event.name%></h4>
+      </div>
 
-    <div class="modal-body">
-      <%if @event.rsvps.count<1 %>
-      <p>No RSVPs yet, but that doesn't mean no one will be there!</p>
-      <%else%>
-        <% @event.rsvps.each do |r| %>
-        <%if r.user.hide_rsvp != true%>
-        <p>-<%=r.user.name%></p>
+      <div class="modal-body">
+        <%if @event.rsvps.count<1 %>
+        <p>No RSVPs yet, but that doesn't mean no one will be there!</p>
+        <%else%>
+          <% to_show = rsvps_to_show(@event) %>
+          <% to_show.each do |r| %>
+          <p>-<%=r%></p>
           <%end%>
+          <p><%="-#{pluralize(anonymous_rsvps(@event, to_show), 'anonymous user')}" if anonymous_rsvps(@event, to_show) > 0%></p>
         <%end%>
-      <%end%>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>

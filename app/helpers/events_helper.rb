@@ -15,6 +15,14 @@ module EventsHelper
 		s.html_safe
 	end
 
+	def rsvps_to_show(event)
+		event.users.where(hide_rsvp: false).map { |u| u.name }.sort
+	end
+
+	def anonymous_rsvps(event, to_show)
+		event.rsvps.count - to_show.count
+	end
+
 	def list_event_helper(event, col_length)
 		string = ''
 		string << "<div class='#{col_length} portfolio-item'>"

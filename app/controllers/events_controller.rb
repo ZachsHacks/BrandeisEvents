@@ -94,7 +94,7 @@ class EventsController < ApplicationController
 	end
 
 	def new_trumba
-
+		redirect_to root_path unless logged_in?
 	end
 
 	# GET /events/1/edit
