@@ -46,7 +46,7 @@ def create_events
     location = get_location_info(line["content"])
     location_id = Location.find_by(name: location).id
     start = Time.parse(line["published"].to_s)
-    e = Event.find_or_initialize_by(trumba_id: trumba_id)
+    e = Event.where(trumba_id: trumba_id).first_or_initialize
     e.name = name
     e.start = start
     e.user = User.first
@@ -115,7 +115,7 @@ def get_location_info(html)
 end
 
 def create_host
-  User.find_or_create_by(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
+  User.where(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false).first_or_create
 end
 
 def create_default_tags
@@ -123,7 +123,7 @@ def create_default_tags
     tag = tag.gsub("\t", "")
     tag = tag.gsub("\n", "")
     image = tag
-    Tag.find_or_create_by(name: tag, image: image)
+    Tag.where(name: tag, image: image).first_or_create
   end
   @tags = Tag.all.pluck(:name)
 end
@@ -134,7 +134,7 @@ def create_tags(event)
   keywords = keywords_from_word_list(word_list)
   tag_names = look_up(keywords)
   tag_names.each do |t|
-    tag = Tag.find_or_create_by(name: t.capitalize)
+    tag = Tag.where(name: t.capitalize).first_or_create
     event.tags << tag unless event.tags.include?(tag)
   end
 end
