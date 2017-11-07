@@ -94,7 +94,7 @@ class EventsController < ApplicationController
 	end
 
 	def new_trumba
-		redirect_to root_path unless logged_in?
+
 	end
 
 	# GET /events/1/edit
@@ -174,7 +174,7 @@ class EventsController < ApplicationController
 		elsif filter == 'tomorrow'
 			Event.where(start: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day)
 		elsif filter == 'this week'
-			Event.where(start: Date.today.beginning_of_day..Date.today.next_day(7).end_of_day)
+			Event.where(start: Time.now.beginning_of_day..Date.today.next_day(7).end_of_day)
 		elsif filter == 'next week'
 			Event.where(start: Date.today.next_day(7).beginning_of_day..Date.today.next_day(14).end_of_day)
 		elsif filter == 'this weekend'

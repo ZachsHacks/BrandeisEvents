@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<h2><%= @event.name%></h2>
+			<h2><%= @event.name.html_safe%></h2>
 			<p id="host">by
 				<%= @event.host.name%></p>
 			<div class="travel_times">

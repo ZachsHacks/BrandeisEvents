@@ -1,5 +1,6 @@
-Abelson Bass Yalem Building
+Abelson Bass Yalem
 Abraham Shapiro Academic Complex
+Auerbach Arena
 Bassine Science Building
 Berlin Chapel
 Bernstein Marcus Administration Center
@@ -8,6 +9,7 @@ Brown Social Science Center
 Carl and Ruth Shapiro Admissions Center
 Carl J. Shapiro Science Center
 Charles River Apartments
+Cholmondeley
 Edison-Lecks Science Building
 Epstein Building
 Faculty Club
@@ -16,17 +18,18 @@ Feldberg Communications Center
 Ford Athletic and Recreation Complex
 Foster Bio-Medical Research Center
 Fellows Garden
-Gerstenzang Science Library
+Gerstenzang
 Goldfarb Library
 Golding Health Center
 Golding Judaica Center
 Goldman-Schwartz Art Studios
 Goldsmith Building
+Gordon Field
 Gosman Sports and Convocation Center
 Gryzmish Center
 Harlan Chapel
 Hassenfeld Conference Center
-Heller-Brown Building
+Heller Brown Building
 Hiatt Career Center
 Irving Presidential Enclave
 Intercultural Center
@@ -38,26 +41,26 @@ Landsman Research Facility
 Lemberg Academic Center
 Lemberg Children's Center
 Lemberg Hall
-Linsey Sports Center
+Linsey Pool
 Lown Center for Judaica Studies
 Mandel Center for the Humanities
-Olin-Sang American Civilization Center
+Olin Sang
 Off Campus
 Pearlman Hall
 Pollack Fine Arts Teaching Center
 Rabb Graduate Center
 Rabb School
 Rapaporte Treasure Hall
+Ridgewood
 Rose Art Museum
-Rose Art Museum Lois Foster Wing
 Rosenstiel Basic Medical Sciences Research Center
 Sachar International Center
+Schneider
 Schwartz Hall
 Chapels Field
 Shapiro Athletic Center
 Shapiro Campus Center
 Shapiro Science Center
-Hassenfeld Conference Center
 Sherman Student Center / Dining Hall
 Sherman Function Hall
 Shiffman Humanities Center
@@ -70,4 +73,5 @@ Various Locations
 Wein Faculty Center
 Wasserman
 Other
+Off Campus
 Online

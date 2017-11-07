@@ -29,38 +29,63 @@ def create_events
 	price_overrides = JSON.parse(File.open("db/price_overrides.txt").read)
 	new_events = []
 	@data.each do |line|
-		if to_b(line["requiresPayment"])
-			price_start_index = description.index("$").to_i + 1
-			price_stop_index = description.index(/\s/, price_start_index-1)
-			price = description[price_start_index..price_stop_index-1].strip
-		end
 		trumba_id = line["eventID"]
-		e = Event.find_or_initialize_by(trumba_id: trumba_id)
+		e = Event.where(trumba_id: trumba_id).first_or_initialize
 		e.name = line["title"]
 		e.start = Time.parse(line["startDateTime"])
 		e.end = Time.parse(line["endDateTime"])
 		e.user = User.first
-		e.price = price.to_i || 0
 		e.description = line["description"]
-		e.description_text = line["description"]
-		e.location = Nokogiri::HTML(line["location"]).text
-		#debugger if Location.where("name like ?", "%#{e.location.split.first}%").empty?
-		#e.location_id = Location.where("name like ?", "%#{e.location.split.first}%").first.id
+		e.description_text = Nokogiri::HTML(line["description"]).text
+		e.location, e.location_id, e.price, e.sponsor = parse_custom_fields(line["customFields"])
 		e.seen_during_seeding = true
-		# if e.new_record?
-		# 	generate_image(e)
-		new_events << e
-		# else
-			#e.save(validate: false)
-		#end
+		if e.new_record?
+			generate_image(e)
+			new_events << e
+		else
+			e.save(validate: false)
+		end
 	end
 	Event.import new_events, validate: false
 	new_events.each { |e| create_tags(e)}
 end
 
-def to_b(string)
-	h = { "true"=>true, true=>true, "false"=>false, false=>false }
-	return h[string]
+def parse_custom_fields(custom_fields)
+	loc = ""
+	loc_id = 0
+	price = 0
+	event_sponsor = ""
+	custom_fields.each do |f|
+		label = f["label"]
+		val = f["value"]
+		if (label == "Location")
+			loc, loc_id = parse_location(val)
+		elsif (label == "Room")
+			loc = loc + ", Room: " + val
+		elsif (label == "Event sponsor(s)")
+			event_sponsor += val
+		elsif (label == "Ticket information")
+			price = grab_price(val) unless val.downcase.include? "free"
+		end
+	end
+	return loc, loc_id, price, event_sponsor
+end
+
+def grab_price(ticket_info)
+	price_start_index = ticket_info.index("$").to_i + 1
+  price_stop_index = ticket_info.index(/\s/, price_start_index-1)
+  price = ticket_info[price_start_index..price_stop_index-1].strip
+	price.to_i
+end
+
+def parse_location(loc)
+	loc = Nokogiri::HTML(loc).text
+	return "Hiatt Career Center", Location.find_by(name: "Hiatt Career Center").id if loc == "Usdan, Hiatt Career Center"
+	loc = loc.downcase.gsub(/[^0-9A-Za-z]/, ' ').split(" ").first
+	db_location = Location.where("lower(name) LIKE ?", "%#{loc}%")
+	return "Other", Location.find_by(name: "Other") if db_location.empty?
+	db_location.first.name += " " + line["customFields"][1]["value"] if db_location.first.name == "ridgewood"
+	return db_location.first.name, db_location.first.id
 end
 
 def price_override(title)

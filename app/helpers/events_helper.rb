@@ -27,15 +27,14 @@ module EventsHelper
 		string = ''
 		string << "<div class='#{col_length} portfolio-item'>"
 		string << event_image(event)
-		string << "<h4> <a href='#{event_path(event.id)}'> #{truncate event.name, length: 50}</a></h4>"
+		string << "<h4> <a href='#{event_path(event.id)}'> #{(truncate event.name, length: 50, :escape => false)}</a></h4>"
 		string << list_tags(event)
 		if event.host.first_name == "BrandeisEvents"
-			string << "<p class='event-description-home'>#{(truncate event.description_text, length: 65)}</p>"
+			string << "<p class='event-description-home'>#{(truncate event.description_text, length: 65, :escape => false)}</p>"
 		else
 			string << "<p>#{(truncate event.description, length: 65)}</p>"
 		end
-		string << start_time(event) + location(event)
-		# string << '</div>'
+		string << time(event) + location(event)
 		string.html_safe
 	end
 
@@ -71,11 +70,12 @@ module EventsHelper
 		s << '</a>'
 	end
 
-	def start_time(event)
+	def time(event)
 		<<-eos
 		<div class="row">
 		<div class="col-xs-12">
-		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>#{event.start.strftime('%-m/%-d %l:%M %p')}
+		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>
+		#{event.start.strftime('%-m/%-d %l:%M %p')} - #{event.end.strftime('%l:%M %p')}
 		</div>
 		eos
 	end
@@ -84,7 +84,7 @@ module EventsHelper
 		string = "<div class='col-xs-12'>"
 		string << "<span style='margin-left: -21px;' class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
 		to_truncate = event.location
-		trunc = to_truncate.split.first(2).join(' ')
+		trunc = to_truncate.gsub(/[^0-9A-Za-z]/, ' ').split.first(2).join(' ')
 		string << " " + trunc.to_s
 		string << '</div>'
 		string << '</div>'
