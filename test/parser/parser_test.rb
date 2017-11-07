@@ -5,7 +5,7 @@ class ParserTest < ActiveSupport::TestCase
 
 	def setup
 		parser = BrandeisEventParser.new
-		@data = parser.get_data
+		@data = parser.get_data_xml
 	end
 
 	test "no '<br>' tags at the start of description" do
