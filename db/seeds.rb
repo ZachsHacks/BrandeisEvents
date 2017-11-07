@@ -84,7 +84,6 @@ def parse_location(loc)
 	loc = loc.downcase.gsub(/[^0-9A-Za-z]/, ' ').split(" ").first
 	db_location = Location.where("lower(name) LIKE ?", "%#{loc}%")
 	return "Other", Location.find_by(name: "Other") if db_location.empty?
-	db_location.first.name += " " + line["customFields"][1]["value"] if db_location.first.name == "ridgewood"
 	return db_location.first.name, db_location.first.id
 end
 

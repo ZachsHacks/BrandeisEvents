@@ -84,7 +84,7 @@ module EventsHelper
 		string = "<div class='col-xs-12'>"
 		string << "<span style='margin-left: -21px;' class='glyphicon glyphicon-map-marker' id='icon-location'></span>"
 		to_truncate = event.location
-		trunc = to_truncate.gsub(/[^0-9A-Za-z]/, ' ').split.first(2).join(' ')
+		trunc = to_truncate.gsub(/[^0-9A-Za-z]|Room.*/, ' ').split.first(2).join(' ')
 		string << " " + trunc.to_s
 		string << '</div>'
 		string << '</div>'
