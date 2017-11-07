@@ -2,7 +2,6 @@ require 'crack/xml'
 require 'json'
 require 'typhoeus'
 require 'nokogiri'
-require 'byebug'
 
 class BrandeisEventParser
 
