@@ -40,12 +40,11 @@ class UsersController < ApplicationController
         @user.events.each do |e|
           event = Icalendar::Event.new
           event.dtstart = e.start
-          # adds hour for now for ending time
           event.dtend = e.end
           event.summary = e.name
           event.uid = event.url = e.url
           event.location = e.location
-          event.description = e.description_text
+          event.description = e.description_text.html_safe
           cal.add_event(event)
         end
         cal.publish
