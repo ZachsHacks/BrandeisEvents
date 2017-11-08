@@ -41,7 +41,7 @@ class UsersController < ApplicationController
           event = Icalendar::Event.new
           event.dtstart = e.start
           # adds hour for now for ending time
-          event.dtend = e.start + 1 * 60 * 60
+          event.dtend = e.end
           event.summary = e.name
           event.uid = event.url = e.url
           event.location = e.location
