@@ -29,6 +29,12 @@ class EventsController < ApplicationController
 			@events = filter_dates(params[:date])
 		elsif params[:tag]
 			@events = filter_tags(params[:tag])
+		elsif params[:sponsor]
+			search_phrase = search_by_sponsor(params[:sponsor].downcase)
+			@events = Event.where("sponsor like ?", "%" + search_phrase + "%")
+			@events = @events.where('start > ?', Time.now)
+
+
 		else
 			@events = Event.where('start > ?', Time.now)
 		end
@@ -93,14 +99,12 @@ class EventsController < ApplicationController
 		authorize! :new, @event
 	end
 
-	def new_trumba
-
-	end
 
 	# GET /events/1/edit
 	def edit
 		authorize! :edit, @event
 	end
+
 
 	# POST /events
 	# POST /events.json
@@ -154,7 +158,7 @@ class EventsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
-		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image, :date, :tag)
+		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image, :date, :tag, :sponsor)
 	end
 
 	def geolocation
@@ -183,4 +187,11 @@ class EventsController < ApplicationController
 			Event.where('start < ?', Time.now).reverse
 		end
 	end
+
+	def search_by_sponsor(search_phrase)
+		if search_phrase.include?("-")
+			search_phrase = search_phrase.gsub("-", " ")
+		end
+	return search_phrase
+end
 end
