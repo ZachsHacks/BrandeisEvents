@@ -30,7 +30,8 @@ class EventsController < ApplicationController
 		elsif params[:tag]
 			@events = filter_tags(params[:tag])
 		elsif params[:sponsor]
-			@events = Event.where(sponsor: params[:sponsor])
+			search_phrase = search_by_sponsor(params[:sponsor].downcase)
+			@events = Event.where(sponsor: search_phrase)
 		else
 			@events = Event.where('start > ?', Time.now)
 		end
@@ -183,4 +184,11 @@ class EventsController < ApplicationController
 			Event.where('start < ?', Time.now).reverse
 		end
 	end
+
+	def search_by_sponsor(search_phrase)
+		if search_phrase.include?("-")
+			search_phrase = search_phrase.gsub("-", " ")
+		end
+	return search_phrase
+end
 end
