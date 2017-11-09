@@ -32,7 +32,7 @@ module SingularEventHelper
 		return_string = ""
 		return_string << "<h3>Event Sponsor(s)</h3>"
 		return_string << "<div id='column_results'>"
-		return_string << "<p>#{event.sponsor}</p>"
+		return_string << "<p>#{event.sponsor.split.map(&:capitalize)*' '}</p>"
 		return_string << "</div>"
 		return_string.html_safe
 	end

@@ -68,7 +68,7 @@ def parse_custom_fields(custom_fields)
 			price = grab_price(val) unless val.downcase.include? "free"
 		end
 	end
-	return loc, loc_id, price, event_sponsor
+	return loc, loc_id, price, event_sponsor.downcase
 end
 
 def grab_price(ticket_info)
