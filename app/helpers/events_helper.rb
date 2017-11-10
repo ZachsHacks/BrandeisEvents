@@ -155,6 +155,6 @@ module EventsHelper
 	end
 
 	def next_min_trumba
-		Event.pluck(:trumba_id).min - 1
+		"Your next manual event should have Trumba ID: #{Event.pluck(:trumba_id).min - 1}"
 	end
 end

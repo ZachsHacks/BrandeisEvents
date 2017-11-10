@@ -187,7 +187,7 @@ def update_image_url_hash
 end
 
 def destroy_canceled_events
-	Event.destroy Event.all.reject {|e| e.trumba_id == -1 || e.seen_during_seeding || e.start.past?}
+	Event.destroy Event.all.reject {|e| e.trumba_id < 0 || e.seen_during_seeding || e.start.past?}
 	EventTag.destroy EventTag.select{ |t| !Event.exists?(t.event_id) }
 	Rsvp.destroy Rsvp.select{ |r| !Event.exists?(r.event_id) }
 end
