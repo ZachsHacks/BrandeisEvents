@@ -9,6 +9,8 @@ module EventsHelper
 			"Category: #{Tag.find(params[:tag]).name.titleize}"
 		elsif params[:location] && params[:location] != 'all'
 			params[:location].titleize.to_s
+		elsif params[:sponsor]
+			"Events by " + params[:sponsor].split.map(&:capitalize)*' '
 		else
 			'All Events'
 		end

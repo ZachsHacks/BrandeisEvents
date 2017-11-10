@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/', to: 'events#home'
   get '/events/new', to: 'events#new'
   get '/events/new/trumba', to: 'events#new_trumba'
-  get '/:sponsor', to: 'events#filter_events'
+  get 'sponsor/:sponsor', to: 'events#filter_events'
   get '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/search', to: 'events#search', as: 'search'
