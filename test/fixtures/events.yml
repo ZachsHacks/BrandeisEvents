@@ -6,6 +6,7 @@ one:
   location: Gosman Sports and Convocation Center
   start: "2017-09-12 07:30:00"
   end: "2017-09-12 08:30:00"
+  trumba_id: -1
 
 two:
   name: "Physics Department Colloquium: How to control the size of a self-assembling, self-filling shell"
