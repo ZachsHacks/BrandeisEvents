@@ -47,8 +47,8 @@ def create_events
 		end
 	end
 	Event.import new_events, validate: false
-	new_events << Event.select { |e| e.trumba_id < 0 && e.tags.count == 0}
-	new_events.each { |e| create_tags(e) }
+	to_be_tagged = new_events + Event.select { |e| e.trumba_id < 0 && e.tags.count == 0}
+	to_be_tagged.each { |e| create_tags(e) }
 end
 
 def parse_custom_fields(custom_fields)
