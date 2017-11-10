@@ -153,4 +153,8 @@ module EventsHelper
 
 		s.html_safe
 	end
+
+	def next_min_trumba
+		Event.pluck(:trumba_id).min - 1
+	end
 end

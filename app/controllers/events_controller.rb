@@ -192,6 +192,6 @@ class EventsController < ApplicationController
 		if search_phrase.include?("-")
 			search_phrase = search_phrase.gsub("-", " ")
 		end
-	return search_phrase
-end
+	  return search_phrase
+    end
 end
