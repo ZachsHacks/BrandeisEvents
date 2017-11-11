@@ -3,16 +3,26 @@ require 'nokogiri'
 module EventsHelper
 	def top_image_text
 		s = ''
-		s << if params[:date] && params[:date] != ''
-			params[:date].titleize.to_s
-		elsif params[:tag]
-			"Category: #{Tag.find(params[:tag]).name.titleize}"
-		elsif params[:location] && params[:location] != 'all'
-			params[:location].titleize.to_s
-		elsif params[:sponsor]
-			"Events by " + params[:sponsor].split.map(&:capitalize)*' '
+		if params[:my_interests]
+			s << '<h1>Events For Your Interests</h1><h2>'
+			current_user.tags.pluck(:name).sort.each { |t| s << "#{t} | "}
+			s = s[0...-2]
+			s << '</h2>'
 		else
+			s << '<h1>'
+			s <<
+			if params[:date] && params[:date] != ''
+			params[:date].titleize.to_s
+			elsif params[:tag]
+			"Category: #{Tag.find(params[:tag]).name.titleize}"
+			elsif params[:location] && params[:location] != 'all'
+			params[:location].titleize.to_s
+			elsif params[:sponsor]
+			"Events by " + params[:sponsor].split.map(&:capitalize)*' '
+			else
 			'All Events'
+			end
+			s << '</h1>'
 		end
 		s.html_safe
 	end
@@ -73,11 +83,13 @@ module EventsHelper
 	end
 
 	def time(event)
+		start_str = event.start.strftime('%-m/%-d %l:%M %p')
+		end_str = event.start.to_date == event.end.to_date ? event.end.strftime('%l:%M %p') : event.end.strftime('%-m/%-d %l:%M %p')
 		<<-eos
 		<div class="row">
 		<div class="col-xs-12">
 		<span class="glyphicon glyphicon-time" id="icon-home" class="col-md-4"></span>
-		#{event.start.strftime('%-m/%-d %l:%M %p')} - #{event.end.strftime('%l:%M %p')}
+		#{start_str} - #{end_str}
 		</div>
 		eos
 	end
@@ -105,6 +117,7 @@ module EventsHelper
 		end
 
 		string << '</div>'
+		string << '<hr>'
 		string.html_safe
 	end
 
@@ -137,6 +150,15 @@ module EventsHelper
 		string << '<p>' + link_to('Past Events', filter_events_path(date: 'past events'), remote: true) + '</p>'
 		string << '</div>'
 		string << '<hr>'
+		string.html_safe
+	end
+
+	def sidebar_my_interests
+		count = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}.count
+		string = ''
+		string << "<button type='button' class='btn btn-link'> <h4><strong>"
+		string << link_to("My Interests (#{count})", filter_events_path(my_interests: true), remote: true)
+		string << "</strong></h4></button>"
 		string.html_safe
 	end
 

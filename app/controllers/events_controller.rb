@@ -23,7 +23,9 @@ class EventsController < ApplicationController
 	def filter_events
 		@locations = Location.all.select {|l| l.events.count > 0}
 		@events = []
-		if params[:location]
+		if(params[:my_interests])
+			@events = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}
+		elsif params[:location]
 			@events = Location.find_by(name: params[:location]).events.where('start > ?', Time.now)
 		elsif params[:date]
 			@events = filter_dates(params[:date])
