@@ -17,7 +17,7 @@
 					<%= sidebar_date %>
 					<%= sidebar_tags %>
 					<%= sidebar(@locations) %>
-					<%= sidebar_my_interests %>
+					<%= sidebar_my_interests unless User.interests.empty? %>
 					<hr>
 
 				</div>
