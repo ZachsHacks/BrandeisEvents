@@ -1,0 +1,2 @@
+class EventAttachment < ApplicationRecord
+end
