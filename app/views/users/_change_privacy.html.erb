@@ -1,3 +1,3 @@
 <h3>Privacy</h3>
-<p> Would you like to hide your name from the RSVP list? By default you are displayed under an events RSVP list.
+<h4><%= privacy_statement(user) %></h4>
 <%= button_to opt_in_or_out(user), change_privacy_path(user_id: user.id), class: privacy_button_color(user), :remote => true %>

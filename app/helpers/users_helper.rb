@@ -25,12 +25,16 @@ module UsersHelper
         "Click here to #{privacy_variable(user)} events' RSVP lists!"
     end
 
+    def privacy_statement(user)
+        user.hide_rsvp ? 'Your RSVPs to events are currently anonymous!' : 'Your name is currently being shown on events you\'ve RSVP\'d to!'
+    end
+
     def privacy_variable(user)
-        user.hide_rsvp == true ? 'show your name on' : 'hide your name from'
+        user.hide_rsvp == true ? 'SHOW your name on' : 'HIDE your name from'
     end
 
     def privacy_button_color(user)
-      user.hide_rsvp == true ? 'btn btn-default' : 'btn btn-danger'
+      user.hide_rsvp == true ? 'btn btn-primary' : 'btn btn-danger'
     end
 
     # def set_active
