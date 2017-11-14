@@ -48,6 +48,7 @@ class EventsController < ApplicationController
 	end
 
 	def home
+		redirect_to events_path if logged_in?
 		all_events = Event.where("start > ?", Time.now)
 		@items = all_events.pluck(:name)
 		@top_events = all_events.sort_by(&:rsvps_count).last(4).reverse
