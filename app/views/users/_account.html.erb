@@ -59,10 +59,10 @@
 				<br/>
 				Just press one of the below buttons or manually subscribe with this link:
 				<br/>
-				<span style="word-wrap: break-word;"><%="webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync"%></span></p>
-			<%= link_to("Subscribe to Calendar Feed", "webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
+				<span style="word-wrap: break-word;"><%="webcal://deistoday.com/users/#{current_user.calendar_hash}/calendar-sync"%></span></p>
+			<%= link_to("Subscribe to Calendar Feed", "webcal://deistoday.com/users/#{current_user.calendar_hash}/calendar-sync", :class=>"btn btn-default btn-transparent", :id =>"calendar-feed-button" ) %>
 			|
-			<%= link_to("Add to Google Calendar", "https://calendar.google.com/calendar/render?cid=webcal://brandeisevents.com/users/#{current_user.calendar_hash}/calendar-sync.ics#main_7", :class=>"btn btn-default btn-transparent", :target=>:blank, :id =>"calendar-feed-button" ) %>
+			<%= link_to("Add to Google Calendar", "https://calendar.google.com/calendar/render?cid=webcal://deistoday.com/users/#{current_user.calendar_hash}/calendar-sync.ics#main_7", :class=>"btn btn-default btn-transparent", :target=>:blank, :id =>"calendar-feed-button" ) %>
 		</div>
 	<div class="col-md-6 form-inline">
 		<div id="privacy">

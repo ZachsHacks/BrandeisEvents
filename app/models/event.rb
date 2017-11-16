@@ -19,7 +19,7 @@ class Event < ApplicationRecord
 	end
 
 	def url
-		"brandeisevents.com/events/#{self.id}"
+		"deistoday.com/events/#{self.id}"
 	end
 
 	has_attached_file :event_image, styles: {

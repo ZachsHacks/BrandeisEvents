@@ -27,7 +27,7 @@ Devise.setup do |config|
       idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/POST/SSO',
     #   idp_sso_target_url: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
-      callback_url: 'https://brandeisevents.com/users/auth/saml/callback'
+      callback_url: 'https://deistoday.com/users/auth/saml/callback'
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
