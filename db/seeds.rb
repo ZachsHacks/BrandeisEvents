@@ -111,7 +111,7 @@ def generate_image(event)
 end
 
 def create_host
-	User.find_or_create_by(uid: "calendar", provider: "google", first_name: "BrandeisEvents",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
+	User.find_or_create_by(uid: "calendar", provider: "google", first_name: "DeisToday",   email: "calendar@brandeis.edu", can_host: true, is_admin: false)
 end
 
 def create_default_tags

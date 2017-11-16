@@ -10,17 +10,17 @@ class UserMailer < ApplicationMailer
 
     def survey(user)
         @user = user
-        send_mail('BrandeisEvents Survey!')
+        send_mail('DeisToday Survey!')
     end
 
     def received_survey_reminder(user)
         @user = user
-        send_mail('BrandeisEvents Survey!')
+        send_mail('DeisToday Survey!')
     end
 
     def not_received_survey_reminder(user)
         @user = user
-        send_mail('Welcome to BrandeisEvents!')
+        send_mail('Welcome to DeisToday!')
     end
 
     def send_mail(subject)

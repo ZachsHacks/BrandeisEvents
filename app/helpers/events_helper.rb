@@ -41,7 +41,7 @@ module EventsHelper
 		string << event_image(event)
 		string << "<h4> <a href='#{event_path(event.id)}'> #{(truncate event.name, length: 50, :escape => false)}</a></h4>"
 		string << list_tags(event)
-		if event.host.first_name == "BrandeisEvents"
+		if event.host.first_name == "DeisToday"
 			string << "<p class='event-description-home'>#{(truncate event.description_text, length: 65, :escape => false)}</p>"
 		else
 			string << "<p>#{(truncate event.description, length: 65)}</p>"
