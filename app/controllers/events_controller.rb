@@ -48,6 +48,7 @@ class EventsController < ApplicationController
 	end
 
 	def home
+		redirect_to events_path if request.remote_ip.include?("129.64") || request.remote_ip.include?("127.0.0.1")
 		redirect_to events_path if logged_in?
 		all_events = Event.where("start > ?", Time.now)
 		@items = all_events.pluck(:name)
