@@ -206,19 +206,21 @@
 	//for automatic loading since block of next code is only for scrolling
 	$(document).ready(function () {
 		var logo_scrolling = document.getElementById('logo_scrolling');
+		var logo_blue = document.getElementById('logo_blue');
 		$('#nav').removeClass('navbar-default');
 		$('#nav').addClass('navbar-transparent');
+		logo.style.display = 'none';
 		logo_scrolling.style.display='block';
+		logo_blue.style.display = 'none';
 	});
 </script>
 <script>
 
 	window.onscroll = function () {
 		var nav = document.getElementById('nav');
-		var logo_scrolling = document.getElementById('logo_scrolling');
-		var logo = document.getElementById('logo');
-		var logo_text = document.getElementById('logo_text');
+		var logo_blue = document.getElementById('logo_blue');
 		var navbar_brand_link = document.getElementById('navbar-brand-link');
+		var logo_white = document.getElementById('logo_white');
 		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			console.log("is a mobile device")
 			nav.classList.add("navbar-default");
@@ -226,17 +228,22 @@
 			navbar_brand_link.classList.add("hidden");
 			logo_text.classList.add("logo_text_mobile");
 			logo.classList.add("hidden");
+			logo_white.style.display = 'none';
 		} else {
 			if (window.pageYOffset > 50 && window.location.pathname === '/') {
 				console.log("SHOW NAVBAR :", window.pageYOffset);
 				nav.classList.add("navbar-default");
 				nav.classList.remove("navbar-transparent");
-				logo_scrolling.style.display = 'block';
+				logo_white.style.display = 'none';
+				logo_blue.style.display = 'block';
+
+
 			} else if (window.pageYOffset <= 50 && window.location.pathname === '/'){
 				console.log("HIDE NAVBAR :", window.pageYOffset);
 				nav.classList.remove("navbar-default");
 				nav.classList.add("navbar-transparent");
-				logo_scrolling.style.display = 'none';
+				logo_white.style.display = 'block';
+				logo_blue.style.display = 'none';
 			}
 		}
 	}

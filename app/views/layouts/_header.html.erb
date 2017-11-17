@@ -12,8 +12,12 @@
 
             </div>
             <!-- Collection of nav links and other content for toggling -->
-            <%= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand', id: 'navbar-brand-link'%>
-            <%= link_to "BrandeisEvents", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
+            <%#= link_to image_tag("Brandeis_seal_blue.svg.png", alt: "logo_scrolling", size: "60x60", id: 'logo_scrolling' ), '/', class: 'navbar-brand', id: 'navbar-brand-link'%>
+            <%#= link_to "DeisToday", root_path, :class=>"navbar-brand", :id=>"logo_text" %>
+            <%= link_to image_tag("DeistToday_Logo.png", alt: "logo", id: 'logo_blue' ), '/', class: 'navbar-brand', style:'padding-top:20px;'%>
+
+            <%= link_to image_tag("DeistToday_Logo_White.png", alt: "logo", id: 'logo_white' ), '/', class: 'navbar-brand', style:'padding-top:20px;'%>
+
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <!-- <%= link_to image_tag("Brandeis_seal_white.svg.png", alt: "logo", size: "60x60", id: 'logo' ), '/', class: 'navbar-brand'%> -->
 
@@ -57,3 +61,11 @@
         </div>
     </nav>
 </section>
+
+<script>
+	//for automatic loading since block of next code is only for scrolling
+	$(document).ready(function () {
+		var logo_white = document.getElementById('logo_white');
+		logo_white.style.display = 'none';
+	});
+</script>
