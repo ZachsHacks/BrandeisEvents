@@ -48,7 +48,9 @@ class EventsController < ApplicationController
 	end
 
 	def home
-		redirect_to events_path if request.remote_ip.include?("129.64") || request.remote_ip.include?("127.0.0.1")
+		if request.remote_ip.include?("129.64") || request.remote_ip.include?("127.0.0.1")
+			redirect_to events_path
+		else
 		redirect_to events_path if logged_in?
 		all_events = Event.where("start > ?", Time.now)
 		@items = all_events.pluck(:name)
@@ -56,6 +58,7 @@ class EventsController < ApplicationController
 		@locations = Location.all.pluck(:name) # grab_locations
 		@top_tags = Tag.all.sort_by(&:events_count).last(7).reverse.map { |t| [t.events.count, t.name, t.id, t.image] }
 	end
+end
 
 	def show
 		@tags = EventTag.where(event_id: @event.id)
