@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   get 'users/:calendar_hash/calendar-sync', to: 'users#to_icalendar'
 
+  get '/events/:id/checkin', to: 'events#checkin'
+
 
   match '/404', :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all

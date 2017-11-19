@@ -103,6 +103,12 @@ class EventsController < ApplicationController
 		authorize! :new, @event
 	end
 
+	def checkin
+		# respond_to do |format|
+		# 	format.html {}
+		# end
+	end
+
 
 	# GET /events/1/edit
 	def edit
