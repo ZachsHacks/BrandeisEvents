@@ -34,7 +34,6 @@ class Event < ApplicationRecord
 
 	def self.search(params)
 		if params
-			debugger
 			events = Event.all
 			#name or description
 			n_or_d = params[:event]
