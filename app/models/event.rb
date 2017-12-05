@@ -39,7 +39,7 @@ class Event < ApplicationRecord
 			n_or_d = params[:event]
 			location = params[:location]
 			date = params[:date] || Time.now
-			date = Date.strptime(params[:date], "%m/%d/%Y")
+			date = Date.strptime(params[:date].to_s, "%m/%d/%Y")
 			events = events.where(['start > ? AND end < ?'], "%#{date}%", "%#{date.end_of_day}%")
 			events = events.where(['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{n_or_d.downcase}%", "%#{n_or_d.downcase}%"]) if n_or_d.present?
 			events = events.where(['lower(location) LIKE ?',"%#{location.downcase}%"]) if location.present? && location != "all"
