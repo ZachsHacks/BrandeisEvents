@@ -166,15 +166,15 @@ module EventsHelper
 		current_user && @event.host == current_user
 	end
 
-	def time_to_destination(starting, destination, type)
-		s = ''
-		drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
-		hours = drive_time_in_minutes / 60
-		minutes = drive_time_in_minutes % 60
-		s = hours.to_s + ' hours ' + minutes.to_s + ' minutes'
-
-		s.html_safe
-	end
+	# def time_to_destination(starting, destination, type)
+	# 	s = ''
+	# 	drive_time_in_minutes = GoogleDirections.new(starting, destination, type).drive_time_in_minutes
+	# 	hours = drive_time_in_minutes / 60
+	# 	minutes = drive_time_in_minutes % 60
+	# 	s = hours.to_s + ' hours ' + minutes.to_s + ' minutes'
+  #
+	# 	s.html_safe
+	# end
 
 	def next_min_trumba
 		"Your next manual event should have Trumba ID: #{Event.pluck(:trumba_id).min - 1}"

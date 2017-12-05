@@ -23,16 +23,8 @@
 		</div>
 		<div class="col-md-4">
 			<h2><%= @event.name.html_safe%></h2>
-			<div class="travel_times">
 
-				<p><%= fa_icon "car", style:"margin-right: 2px" %>
-					<%= time_to_destination(@current_address, 	@address, {mode: "car"})%></p>
-				<p><%= fa_icon "bicycle" %>
-					<%= time_to_destination(@current_address, 	@address, {mode: "bicycling"} )%>
-				</p>
-				<p><img src="https://cloud.githubusercontent.com/assets/8117478/3538954/4fca7e98-0836-11e4-9353-bb2ee1b62b49.png" width="10px;" style="margin-right: 7px">
-					<%= time_to_destination(@current_address, 	@address, {mode: "walking"} )%></p>
-			</div>
+
 			<% if logged_in? %>
 			<div class="center-block">
 				<div class="btn-group pull-left rsvp-button-group" role="group" aria-label="...">
