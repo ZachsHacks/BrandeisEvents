@@ -5,3 +5,10 @@ function AJAXSearchForm(){
          data : $("form").serialize()
     });
 }
+// <script>
+// $(document).ready(function(){
+//     $(".btn btn-link").click(function(){
+//         $(".collapse").collapse('show');
+//     });
+// });
+// </script>

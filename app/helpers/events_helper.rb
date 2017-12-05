@@ -4,7 +4,7 @@ module EventsHelper
 	def top_image_text
 		s = ''
 		if params[:my_interests]
-			s << '<h1>Events For Your Interests</h1><h2>'
+			s << '<h1 style="color:#fff;">Events For Your Interests</h1><h2>'
 			current_user.tags.pluck(:name).sort.each { |t| s << "#{t} | "}
 			s = s[0...-2]
 			s << '</h2>'
@@ -126,7 +126,7 @@ module EventsHelper
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#tags'><h4><strong>Categories</strong></h4></button>"
 		string << "<div class='collapse' id='tags'>"
 		string << '<p>' + link_to('All Categories', filter_events_path, remote: true) + '</p>'
-		Tag.all.select { |t| t.events.count > 0 }.sort.each do |tag|
+		Tag.all.select { |t| t.events.count > 0}.sort.each do |tag|
 			s = ' (' + Tag.find(tag.id).events.count.to_s + ')'
 			string << '<p>' + link_to(tag.name + s, filter_events_path(tag: tag.id), remote: true) + '</p>'
 		end
@@ -156,7 +156,7 @@ module EventsHelper
 	def sidebar_my_interests
 		count = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}.count
 		string = ''
-		string << "<button type='button' class='btn btn-link'> <h4><strong>"
+		string << "<button type='button' class='btn btn-link'> <h4><strong class='btn btn-link'>"
 		string << link_to("My Interests (#{count})", filter_events_path(my_interests: true), remote: true)
 		string << "</strong></h4></button>"
 		string.html_safe
