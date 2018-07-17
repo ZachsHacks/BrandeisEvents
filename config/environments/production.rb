@@ -3,7 +3,7 @@ config.time_zone = 'Eastern Time (US & Canada)'
   # config.after_initialize do
   #     Delayed::Job.scaler = :heroku
   #   end
-  config.force_ssl = true
+  # config.force_ssl = true
 
   config.paperclip_defaults = {
   storage: :s3,
