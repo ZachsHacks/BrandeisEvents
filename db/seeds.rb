@@ -65,7 +65,7 @@ def parse_custom_fields(custom_fields)
 			loc = loc + ", Room: " + val
 		elsif (label == "Event sponsor(s)")
 			event_sponsor += val
-		elsif (label == "Ticket information")
+		elsif (label == "Ticket information" && val.include?("$"))
 			price = grab_price(val) unless val.downcase.include? "free"
 		end
 	end
@@ -76,6 +76,7 @@ def grab_price(ticket_info)
 	price_start_index = ticket_info.index("$").to_i + 1
   price_stop_index = ticket_info.index(/\s/, price_start_index-1)
   price = ticket_info[price_start_index..price_stop_index-1].strip
+  puts 'SUCCEEDED!'
 	price.to_i
 end
 
