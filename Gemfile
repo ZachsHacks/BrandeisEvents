@@ -14,6 +14,8 @@ gem 'activerecord-import'
 gem 'chronic_duration'
 gem 'rails', '~> 5.0.2'
 
+gem 'sprockets', '3.7.2'
+
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'momentjs-rails', '>= 2.9.0'
