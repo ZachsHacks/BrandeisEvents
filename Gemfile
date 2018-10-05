@@ -46,6 +46,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'sprockets', '~>3.7.2'
 gem 'ferret', '~> 0.11.8.6'
 
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
