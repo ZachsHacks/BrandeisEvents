@@ -202,7 +202,7 @@ end
 
 def update_event_counts
   Location.all.each do |l|
-    l.event_count = l.events.count
+    l.event_count = l.events.reject { |e| e.start.past? }.count
     l.save
   end
 end

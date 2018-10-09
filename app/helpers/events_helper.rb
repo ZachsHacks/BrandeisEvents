@@ -111,7 +111,7 @@ module EventsHelper
 		string << '<p>' + link_to('All Locations', filter_events_path, remote: true) + '</p>'
 
 		locations.sort.each do |l|
-			count = l.events.where('start > ?', Date.today).count.to_s
+			count = l.event_count.to_s
 			s = l.name + ' (' + count + ')'
 			string << '<p>' + link_to(s, filter_events_path(location: l.name), remote: true) + '</p>'
 		end
