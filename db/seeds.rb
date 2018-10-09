@@ -37,7 +37,7 @@ def create_events
 		e.user = User.first
 		e.description = line["description"]
 		e.description_text = Nokogiri::HTML(line["description"]).text
-		e.location, e.location_id, e.price, e.sponsor = parse_custom_fields(line["customFields"])
+		e.location, e.location_id, e.price, e.sponsor = parse_custom_fields(line["customFields"], e.name)
 		e.seen_during_seeding = true
 		if e.new_record?
 			generate_image(e)
@@ -51,7 +51,7 @@ def create_events
 	to_be_tagged.each { |e| create_tags(e) }
 end
 
-def parse_custom_fields(custom_fields)
+def parse_custom_fields(custom_fields, name)
 	loc = ""
 	loc_id = 0
 	price = 0
@@ -60,7 +60,7 @@ def parse_custom_fields(custom_fields)
 		label = f["label"]
 		val = f["value"]
 		if (label == "Location")
-			loc, loc_id = parse_location(val)
+			loc, loc_id = parse_location(val, name)
 		elsif (label == "Room")
 			loc = loc + ", Room: " + val
 		elsif (label == "Event sponsor(s)")
@@ -79,13 +79,20 @@ def grab_price(ticket_info)
   price.to_i
 end
 
-def parse_location(loc)
+def parse_location(loc, name)
 	loc = Nokogiri::HTML(loc).text
 	return "Hiatt Career Center", Location.find_by(name: "Hiatt Career Center").id if loc == "Usdan, Hiatt Career Center"
 	loc = loc.downcase.gsub(/[^0-9A-Za-z]/, ' ').split(" ").first
-	db_location = Location.where("lower(name) LIKE ?", "%#{loc}%")
-	return "Other", Location.find_by(name: "Other") if db_location.empty?
-	return db_location.first.name, db_location.first.id
+	db_location_search = Location.where("lower(name) LIKE ?", "%#{loc}%")
+	# puts name
+	# puts name == "IM Bottle Bash Tournament"
+	# byebug
+    if db_location_search.empty?
+      db_location = Location.find_by(name: "Other")
+    else
+      db_location = db_location_search.first
+    end
+	return db_location.name, db_location.id
 end
 
 def price_override(title)
@@ -193,6 +200,13 @@ def destroy_canceled_events
 	Rsvp.destroy Rsvp.select{ |r| !Event.exists?(r.event_id) }
 end
 
+def update_event_counts
+  Location.all.each do |l|
+    l.event_count = l.events.count
+    l.save
+  end
+end
+
 puts "Starting seeding"
 create_host if !User.any?
 create_locations if !Location.any?
@@ -207,4 +221,6 @@ puts "Updating image URLs..."
 update_image_url_hash
 puts "Deleted canceled events..."
 destroy_canceled_events
+puts "Updating location event counts..."
+update_event_counts
 puts "Done!"
