@@ -62,7 +62,7 @@ gem 'faker'
 gem 'figaro'
 
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '~> 3'
 gem 'social-share-button'
 
 

@@ -73,11 +73,10 @@ def parse_custom_fields(custom_fields)
 end
 
 def grab_price(ticket_info)
-	price_start_index = ticket_info.index("$").to_i + 1
+  price_start_index = ticket_info.index("$").to_i + 1
   price_stop_index = ticket_info.index(/\s/, price_start_index-1)
   price = ticket_info[price_start_index..price_stop_index-1].strip
-  puts 'SUCCEEDED!'
-	price.to_i
+  price.to_i
 end
 
 def parse_location(loc)
