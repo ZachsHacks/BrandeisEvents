@@ -156,7 +156,7 @@ module EventsHelper
 	def sidebar_my_interests
 		count = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}.count
 		string = ''
-		string << "<button type='button' class='btn btn-link'> <h4><strong class='btn btn-link'>"
+		string << "<button type='button' class='btn btn-link'> <h4><strong>"
 		string << link_to("My Interests (#{count})", filter_events_path(my_interests: true), remote: true)
 		string << "</strong></h4></button>"
 		string.html_safe
