@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
 	def search
 		@events = Event.search(params).paginate(page: params[:page], per_page: 12)
-		@locations = Location.all.select {|l| l.event_count > 0}
+		@locations = Location.all.select{|l| !l.event_count.nil? && (l.event_count > 0)}
 		respond_to do |format|
 			format.html
 			format.js
@@ -18,11 +18,11 @@ class EventsController < ApplicationController
 	def index
 		@events = Event.where('start > ?', Time.now)
 		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
-		@locations = Location.all.select {|l| l.event_count > 0}
+		@locations = Location.all.select{|l| !l.event_count.nil? && (l.event_count > 0)}
 	end
 
 	def filter_events
-		@locations = Location.all.select {|l| l.event_count > 0}
+		@locations = Location.all.select{|l| !l.event_count.nil? && (l.event_count > 0)}
 		@events = []
 		if(params[:my_interests])
 			@events = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}

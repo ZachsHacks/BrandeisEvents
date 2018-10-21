@@ -69,20 +69,21 @@
 
 				<% end %>
 			</div>
+				<div id="map" style='width: 100%; height: 220px;'></div>
 		</div>
 
 
 		<div id="rsvp_list">
 				 <%= render "events/display_rsvps",  locals: {event: @event} %>
 		 </div>
-		<!-- <div class="container"> -->
+		<!-- <div class="container">
 		</div>
 			<div class="row">
 				<div class="col-md-12">
-					<!-- <div id="map" style='width: 100%; height: 220px;'></div> -->
+					<div id="map" style='width: 100%; height: 220px;'></div>
 				</div>
-			<!-- </div> -->
-		<!-- </div> -->
+		</div>
+</div> -->
 	</div>
 
 	<% if is_host %>
@@ -93,7 +94,7 @@
 
 </div>
 
-<% if false %>
+
 <script type="text/javascript">
 	var handler = Gmaps.build('Google');
 	handler.buildMap({
@@ -102,7 +103,6 @@
 		},
 		zoom: 13
 	}, function () {
-
 		var start_point = [<%=@current_latitude%>, <%=@current_longitude%>];
 		var end_point = [<%=@location[0]%>, <%=@location[1]%>];
 
@@ -111,21 +111,19 @@
 
 		directionsDisplay.setMap(handler.getMap());
 		var request = {
-			origin: new google.maps.LatLng(start_point[0], start_point[1]),
-			destination: new google.maps.LatLng(end_point[0], end_point[1]),
+			origin: new google.maps.LatLng(<%=@current_latitude%>, <%=@current_longitude%>),
+			destination: new google.maps.LatLng(<%=@location[0]%>, <%=@location[1]%>),
 			travelMode: google.maps.TravelMode.WALKING
 
 		};
-
 		directionsService.route(request, function (response, status) {
 			if (status === google.maps.DirectionsStatus.OK) {
 				directionsDisplay.setDirections(response);
-
 			}
 		});
 	});
 </script>
-<% end %>
+
 
 <style>
 	.rsvp-button {
