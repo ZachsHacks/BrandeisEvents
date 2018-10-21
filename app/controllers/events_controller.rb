@@ -171,7 +171,7 @@ end
 	end
 
 	def set_rsvps
-		@rsvps = current_user.rsvps if current_user
+		@rsvps = current_user.rsvps.to_ary if current_user
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.
