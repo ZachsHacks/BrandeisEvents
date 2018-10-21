@@ -14,7 +14,7 @@ module RsvpsHelper
   end
 
   def same_choice(event)
-    !@rsvps.find_by(event: event, choice: @choice).nil?
+    !@rsvps.detect { |r| r.event == event and r.choice == @choice }.nil?
   end
 
   def option_text

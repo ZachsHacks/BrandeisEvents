@@ -170,10 +170,6 @@ end
 		@event = Event.find(params[:id])
 	end
 
-	def set_rsvps
-		@rsvps = current_user.rsvps.to_ary if current_user
-	end
-
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
 		params.require(:event).permit(:name, :description, :location, :start, :end, :price, :host_id, :event_image, :date, :tag, :sponsor)

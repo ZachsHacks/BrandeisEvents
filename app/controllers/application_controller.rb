@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
     @all_locations = Location.all.pluck(:name)
   end
 
+  def set_rsvps
+      @rsvps = current_user.rsvps.to_ary if current_user
+  end
+
   helper_method :current_user # so any line of code can call current_user
 end
