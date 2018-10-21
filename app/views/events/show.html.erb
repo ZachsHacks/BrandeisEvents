@@ -103,8 +103,6 @@
 		},
 		zoom: 13
 	}, function () {
-		var start_point = [<%=@current_latitude%>, <%=@current_longitude%>];
-		var end_point = [<%=@location[0]%>, <%=@location[1]%>];
 
 		var directionsService = new google.maps.DirectionsService();
 		var directionsDisplay = new google.maps.DirectionsRenderer();
