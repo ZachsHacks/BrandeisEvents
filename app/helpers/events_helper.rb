@@ -116,8 +116,8 @@ module EventsHelper
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#tags'><h4><strong>Categories</strong></h4></button>"
 		string << "<div class='collapse' id='tags'>"
 		string << '<p>' + link_to('All Categories', filter_events_path, remote: true) + '</p>'
-		Tag.all.select { |t| t.events.count > 0}.sort.each do |tag|
-			s = ' (' + Tag.find(tag.id).events.count.to_s + ')'
+		Tag.all.select { |t| t.event_count > 0}.sort.each do |tag|
+			s = ' (' + tag.event_count.to_s + ')'
 			string << '<p>' + link_to(tag.name + s, filter_events_path(tag: tag.id), remote: true) + '</p>'
 		end
 

@@ -216,6 +216,10 @@ def update_event_counts
     l.event_count = l.events.reject { |e| e.start.past? }.count
     l.save
   end
+  Tag.all.each do |t|
+	t.event_count = t.events.reject { |e| e.start.past? }.count
+	t.save
+  end
 end
 
 puts "Starting seeding"
@@ -232,6 +236,6 @@ puts "Updating image URLs..."
 update_image_url_hash
 puts "Deleted canceled events..."
 destroy_canceled_events
-puts "Updating location event counts..."
+puts "Updating location and tag event counts..."
 update_event_counts
 puts "Done!"

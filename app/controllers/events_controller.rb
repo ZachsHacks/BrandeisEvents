@@ -3,6 +3,7 @@ require 'active_support/core_ext'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
+	before_action :set_rsvps, only: [:index, :show]
 
 	def search
 		@events = Event.search(params).paginate(page: params[:page], per_page: 12)
@@ -167,6 +168,10 @@ end
 	# Use callbacks to share common setup or constraints between actions.
 	def set_event
 		@event = Event.find(params[:id])
+	end
+
+	def set_rsvps
+		@rsvps = current_user.rsvps if current_user
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

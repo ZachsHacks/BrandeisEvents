@@ -10,11 +10,11 @@ module RsvpsHelper
   end
 
   def has_rsvp(event)
-    current_user.rsvps.pluck(:event_id).include?(event.id)
+    @rsvps.pluck(:event_id).include?(event.id)
   end
 
   def same_choice(event)
-    !current_user.rsvps.find_by(event: event, choice: @choice).nil?
+    !@rsvps.find_by(event: event, choice: @choice).nil?
   end
 
   def option_text
