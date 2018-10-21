@@ -41,11 +41,7 @@ module EventsHelper
 		string << event_image(event)
 		string << "<h4> <a href='#{event_path(event.id)}'> #{(truncate event.name, length: 50, :escape => false)}</a></h4>"
 		string << list_tags(event)
-		if event.host.first_name == "DeisToday"
-			string << "<p class='event-description-home'>#{(truncate event.description_text, length: 65, :escape => false)}</p>"
-		else
-			string << "<p>#{(truncate event.description, length: 65)}</p>"
-		end
+		string << "<p class='event-description-home'>#{(truncate event.description_text, length: 65, :escape => false)}</p>"
 		string << time(event) + location(event)
 		string.html_safe
 	end
@@ -116,9 +112,11 @@ module EventsHelper
 		string << "<button type='button' class='btn btn-link' data-toggle='collapse' data-target='#tags'><h4><strong>Categories</strong></h4></button>"
 		string << "<div class='collapse' id='tags'>"
 		string << '<p>' + link_to('All Categories', filter_events_path, remote: true) + '</p>'
-		Tag.all.select { |t| t.event_count > 0}.sort.each do |tag|
-			s = ' (' + tag.event_count.to_s + ')'
-			string << '<p>' + link_to(tag.name + s, filter_events_path(tag: tag.id), remote: true) + '</p>'
+		Tag.all.each do |tag|
+			if tag.event_count > 0
+			  s = ' (' + tag.event_count.to_s + ')'
+			  string << '<p>' + link_to(tag.name + s, filter_events_path(tag: tag.id), remote: true) + '</p>'
+		    end
 		end
 
 		string << '</div>'
