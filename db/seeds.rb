@@ -140,6 +140,17 @@ def create_tags(event)
 		tag = Tag.find_or_create_by(name: t.capitalize)
 		event.tags << tag unless event.tags.include?(tag)
 	end
+	event.top_tags = top_tags(event).truncate(70)
+end
+
+def top_tags(event)
+	tags = event.tags.pluck(:name).sort
+	if tags.count >= 3
+		return "#{tags[0]}, #{tags[1]}, #{tags[2]}"
+	elsif tags.count == 2
+		return "#{tags[0]}, #{tags[1]}"
+	else tags[0]
+	end
 end
 
 def look_up(keywords)

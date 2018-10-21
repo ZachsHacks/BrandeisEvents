@@ -53,18 +53,8 @@ module EventsHelper
 	def list_tags(e)
 		string = "<div class='text-left event-tags'>"
 		icon = "<span class='glyphicon glyphicon-tags' class='col-md-2'></span>"
-		string << "<p>#{icon} #{truncate top_tags(e), length: 70}  </p>"
+		string << "<p>#{icon} #{e.top_tags}  </p>"
 		string << '</div>'
-	end
-
-	def top_tags(e)
-		tags = e.tags.pluck(:name).sort
-		if tags.count >= 3
-			return "#{tags[0]}, #{tags[1]}, #{tags[2]}"
-		elsif tags.count == 2
-			return "#{tags[0]}, #{tags[1]}"
-		else tags[0]
-		end
 	end
 
 	def event_image(event)
