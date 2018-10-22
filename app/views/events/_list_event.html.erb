@@ -1,5 +1,5 @@
 <%= list_event_helper(event, col_length)%>
 
-<%= render partial: 'events/rsvp_button', locals: {event: event} unless current_user.nil? %>
+<%= render partial: 'events/rsvp_button', locals: {event: event} unless @current_user.nil? %>
 
 </div>

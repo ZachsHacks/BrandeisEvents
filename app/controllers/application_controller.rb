@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_rsvps
-      @rsvps = current_user.rsvps.to_ary if current_user
+    @rsvps = @current_user.rsvps.to_ary if @current_user
   end
 
   helper_method :current_user # so any line of code can call current_user

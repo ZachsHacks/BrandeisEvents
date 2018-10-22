@@ -3,7 +3,7 @@ require 'active_support/core_ext'
 
 class EventsController < ApplicationController
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
-	before_action :set_rsvps, only: [:index, :show]
+	before_action :set_rsvps, only: [:index, :show, :search, :filter_events]
 
 	def search
 		@events = Event.search(params).paginate(page: params[:page], per_page: 12)
@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
 	# Get events based on search parameters
 	def index
-		@events = Event.where('start > ?', Time.now)
+		@events = Event.all.to_ary.select { |e| e.start > Time.now }
 		@events = @events.sort_by { |e| e.start }.paginate(page: params[:page], per_page: 12)
 		@locations = Location.all.select{|l| !l.event_count.nil? && (l.event_count > 0)}
 	end
@@ -25,7 +25,9 @@ class EventsController < ApplicationController
 		@locations = Location.all.select{|l| !l.event_count.nil? && (l.event_count > 0)}
 		@events = []
 		if(params[:my_interests])
-			@events = Event.select { |e| (e.tags & current_user.tags).count > 0 && e.start > Time.now}
+			@events = Set.new
+			@current_user.tags.each { |t| @events.merge t.events }
+			@events = @events.select { |e| e.start > Time.now}
 		elsif params[:location]
 			@events = Location.find_by(name: params[:location]).events.where('start > ?', Time.now)
 		elsif params[:date]

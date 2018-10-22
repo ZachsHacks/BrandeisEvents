@@ -9,15 +9,15 @@ module SessionsHelper
   end
 
   def logged_in?
-    !current_user.nil?
+    !@current_user.nil?
   end
 
   def can_host?
-    current_user && current_user.can_host
+    @current_user && @current_user.can_host
   end
 
   def is_admin?
-    current_user && current_user.is_admin
+    @current_user && @current_user.is_admin
   end
 
   def redirect_back_or(default)
