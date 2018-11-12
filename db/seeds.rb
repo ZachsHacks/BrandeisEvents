@@ -141,7 +141,7 @@ def create_tags(event)
 		event.tags << tag unless event.tags.include?(tag)
 	end
 	event.top_tags = top_tags(event).truncate(70)
-	event.save
+	event.save(validate: false)
 end
 
 def top_tags(event)
