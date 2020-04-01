@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.5.1"
+ruby "2.6.3"
 
 # git_source(:github) do |repo_name|
 # 	repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -31,6 +31,7 @@ gem 'google_directions', '~> 0.1.6.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'cancancan'
 gem 'icalendar'
+gem 'unsplash'
 
 gem 'font-awesome-rails'
 
@@ -55,7 +56,7 @@ gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-gem 'google-image'
+# gem 'google-image'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
@@ -78,7 +79,7 @@ gem 'daemons'
 
 # gem 'connectSDK', :path => "ConnectSDK"
 
-gem 'ConnectSDK', path: 'vendor/gettyimages-api_ruby-master'
+# gem 'ConnectSDK', path: 'vendor/gettyimages-api_ruby-master'
 # gem 'ConnectSDK',  git: "https://github.com/gettyimages/gettyimages-api_ruby.git"
 # gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'

@@ -80,3 +80,11 @@ config.action_mailer.smtp_settings = {
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
+
+Unsplash.configure do |config|
+  config.application_access_key = ENV["UNSPLASH_PUBLIC"]
+  config.application_secret = ENV["UNPLASH_PRIVATE"]
+  config.application_redirect_uri = "https://your-application.com/oauth/callback"
+  config.utm_source = "deistoday"
+end

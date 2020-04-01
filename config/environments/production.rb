@@ -115,3 +115,14 @@ config.action_mailer.smtp_settings = {
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+
+Unsplash.configure do |config|
+  config.application_access_key = ENV["UNSPLASH_PUBLIC"]
+  config.application_secret = ENV["UNPLASH_PRIVATE"]
+  config.application_redirect_uri = "https://your-application.com/oauth/callback"
+  config.utm_source = "deistoday"
+
+  # optional:
+  config.logger = MyCustomLogger.new
+end

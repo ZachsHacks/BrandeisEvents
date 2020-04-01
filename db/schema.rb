@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20181021071556) do
     t.string   "image_id"
     t.string   "event_image_file_name"
     t.string   "event_image_content_type"
-    t.integer  "event_image_file_size"
+    t.bigint   "event_image_file_size"
     t.datetime "event_image_updated_at"
     t.string   "description_text"
     t.integer  "rsvps_count",              default: 0

@@ -1,7 +1,8 @@
 require_relative 'brandeis_event_parser'
 require_relative 'tag_dictionary'
-require "ConnectSDK"
+# require "ConnectSDK"
 require 'activerecord-import'
+
 
 puts "Obtaining Brandeis' Feed..."
 #trumba data for brandeis events
@@ -14,6 +15,7 @@ puts "Grabbing Tag Dictionary..."
 
 #special cases for image queries
 @image_hash = Hash.new
+
 
 def get_image_url_hash
 	if File.file?("db/image_url_dictionary.txt") && !File.zero?("db/image_url_dictionary.txt")
@@ -84,9 +86,6 @@ def parse_location(loc, name)
 	return "Hiatt Career Center", Location.find_by(name: "Hiatt Career Center").id if loc == "Usdan, Hiatt Career Center"
 	loc = loc.downcase.gsub(/[^0-9A-Za-z]/, ' ').split(" ").first
 	db_location_search = Location.where("lower(name) LIKE ?", "%#{loc}%")
-	# puts name
-	# puts name == "IM Bottle Bash Tournament"
-	# byebug
     if db_location_search.empty?
       db_location = Location.find_by(name: "Other")
     else
@@ -185,11 +184,11 @@ def image_url(name)
 	name = name.gsub("\n", "").downcase
 	return @image_url_hash[name] if !@image_url_hash[name].nil?
 	@count+= 1
-	connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
-	search_results = connectSdk.search.images.with_phrase(name).execute
-	if !search_results["images"].nil? && !search_results["images"].empty?
-		@image_url_hash[name] = search_results["images"][0]["display_sizes"][0]["uri"].to_s
-		return "#{search_results["images"][0]["display_sizes"][0]["uri"]}"
+	# connectSdk = ConnectSdk.new(ENV["getty_api_key_#{@count%2}"], ENV["getty_api_secret_#{@count%2}"])
+	search_results = Unsplash::Photo.search(name)
+	if !search_results[0].nil? && !search_results[0].empty?
+		@image_url_hash[name] = search_results[0]["urls"]["regular"].to_s
+		return "#{@image_url_hash[name]}"
 	end
 end
 
