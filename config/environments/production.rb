@@ -123,6 +123,5 @@ Unsplash.configure do |config|
   config.application_redirect_uri = "https://your-application.com/oauth/callback"
   config.utm_source = "deistoday"
 
-  # optional:
-  config.logger = MyCustomLogger.new
+
 end
