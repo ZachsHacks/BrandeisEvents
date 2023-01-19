@@ -656,7 +656,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.10)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
@@ -688,8 +688,8 @@ GEM
       railties (>= 3.2, < 6.0)
     formatador (0.2.5)
     geocoder (1.5.0)
-    globalid (0.4.1)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     gmaps4rails (2.1.2)
     google_directions (0.1.6.2)
       nokogiri (>= 1.4.1)
@@ -711,7 +711,7 @@ GEM
     hashie (3.5.7)
     httparty (0.16.2)
       multi_xml (>= 0.5.2)
-    i18n (1.1.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     icalendar (2.5.0)
       ice_cube (~> 0.16)
@@ -742,10 +742,12 @@ GEM
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
     mime-types (1.25.1)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
-    minitest (5.11.3)
+    minitest (5.17.0)
     minitest-reporters (1.1.9)
       ansi
       builder
@@ -897,7 +899,7 @@ GEM
       nokogiri (>= 1.6, < 2.0)
     typhoeus (1.3.0)
       ethon (>= 0.9.0)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
